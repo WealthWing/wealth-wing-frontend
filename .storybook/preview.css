@@ -1,0 +1,15 @@
+* {
+	font-family: 'Be Vietnam Pro', sans-serif;
+}
+
+.sb-show-main.sb-main-fullscreen {
+	height: 100vh;
+}
+
+.sb-show-main.sb-main-fullscreen #storybook-root {
+	height: 100%;
+}
+
+.sb-show-main {
+	background: #f5f5f5;
+}

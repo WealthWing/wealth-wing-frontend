@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+      "esModuleInterop": true,
+      "jsx": "react-jsx",
+      "jsxImportSource": "@emotion/react",
+      "noImplicitAny": true,
+      "noUnusedLocals": false,
+      "noUnusedParameters": true,
+      "skipLibCheck": true,
+      "sourceMap": true,
+      "strict": true,
+      "lib": ["DOM", "ESNext"],
+      "module": "ESNext",
+      "moduleDetection": "force",
+      "target": "ESNext",
+      "allowJs": true,      
+      "allowSyntheticDefaultImports": true,
+      "checkJs": false,
+      "declaration": false,
+      "downlevelIteration": true,
+      "experimentalDecorators": true,
+      "importHelpers": true,
+      "isolatedModules": true,
+      "moduleResolution": "node",
+      "outDir": "dist",
+      "removeComments": true,
+      "resolveJsonModule": true,
+    },
+    "exclude": ["node_modules", "**build"]
+  }
+  
