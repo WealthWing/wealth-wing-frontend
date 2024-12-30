@@ -1,3 +1,3 @@
-export * from './button/Button';
+export * from './button';
 export * from './providers';
 export * from './theme';

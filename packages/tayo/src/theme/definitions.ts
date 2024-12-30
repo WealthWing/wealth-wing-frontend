@@ -12,10 +12,10 @@ export const alphaLevels = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
 export type AlphaLevel = (typeof alphaLevels)[number];
 
 //COLORS
-const colorKeys = ['primary', 'secondary'] as const;
+const colorKeys = ['black', 'darkBlue', 'indigo', 'green', 'red'] as const;
 export type ColorKey = (typeof colorKeys)[number];
 
-const colorLevels = ['100', '200', '300', '400'] as const;
+const colorLevels = ['100', '90', '80', '60', '40', '20', '10', '05'] as const;
 type ColorLevel = (typeof colorLevels)[number];
 
 export type Color = `${ColorKey}${ColorLevel}`;

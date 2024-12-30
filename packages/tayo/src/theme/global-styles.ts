@@ -166,9 +166,7 @@ export const reset = `
 	/* Additional Resets */
 	button,
 	[type='button'] {
-		background: none;
 		border: none;
-		padding: 0;
 	}
 
 	a:link,

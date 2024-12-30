@@ -1,36 +1,28 @@
-import './button.css';
-import { theme, ColorKey } from '../theme';
+import * as React from 'react';
+import { ButtonProps } from './base.definitions';
+import { button } from './button.styles';
+import {} from '@emotion/react';
 
-export interface ButtonProps {
-	/** Is this the principal call to action on the page? */
-	primary?: boolean;
-	/** What background color to use */
-	backgroundColor?: string;
-	/** How large should the button be? */
-	size?: 'small' | 'medium' | 'large';
-	/** Button contents */
-	label: string;
-	/** Optional click handler */
-	onClick?: () => void;
-}
+/* Add spinner
+   add icon
+*/
 
-/** Primary UI component for user interaction */
-export const Button = ({
-	primary = false,
-	size = 'medium',
-	backgroundColor,
-	label,
-	...props
-}: ButtonProps) => {
-	const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
-	return (
-		<button
-			type="button"
-			className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-			style={{ color: theme.color.primary300 }}
-			{...props}
-		>
-			{label}
-		</button>
-	);
-};
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+	(
+		{ children, format, variant, isLoading, size = 'medium', disabled, onClick, ...rest },
+		ref
+	) => {
+		return (
+			<button
+				aria-disabled={disabled || isLoading ? 'true' : undefined}
+				ref={ref}
+				css={[button(format, variant, size)]}
+				disabled={disabled}
+				onClick={disabled || isLoading ? undefined : onClick}
+				{...rest}
+			>
+				<span>{children}</span>
+			</button>
+		);
+	}
+);
