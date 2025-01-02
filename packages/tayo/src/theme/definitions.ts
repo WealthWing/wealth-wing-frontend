@@ -59,12 +59,29 @@ type SpaceTheme = { [k in Space]: SpaceCustomProperty };
 
 type SpaceDefinition = { [k in Space]: SizeValue };
 
+// Border
+const borderKeys = [
+	'radiusLarge',
+	'radiusDefault',
+	'radiusSmall',
+	'radiusXLarge',
+	'radiusMedium'
+] as const;
+export type BorderKey = (typeof borderKeys)[number];
+
+type BorderCustomProperty = `var(--ww-t-border-${BorderKey})`;
+
+type BorderTheme = { [k in BorderKey]: BorderCustomProperty };
+type BorderDefinition = { [k in BorderKey]: SizeValue };
+
 export type ThemeDefinitions = {
 	color: Record<Color, ColorValue>;
 	space: SpaceDefinition;
+	border: BorderDefinition;
 };
 
 export type Theme = {
 	color: ColorDefinition;
 	space: SpaceTheme;
+	border: BorderTheme;
 };

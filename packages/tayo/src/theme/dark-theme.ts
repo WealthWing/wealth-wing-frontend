@@ -68,6 +68,13 @@ export const darkTheme: ThemeDefinitions = {
 		yellow10: '#FFF8E8',
 		yellow05: '#FFFBF4'
 	},
+	border: {
+		radiusDefault: '0.75rem',
+		radiusLarge: '0.5rem',
+		radiusMedium: '0.5rem',
+		radiusSmall: '0.125rem',
+		radiusXLarge: '0.75rem'
+	},
 	space: {
 		none: '0',
 		s2: '0.125rem',
@@ -175,5 +182,12 @@ export const theme: Theme = {
 		s40: 'var(--ww-t-space-s40)',
 		s64: 'var(--ww-t-space-s64)',
 		s96: 'var(--ww-t-space-s96)'
+	},
+	border: {
+		radiusDefault: 'var(--ww-t-border-radiusDefault)',
+		radiusLarge: 'var(--ww-t-border-radiusLarge)',
+		radiusMedium: 'var(--ww-t-border-radiusMedium)',
+		radiusSmall: 'var(--ww-t-border-radiusSmall)',
+		radiusXLarge: 'var(--ww-t-border-radiusXLarge)'
 	}
 };
