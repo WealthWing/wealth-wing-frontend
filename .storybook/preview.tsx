@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react';
-import { TayoProvider, darkTheme, ThemeDefinitions, lightTheme } from '../packages/tayo/src';
+import { TayoProvider, darkTheme, ThemeDefinitions, lightTheme, theme } from '../packages/tayo/src';
 import * as React from 'react';
 
 const themeMap: Record<string, ThemeDefinitions> = {
@@ -36,6 +36,13 @@ const preview: Preview = {
 				color: /(background|color)$/i,
 				date: /Date$/i
 			}
+		},
+		backgrounds: {
+			values: [
+				{ name: 'Dark', value: '#231F4B' },
+				{ name: 'Light', value: '#F7F9F2' }
+			],
+			default: 'Dark'
 		}
 	}
 };

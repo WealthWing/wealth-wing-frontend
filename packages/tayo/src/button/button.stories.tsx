@@ -48,7 +48,7 @@ const buttonRow = css`
 `;
 
 const label = css`
-	color: ${theme.color.black80};
+	color: ${theme.color.black60};
 	text-align: center;
 	min-height: ${rowHeight};
 `;

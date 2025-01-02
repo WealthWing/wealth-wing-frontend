@@ -11,7 +11,6 @@ const getAllCSSVariables = (theme: ThemeDefinitions) => {
 	const categories = Object.keys(theme) as ThemeCategory[];
 	const cssVariablesString = categories
 		.map((category) => {
-			// TO DO: more specific type/remove coersion?
 			const categoryValue = theme[category] as Record<string, string>;
 			const categoryKeys = Object.keys(categoryValue);
 
@@ -25,10 +24,10 @@ const getAllCSSVariables = (theme: ThemeDefinitions) => {
 		})
 		.join('\r\n');
 
-	return cssVariablesString;
-};
+	console.log(cssVariablesString);
 
-const themeId = 'ww-theme';
+	return cssVariablesString + '\r\n' + '--ww-t-rgb-color-red20: #F4D7CD;';
+};
 
 export function changeTheme(theme: ThemeDefinitions) {
 	const hasRootStyle = document.head.querySelector('style[ww="css-root"]');

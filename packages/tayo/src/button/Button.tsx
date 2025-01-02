@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ButtonProps } from './base.definitions';
-import { button } from './button.styles';
+import { button, outline } from './button.styles';
 import {} from '@emotion/react';
 
 /* Add spinner
@@ -16,7 +16,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 			<button
 				aria-disabled={disabled || isLoading ? 'true' : undefined}
 				ref={ref}
-				css={[button(format, variant, size)]}
+				css={[button(format, variant, size), format === 'outline' && outline(variant)]}
 				disabled={disabled}
 				onClick={disabled || isLoading ? undefined : onClick}
 				{...rest}

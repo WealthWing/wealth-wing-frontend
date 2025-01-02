@@ -1,11 +1,18 @@
 import * as React from 'react';
 
-export const buttonVariants = ['primary', 'secondary', 'success', 'warning', 'danger'] as const;
+export const buttonVariants = [
+	'primary',
+	'secondary',
+	'tertiary',
+	'success',
+	'warning',
+	'danger'
+] as const;
 export type ButtonVariant = (typeof buttonVariants)[number];
 
 export type ButtonSize = 'medium' | 'small';
 
-export const buttonFormats = ['regular', 'alternate', 'sub', 'outline'] as const;
+export const buttonFormats = ['regular', 'light', 'text', 'outline'] as const;
 export type ButtonFormat = (typeof buttonFormats)[number];
 
 export type BaseProps = {
