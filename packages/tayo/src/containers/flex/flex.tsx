@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import { Space, theme } from '../../theme';
 import { CSSProperties } from 'react';
 
-export type FlexProps = {
+export type FlexOptions = {
 	alignItems?: CSSProperties['alignItems'];
 	justifyContent?: CSSProperties['justifyContent'];
 	flex?: CSSProperties['flex'];
@@ -26,7 +26,7 @@ export const flex = ({
 	gap = 's10',
 	justifyContent,
 	wrap
-}: FlexProps) =>
+}: FlexOptions) =>
 	css({
 		alignItems: alignItems && alignItems,
 		display: 'flex',
@@ -40,3 +40,7 @@ export const flex = ({
 		gap: theme.space[gap],
 		justifyContent: justifyContent && justifyContent
 	});
+
+type FlexProps = FlexOptions & { children: React.ReactNode };
+
+export const Flex = ({ children, ...props }: FlexProps) => <div css={flex(props)}>{children}</div>;
