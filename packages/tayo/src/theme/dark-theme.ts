@@ -68,12 +68,20 @@ export const darkTheme: ThemeDefinitions = {
 		yellow10: '#FFF8E8',
 		yellow05: '#FFFBF4'
 	},
-	border: {
+	borderRadius: {
 		radiusDefault: '0.75rem',
 		radiusLarge: '0.5rem',
 		radiusMedium: '0.5rem',
 		radiusSmall: '0.125rem',
 		radiusXLarge: '0.75rem'
+	},
+	border: {
+		default: '1px solid #7B7993'
+	},
+	shadow: {
+		default100: '0px 2px 4px rgba(0, 0, 0, 0.3)',
+		default200: '0px 2px 8px rgba(0, 0, 0, 0.5)',
+		default300: '0px 2px 8px rgba(0, 0, 0, 0.7)'
 	},
 	space: {
 		none: '0',
@@ -184,10 +192,18 @@ export const theme: Theme = {
 		s96: 'var(--ww-t-space-s96)'
 	},
 	border: {
-		radiusDefault: 'var(--ww-t-border-radiusDefault)',
-		radiusLarge: 'var(--ww-t-border-radiusLarge)',
-		radiusMedium: 'var(--ww-t-border-radiusMedium)',
-		radiusSmall: 'var(--ww-t-border-radiusSmall)',
-		radiusXLarge: 'var(--ww-t-border-radiusXLarge)'
+		default: 'var(--ww-t-border-default)'
+	},
+	shadow: {
+		default100: 'var(--ww-t-shadow-default100)',
+		default200: 'var(--ww-t-shadow-default200)',
+		default300: 'var(--ww-t-shadow-default300)'
+	},
+	borderRadius: {
+		radiusDefault: 'var(--ww-t-borderRadius-radiusDefault)',
+		radiusLarge: 'var(--ww-t-borderRadius-radiusLarge)',
+		radiusMedium: 'var(--ww-t-borderRadius-radiusMedium)',
+		radiusSmall: 'var(--ww-t-borderRadius-radiusSmall)',
+		radiusXLarge: 'var(--ww-t-borderRadius-radiusXLarge)'
 	}
 };

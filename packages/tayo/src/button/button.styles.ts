@@ -197,7 +197,7 @@ const hover = (format: ButtonFormat, variant: ButtonVariant) => css`
 export const button = (format: ButtonFormat, variant: ButtonVariant, size: ButtonSize) => css`
 	align-items: center;
 	background-color: ${styles[variant][format].background};
-	border-radius: ${theme.border.radiusDefault};
+	border-radius: ${theme.borderRadius.radiusDefault};
 	color: ${styles[variant][format].color};
 	display: inline-flex;
 	flex-direction: row;

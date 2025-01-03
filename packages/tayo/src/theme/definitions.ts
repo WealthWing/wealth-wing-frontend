@@ -60,28 +60,51 @@ type SpaceTheme = { [k in Space]: SpaceCustomProperty };
 type SpaceDefinition = { [k in Space]: SizeValue };
 
 // Border
-const borderKeys = [
+const borderRadiusKeys = [
 	'radiusLarge',
 	'radiusDefault',
 	'radiusSmall',
 	'radiusXLarge',
 	'radiusMedium'
 ] as const;
-export type BorderKey = (typeof borderKeys)[number];
+export type BorderKey = (typeof borderRadiusKeys)[number];
 
-type BorderCustomProperty = `var(--ww-t-border-${BorderKey})`;
+type BorderRadiusCustomProperty = `var(--ww-t-borderRadius-${BorderKey})`;
 
-type BorderTheme = { [k in BorderKey]: BorderCustomProperty };
-type BorderDefinition = { [k in BorderKey]: SizeValue };
+type BorderRadiusTheme = { [k in BorderKey]: BorderRadiusCustomProperty };
+type BorderRadiusDefinition = { [k in BorderKey]: SizeValue };
+
+const borderKeys = ['default'] as const;
+export type Border = (typeof borderKeys)[number];
+
+type BorderCustomProperty = `var(--ww-t-border-${Border})`;
+
+type BorderTheme = { [k in Border]: BorderCustomProperty };
+type BorderDefinition = { [k in Border]: string };
+
+// Shadow
+
+const darkShadowLevels = [100, 200, 300] as const;
+type DarkShadowLevel = (typeof darkShadowLevels)[number];
+
+export type Shadow = `default${DarkShadowLevel}`;
+export type ShadowCustomProperty = `var(--ww-t-shadow-${Shadow})`;
+
+type ShadowTheme = { [k in Shadow]: ShadowCustomProperty };
+type ShadowDefinition = { [k in Shadow]: string };
 
 export type ThemeDefinitions = {
 	color: Record<Color, ColorValue>;
 	space: SpaceDefinition;
+	borderRadius: BorderRadiusDefinition;
 	border: BorderDefinition;
+	shadow: ShadowDefinition;
 };
 
 export type Theme = {
 	color: ColorDefinition;
 	space: SpaceTheme;
+	borderRadius: BorderRadiusTheme;
 	border: BorderTheme;
+	shadow: ShadowTheme;
 };
