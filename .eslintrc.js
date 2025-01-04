@@ -36,17 +36,17 @@ const rules = {
 };
 
 module.exports = {
-    env: {
+	env: {
 		browser: true,
 		node: true,
 		es6: true
 	},
 
-    globals: {
+	globals: {
 		Intl: true
 	},
 
-    overrides: [
+	overrides: [
 		{
 			files: ['**/*.{ts,tsx}'],
 			parser: '@typescript-eslint/parser',
@@ -84,7 +84,5 @@ module.exports = {
 				}
 			}
 		}
-	],
-
-    extends: ['plugin:storybook/recommended', 'plugin:storybook/recommended']
+	]
 };

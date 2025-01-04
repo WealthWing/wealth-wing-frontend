@@ -1,6 +1,7 @@
-import { ThemeDefinitions } from './definitions';
-import { reset, normalize } from './global-styles';
 import * as React from 'react';
+
+import { ThemeDefinitions } from './definitions';
+import { normalize, reset } from './global-styles';
 
 type ThemeCategory = keyof ThemeDefinitions;
 
@@ -24,9 +25,7 @@ const getAllCSSVariables = (theme: ThemeDefinitions) => {
 		})
 		.join('\r\n');
 
-	console.log(cssVariablesString);
-
-	return cssVariablesString + '\r\n' + '--ww-t-rgb-color-red20: #F4D7CD;';
+	return cssVariablesString;
 };
 
 export function changeTheme(theme: ThemeDefinitions) {

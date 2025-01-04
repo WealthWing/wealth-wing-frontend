@@ -2,5 +2,8 @@
 	"name": "@wealth-wing/tayo",
 	"version": "1.0.0",
 	"private": true,
-	"main": "src/index.ts"
+	"main": "src/index.ts",
+	"scripts": {
+		"lint": "eslint 'src/**/*.{ts,tsx}' --config './.eslintrc.js' --max-warnings=0"
+	}
 }

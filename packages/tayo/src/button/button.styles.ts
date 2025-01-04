@@ -1,6 +1,7 @@
-import { ButtonVariant, ButtonFormat, ButtonSize } from './base.definitions';
-import { ColorCustomProperty, SizeValue, Space, theme } from '../theme';
 import { css } from '@emotion/react';
+
+import { ColorCustomProperty, SizeValue, Space, theme } from '../theme';
+import { ButtonFormat, ButtonSize, ButtonVariant } from './base.definitions';
 
 type ButtonStyles = {
 	background: ColorCustomProperty | string;
@@ -201,7 +202,7 @@ export const button = (format: ButtonFormat, variant: ButtonVariant, size: Butto
 	color: ${styles[variant][format].color};
 	display: inline-flex;
 	flex-direction: row;
-	font: 500 0.875rem/1.25rem Inter, sans-serif;
+	font: ${theme.font.button};
 	gap: ${theme.space.s8};
 	justify-content: center;
 	min-height: ${buttonSizes[size].minSize};

@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
-import { Space, theme } from '../../theme';
 import { CSSProperties } from 'react';
+
+import { Space, theme } from '../../theme';
 
 export type FlexOptions = {
 	alignItems?: CSSProperties['alignItems'];
@@ -15,7 +16,7 @@ export type FlexOptions = {
 	gap?: Space;
 };
 
-export const flex = ({
+export const flexContainer = ({
 	alignItems,
 	direction = 'column',
 	flex,
@@ -43,4 +44,6 @@ export const flex = ({
 
 type FlexProps = FlexOptions & { children: React.ReactNode };
 
-export const Flex = ({ children, ...props }: FlexProps) => <div css={flex(props)}>{children}</div>;
+export const Flex = ({ children, ...props }: FlexProps) => (
+	<div css={flexContainer(props)}>{children}</div>
+);

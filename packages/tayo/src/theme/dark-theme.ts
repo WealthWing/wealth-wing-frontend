@@ -66,7 +66,12 @@ export const darkTheme: ThemeDefinitions = {
 		yellow40: '#FFE3A4',
 		yellow20: '#FFF1D2',
 		yellow10: '#FFF8E8',
-		yellow05: '#FFFBF4'
+		yellow05: '#FFFBF4',
+		pageBackground: '#39355D',
+		cardBackground100: '#39355D',
+		cardBackground90: '#4F4C6F',
+		cardBackground80: '#7B7993',
+		cardBackground60: '#EFAAC6'
 	},
 	borderRadius: {
 		radiusDefault: '0.75rem',
@@ -82,6 +87,18 @@ export const darkTheme: ThemeDefinitions = {
 		default100: '0px 2px 4px rgba(0, 0, 0, 0.3)',
 		default200: '0px 2px 8px rgba(0, 0, 0, 0.5)',
 		default300: '0px 2px 8px rgba(0, 0, 0, 0.7)'
+	},
+	font: {
+		button: '600 0.875rem/1.25rem "Inter", sans-serif',
+		h1: '700 3.25rem/3.5rem "Inter", sans-serif',
+		h2: '700 2.5rem/3rem "Inter", sans-serif',
+		h3: '600 1.75rem/2.25rem "Inter", sans-serif',
+		h4: '400 1.65rem/2rem "Inter", sans-serif',
+		h5: '400 1.375rem/1.75rem "Inter", sans-serif',
+		h6: '400 1.125rem/1.5rem "Inter", sans-serif',
+		sm: '400 0.75rem/1rem "Inter", sans-serif',
+		md: '400 0.85rem/1.25rem "Inter", sans-serif',
+		lg: '400 1rem/1.5rem "Inter", sans-serif'
 	},
 	space: {
 		none: '0',
@@ -172,7 +189,12 @@ export const theme: Theme = {
 		yellow40: 'var(--ww-t-color-yellow40)',
 		yellow20: 'var(--ww-t-color-yellow20)',
 		yellow10: 'var(--ww-t-color-yellow10)',
-		yellow05: 'var(--ww-t-color-yellow05)'
+		yellow05: 'var(--ww-t-color-yellow05)',
+		pageBackground: 'var(--ww-t-color-pageBackground)',
+		cardBackground100: 'var(--ww-t-color-cardBackground100)',
+		cardBackground90: 'var(--ww-t-color-cardBackground90)',
+		cardBackground80: 'var(--ww-t-color-cardBackground80)',
+		cardBackground60: 'var(--ww-t-color-cardBackground60)'
 	},
 	space: {
 		none: 'var(--ww-t-space-none)',
@@ -190,6 +212,18 @@ export const theme: Theme = {
 		s40: 'var(--ww-t-space-s40)',
 		s64: 'var(--ww-t-space-s64)',
 		s96: 'var(--ww-t-space-s96)'
+	},
+	font: {
+		button: 'var(--ww-t-font-button)',
+		h1: 'var(--ww-t-font-h1)',
+		h2: 'var(--ww-t-font-h2)',
+		h3: 'var(--ww-t-font-h3)',
+		h4: 'var(--ww-t-font-h4)',
+		h5: 'var(--ww-t-font-h5)',
+		h6: 'var(--ww-t-font-h6)',
+		sm: 'var(--ww-t-font-sm)',
+		md: 'var(--ww-t-font-md)',
+		lg: 'var(--ww-t-font-lg)'
 	},
 	border: {
 		default: 'var(--ww-t-border-default)'

@@ -1,6 +1,7 @@
 import { css, SerializedStyles } from '@emotion/react';
 import { CSSProperties } from 'react';
-import { SizeValue, Space, BorderKey, theme, Color, Border, Shadow, Theme } from '../../theme';
+
+import { Border, BorderKey, Color, Shadow, SizeValue, Space, theme } from '../../theme';
 
 export const boxTags = ['article', 'div', 'p', 'section', 'span', 'li'] as const;
 export type BoxTag = (typeof boxTags)[number];

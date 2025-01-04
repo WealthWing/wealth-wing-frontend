@@ -1,7 +1,8 @@
 import * as React from 'react';
+
+import { darkTheme } from '../theme/dark-theme';
 import { ThemeDefinitions } from '../theme/definitions';
 import { RootStyle } from '../theme/root-style';
-import { darkTheme } from '../theme/dark-theme';
 
 export interface ProviderProps {
 	theme?: ThemeDefinitions;

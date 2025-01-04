@@ -11,7 +11,7 @@ export type SizeValue =
 export const alphaLevels = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] as const;
 export type AlphaLevel = (typeof alphaLevels)[number];
 
-//COLORS
+// COLORS
 const colorKeys = [
 	'primary',
 	'secondary',
@@ -27,7 +27,14 @@ export type ColorKey = (typeof colorKeys)[number];
 const colorLevels = ['100', '90', '80', '60', '40', '20', '10', '05'] as const;
 type ColorLevel = (typeof colorLevels)[number];
 
-export type Color = `${ColorKey}${ColorLevel}` | 'textPrimary';
+const cardBackgroundLevels = ['100', '90', '80', '60'] as const;
+type CardBackgroundLevel = (typeof cardBackgroundLevels)[number];
+
+export type Color =
+	| `${ColorKey}${ColorLevel}`
+	| 'textPrimary'
+	| 'pageBackground'
+	| `cardBackground${CardBackgroundLevel}`;
 
 export type ColorCustomProperty = `var(--ww-t-color-${Color})`;
 
@@ -93,12 +100,24 @@ export type ShadowCustomProperty = `var(--ww-t-shadow-${Shadow})`;
 type ShadowTheme = { [k in Shadow]: ShadowCustomProperty };
 type ShadowDefinition = { [k in Shadow]: string };
 
+// Font
+
+export const fontKeys = ['sm', 'md', 'lg', 'button'] as const;
+export type FontKeys = (typeof fontKeys)[number];
+export const headingKeys = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
+export type HeadingKeys = (typeof headingKeys)[number];
+
+type FontCustomProperty = `var(--ww-t-font-${FontKeys | HeadingKeys})`;
+type FontTheme = Record<FontKeys | HeadingKeys, FontCustomProperty>;
+type FontDefinitions = Record<FontKeys | HeadingKeys, string>;
+
 export type ThemeDefinitions = {
 	color: Record<Color, ColorValue>;
 	space: SpaceDefinition;
 	borderRadius: BorderRadiusDefinition;
 	border: BorderDefinition;
 	shadow: ShadowDefinition;
+	font: FontDefinitions;
 };
 
 export type Theme = {
@@ -107,4 +126,5 @@ export type Theme = {
 	borderRadius: BorderRadiusTheme;
 	border: BorderTheme;
 	shadow: ShadowTheme;
+	font: FontTheme;
 };
