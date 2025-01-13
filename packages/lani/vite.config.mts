@@ -10,8 +10,7 @@ export default defineConfig(({ mode }) => {
 	return {
 		envDir: './env',
 		server: {
-			port: PORT,
-			open: `http://localhost:${PORT}/` // To support the login redirect to localhost, since this defaults to opening 127.0.0.1
+			port: PORT
 		},
 		preview: {
 			port: PORT

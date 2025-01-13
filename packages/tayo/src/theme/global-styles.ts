@@ -17,7 +17,7 @@ export const normalize = `
 	}
 
 	body {
-		font-family: var(--ww-fontFamily-default);
+		font-family: 'Inter', sans-serif;
 		font: var(--ww-t-font-lg);
 		color: var(--ww-t-color-textPrimary);
 		background-color: var(--ww-t-color-pageBackground);

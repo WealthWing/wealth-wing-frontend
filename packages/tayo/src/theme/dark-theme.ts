@@ -68,7 +68,7 @@ export const darkTheme: ThemeDefinitions = {
 		yellow10: '#FFF8E8',
 		yellow05: '#FFFBF4',
 		pageBackground: '#39355D',
-		cardBackground100: '#39355D',
+		cardBackground100: '#231F4B',
 		cardBackground90: '#4F4C6F',
 		cardBackground80: '#7B7993',
 		cardBackground60: '#EFAAC6'

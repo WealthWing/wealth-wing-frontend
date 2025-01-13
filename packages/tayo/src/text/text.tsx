@@ -65,9 +65,9 @@ const text = ({
 	});
 
 export const Text = forwardRef<HTMLDivElement, TextProps>(
-	({ id, children, lines, tag: Tag = 'div', ...textProps }, ref) => {
+	({ id, children, font = 'lg', lines, tag: Tag = 'div', ...textProps }, ref) => {
 		return (
-			<Tag id={id} ref={ref} css={[text(textProps), turnication(lines)]}>
+			<Tag id={id} ref={ref} css={[text({ font, ...textProps }), turnication(lines)]}>
 				{children}
 			</Tag>
 		);

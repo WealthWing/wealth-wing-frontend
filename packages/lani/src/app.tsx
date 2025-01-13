@@ -1,5 +1,11 @@
-import { Button } from '@wealth-wing/tayo';
+import { TayoProvider } from '@wealth-wing/tayo';
+import { RouterProvider } from 'react-router-dom';
+import { router } from 'router/router';
 
 export const App = () => {
-	return 'HELLO WORLD';
+	return (
+		<TayoProvider>
+			<RouterProvider router={router} />
+		</TayoProvider>
+	);
 };
