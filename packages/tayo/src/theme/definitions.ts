@@ -109,7 +109,14 @@ export type HeadingKeys = (typeof headingKeys)[number];
 
 type FontCustomProperty = `var(--ww-t-font-${FontKeys | HeadingKeys})`;
 type FontTheme = Record<FontKeys | HeadingKeys, FontCustomProperty>;
-type FontDefinitions = Record<FontKeys | HeadingKeys, string>;
+export type FontDefinitions = Record<FontKeys | HeadingKeys, string>;
+
+const fontSizes = ['button', 'lg', 'h6'] as const;
+export type FontSize = (typeof fontSizes)[number];
+type FontSizeCustomProperty = `var(--ww-t-fontSize-${FontSize})`;
+
+export type FontSizeTheme = Record<FontSize, FontSizeCustomProperty>;
+export type FontSizeDefinitions = Record<FontSize, SizeValue>;
 
 export type ThemeDefinitions = {
 	color: Record<Color, ColorValue>;
@@ -118,6 +125,7 @@ export type ThemeDefinitions = {
 	border: BorderDefinition;
 	shadow: ShadowDefinition;
 	font: FontDefinitions;
+	fontSize: FontSizeDefinitions;
 };
 
 export type Theme = {
@@ -127,4 +135,5 @@ export type Theme = {
 	border: BorderTheme;
 	shadow: ShadowTheme;
 	font: FontTheme;
+	fontSize: FontSizeTheme;
 };

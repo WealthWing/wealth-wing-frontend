@@ -100,6 +100,11 @@ export const darkTheme: ThemeDefinitions = {
 		md: '400 0.85rem/1.25rem "Inter", sans-serif',
 		lg: '400 1rem/1.5rem "Inter", sans-serif'
 	},
+	fontSize: {
+		button: '0.875rem',
+		lg: '1rem',
+		h6: '1.125rem'
+	},
 	space: {
 		none: '0',
 		s2: '0.125rem',
@@ -224,6 +229,11 @@ export const theme: Theme = {
 		sm: 'var(--ww-t-font-sm)',
 		md: 'var(--ww-t-font-md)',
 		lg: 'var(--ww-t-font-lg)'
+	},
+	fontSize: {
+		button: 'var(--ww-t-fontSize-button)',
+		lg: 'var(--ww-t-fontSize-lg)',
+		h6: 'var(--ww-t-fontSize-h6)'
 	},
 	border: {
 		default: 'var(--ww-t-border-default)'
