@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { Jobs } from 'router/jobs';
 import { Layout } from 'router/layout';
-import { Subscriptions } from 'router/subscriptions';
 
 export const router = createBrowserRouter([
 	{
@@ -9,7 +9,7 @@ export const router = createBrowserRouter([
 		children: [
 			{
 				path: '',
-				element: <Subscriptions />
+				element: <Jobs />
 			}
 		]
 	}

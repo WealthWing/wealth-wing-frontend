@@ -1,0 +1,11 @@
+resolve:
+    http:
+        headers:
+            - matches: http://127.0.0.1:8000/**
+              name: X-CYMANTIX-ID-TOKEN
+              value: Bearer your idToken
+apis:
+    liam-api:
+        root: http://127.0.0.1:8000/openapi.json
+        x-openapi-ts:
+            output: ./src/data/api.ts

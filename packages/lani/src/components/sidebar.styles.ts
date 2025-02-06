@@ -5,6 +5,7 @@ export const sidebarWidth = '90px';
 
 export const sidebar = {
 	root: css`
+		align-items: center;
 		background: ${theme.color.cardBackground100};
 		border-radius: ${theme.borderRadius.radiusDefault};
 		box-shadow: ${theme.shadow.default100};

@@ -1,4 +1,4 @@
-import { Flex, Text } from '@wealth-wing/tayo';
+import { Flex, Heading } from '@wealth-wing/tayo';
 import { sidebar } from 'components/sidebar.styles';
 import React from 'react';
 
@@ -10,7 +10,9 @@ export const Sidebar = ({ children }: SidebarProps) => {
 	return (
 		<div css={sidebar.root}>
 			<Flex direction="column" alignItems="center" gap="s8">
-				<Text font="lg">WW</Text>
+				<Heading tag="h4" font="h6">
+					WW
+				</Heading>
 				<div css={sidebar.separator} />
 			</Flex>
 			{children}
