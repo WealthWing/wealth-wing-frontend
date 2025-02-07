@@ -33,6 +33,7 @@ type CardBackgroundLevel = (typeof cardBackgroundLevels)[number];
 export type Color =
 	| `${ColorKey}${ColorLevel}`
 	| 'textPrimary'
+	| 'textSecondary'
 	| 'pageBackground'
 	| `cardBackground${CardBackgroundLevel}`;
 

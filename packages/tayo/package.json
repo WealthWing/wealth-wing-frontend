@@ -7,5 +7,8 @@
 		"start": "storybook dev --config-dir='../../.storybook' -p 6006",
 		"lint": "eslint 'src/**/*.{ts,tsx}' --config './.eslintrc.js' --max-warnings=0",
 		"generate:icons": "svgr --jsx-runtime \"automatic\" --typescript --no-prettier --icon --ext \"tsx\" --filename-case \"kebab\" --index-template \"./src/icon/icon-index.js\" --out-dir \"./src/icon/generated\" ./src/icon/svg"
+	},
+	"devDependencies": {
+		"@7nohe/openapi-react-query-codegen": "1.6.2"
 	}
 }

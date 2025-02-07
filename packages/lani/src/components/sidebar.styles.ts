@@ -11,7 +11,7 @@ export const sidebar = {
 		box-shadow: ${theme.shadow.default100};
 		display: flex;
 		flex-direction: column;
-		gap: ${theme.space.s20};
+		gap: ${theme.space.s24};
 		height: calc(100% - ${theme.space.s24});
 		padding: ${theme.space.s16};
 		position: fixed;
@@ -27,5 +27,10 @@ export const sidebar = {
 		border: none;
 		height: 1px;
 		width: 100%;
+	`,
+	top: css`
+		display: flex;
+		flex-direction: column;
+		gap: ${theme.space.s12};
 	`
 };

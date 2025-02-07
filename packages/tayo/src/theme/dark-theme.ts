@@ -32,6 +32,7 @@ export const darkTheme: ThemeDefinitions = {
 		darkBlue60: '#6B748D',
 		darkBlue40: '#9DA3B3',
 		textPrimary: '#F4F4F4',
+		textSecondary: '#D3D2DB',
 		darkBlue20: '#CED1D9',
 		darkBlue10: '#E6E8EC',
 		darkBlue05: '#F3F3F5',
@@ -71,7 +72,7 @@ export const darkTheme: ThemeDefinitions = {
 		cardBackground100: '#231F4B',
 		cardBackground90: '#4F4C6F',
 		cardBackground80: '#7B7993',
-		cardBackground60: '#EFAAC6'
+		cardBackground60: '#7B7993'
 	},
 	borderRadius: {
 		radiusDefault: '0.75rem',
@@ -131,6 +132,7 @@ export const lightTheme: ThemeDefinitions = {
 export const theme: Theme = {
 	color: {
 		textPrimary: 'var(--ww-t-color-textPrimary)',
+		textSecondary: 'var(--ww-t-color-textSecondary)',
 		primary100: 'var(--ww-t-color-primary100)',
 		primary90: 'var(--ww-t-color-primary90)',
 		primary80: 'var(--ww-t-color-primary80)',

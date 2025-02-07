@@ -1,14 +1,21 @@
-/* eslint-disable import/no-named-default */
-import { FunctionComponent, SVGProps } from 'react';
 
-import { default as Calendar } from './calendar';
-import { default as CheckSquare } from './check-square';
+import { FunctionComponent, SVGProps } from 'react'
 
-export const iconNames = ['calendar', 'check-square'] as const;
+import { default as Calendar } from './calendar'
+import { default as CheckSquare } from './check-square'
+import { default as FolderPlus } from './folder-plus'
 
-export type IconName = (typeof iconNames)[number];
+export const iconNames = [
+'calendar',
+'check-square',
+'folder-plus'
+] as const
+
+export type IconName = typeof iconNames[number]
 
 export const iconMap: Record<IconName, FunctionComponent<SVGProps<any>>> = {
-	calendar: Calendar,
-	'check-square': CheckSquare
-};
+'calendar': Calendar,
+'check-square': CheckSquare,
+'folder-plus': FolderPlus
+}
+  
