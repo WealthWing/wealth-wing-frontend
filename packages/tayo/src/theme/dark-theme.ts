@@ -70,8 +70,8 @@ export const darkTheme: ThemeDefinitions = {
 		yellow05: '#FFFBF4',
 		pageBackground: '#39355D',
 		cardBackground100: '#231F4B',
-		cardBackground90: '#4F4C6F',
-		cardBackground80: '#7B7993',
+		cardBackground90: '#39355D',
+		cardBackground80: '#4F4C6F',
 		cardBackground60: '#7B7993'
 	},
 	borderRadius: {

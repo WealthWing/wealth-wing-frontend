@@ -8,9 +8,10 @@ export const menu = {
 		box-shadow: ${theme.shadow.default300};
 		display: flex;
 		flex-direction: column;
-		min-width: 8rem;
+		min-width: 10rem;
 		overflow: hidden;
 		width: fit-content;
+		z-index: 100;
 	`,
 	menuItem: css`
 		color: ${theme.color.textPrimary};

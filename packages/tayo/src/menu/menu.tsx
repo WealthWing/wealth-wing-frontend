@@ -6,13 +6,15 @@ type MenuProps = Pick<React.HTMLAttributes<HTMLElement>, 'id'> & {
 	children: React.ReactNode;
 };
 
-export const Menu = ({ children, id }: MenuProps) => {
-	return (
-		<ul role="menu" css={menu.root} id={id}>
-			{children}
-		</ul>
-	);
-};
+export const Menu = React.forwardRef<HTMLUListElement, MenuProps>(
+	({ children, id, ...restProps }: MenuProps, ref) => {
+		return (
+			<ul ref={ref} role="menu" css={menu.root} id={id} {...restProps}>
+				{children}
+			</ul>
+		);
+	}
+);
 
 type MenuItemProps = Pick<React.HTMLAttributes<HTMLButtonElement>, 'onClick'> & {
 	children: React.ReactNode;

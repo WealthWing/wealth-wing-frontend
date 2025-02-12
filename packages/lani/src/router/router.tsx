@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { Jobs } from 'router/jobs';
 import { Layout } from 'router/layout';
+import { Section } from 'router/section';
 
 export const router = createBrowserRouter([
 	{
@@ -10,6 +11,10 @@ export const router = createBrowserRouter([
 			{
 				path: 'jobs',
 				element: <Jobs />
+			},
+			{
+				path: 'jobs/:jobId',
+				element: <Section />
 			}
 		]
 	}

@@ -9,6 +9,7 @@
 		"generate:icons": "svgr --jsx-runtime \"automatic\" --typescript --no-prettier --icon --ext \"tsx\" --filename-case \"kebab\" --index-template \"./src/icon/icon-index.js\" --out-dir \"./src/icon/generated\" ./src/icon/svg"
 	},
 	"devDependencies": {
-		"@7nohe/openapi-react-query-codegen": "1.6.2"
+		"@7nohe/openapi-react-query-codegen": "1.6.2",
+		"react-focus-lock": "2.13.6"
 	}
 }

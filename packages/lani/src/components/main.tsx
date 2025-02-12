@@ -7,7 +7,7 @@ export const main = css`
 	width: calc(100% - ${sidebarWidth});
 	height: 100%;
 	overflow-y: auto;
-	padding: ${theme.space.s16};
+	padding: ${theme.space.s40} ${theme.space.s16} ${theme.space.s16} ${theme.space.s16};
 	scroll-behavior: smooth;
 	display: block;
 	position: relative;
