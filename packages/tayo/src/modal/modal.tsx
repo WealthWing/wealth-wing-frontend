@@ -4,10 +4,9 @@ import { createPortal } from 'react-dom';
 import FocusLock from 'react-focus-lock';
 import * as uuid from 'uuid';
 
-import { Button } from '../button';
 import { Box, Flex } from '../containers';
 import { Heading } from '../heading';
-import { Icon } from '../icon';
+import { IconButton } from '../icon-button';
 import { createProvider } from '../providers';
 import { modal, modalVariants } from './modal.styles';
 
@@ -107,8 +106,8 @@ export const Modal = ({
 	isOpen,
 	onClose,
 	variant,
-	allowOverlayClose,
-	canClose,
+	allowOverlayClose = true,
+	canClose = true,
 	children,
 	hasOverlay = true
 }: ModalProps) => {
@@ -193,9 +192,14 @@ export const ModalHeader = ({ title }: ModalHeaderProps) => {
 						</Heading>
 					</header>
 				)}
-				<Button aria-label="Close" format="outline" onClick={onClose} variant="secondary">
-					<Icon name="check-square" />
-				</Button>
+				<IconButton
+					iconColor="black10"
+					iconName="x"
+					format="text"
+					variant="tertiary"
+					label="Close"
+					onClick={onClose}
+				/>
 			</Flex>
 		</Box>
 	);

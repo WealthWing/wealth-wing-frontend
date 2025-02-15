@@ -10,3 +10,5 @@ export * from './accessibility';
 export * from './dropdown';
 export * from './menu';
 export * from './constants';
+export * from './modal';
+export * from './hooks';
