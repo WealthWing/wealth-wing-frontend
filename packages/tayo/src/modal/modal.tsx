@@ -134,24 +134,24 @@ export const Modal = ({
 			<ModalProvider isOpen={isOpen} onClose={handleCloseModal}>
 				{hasOverlay && <ModalOverlay />}
 				<AnimatePresence>
-					<FocusLock returnFocus>
-						{isOpen ? (
-							<motion.div
-								css={[
-									modal.root,
-									hasOverlay && modal.modalWithOverlay,
-									!hasOverlay && modal.modalNoOverlay
-								]}
-								transition={{
-									ease: 'easeInOut',
-									duration: transitionDurations[variant]
-								}}
-								{...transitions[variant]}
-								onClick={allowOverlayClose ? handleCloseModal : undefined}
-								aria-modal="true"
-								aria-labelledby={modalHeaderID}
-								aria-describedby={modalBodyID}
-							>
+					{isOpen ? (
+						<motion.div
+							css={[
+								modal.root,
+								hasOverlay && modal.modalWithOverlay,
+								!hasOverlay && modal.modalNoOverlay
+							]}
+							transition={{
+								ease: 'easeInOut',
+								duration: transitionDurations[variant]
+							}}
+							{...transitions[variant]}
+							onClick={allowOverlayClose ? handleCloseModal : undefined}
+							aria-modal="true"
+							aria-labelledby={modalHeaderID}
+							aria-describedby={modalBodyID}
+						>
+							<FocusLock returnFocus>
 								<div role="dialog" aria-label="modal-dialog-window">
 									<section
 										css={[
@@ -166,9 +166,9 @@ export const Modal = ({
 										{children}
 									</section>
 								</div>
-							</motion.div>
-						) : null}
-					</FocusLock>
+							</FocusLock>
+						</motion.div>
+					) : null}
 				</AnimatePresence>
 			</ModalProvider>
 		</ModalPortal>

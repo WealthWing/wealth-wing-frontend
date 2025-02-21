@@ -8,7 +8,7 @@ const meta: Meta<typeof ErrorMessage> = {
 	decorators: [
 		function Component(Story, ctx) {
 			return (
-				<FormControl id="error-message">
+				<FormControl label="error " id="error-message">
 					<Story {...ctx.args} />
 				</FormControl>
 			);

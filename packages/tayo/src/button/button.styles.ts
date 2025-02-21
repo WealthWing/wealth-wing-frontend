@@ -10,7 +10,7 @@ type ButtonStyles = {
 	hoverColor: ColorCustomProperty;
 };
 
-export const styles: Record<ButtonVariant, Record<ButtonFormat, ButtonStyles>> = {
+export const buttonStylesConfig: Record<ButtonVariant, Record<ButtonFormat, ButtonStyles>> = {
 	primary: {
 		regular: {
 			activeColor: theme.color.primary80,
@@ -65,25 +65,25 @@ export const styles: Record<ButtonVariant, Record<ButtonFormat, ButtonStyles>> =
 	},
 	tertiary: {
 		regular: {
-			activeColor: theme.color.black10,
+			activeColor: theme.color.indigo20,
 			background: theme.color.black05,
 			color: theme.color.black100,
 			hoverColor: theme.color.black90
 		},
 		light: {
-			activeColor: theme.color.black20,
+			activeColor: theme.color.indigo40,
 			background: theme.color.black10,
 			color: theme.color.black100,
 			hoverColor: theme.color.black90
 		},
 		text: {
-			activeColor: theme.color.black40,
+			activeColor: theme.color.indigo40,
 			background: 'transparent',
-			color: theme.color.black05,
-			hoverColor: theme.color.black05
+			color: theme.color.black10,
+			hoverColor: theme.color.black10
 		},
 		outline: {
-			activeColor: theme.color.black40,
+			activeColor: theme.color.indigo40,
 			background: 'transparent',
 			color: theme.color.black05,
 			hoverColor: theme.color.black10
@@ -190,16 +190,16 @@ const buttonSizes: Record<ButtonSize, ButtonSizeProperties> = {
 
 const hover = (format: ButtonFormat, variant: ButtonVariant) => css`
 	:hover:not([aria-disabled='true']) {
-		background: ${styles[variant][format].activeColor};
-		color: ${styles[variant][format].hoverColor};
+		background: ${buttonStylesConfig[variant][format].activeColor};
+		color: ${buttonStylesConfig[variant][format].hoverColor};
 	}
 `;
 
 export const button = (format: ButtonFormat, variant: ButtonVariant, size: ButtonSize) => css`
 	align-items: center;
-	background-color: ${styles[variant][format].background};
+	background-color: ${buttonStylesConfig[variant][format].background};
 	border-radius: ${theme.borderRadius.radiusDefault};
-	color: ${styles[variant][format].color};
+	color: ${buttonStylesConfig[variant][format].color};
 	display: inline-flex;
 	flex-direction: row;
 	font: ${theme.font.button};
@@ -214,7 +214,7 @@ export const button = (format: ButtonFormat, variant: ButtonVariant, size: Butto
 `;
 
 export const outline = (variant: ButtonVariant) => css`
-	border: ${`1px solid ${styles[variant].outline.color}`};
+	border: ${`1px solid ${buttonStylesConfig[variant].outline.color}`};
 `;
 
 export const disabledStyle = css`

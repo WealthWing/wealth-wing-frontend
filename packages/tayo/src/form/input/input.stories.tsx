@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FormControl } from '../form-control';
-import { Label } from '../label/label';
 import { Input } from './input';
 
 const meta: Meta<typeof Input> = {

@@ -6,6 +6,7 @@ import { default as CheckSquare } from './check-square'
 import { default as FolderPlus } from './folder-plus'
 import { default as MoreHorizontal } from './more-horizontal'
 import { default as MoreVertical } from './more-vertical'
+import { default as Plus } from './plus'
 import { default as Warning } from './warning'
 import { default as X } from './x'
 
@@ -15,6 +16,7 @@ export const iconNames = [
 'folder-plus',
 'more-horizontal',
 'more-vertical',
+'plus',
 'warning',
 'x'
 ] as const
@@ -27,6 +29,7 @@ export const iconMap: Record<IconName, FunctionComponent<SVGProps<any>>> = {
 'folder-plus': FolderPlus,
 'more-horizontal': MoreHorizontal,
 'more-vertical': MoreVertical,
+'plus': Plus,
 'warning': Warning,
 'x': X
 }

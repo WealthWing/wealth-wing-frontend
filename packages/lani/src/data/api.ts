@@ -243,7 +243,7 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
-	'/scope/all': {
+	'/scope/all/{project_id}': {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -251,7 +251,7 @@ export interface paths {
 			cookie?: never;
 		};
 		/** Get Scopes */
-		get: operations['get_scopes_scope_all_get'];
+		get: operations['get_scopes_scope_all__project_id__get'];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -320,6 +320,23 @@ export interface paths {
 		};
 		/** Get Projects */
 		get: operations['get_projects_project_all_get'];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	'/project/detail/{project_id}': {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Get Projecy */
+		get: operations['get_projecy_project_detail__project_id__get'];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -537,14 +554,6 @@ export interface components {
 			 * @default 0
 			 */
 			budget: number;
-		};
-		/** ScopeRequest */
-		ScopeRequest: {
-			/**
-			 * Project Id
-			 * Format: uuid
-			 */
-			project_id: string;
 		};
 		/** ScopeResponse */
 		ScopeResponse: {
@@ -834,6 +843,7 @@ export interface components {
 	pathItems: never;
 }
 export type $defs = Record<string, never>;
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export interface operations {
 	ping_health_ping_get: {
 		parameters: {
@@ -1217,18 +1227,16 @@ export interface operations {
 			};
 		};
 	};
-	get_scopes_scope_all_get: {
+	get_scopes_scope_all__project_id__get: {
 		parameters: {
 			query?: never;
 			header?: never;
-			path?: never;
+			path: {
+				project_id: string;
+			};
 			cookie?: never;
 		};
-		requestBody: {
-			content: {
-				'application/json': components['schemas']['ScopeRequest'];
-			};
-		};
+		requestBody?: never;
 		responses: {
 			/** @description Successful Response */
 			200: {
@@ -1365,6 +1373,37 @@ export interface operations {
 				};
 				content: {
 					'application/json': components['schemas']['ProjectResponse'][];
+				};
+			};
+		};
+	};
+	get_projecy_project_detail__project_id__get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				project_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['ProjectResponse'];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['HTTPValidationError'];
 				};
 			};
 		};

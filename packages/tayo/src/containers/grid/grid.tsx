@@ -10,6 +10,15 @@ type GridProps = {
 
 export const Grid = ({ children, gridTemplateColumns, gap }: GridProps) => {
 	return (
-		<div css={{ display: 'grid', gridTemplateColumns, gap: theme.space[gap] }}>{children}</div>
+		<div
+			css={{
+				display: 'grid',
+				gridTemplateColumns,
+				gap: theme.space[gap],
+				alignItems: 'center'
+			}}
+		>
+			{children}
+		</div>
 	);
 };

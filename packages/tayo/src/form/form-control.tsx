@@ -55,16 +55,7 @@ export const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
 						{children}
 					</div>
 				</div>
-				{/* 				{!isDisabled && (
-					<div
-						css={[
-							isFocusedError && formControl.focusedError,
-							focused && formControl.focused,
-							isRestingError && formControl.focusedError,
-							isResting && formControl.restingDefault
-						]}
-					/>
-				)} */}
+
 				{hasError && (
 					<Box mt="s2">
 						<ErrorMessage message={error} />

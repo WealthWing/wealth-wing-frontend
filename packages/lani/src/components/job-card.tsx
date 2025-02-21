@@ -4,12 +4,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 type FolderCardProps = {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	title: string;
 	to: string;
+	onEditOpen?: () => void;
+	onDeleteOpen?: () => void;
 };
 
-export const JobCard = ({ children, title, to }: FolderCardProps) => {
+export const JobCard = ({ children, title, to, onEditOpen, onDeleteOpen }: FolderCardProps) => {
 	return (
 		<div css={jobCard.root} aria-label={title}>
 			<Link css={jobCard.link} to={to} />
@@ -27,8 +29,8 @@ export const JobCard = ({ children, title, to }: FolderCardProps) => {
 							iconColor="textPrimary"
 						/>
 						<Menu>
-							<MenuItem>Edit</MenuItem>
-							<MenuItem>Delete</MenuItem>
+							<MenuItem onClick={onEditOpen}>Edit</MenuItem>
+							<MenuItem onClick={onDeleteOpen}>Delete</MenuItem>
 						</Menu>
 					</Dropdown>
 				</Elevated>

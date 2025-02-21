@@ -12,9 +12,12 @@
 	"dependencies": {
 		"@tanstack/react-query": "5.66.0",
 		"openapi-react-query": "0.3.0",
-		"openapi-fetch": "0.13.4"
+		"openapi-fetch": "0.13.4",
+		"@reduxjs/toolkit": "2.5.1"
 	},
 	"devDependencies": {
-		"openapi-typescript": "7.6.1"
+		"openapi-typescript": "7.6.1",
+		"@rtk-query/codegen-openapi": "2.0.0",
+		"esbuild-runner": "2.2.2"
 	}
 }
