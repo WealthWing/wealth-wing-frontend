@@ -2,6 +2,10 @@ import { css } from '@emotion/react';
 
 import { theme } from '../../theme';
 
+export const asd = css({
+	width: '100%'
+});
+
 export const vertical = css`
 	display: flex;
 	flex-direction: column;

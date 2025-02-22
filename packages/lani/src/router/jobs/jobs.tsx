@@ -1,4 +1,5 @@
 import { Button, Flex, Grid, Heading, useDisclosureControl } from '@wealth-wing/tayo';
+import { HeadingContainer } from 'components/heading-container';
 import { JobCard } from 'components/job-card';
 import { Section } from 'components/section';
 import { useGetJobsQuery } from 'redux/job-queries';
@@ -21,7 +22,9 @@ export const Jobs = () => {
 	return (
 		<>
 			<Flex direction="column" gap="s20">
-				<Heading tag="h2">Jobs</Heading>
+				<HeadingContainer>
+					<Heading tag="h2">Jobs</Heading>
+				</HeadingContainer>
 				<Section
 					title="Manage Jobs"
 					subTitle="Your Hub for Big Projects: Create, manage, and monitor the jobs that drive your financial goals."

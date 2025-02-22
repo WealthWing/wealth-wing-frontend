@@ -1,5 +1,5 @@
 import { apiBase } from 'data/api-base';
-import { CreateScopeRequest, ScopeResponse } from 'data/client-definitions';
+import { CreateScopeRequest, ScopeResponse } from 'data/api-definitions';
 
 export const scopeQueries = apiBase.injectEndpoints({
 	endpoints: (builder) => ({

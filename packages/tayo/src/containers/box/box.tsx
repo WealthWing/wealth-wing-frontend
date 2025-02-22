@@ -95,6 +95,7 @@ export type BoxProps = BoxOptions &
 	Pick<React.AllHTMLAttributes<HTMLElement>, 'id' | 'style'> & {
 		children: React.ReactNode;
 		_css?: SerializedStyles;
+		className?: string;
 	};
 
 export const Box = ({
@@ -103,6 +104,7 @@ export const Box = ({
 	id,
 	tabIndex,
 	tag: Tag = 'div',
+	className,
 	_css,
 	style,
 	...boxProps
@@ -113,6 +115,7 @@ export const Box = ({
 		style={style}
 		css={[box(boxProps), _css && _css]}
 		tabIndex={tabIndex}
+		className={className}
 	>
 		{children}
 	</Tag>

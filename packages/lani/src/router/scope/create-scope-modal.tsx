@@ -8,7 +8,7 @@ import {
 	ModalFooter,
 	ModalHeader
 } from '@wealth-wing/tayo';
-import { CreateScopeRequest } from 'data/client-definitions';
+import { CreateScopeRequest } from 'data/api-definitions';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import { useCreateScopeMutation } from 'redux/scope-queries';

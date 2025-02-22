@@ -1,4 +1,5 @@
-import { Heading } from '@wealth-wing/tayo';
+import { Button, Heading, RightSidebar, useDisclosureControl } from '@wealth-wing/tayo';
+import { HeadingContainer } from 'components/heading-container';
 import { useParams } from 'react-router-dom';
 import { useGetJobQuery } from 'redux/job-queries';
 import { useGetScopeQuery } from 'redux/scope-queries';
@@ -8,22 +9,27 @@ import { scope } from 'router/scope/scope.styles';
 
 export const Scope = () => {
 	const { jobId = '' } = useParams();
+	const { isOpen, handleOpen } = useDisclosureControl();
 	const { data } = useGetJobQuery({ projectId: jobId });
 
 	const { data: scopeData } = useGetScopeQuery({ projectId: jobId });
 
 	return (
-		<div css={scope.root}>
-			<Heading tag="h2">{data?.project_name}</Heading>
-
-			<div css={scope.container}>
-				<div css={scope.scopes}>
-					{scopeData?.map((s) => (
-						<JobScope key={s.uuid} data={s} />
-					))}
-					<AddScope />
+		<div style={{ display: 'flex', position: 'relative' }}>
+			<div css={scope.root}>
+				<HeadingContainer>
+					<Heading tag="h2">{data?.project_name}</Heading>
+				</HeadingContainer>
+				<div css={scope.container}>
+					<div css={scope.scopes}>
+						{scopeData?.map((s) => (
+							<JobScope key={s.uuid} data={s} />
+						))}
+						<AddScope />
+					</div>
 				</div>
 			</div>
+			<RightSidebar isOpen={isOpen}>Children</RightSidebar>
 		</div>
 	);
 };

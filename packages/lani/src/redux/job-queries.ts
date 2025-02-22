@@ -1,5 +1,5 @@
 import { apiBase } from 'data/api-base';
-import { type CreateJobRequest, type JobResponse } from 'data/client-definitions';
+import { type CreateJobRequest, type JobResponse } from 'data/api-definitions';
 
 export const projectQueries = apiBase.injectEndpoints({
 	endpoints: (builder) => ({

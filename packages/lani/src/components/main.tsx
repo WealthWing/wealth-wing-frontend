@@ -6,8 +6,7 @@ export const main = css`
 	gap: ${theme.space.s12};
 	width: calc(100% - ${sidebarWidth});
 	height: 100%;
-	overflow-y: auto;
-	padding: ${theme.space.s40} ${theme.space.s16} ${theme.space.s16} ${theme.space.s16};
+	padding: 0 0 ${theme.space.s16} ${theme.space.s16};
 	scroll-behavior: smooth;
 	display: block;
 	position: relative;

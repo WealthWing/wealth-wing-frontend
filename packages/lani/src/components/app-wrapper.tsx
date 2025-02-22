@@ -5,8 +5,9 @@ import * as React from 'react';
 export const appWrapper = css`
 	display: block;
 	height: 100vh;
-	overflow: hidden;
+	position: relative;
 	padding: ${theme.space.s12};
+	z-index: 1;
 `;
 
 export const AppWrapper = ({ children }: React.PropsWithChildren<unknown>) => (

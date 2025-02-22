@@ -10,9 +10,6 @@
 		"generate:types": "npx openapi-typescript"
 	},
 	"dependencies": {
-		"@tanstack/react-query": "5.66.0",
-		"openapi-react-query": "0.3.0",
-		"openapi-fetch": "0.13.4",
 		"@reduxjs/toolkit": "2.5.1"
 	},
 	"devDependencies": {

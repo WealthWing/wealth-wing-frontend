@@ -8,7 +8,7 @@ import {
 	ModalFooter,
 	ModalHeader
 } from '@wealth-wing/tayo';
-import { CreateJobRequest } from 'data/client-definitions';
+import { CreateJobRequest } from 'data/api-definitions';
 import { useForm } from 'react-hook-form';
 import { useCreateJobMutation } from 'redux/job-queries';
 
