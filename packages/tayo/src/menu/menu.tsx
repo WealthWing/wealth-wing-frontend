@@ -1,3 +1,4 @@
+import { FloatingPortal } from '@floating-ui/react';
 import React from 'react';
 
 import { menu } from './menu.styles';
@@ -9,9 +10,11 @@ type MenuProps = Pick<React.HTMLAttributes<HTMLElement>, 'id'> & {
 export const Menu = React.forwardRef<HTMLUListElement, MenuProps>(
 	({ children, id, ...restProps }: MenuProps, ref) => {
 		return (
-			<ul ref={ref} role="menu" css={menu.root} id={id} {...restProps}>
-				{children}
-			</ul>
+			<FloatingPortal>
+				<ul ref={ref} role="menu" css={menu.root} id={id} {...restProps}>
+					{children}
+				</ul>
+			</FloatingPortal>
 		);
 	}
 );

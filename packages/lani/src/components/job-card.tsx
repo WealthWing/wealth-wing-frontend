@@ -9,6 +9,7 @@ import {
 	theme
 } from '@wealth-wing/tayo';
 import { jobCard } from 'components/job-card.styles';
+import { hover } from 'framer-motion';
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -22,39 +23,32 @@ type FolderCardProps = {
 
 export const JobCard = ({ children, title, to, onEditOpen, onDeleteOpen }: FolderCardProps) => {
 	return (
-		<NavLink
-			style={({ isActive }) => {
-				return {
-					backgroundColor: isActive
-						? theme.color.cardBackground60
-						: theme.color.cardBackground80
-				};
-			}}
-			css={jobCard.root}
-			to={to}
-			aria-label={title}
-		>
-			<Flex direction="row" justifyContent="space-between" gap="s4">
-				<Heading tag="h4" font="h6">
-					{title}
-				</Heading>
-				<Elevated>
-					<Dropdown>
-						<IconButton
-							format="text"
-							variant="tertiary"
-							iconName="more-vertical"
-							label="select menu"
-							iconColor="textPrimary"
-						/>
-						<Menu>
-							<MenuItem onClick={onEditOpen}>Edit</MenuItem>
-							<MenuItem onClick={onDeleteOpen}>Delete</MenuItem>
-						</Menu>
-					</Dropdown>
-				</Elevated>
-			</Flex>
-			{children}
+		<NavLink to={to} aria-label={title}>
+			{({ isActive }) => (
+				<div css={jobCard.root(isActive)}>
+					<Flex direction="row" justifyContent="space-between" gap="s4">
+						<Heading tag="h4" font="h6">
+							{title}
+						</Heading>
+						<Elevated>
+							<Dropdown>
+								<IconButton
+									format="text"
+									variant="tertiary"
+									iconName="more-vertical"
+									label="select menu"
+									iconColor="textPrimary"
+								/>
+								<Menu>
+									<MenuItem onClick={onEditOpen}>Edit</MenuItem>
+									<MenuItem onClick={onDeleteOpen}>Delete</MenuItem>
+								</Menu>
+							</Dropdown>
+						</Elevated>
+					</Flex>
+					{children}
+				</div>
+			)}
 		</NavLink>
 	);
 };
