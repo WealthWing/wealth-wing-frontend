@@ -1,7 +1,16 @@
-import { Dropdown, Elevated, Flex, Heading, IconButton, Menu, MenuItem } from '@wealth-wing/tayo';
+import {
+	Dropdown,
+	Elevated,
+	Flex,
+	Heading,
+	IconButton,
+	Menu,
+	MenuItem,
+	theme
+} from '@wealth-wing/tayo';
 import { jobCard } from 'components/job-card.styles';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 type FolderCardProps = {
 	children?: React.ReactNode;
@@ -13,8 +22,18 @@ type FolderCardProps = {
 
 export const JobCard = ({ children, title, to, onEditOpen, onDeleteOpen }: FolderCardProps) => {
 	return (
-		<div css={jobCard.root} aria-label={title}>
-			<Link css={jobCard.link} to={to} />
+		<NavLink
+			style={({ isActive }) => {
+				return {
+					backgroundColor: isActive
+						? theme.color.cardBackground60
+						: theme.color.cardBackground80
+				};
+			}}
+			css={jobCard.root}
+			to={to}
+			aria-label={title}
+		>
 			<Flex direction="row" justifyContent="space-between" gap="s4">
 				<Heading tag="h4" font="h6">
 					{title}
@@ -36,6 +55,6 @@ export const JobCard = ({ children, title, to, onEditOpen, onDeleteOpen }: Folde
 				</Elevated>
 			</Flex>
 			{children}
-		</div>
+		</NavLink>
 	);
 };

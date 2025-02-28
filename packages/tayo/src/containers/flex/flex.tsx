@@ -14,6 +14,7 @@ export type FlexOptions = {
 	direction?: CSSProperties['flexDirection'];
 	wrap?: CSSProperties['flexWrap'];
 	gap?: Space;
+	className?: string;
 };
 
 export const flexContainer = ({
@@ -44,6 +45,8 @@ export const flexContainer = ({
 
 type FlexProps = FlexOptions & { children: React.ReactNode };
 
-export const Flex = ({ children, ...props }: FlexProps) => (
-	<div css={flexContainer(props)}>{children}</div>
+export const Flex = ({ children, className, ...props }: FlexProps) => (
+	<div css={[flexContainer(props)]} className={className}>
+		{children}
+	</div>
 );

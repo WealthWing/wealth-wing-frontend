@@ -10,11 +10,13 @@ export const router = createBrowserRouter([
 		children: [
 			{
 				path: 'jobs',
-				element: <Jobs />
-			},
-			{
-				path: 'jobs/:jobId',
-				element: <Scope />
+				element: <Jobs />,
+				children: [
+					{
+						path: ':jobId',
+						element: <Scope />
+					}
+				]
 			}
 		]
 	}

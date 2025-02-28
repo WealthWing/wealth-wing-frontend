@@ -17,9 +17,10 @@ export const Scope = () => {
 	return (
 		<div style={{ display: 'flex', position: 'relative' }}>
 			<div css={scope.root}>
-				<HeadingContainer>
-					<Heading tag="h2">{data?.project_name}</Heading>
-				</HeadingContainer>
+				<Button variant="danger" format="outline" onClick={handleOpen}>
+					Open Right Sidebar
+				</Button>
+
 				<div css={scope.container}>
 					<div css={scope.scopes}>
 						{scopeData?.map((s) => (

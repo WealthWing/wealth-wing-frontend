@@ -1,9 +1,16 @@
-import { Button, Flex, Grid, Heading, useDisclosureControl } from '@wealth-wing/tayo';
+import { css } from '@emotion/react';
+import { Button, Flex, Heading, useDisclosureControl } from '@wealth-wing/tayo';
 import { HeadingContainer } from 'components/heading-container';
 import { JobCard } from 'components/job-card';
 import { Section } from 'components/section';
+import { Outlet } from 'react-router-dom';
 import { useGetJobsQuery } from 'redux/job-queries';
 import { CreateJobModal } from 'router/jobs/components/create-job-modal';
+
+const overflowX = css`
+	overflow-x: auto;
+`;
+
 // Task
 export const Jobs = () => {
 	const { isOpen, handleOpen, handleClose } = useDisclosureControl();
@@ -34,12 +41,13 @@ export const Jobs = () => {
 						</Button>
 					}
 				>
-					<Grid gridTemplateColumns="repeat(3, 1fr)" gap="s12">
+					<Flex direction="row" gap="s20" css={overflowX}>
 						{data?.map((p) => (
 							<JobCard key={p.uuid} title={p.project_name} to={`/jobs/${p.uuid}`} />
 						))}
-					</Grid>
+					</Flex>
 				</Section>
+				<Outlet />
 			</Flex>
 
 			{isOpen && <CreateJobModal isOpen={isOpen} onClose={handleClose} />}
