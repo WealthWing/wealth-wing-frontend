@@ -2,10 +2,10 @@ import { css, SerializedStyles } from '@emotion/react';
 
 import { zIndex } from '../constants';
 import { theme } from '../theme';
-import { ModalVariant } from './modal';
+import { ModalVariant } from './modal.definitions';
 
 export const modalOverlayColor = 'rgba(0, 0, 0, 0.25)';
-const slideModalWidth = '46rem';
+const slideModalWidth = '30rem';
 
 export const modal = {
 	root: css`

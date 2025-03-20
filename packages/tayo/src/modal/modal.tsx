@@ -1,4 +1,4 @@
-import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import React from 'react';
 import { createPortal } from 'react-dom';
 import FocusLock from 'react-focus-lock';
@@ -8,16 +8,8 @@ import { Box, Flex } from '../containers';
 import { Heading } from '../heading';
 import { IconButton } from '../icon-button';
 import { createProvider } from '../providers';
+import { ModalTransition, ModalVariant } from './modal.definitions';
 import { modal, modalVariants } from './modal.styles';
-
-type ModalTransition = Pick<HTMLMotionProps<'div'>, 'animate' | 'exit' | 'initial'>;
-
-export type ModalVariant =
-	| 'floatinglarge'
-	| 'floatingmedium'
-	| 'floatingsmall'
-	| 'fullscreen'
-	| 'slideleft';
 
 const overlayTransition: ModalTransition = {
 	animate: { opacity: 1 },

@@ -1,17 +1,8 @@
-import {
-	Dropdown,
-	Elevated,
-	Flex,
-	Heading,
-	IconButton,
-	Menu,
-	MenuItem,
-	theme
-} from '@wealth-wing/tayo';
+import { css } from '@emotion/react';
+import { Dropdown, Elevated, Flex, Heading, IconButton, Menu, MenuItem } from '@wealth-wing/tayo';
 import { jobCard } from 'components/job-card.styles';
-import { hover } from 'framer-motion';
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 type FolderCardProps = {
 	children?: React.ReactNode;
@@ -27,7 +18,7 @@ export const JobCard = ({ children, title, to, onEditOpen, onDeleteOpen }: Folde
 			{({ isActive }) => (
 				<div css={jobCard.root(isActive)}>
 					<Flex direction="row" justifyContent="space-between" gap="s4">
-						<Heading tag="h4" font="h6">
+						<Heading tag="h4" font="h6" css={css({ alignSelf: 'center' })}>
 							{title}
 						</Heading>
 						<Elevated>

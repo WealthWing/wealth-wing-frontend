@@ -1,11 +1,13 @@
 import { Box, Button, Flex, Grid, Heading, Text, theme } from '@wealth-wing/tayo';
 import { formatUSD } from '@wealth-wing/utils';
 import { ExpenseResponse, ScopeResponse } from 'data/api-definitions';
+import { useJobs } from 'router/jobs/jobs.provider';
 
 const JobScopeFooter = () => {
+	const { onLeftModalOpen } = useJobs();
 	return (
 		<Flex direction="row" justifyContent="space-between" alignItems="center">
-			<Button variant="tertiary" format="text">
+			<Button variant="tertiary" format="text" onClick={onLeftModalOpen}>
 				Add Expense
 			</Button>
 			<Text font="lg" color="textSecondary">

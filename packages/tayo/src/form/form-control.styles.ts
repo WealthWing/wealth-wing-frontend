@@ -30,7 +30,7 @@ export const formControl = {
 		}
 	`,
 	restingDefault: css`
-		box-shadow: 0 0 0 ${formTheme.borderWidth} ${formTheme.borderDefault};
+		box-shadow: none;
 	`,
 	restingError: css`
 		box-shadow: 0 0 0 ${formTheme.borderWidthFocused} ${formTheme.borderColorErrorResting};

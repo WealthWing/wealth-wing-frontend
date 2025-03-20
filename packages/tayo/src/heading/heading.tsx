@@ -11,13 +11,22 @@ export type HeadingProps = Pick<BoxProps, 'color' | 'id'> & {
 	font?: HeadingKeys;
 	tag: HeadingTag;
 	children: React.ReactNode;
+	className?: string;
 };
 
-export const Heading = ({ tag: Tag, color = 'textPrimary', font, id, children }: HeadingProps) => {
+export const Heading = ({
+	tag: Tag,
+	className,
+	color = 'textPrimary',
+	font,
+	id,
+	children
+}: HeadingProps) => {
 	return (
 		<Tag
 			id={id}
 			css={[heading, box({ color }), { font: font ? theme.font[font] : theme.font[Tag] }]}
+			className={className}
 		>
 			{children}
 		</Tag>

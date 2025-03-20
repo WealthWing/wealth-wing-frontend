@@ -1,26 +1,27 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { FormControl } from '../form-control';
-import { Input } from './input';
+import { TextArea } from './textarea';
 
-const meta: Meta<typeof Input> = {
-	component: Input
+const meta: Meta<typeof TextArea> = {
+	component: TextArea
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Input>;
+type Story = StoryObj<typeof TextArea>;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention, no-underscore-dangle
-export const _Input: Story = {
+export const _TextArea: Story = {
 	args: {
-		placeholder: 'Placeholder'
+		placeholder: 'Placeholder',
+		lines: 4
 	},
 	decorators: [
 		function Component(_, ctx) {
 			return (
-				<FormControl label="Label" {...ctx.args}>
-					<Input placeholder="Placeholder Text" />
+				<FormControl label="Label">
+					<TextArea placeholder="Placeholder Text" {...ctx.args} />
 				</FormControl>
 			);
 		}

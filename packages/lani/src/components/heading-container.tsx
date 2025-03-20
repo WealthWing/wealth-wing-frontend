@@ -2,11 +2,9 @@ import { css } from '@emotion/react';
 import { theme } from '@wealth-wing/tayo';
 import React from 'react';
 
-const container = css({
+export const container = css({
 	backgroundColor: theme.color.cardBackground90,
-	padding: theme.space.s16,
-	position: 'sticky',
-	top: 0,
+	paddingBottom: theme.space.s16,
 	width: '100%'
 });
 
