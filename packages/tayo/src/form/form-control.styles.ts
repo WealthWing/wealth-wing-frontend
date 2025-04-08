@@ -18,7 +18,6 @@ export const formControl = {
 		box-shadow: ${theme.shadow.default100};
 		display: flex;
 		grid-row-gap: ${theme.space.s4};
-		padding: ${theme.space.s10};
 	`,
 	disabledControl: css`
 		box-shadow: none;

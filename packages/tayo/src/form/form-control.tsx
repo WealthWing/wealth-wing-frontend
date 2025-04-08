@@ -1,6 +1,8 @@
+import { css } from '@emotion/react';
 import React from 'react';
 
 import { Box } from '../containers';
+import { theme } from '../theme';
 import { ErrorMessage } from './error-message/error-message';
 import { formControl } from './form-control.styles';
 import { FormControlProvider, FormControlProviderProps } from './form-control-provider';
@@ -11,10 +13,23 @@ type FormControlProps = Pick<FormControlProviderProps, 'id' | 'isDisabled' | 're
 	error?: string;
 	label: string;
 	hideLabel?: boolean;
+	isSelect?: boolean;
 };
 
 export const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
-	({ children, error, label, id, isDisabled, hideLabel, required }: FormControlProps, ref) => {
+	(
+		{
+			children,
+			error,
+			label,
+			id,
+			isDisabled,
+			hideLabel,
+			isSelect = false,
+			required
+		}: FormControlProps,
+		ref
+	) => {
 		const [isFocused, setIsFocused] = React.useState(false);
 
 		function handleBlur() {
@@ -43,6 +58,7 @@ export const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
 					<div
 						css={[
 							formControl.root,
+							!isSelect && css({ padding: `${theme.space.s10}` }),
 							isFocusedError && formControl.focusedError,
 							focused && formControl.focused,
 							isRestingError && formControl.focusedError,
