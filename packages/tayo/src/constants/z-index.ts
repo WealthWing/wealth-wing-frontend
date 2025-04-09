@@ -1,6 +1,6 @@
 export const zIndex = {
 	menu: 100,
-	modalOverlay: 110,
-	modal: 120,
+	modalOverlay: 108,
+	modal: 109,
 	toast: 200
 };

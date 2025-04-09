@@ -17,7 +17,7 @@ export const Grid = ({ children, gridTemplateColumns, gap, className }: GridProp
 					display: 'grid',
 					gridTemplateColumns,
 					gap: theme.space[gap],
-					alignItems: 'center'
+					alignItems: 'flex-start'
 				}
 			]}
 			className={className}

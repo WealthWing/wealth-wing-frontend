@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { ButtonProps } from './base.definitions';
 import { button, disabledStyle, outline } from './button.styles';
+import { css } from '@emotion/react';
 
 /* Add spinner
    add icon
@@ -9,7 +10,17 @@ import { button, disabledStyle, outline } from './button.styles';
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 	(
-		{ children, format, variant, isLoading, size = 'medium', disabled, onClick, ...rest },
+		{
+			children,
+			format,
+			variant,
+			isLoading,
+			size = 'medium',
+			disabled,
+			onClick,
+			isFullWidth,
+			...rest
+		},
 		ref
 	) => {
 		return (
@@ -19,7 +30,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 				css={[
 					button(format, variant, size),
 					format === 'outline' && outline(variant),
-					(disabled || isLoading) && disabledStyle
+					(disabled || isLoading) && disabledStyle,
+					isFullWidth && css({ width: '100%' })
 				]}
 				disabled={disabled}
 				onClick={disabled || isLoading ? undefined : onClick}

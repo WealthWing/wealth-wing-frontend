@@ -1,12 +1,4 @@
-import {
-	Button,
-	Flex,
-	Heading,
-	Modal,
-	ModalBody,
-	ModalHeader,
-	useDisclosureControl
-} from '@wealth-wing/tayo';
+import { Button, Flex, Heading, useDisclosureControl } from '@wealth-wing/tayo';
 import { AddExpenseModal } from 'components/add-expense-modal';
 import { container, HeadingContainer } from 'components/heading-container';
 import { JobCard } from 'components/job-card';

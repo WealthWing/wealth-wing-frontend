@@ -21,9 +21,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
 				disabled={isDisabled}
 				id={id}
 				ref={ref}
-			>
-				text-area
-			</textarea>
+			/>
 		);
 	}
 );

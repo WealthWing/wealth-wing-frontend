@@ -17,7 +17,7 @@ export const formControl = {
 		border-radius: ${theme.borderRadius.radiusMedium};
 		box-shadow: ${theme.shadow.default100};
 		display: flex;
-		grid-row-gap: ${theme.space.s4};
+		gap: ${theme.space.s4};
 	`,
 	disabledControl: css`
 		box-shadow: none;

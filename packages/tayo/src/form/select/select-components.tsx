@@ -1,5 +1,5 @@
 import React from 'react';
-import { components, ControlProps, MenuProps, SingleValueProps } from 'react-select';
+import { components, ControlProps, MenuProps } from 'react-select';
 
 import { Icon, IconName } from '../../icon';
 import { mergeRefs } from '../../utils/merge-refs';

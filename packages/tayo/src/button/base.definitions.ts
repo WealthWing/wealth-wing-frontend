@@ -21,6 +21,7 @@ export type BaseProps = {
 	variant: ButtonVariant;
 	isLoading?: boolean;
 	size?: ButtonSize;
+	isFullWidth?: boolean;
 };
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & BaseProps;

@@ -68,15 +68,15 @@ export const selectStyles = (menuWidth?: number): StylesConfig => ({
 	option: (baseStyles, { isSelected, isDisabled: disabled, isFocused }) => {
 		function getColor() {
 			if (disabled) return theme.color.black40;
-			if (isFocused && !isSelected) return theme.color.cardBackground60;
-			if (isSelected) return theme.color.textPrimary;
-			return theme.color.black10;
+			if (isFocused && !isSelected) return theme.color.textSecondary;
+			if (isSelected) return theme.color.textSecondary;
+			return theme.color.textPrimary;
 		}
 
 		function getBackgroundColor() {
 			if (disabled) return undefined;
 			if (isFocused && !isSelected) return theme.color.cardBackground80;
-			if (isSelected) return theme.color.cardBackground90;
+			if (isSelected) return theme.color.cardBackground100;
 			return undefined;
 		}
 
@@ -89,7 +89,7 @@ export const selectStyles = (menuWidth?: number): StylesConfig => ({
 		function getHoverBackgroundColor() {
 			if (disabled) return undefined;
 			if (isSelected) return theme.color.cardBackground100;
-			return theme.color.cardBackground90;
+			return theme.color.cardBackground60;
 		}
 
 		const color = getColor();

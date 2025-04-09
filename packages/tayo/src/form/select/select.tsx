@@ -25,7 +25,7 @@ export type SelectProps<TFormValues extends Record<string, unknown>> = Omit<
 	'options' | 'onChange' | 'isMulti'
 > & {
 	name: Path<TFormValues>;
-	icon: IconName;
+	icon?: IconName;
 	label: string;
 	hideLabel?: boolean;
 	onChange: ((value: OptionType) => void) | undefined;

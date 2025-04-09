@@ -8,3 +8,4 @@ export type ScopeResponse = Components['ScopeResponse'];
 export type ExpenseResponse = Components['ExpenseResponse'];
 export type ExpenseCreateRequest = Components['ExpenseCreate'];
 export type JobResponse = Components['ProjectResponse'];
+export type CateoryResponse = Components['CategoryResponse'];

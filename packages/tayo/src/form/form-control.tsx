@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import React from 'react';
 
 import { Box } from '../containers';
+import { Icon, IconName } from '../icon';
 import { theme } from '../theme';
 import { ErrorMessage } from './error-message/error-message';
 import { formControl } from './form-control.styles';
@@ -14,6 +15,7 @@ type FormControlProps = Pick<FormControlProviderProps, 'id' | 'isDisabled' | 're
 	label: string;
 	hideLabel?: boolean;
 	isSelect?: boolean;
+	iconLeft?: IconName;
 };
 
 export const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
@@ -26,7 +28,8 @@ export const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
 			isDisabled,
 			hideLabel,
 			isSelect = false,
-			required
+			required,
+			iconLeft
 		}: FormControlProps,
 		ref
 	) => {
@@ -68,15 +71,16 @@ export const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
 						onFocus={handleFocus}
 						onBlur={handleBlur}
 					>
+						{iconLeft ? <Icon name={iconLeft} color="textSecondary" /> : null}
 						{children}
 					</div>
-				</div>
 
-				{hasError && (
-					<Box mt="s2">
-						<ErrorMessage message={error} />
-					</Box>
-				)}
+					{hasError && (
+						<Box mt="s2">
+							<ErrorMessage message={error} />
+						</Box>
+					)}
+				</div>
 			</FormControlProvider>
 		);
 	}
