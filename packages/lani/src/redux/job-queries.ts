@@ -21,11 +21,9 @@ export const projectQueries = apiBase.injectEndpoints({
 		}),
 		createJob: builder.mutation<JobResponse, CreateJobRequest>({
 			query: (params) => ({
-				url: '/scope/create',
+				url: '/project/create',
 				method: 'POST',
-				body: JSON.stringify({
-					params
-				})
+				body: JSON.stringify(params)
 			})
 		})
 	})

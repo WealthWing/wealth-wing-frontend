@@ -23,12 +23,3 @@ export function formatEmail(email: string) {
 
 	return `${maskedLocal}@${maskedDomain}`;
 }
-
-export function formatUSD(number: number) {
-	const centsToUsd = number / 100;
-
-	return new Intl.NumberFormat('en-US', {
-		style: 'currency',
-		currency: 'USD'
-	}).format(centsToUsd);
-}

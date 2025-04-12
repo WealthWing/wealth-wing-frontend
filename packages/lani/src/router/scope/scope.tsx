@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { useGetScopeQuery } from 'redux/scope-queries';
-import { useJobs } from 'router/jobs/jobs.provider';
 import { AddScope } from 'router/scope/add-scope';
 import { JobScope } from 'router/scope/job-scope';
 import { scope } from 'router/scope/scope.styles';

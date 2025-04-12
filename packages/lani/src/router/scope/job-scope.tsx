@@ -1,17 +1,23 @@
 import { Box, Button, Flex, Grid, Heading, Text, theme } from '@wealth-wing/tayo';
 import { formatUSD } from '@wealth-wing/utils';
 import { ExpenseResponse, ScopeResponse } from 'data/api-definitions';
+import { NoExpenses } from 'router/jobs/helper-components';
 import { useJobs } from 'router/jobs/jobs.provider';
 
-const JobScopeFooter = () => {
+type JobScopeFooterProps = {
+	jobScopeId: string;
+	totalSpent: number;
+};
+
+const JobScopeFooter = ({ jobScopeId, totalSpent }: JobScopeFooterProps) => {
 	const { onLeftModalOpen } = useJobs();
 	return (
 		<Flex direction="row" justifyContent="space-between" alignItems="center">
-			<Button variant="tertiary" format="text" onClick={onLeftModalOpen}>
+			<Button variant="tertiary" format="text" onClick={() => onLeftModalOpen(jobScopeId)}>
 				Add Expense
 			</Button>
 			<Text font="lg" color="textSecondary">
-				Total Spent: $0.00
+				Total Spent: {formatUSD(totalSpent)}
 			</Text>
 		</Flex>
 	);
@@ -32,7 +38,7 @@ export const JobScopeRow = ({ data }: JobScopeRowProps) => {
 		>
 			<Grid gridTemplateColumns="1fr auto 100px" gap="s12" css={{ padding: '' }}>
 				<Text>{data.title}</Text>
-				<Text>{formatUSD(data.amount)}</Text>
+				<Text color="red80">-{formatUSD(data.amount)}</Text>
 			</Grid>
 		</Box>
 	);
@@ -43,6 +49,8 @@ type JobScopeProps = {
 };
 
 export const JobScope = ({ data }: JobScopeProps) => {
+	const expensesExist = data.expenses.length > 0;
+
 	return (
 		<Box
 			backgroundColor="cardBackground100"
@@ -59,9 +67,9 @@ export const JobScope = ({ data }: JobScopeProps) => {
 				<Heading tag="h4" font="h5" color="black20">
 					{data.scope_name}
 				</Heading>
-				<Text color="black20">Spent</Text>
+				{expensesExist && <Text color="black20">Spent</Text>}
 			</Grid>
-			{data.expenses.length > 0 ? (
+			{expensesExist ? (
 				<Flex gap="s16">
 					{/* TODO: Handle List - li */}
 					{data.expenses.map((e) => (
@@ -69,7 +77,10 @@ export const JobScope = ({ data }: JobScopeProps) => {
 					))}
 				</Flex>
 			) : null}
-			<JobScopeFooter />
+			{!expensesExist && <NoExpenses jobScopeId={data.uuid} />}
+			{expensesExist && (
+				<JobScopeFooter jobScopeId={data.uuid} totalSpent={data.total_cost ?? 0} />
+			)}
 		</Box>
 	);
 };

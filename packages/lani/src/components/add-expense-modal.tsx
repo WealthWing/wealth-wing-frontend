@@ -10,12 +10,17 @@ import {
 	ModalHeader,
 	OptionType,
 	Select,
-	TextArea
+	TextArea,
+	theme
 } from '@wealth-wing/tayo';
+import { convertToCents } from '@wealth-wing/utils';
 import { ExpenseCreateRequest } from 'data/api-definitions';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useCagetoriesQuery } from 'redux/category-queries';
+import { useCreateExpenseMutation } from 'redux/expense-queries';
+
+/* TODO: add date field */
 
 type FormValues = Pick<ExpenseCreateRequest, 'title' | 'description' | 'date'> & {
 	amount: string;
@@ -25,21 +30,37 @@ type FormValues = Pick<ExpenseCreateRequest, 'title' | 'description' | 'date'> &
 type AddExpenseModalProps = {
 	isAddExpenseOpen: boolean;
 	handleAddExpenseClose: () => void;
+	jobScopeId: string;
 };
 
 export const AddExpenseModal = ({
 	handleAddExpenseClose,
-	isAddExpenseOpen
+	isAddExpenseOpen,
+	jobScopeId
 }: AddExpenseModalProps) => {
 	const { data: categories } = useCagetoriesQuery();
+	const [createExpense] = useCreateExpenseMutation();
 	const form = useForm<FormValues>();
 	const {
 		formState: { errors },
 		register
 	} = form;
 
-	const handleSubmit = (data: FormValues) => {
-		console.log('Form submitted:', data);
+	const handleSubmit = async (data: FormValues) => {
+		try {
+			await createExpense({
+				amount: convertToCents(Number(data.amount)),
+				category_id: data.category.value,
+				date: new Date().toISOString(),
+				title: data.title,
+				description: data.description,
+				scope_id: jobScopeId
+			}).unwrap();
+			handleAddExpenseClose();
+		} catch (error) {
+			/* TODO: handle error */
+			console.error(error);
+		}
 	};
 
 	const selectCategories: OptionType[] = React.useMemo(() => {
@@ -60,7 +81,11 @@ export const AddExpenseModal = ({
 			<ModalBody>
 				<Box mt="s20">
 					<FormProvider {...form}>
-						<Form id="new-expense-form" onSubmit={form.handleSubmit(handleSubmit)}>
+						<Form
+							css={{ gap: theme.space.s10 }}
+							id="new-expense-form"
+							onSubmit={form.handleSubmit(handleSubmit)}
+						>
 							<Grid gridTemplateColumns="1fr" gap="s20">
 								<FormControl
 									required
@@ -110,7 +135,6 @@ export const AddExpenseModal = ({
 							</Grid>
 							<Grid gridTemplateColumns="1fr" gap="none">
 								<FormControl
-									required
 									label="Note"
 									id="expense-note"
 									error={errors.description?.message}
@@ -122,7 +146,7 @@ export const AddExpenseModal = ({
 									/>
 								</FormControl>
 							</Grid>
-							<Button variant="primary" format="regular" type="submit">
+							<Button variant="primary" format="regular" type="submit" isFullWidth>
 								Submit
 							</Button>
 						</Form>

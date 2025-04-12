@@ -574,6 +574,12 @@ export interface components {
 			 */
 			updated_at: string;
 			/**
+			 * Total Cost
+			 * @description Total cost of all expenses in the scope
+			 * @default 0
+			 */
+			total_cost: number | null;
+			/**
 			 * Expenses
 			 * @default []
 			 */

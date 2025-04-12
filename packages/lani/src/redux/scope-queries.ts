@@ -9,16 +9,16 @@ export const scopeQueries = apiBase.injectEndpoints({
 					url: `/scope/all/${projectId}`,
 					method: 'GET'
 				};
-			}
+			},
+			providesTags: ['ScopeResponse', 'ExpenseResponse']
 		}),
 		createScope: builder.mutation<ScopeResponse, CreateScopeRequest>({
 			query: (params) => ({
 				url: '/scope/create',
 				method: 'POST',
-				body: JSON.stringify({
-					params
-				})
-			})
+				body: JSON.stringify(params)
+			}),
+			invalidatesTags: ['ScopeResponse', 'ExpenseResponse']
 		})
 	})
 });

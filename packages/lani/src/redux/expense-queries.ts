@@ -8,7 +8,10 @@ export const expenseQueries = apiBase.injectEndpoints({
 				url: '/expense/create',
 				method: 'POST',
 				body: JSON.stringify(params)
-			})
+			}),
+			invalidatesTags: ['ScopeResponse']
 		})
 	})
 });
+
+export const { useCreateExpenseMutation } = expenseQueries;
