@@ -9,34 +9,37 @@ import {
 	ModalHeader
 } from '@wealth-wing/tayo';
 import { CreateJobRequest } from 'data/api-definitions';
-import { useForm } from 'react-hook-form';
-import { useCreateJobMutation } from 'redux/job-queries';
+import React from 'react';
+import { UseFormReturn } from 'react-hook-form';
 
-type FormValues = CreateJobRequest;
+export type JobFormValues = CreateJobRequest;
 
-type CreateJobModalProps = {
+type JobModalProps = {
 	isOpen: boolean;
 	onClose: () => void;
+	onSubmit: (data: JobFormValues) => void;
+	isLoading?: boolean;
+	form: UseFormReturn<JobFormValues>;
+	variant?: 'create' | 'edit';
 };
 
-export const CreateJobModal = ({ isOpen, onClose }: CreateJobModalProps) => {
-	const [createJob] = useCreateJobMutation();
-
-	const form = useForm<FormValues>();
+export const JobFormModal = ({
+	isOpen,
+	onClose,
+	onSubmit,
+	form,
+	isLoading,
+	variant = 'create'
+}: JobModalProps) => {
 	const {
 		formState: { errors },
 		handleSubmit,
 		register
 	} = form;
-
-	const onSubmit = (data: FormValues) => {
-		createJob({ project_name: data.project_name });
-		onClose();
-	};
-
+	const isCreateModal = variant === 'create';
 	return (
 		<Modal isOpen={isOpen} onClose={onClose} variant="floatingsmall" canClose>
-			<ModalHeader title="Create Job" />
+			<ModalHeader title={isCreateModal ? 'Create Job' : 'Edit job'} />
 			<ModalBody>
 				<Form onSubmit={handleSubmit(onSubmit)} id="create-job-form">
 					<FormControl
@@ -55,11 +58,17 @@ export const CreateJobModal = ({ isOpen, onClose }: CreateJobModalProps) => {
 				</Form>
 			</ModalBody>
 			<ModalFooter>
-				<Button format="outline" variant="tertiary" onClick={onClose}>
+				<Button format="outline" variant="tertiary" onClick={onClose} disabled={isLoading}>
 					Close
 				</Button>
-				<Button format="regular" variant="primary" type="submit" form="create-job-form">
-					Create job
+				<Button
+					format="regular"
+					variant="primary"
+					type="submit"
+					form="create-job-form"
+					disabled={isLoading}
+				>
+					{isCreateModal ? 'Create Job' : 'Update Job'}
 				</Button>
 			</ModalFooter>
 		</Modal>

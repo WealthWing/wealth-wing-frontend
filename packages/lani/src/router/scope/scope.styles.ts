@@ -5,7 +5,7 @@ export const scope = {
 	root: css`
 		display: flex;
 		flex: 1 0 0;
-		flex-direction: column;
+		flex-direction: row;
 		gap: ${theme.space.s20};
 		position: relative;
 	`,
@@ -13,6 +13,7 @@ export const scope = {
 		align-items: center;
 		display: flex;
 		flex-direction: column;
+		overflow: auto;
 		width: 100%;
 	`,
 	scopes: css`

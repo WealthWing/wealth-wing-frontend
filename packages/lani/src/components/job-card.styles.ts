@@ -11,6 +11,7 @@ export const jobCard = {
 		padding: ${theme.space.s20};
 		position: relative;
 		width: 100%;
+		z-index: 1;
 
 		:hover {
 			background-color: ${theme.color.cardBackground60};

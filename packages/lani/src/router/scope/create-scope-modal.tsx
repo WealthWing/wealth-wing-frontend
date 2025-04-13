@@ -32,7 +32,6 @@ export const CreateScopeModal = ({ isOpen, onClose }: CreateScopeModalProps) => 
 	} = form;
 
 	const onSubmit = (data: CreateScopeFormValues) => {
-		console.log(data);
 		createScope({ scope_name: data.scope_name, budget: data.budget, project_id: jobId });
 		onClose();
 	};

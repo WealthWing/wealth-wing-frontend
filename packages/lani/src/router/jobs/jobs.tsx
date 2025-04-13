@@ -6,18 +6,26 @@ import { Section } from 'components/section';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useGetJobsQuery } from 'redux/job-queries';
-import { CreateJobModal } from 'router/jobs/components/create-job-modal';
+import { JobDeletionModal } from 'router/jobs/components/delete-job-modal';
+import { JobFormModal } from 'router/jobs/components/job-form-modal';
+import { useCreateJob } from 'router/jobs/hooks/use-create-job';
+import { useEditJob } from 'router/jobs/hooks/use-edit-job';
 import { JobsProvider } from 'router/jobs/jobs.provider';
 import { overflowX, stickyContainer } from 'router/jobs/jobs.styles';
-// Task
-export const Jobs = () => {
-	const { isOpen, handleOpen, handleClose } = useDisclosureControl();
-	const [jobScopeId, setJobScopeId] = React.useState<string>('');
 
+export const Jobs = () => {
+	const [jobScopeId, setJobScopeId] = React.useState<string>('');
+	const createJob = useCreateJob();
+	const editJob = useEditJob();
+	const {
+		isOpen: isJobDeletionModalOpen,
+		handleClose: onJobDeletionModalClose,
+		handleOpen: onJobDeletionModalOpen
+	} = useDisclosureControl();
 	const {
 		isOpen: isRightSidebarOpen,
-		handleOpen: handleRightSidebarOpen,
-		handleClose: handleRightSidebarClose
+		handleOpen: onRightSidebarOpen,
+		handleClose: onRightSidebarClose
 	} = useDisclosureControl();
 	const { data } = useGetJobsQuery();
 
@@ -33,13 +41,13 @@ export const Jobs = () => {
 
 	const handleExpenseModalOpen = (id: string) => {
 		setJobScopeId(id);
-		handleRightSidebarOpen();
+		onRightSidebarOpen();
 	};
 
 	return (
 		<JobsProvider
 			isLeftModalOpen={isRightSidebarOpen}
-			onLeftModalClose={handleRightSidebarClose}
+			onLeftModalClose={onRightSidebarClose}
 			onLeftModalOpen={handleExpenseModalOpen}
 		>
 			<Flex direction="column" gap="s20" css={container}>
@@ -51,7 +59,7 @@ export const Jobs = () => {
 						title="Manage Jobs"
 						subTitle="Your Hub for Big Projects: Create, manage, and monitor the jobs that drive your financial goals."
 						button={
-							<Button variant="tertiary" format="text" onClick={handleOpen}>
+							<Button variant="tertiary" format="text" onClick={createJob.onOpen}>
 								Create Job
 							</Button>
 						}
@@ -62,22 +70,27 @@ export const Jobs = () => {
 									key={p.uuid}
 									title={p.project_name}
 									to={`/jobs/${p.uuid}`}
+									onEditOpen={editJob.onOpen}
+									onDeleteOpen={onJobDeletionModalOpen}
 								/>
 							))}
 						</Flex>
 					</Section>
 				</div>
+
 				<Outlet />
 			</Flex>
 			{isRightSidebarOpen && (
 				<AddExpenseModal
 					isAddExpenseOpen={isRightSidebarOpen}
-					handleAddExpenseClose={handleRightSidebarClose}
+					handleAddExpenseClose={onRightSidebarClose}
 					jobScopeId={jobScopeId}
 				/>
 			)}
 
-			{isOpen && <CreateJobModal isOpen={isOpen} onClose={handleClose} />}
+			<JobFormModal {...createJob} />
+			<JobFormModal variant="edit" {...editJob} />
+			<JobDeletionModal isOpen={isJobDeletionModalOpen} onClose={onJobDeletionModalClose} />
 		</JobsProvider>
 	);
 };

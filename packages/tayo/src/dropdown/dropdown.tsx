@@ -21,6 +21,7 @@ type DropdownProps = {
 
 export const Dropdown = ({ placement, distance = 0, children }: DropdownProps) => {
 	const { isOpen, handleToggle } = useDisclosureControl();
+
 	const { refs, context, floatingStyles } = useFloating<HTMLButtonElement>({
 		placement,
 		open: isOpen,

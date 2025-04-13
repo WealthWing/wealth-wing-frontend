@@ -1,5 +1,5 @@
 import { apiBase } from 'data/api-base';
-import { type CreateJobRequest, type JobResponse } from 'data/api-definitions';
+import type { CreateJobRequest, JobResponse, ProjectUpdateRequest } from 'data/api-definitions';
 
 export const projectQueries = apiBase.injectEndpoints({
 	endpoints: (builder) => ({
@@ -9,7 +9,8 @@ export const projectQueries = apiBase.injectEndpoints({
 					url: `/project/detail/${projectId}`,
 					method: 'GET'
 				};
-			}
+			},
+			providesTags: ['JobResponse']
 		}),
 		getJobs: builder.query<JobResponse[], void>({
 			query: () => {
@@ -17,14 +18,34 @@ export const projectQueries = apiBase.injectEndpoints({
 					url: '/project/all',
 					method: 'GET'
 				};
-			}
+			},
+			providesTags: ['JobResponse']
 		}),
 		createJob: builder.mutation<JobResponse, CreateJobRequest>({
 			query: (params) => ({
 				url: '/project/create',
 				method: 'POST',
 				body: JSON.stringify(params)
-			})
+			}),
+			invalidatesTags: ['JobResponse']
+		}),
+		updateJob: builder.mutation<
+			JobResponse,
+			{ projectId: string; params: ProjectUpdateRequest }
+		>({
+			query: ({ projectId, params }) => ({
+				url: `/project/update/${projectId}`,
+				method: 'PUT',
+				body: JSON.stringify(params)
+			}),
+			invalidatesTags: ['JobResponse']
+		}),
+		deleteJob: builder.mutation<void, { projectId: string }>({
+			query: ({ projectId }) => ({
+				url: `/project/delete/${projectId}`,
+				method: 'DELETE'
+			}),
+			invalidatesTags: ['JobResponse']
 		})
 	})
 });
@@ -34,5 +55,7 @@ export const {
 	useLazyGetJobQuery,
 	useGetJobsQuery,
 	useLazyGetJobsQuery,
-	useCreateJobMutation
+	useCreateJobMutation,
+	useUpdateJobMutation,
+	useDeleteJobMutation
 } = projectQueries;

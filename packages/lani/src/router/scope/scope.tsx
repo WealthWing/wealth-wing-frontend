@@ -29,18 +29,15 @@ export const Scope = () => {
 	*/
 
 	return (
-		!isLoading &&
-		!error && (
-			<div css={scope.root}>
-				<div css={scope.container}>
-					<div css={scope.scopes}>
-						{scopeData?.map((s) => (
-							<JobScope key={s.uuid} data={s} />
-						))}
-						<AddScope />
-					</div>
+		<div css={scope.root}>
+			<div css={scope.container}>
+				<div css={scope.scopes}>
+					{scopeData?.map((s) => (
+						<JobScope key={s.uuid} data={s} />
+					))}
+					<AddScope />
 				</div>
 			</div>
-		)
+		</div>
 	);
 };
