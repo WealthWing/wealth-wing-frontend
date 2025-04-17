@@ -9,7 +9,7 @@ import { formControl } from './form-control.styles';
 import { FormControlProvider, FormControlProviderProps } from './form-control-provider';
 import { Label } from './label/label';
 
-type FormControlProps = Pick<FormControlProviderProps, 'id' | 'isDisabled' | 'required'> & {
+export type FormControlProps = Pick<FormControlProviderProps, 'id' | 'isDisabled' | 'required'> & {
 	children: React.ReactNode;
 	error?: string;
 	label: string;

@@ -9,7 +9,8 @@
 		"generate:icons": "svgr --jsx-runtime \"automatic\" --typescript --no-prettier --icon --ext \"tsx\" --filename-case \"kebab\" --index-template \"./src/icon/icon-index.js\" --out-dir \"./src/icon/generated\" ./src/icon/svg"
 	},
 	"dependencies": {
-		"react-select": "5.8.0"
+		"react-select": "5.8.0",
+		"react-datepicker": "8.3.0"
 	},
 	"devDependencies": {
 		"@7nohe/openapi-react-query-codegen": "1.6.2",
