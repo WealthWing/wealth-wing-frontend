@@ -7,7 +7,7 @@ export const jobCard = {
 		border-radius: ${theme.borderRadius.radiusLarge};
 		box-shadow: ${theme.shadow.default100};
 		height: 100%;
-		min-width: 12.5rem;
+		min-width: 22.5rem;
 		padding: ${theme.space.s20};
 		position: relative;
 		width: 100%;

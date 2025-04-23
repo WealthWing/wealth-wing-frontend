@@ -335,8 +335,8 @@ export interface paths {
 			path?: never;
 			cookie?: never;
 		};
-		/** Get Projecy */
-		get: operations['get_projecy_project_detail__project_id__get'];
+		/** Get Project */
+		get: operations['get_project_project_detail__project_id__get'];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -511,11 +511,20 @@ export interface components {
 			 * Format: date-time
 			 */
 			updated_at: string;
+			/**
+			 * Total Spent
+			 * @default 0
+			 */
+			total_spent: number | null;
 		};
 		/** ProjectUpdate */
 		ProjectUpdate: {
 			/** Project Name */
 			project_name?: string | null;
+			/** Start Date */
+			start_date?: string | null;
+			/** End Date */
+			end_date?: string | null;
 		};
 		/** ScopeCreate */
 		ScopeCreate: {
@@ -1365,7 +1374,7 @@ export interface operations {
 			};
 		};
 	};
-	get_projecy_project_detail__project_id__get: {
+	get_project_project_detail__project_id__get: {
 		parameters: {
 			query?: never;
 			header?: never;

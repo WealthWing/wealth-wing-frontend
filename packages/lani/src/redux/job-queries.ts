@@ -10,7 +10,7 @@ export const projectQueries = apiBase.injectEndpoints({
 					method: 'GET'
 				};
 			},
-			providesTags: ['JobResponse']
+			providesTags: ['JobResponse', 'ExpenseResponse', 'ScopeResponse']
 		}),
 		getJobs: builder.query<JobResponse[], void>({
 			query: () => {
@@ -19,7 +19,7 @@ export const projectQueries = apiBase.injectEndpoints({
 					method: 'GET'
 				};
 			},
-			providesTags: ['JobResponse']
+			providesTags: ['JobResponse', 'ExpenseResponse', 'ScopeResponse']
 		}),
 		createJob: builder.mutation<JobResponse, CreateJobRequest>({
 			query: (params) => ({

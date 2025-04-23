@@ -9,7 +9,7 @@ export const expenseQueries = apiBase.injectEndpoints({
 				method: 'POST',
 				body: JSON.stringify(params)
 			}),
-			invalidatesTags: ['ScopeResponse']
+			invalidatesTags: ['ScopeResponse', 'JobResponse']
 		})
 	})
 });

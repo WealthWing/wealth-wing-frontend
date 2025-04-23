@@ -23,7 +23,7 @@ const backgroundColor = theme.color.cardBackground90;
 const borderColor = theme.color.cardBackground100;
 
 const colorMain = theme.color.textPrimary;
-const colorMuted = theme.color.textSecondary;
+const colorMuted = theme.color.darkBlue40;
 
 const selectedBackground = theme.color.cardBackground80;
 const selectedBackgroundLight = theme.color.cardBackground60;
@@ -647,15 +647,16 @@ export const datePicker = css`
 		position: relative;
 		align-items: center;
 		display: flex;
+		gap: ${theme.space.s10};
 		width: 100%;
 
-		.react-datepicker__calendar-icon {
+		/* 	.react-datepicker__calendar-icon {
 			box-sizing: content-box;
 			left: 0;
 			padding: 0.5rem 0.5rem 0.5rem 0;
 			position: absolute;
 			top: 0;
-		}
+		} */
 	}
 
 	.react-datepicker__view-calendar-icon {
@@ -665,9 +666,9 @@ export const datePicker = css`
 			top: 0;
 		}
 
-		input {
-			padding: 6px 10px 5px 24px;
-		}
+		/* 	input {
+			padding: 6px px 5px;
+		} */
 	}
 
 	.react-datepicker__year-read-view,

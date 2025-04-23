@@ -25,7 +25,9 @@ export function useEditJob() {
 		updateJob({
 			projectId: jobId || '',
 			params: {
-				project_name: data.project_name
+				project_name: data.project_name,
+				start_date: data.start_date?.toISOString(),
+				end_date: data.end_date?.toISOString()
 			}
 		});
 		handleClose();

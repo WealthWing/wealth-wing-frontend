@@ -78,7 +78,7 @@ export const DatePicker = ({
 									<Icon
 										name={icon}
 										size="s16"
-										color={disabled ? 'black40' : 'black100'}
+										color={disabled ? 'darkBlue60' : 'textPrimary'}
 									/>
 								) : undefined
 							}

@@ -69,6 +69,9 @@ export const Jobs = () => {
 								<JobCard
 									key={p.uuid}
 									title={p.project_name}
+									jobStartDate={p.start_date}
+									jobEndDate={p.end_date}
+									totalSpent={p.total_spent}
 									to={`/jobs/${p.uuid}`}
 									onEditOpen={editJob.onOpen}
 									onDeleteOpen={onJobDeletionModalOpen}
