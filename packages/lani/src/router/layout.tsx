@@ -1,3 +1,4 @@
+import { signIn } from 'aws-amplify/auth';
 import { AppWrapper } from 'components/app-wrapper';
 import { Main } from 'components/main';
 import { Sidebar } from 'components/sidebar';
@@ -6,10 +7,17 @@ import { SidebarLink } from 'components/sidebar-link';
 import { Outlet } from 'react-router-dom';
 
 export const Layout = () => {
+	const signInUser = async () => {
+		await signIn({
+			username: 'erdo.shazy123@gmail.com',
+			password: 'z#ts7adUGd0fL!4U'
+		});
+	};
 	return (
 		<AppWrapper>
 			<Sidebar>
 				<ul role="menubar" css={sidebar.top}>
+					<button onClick={signInUser}>CLICK</button>
 					<li>
 						<SidebarLink iconName="folder-plus" label="Jobs" to="/jobs" />
 					</li>
