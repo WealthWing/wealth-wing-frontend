@@ -1,23 +1,42 @@
-import { signIn } from 'aws-amplify/auth';
+import { getCurrentUser, signIn, signOut } from 'aws-amplify/auth';
 import { AppWrapper } from 'components/app-wrapper';
 import { Main } from 'components/main';
 import { Sidebar } from 'components/sidebar';
 import { sidebar } from 'components/sidebar.styles';
 import { SidebarLink } from 'components/sidebar-link';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 
 export const Layout = () => {
+	const [isSignedin, setIsSignedin] = React.useState(false);
+
 	const signInUser = async () => {
 		await signIn({
 			username: 'erdo.shazy123@gmail.com',
 			password: 'z#ts7adUGd0fL!4U'
 		});
 	};
-	return (
+
+	React.useEffect(() => {
+		const checkUser = async () => {
+			try {
+				const user = await getCurrentUser();
+
+				if (user) {
+					setIsSignedin(true);
+				}
+			} catch (error) {
+				signOut({ global: true });
+			}
+		};
+
+		checkUser();
+	}, []);
+
+	return isSignedin ? (
 		<AppWrapper>
 			<Sidebar>
 				<ul role="menubar" css={sidebar.top}>
-					<button onClick={signInUser}>CLICK</button>
 					<li>
 						<SidebarLink iconName="folder-plus" label="Jobs" to="/jobs" />
 					</li>
@@ -30,5 +49,7 @@ export const Layout = () => {
 				<Outlet />
 			</Main>
 		</AppWrapper>
+	) : (
+		<button onClick={signInUser}>CLICK</button>
 	);
 };

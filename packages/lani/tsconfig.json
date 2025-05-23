@@ -3,5 +3,5 @@
 	"compilerOptions": {
 		"baseUrl": "src"
 	},
-	"include": ["src", "openapi-config.ts"]
+	"include": ["src", "vite.config.mts"]
 }
