@@ -46,3 +46,18 @@ export const sidebarLinkStyles = {
 		}
 	`
 };
+
+export const sidebarButtonStyles = css`
+	${sidebarLink};
+	background-color: unset;
+	color: ${theme.color.textPrimary};
+
+	&:active,
+	&:hover {
+		color: ${theme.color.textPrimary};
+	}
+
+	&:hover {
+		background-color: ${theme.color.indigo60};
+	}
+`;

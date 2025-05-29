@@ -1,8 +1,8 @@
+import { css } from '@emotion/react';
 import * as React from 'react';
 
 import { ButtonProps } from './base.definitions';
 import { button, disabledStyle, outline } from './button.styles';
-import { css } from '@emotion/react';
 
 /* Add spinner
    add icon

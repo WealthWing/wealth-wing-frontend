@@ -1,6 +1,6 @@
 import { SVGProps } from 'react';
 
-const SvgFolderPlus = (props: SVGProps<SVGSVGElement>) => (
+const SvgLogOut = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		width="1em"
 		height="1em"
@@ -10,7 +10,7 @@ const SvgFolderPlus = (props: SVGProps<SVGSVGElement>) => (
 		{...props}
 	>
 		<path
-			d="M24 22v12m-6-6h12m14 10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4h10l4 6h18a4 4 0 0 1 4 4v22Z"
+			d="M18 42h-8a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4h8m14 28 10-10m0 0L32 14m10 10H18"
 			stroke="currentColor"
 			strokeWidth={4}
 			strokeLinecap="round"
@@ -18,4 +18,4 @@ const SvgFolderPlus = (props: SVGProps<SVGSVGElement>) => (
 		/>
 	</svg>
 );
-export default SvgFolderPlus;
+export default SvgLogOut;

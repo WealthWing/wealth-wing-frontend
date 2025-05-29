@@ -5,6 +5,7 @@ import { default as Calendar } from './calendar'
 import { default as CheckSquare } from './check-square'
 import { default as DollarSign } from './dollar-sign'
 import { default as FolderPlus } from './folder-plus'
+import { default as LogOut } from './log-out'
 import { default as MoreHorizontal } from './more-horizontal'
 import { default as MoreVertical } from './more-vertical'
 import { default as Plus } from './plus'
@@ -16,6 +17,7 @@ export const iconNames = [
 'check-square',
 'dollar-sign',
 'folder-plus',
+'log-out',
 'more-horizontal',
 'more-vertical',
 'plus',
@@ -30,6 +32,7 @@ export const iconMap: Record<IconName, FunctionComponent<SVGProps<any>>> = {
 'check-square': CheckSquare,
 'dollar-sign': DollarSign,
 'folder-plus': FolderPlus,
+'log-out': LogOut,
 'more-horizontal': MoreHorizontal,
 'more-vertical': MoreVertical,
 'plus': Plus,

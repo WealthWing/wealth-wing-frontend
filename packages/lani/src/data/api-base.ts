@@ -1,12 +1,19 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { getAuthTokens } from 'router/auth/auth-helpers';
 
 export const apiBase = createApi({
 	reducerPath: 'apiBase',
+
 	baseQuery: fetchBaseQuery({
 		baseUrl: 'http://127.0.0.1:8000',
-		headers: {
-			'Content-Type': 'application/json',
-			Authorization: `eyJraWQiOiJ6MGs0T1NuVStUOW5GZXZEM0tVc3d4dXV3R0FzTXJQUjFmREVib0JxSkgwPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI4NGM4NzQ2OC0zMGIxLTcwOWQtMWRmMS1mOWI2NjJiYjgzNzEiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfbjZ4SmttUWRtIiwiY29nbml0bzp1c2VybmFtZSI6Ijg0Yzg3NDY4LTMwYjEtNzA5ZC0xZGYxLWY5YjY2MmJiODM3MSIsIm9yaWdpbl9qdGkiOiJiNmJkNTFmMy1lYzEyLTQzYjItYTc4My05MTNiNzI1NzllODMiLCJhdWQiOiI0cHIzbHNmMHEydnU3YTA0dHY3bzlsb2t1YyIsImV2ZW50X2lkIjoiOGUyMGEzMGEtOTM2NC00OGI2LWJhNTQtYTgzMzdhNzFlNzdiIiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE3NDUzNjkwMTksImV4cCI6MTc0NTQ1NTQxOSwiaWF0IjoxNzQ1MzY5MDE5LCJqdGkiOiI5M2U3OGU0YS1hZDIxLTQ2N2QtYWNmMy0yMzFhMWU1OGQ5ZjUiLCJlbWFpbCI6ImVyZG8uc2hhenkxMjNAZ21haWwuY29tIn0.QWVrUewjGPEJPYos56UvwTZSuPltKz8ckG-P1Xmj17yL5JP07gRroUna--CUUWEdXGrkpC0w7QqMTWpzhj9CY69fvtz1iXjMDlUOomtcWakU2HAjcQLL_j36FZXozMXn7-vPYIIjkDNlX6BvEcDFwSsLduFHoqhIxDSf-BJrIb83LT7ZhL0HbxB_vocTN2LKt8aXpQcO00Lx1wXhepMgMjvbnNzjW6uOxdbf4X5NYCknzAOAIb8qxDov98uxbU65uLLbJWd_fBl4rXTQRQwJ54paYtr_GavLfukM2vNn_VWHt1dZgZqs7g3d4UwlTTXVuURyfAJCZpRZ-SS7eqphTg`
+		prepareHeaders: async (headers) => {
+			headers.set('Content-Type', 'application/json');
+
+			const { tokenId } = await getAuthTokens();
+
+			headers.set('Authorization', `Bearer ${tokenId}`);
+
+			return headers;
 		}
 	}),
 	tagTypes: ['ScopeResponse', 'ExpenseResponse', 'JobResponse'],
