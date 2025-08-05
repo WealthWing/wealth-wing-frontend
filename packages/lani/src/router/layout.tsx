@@ -7,18 +7,11 @@ import { sidebar } from 'components/sidebar.styles';
 import { SidebarButton, SidebarLink } from 'components/sidebar-link';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { AuthController } from 'router/auth/auth-controller';
 
 export const Layout = () => {
 	const [isSignedin, setIsSignedin] = React.useState(false);
 	const [shouldVerifyUser, setShouldVerifyUser] = React.useState(false);
-
-	const signInUser = async () => {
-		await signIn({
-			username: 'erdo.shazy123@gmail.com',
-			password: 'z#ts7adUGd0fL!4U'
-		});
-		setShouldVerifyUser(true);
-	};
 
 	React.useEffect(() => {
 		const checkUser = async () => {
@@ -61,6 +54,6 @@ export const Layout = () => {
 			</Main>
 		</AppWrapper>
 	) : (
-		<button onClick={signInUser}>CLICK</button>
+		<AuthController setShouldVerifyUser={setShouldVerifyUser} />
 	);
 };

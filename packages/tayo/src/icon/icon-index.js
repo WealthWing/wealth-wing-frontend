@@ -11,7 +11,7 @@ function indexTemplate(files) {
 	const data = files.reduce((n, f) => {
 		const iconName = path.basename(f, path.extname(f));
 		const componentName = kebabToPascal(iconName);
-		const importStatement = `import { default as ${componentName} } from './${iconName}'`;
+		const importStatement = `import ${componentName} from './${iconName}'`;
 		return [
 			...n,
 			{

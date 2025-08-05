@@ -1,42 +1,43 @@
+import { FunctionComponent, SVGProps } from 'react';
 
-import { FunctionComponent, SVGProps } from 'react'
-
-import { default as Calendar } from './calendar'
-import { default as CheckSquare } from './check-square'
-import { default as DollarSign } from './dollar-sign'
-import { default as FolderPlus } from './folder-plus'
-import { default as LogOut } from './log-out'
-import { default as MoreHorizontal } from './more-horizontal'
-import { default as MoreVertical } from './more-vertical'
-import { default as Plus } from './plus'
-import { default as Warning } from './warning'
-import { default as X } from './x'
+import Calendar from './calendar';
+import CheckSquare from './check-square';
+import CreditCard from './credit-card';
+import DollarSign from './dollar-sign';
+import FolderPlus from './folder-plus';
+import LogOut from './log-out';
+import MoreHorizontal from './more-horizontal';
+import MoreVertical from './more-vertical';
+import Plus from './plus';
+import Warning from './warning';
+import X from './x';
 
 export const iconNames = [
-'calendar',
-'check-square',
-'dollar-sign',
-'folder-plus',
-'log-out',
-'more-horizontal',
-'more-vertical',
-'plus',
-'warning',
-'x'
-] as const
+	'calendar',
+	'check-square',
+	'credit-card',
+	'dollar-sign',
+	'folder-plus',
+	'log-out',
+	'more-horizontal',
+	'more-vertical',
+	'plus',
+	'warning',
+	'x'
+] as const;
 
-export type IconName = typeof iconNames[number]
+export type IconName = (typeof iconNames)[number];
 
 export const iconMap: Record<IconName, FunctionComponent<SVGProps<any>>> = {
-'calendar': Calendar,
-'check-square': CheckSquare,
-'dollar-sign': DollarSign,
-'folder-plus': FolderPlus,
-'log-out': LogOut,
-'more-horizontal': MoreHorizontal,
-'more-vertical': MoreVertical,
-'plus': Plus,
-'warning': Warning,
-'x': X
-}
-  
+	calendar: Calendar,
+	'check-square': CheckSquare,
+	'credit-card': CreditCard,
+	'dollar-sign': DollarSign,
+	'folder-plus': FolderPlus,
+	'log-out': LogOut,
+	'more-horizontal': MoreHorizontal,
+	'more-vertical': MoreVertical,
+	plus: Plus,
+	warning: Warning,
+	x: X
+};

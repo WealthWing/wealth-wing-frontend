@@ -1,6 +1,6 @@
 import { SVGProps } from 'react';
 
-const SvgCalendar = (props: SVGProps<SVGSVGElement>) => (
+const SvgCreditCard = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		width="1em"
 		height="1em"
@@ -10,7 +10,7 @@ const SvgCalendar = (props: SVGProps<SVGSVGElement>) => (
 		{...props}
 	>
 		<path
-			d="M32 4v8M16 4v8M6 20h36M10 8h28a4 4 0 0 1 4 4v28a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4Z"
+			d="M2 20h44M6 8h36a4 4 0 0 1 4 4v24a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V12a4 4 0 0 1 4-4Z"
 			stroke="currentColor"
 			strokeWidth={4}
 			strokeLinecap="round"
@@ -18,4 +18,4 @@ const SvgCalendar = (props: SVGProps<SVGSVGElement>) => (
 		/>
 	</svg>
 );
-export default SvgCalendar;
+export default SvgCreditCard;
