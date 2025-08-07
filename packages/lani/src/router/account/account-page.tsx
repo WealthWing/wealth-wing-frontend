@@ -14,7 +14,7 @@ export const AccountPage = () => {
 				<Section
 					title="Account List"
 					button={
-						<Button variant="tertiary" format="text">
+						<Button variant="tertiary" format="text" size="small">
 							Add Account
 						</Button>
 					}
