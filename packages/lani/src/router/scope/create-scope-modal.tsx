@@ -8,12 +8,7 @@ import {
 	ModalFooter,
 	ModalHeader
 } from '@wealth-wing/tayo';
-import { CreateScopeRequest } from 'data/api-definitions';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
-import { useCreateScopeMutation } from 'redux/scope-queries';
-
-type CreateScopeFormValues = Pick<CreateScopeRequest, 'scope_name' | 'budget'>;
 
 type CreateScopeModalProps = {
 	isOpen: boolean;
@@ -21,18 +16,16 @@ type CreateScopeModalProps = {
 };
 
 export const CreateScopeModal = ({ isOpen, onClose }: CreateScopeModalProps) => {
-	const [createScope] = useCreateScopeMutation();
-	const { jobId = '' } = useParams();
+	/* 	const { jobId = '' } = useParams(); */
 
-	const form = useForm<CreateScopeFormValues>();
+	const form = useForm<any>();
 	const {
-		formState: { errors },
+		/* 	formState: { errors }, */
 		handleSubmit,
 		register
 	} = form;
 
-	const onSubmit = (data: CreateScopeFormValues) => {
-		createScope({ scope_name: data.scope_name, budget: data.budget, project_id: jobId });
+	const onSubmit = () => {
 		onClose();
 	};
 
@@ -41,12 +34,7 @@ export const CreateScopeModal = ({ isOpen, onClose }: CreateScopeModalProps) => 
 			<ModalHeader title="Create Scope" />
 			<ModalBody>
 				<Form onSubmit={handleSubmit(onSubmit)} id="create-scope-form">
-					<FormControl
-						required
-						label="Scope Title"
-						id="scope-title"
-						error={errors.scope_name?.message}
-					>
+					<FormControl required label="Scope Title" id="scope-title" error="asd">
 						<Input
 							{...register('scope_name', {
 								required: { value: true, message: 'Scope title is required' }

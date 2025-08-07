@@ -1,5 +1,5 @@
 import { Flex } from '@wealth-wing/tayo';
-import { getCurrentUser, signIn, signOut } from 'aws-amplify/auth';
+import { getCurrentUser, /* signIn, */ signOut } from 'aws-amplify/auth';
 import { AppWrapper } from 'components/app-wrapper';
 import { Main } from 'components/main';
 import { Sidebar } from 'components/sidebar';
@@ -40,10 +40,10 @@ export const Layout = () => {
 				<Flex justifyContent="space-between" css={{ height: '100%' }}>
 					<ul role="menubar" css={sidebar.top}>
 						<li>
-							<SidebarLink iconName="folder-plus" label="Jobs" to="/jobs" />
+							<SidebarLink iconName="credit-card" label="Accounts" to="/accounts" />
 						</li>
 						<li>
-							<SidebarLink iconName="calendar" label="Jobs" to="/#" />
+							<SidebarLink iconName="folder-plus" label="Jobs" to="/jobs" />
 						</li>
 					</ul>
 					<SidebarButton iconName="log-out" onClick={handleSignOut} />

@@ -1,5 +1,4 @@
 import { Button, Flex, Heading, useDisclosureControl } from '@wealth-wing/tayo';
-import { AddExpenseModal } from 'components/add-expense-modal';
 import { container, HeadingContainer } from 'components/heading-container';
 import { JobCard } from 'components/job-card';
 import { Section } from 'components/section';
@@ -83,13 +82,6 @@ export const Jobs = () => {
 
 				<Outlet />
 			</Flex>
-			{isRightSidebarOpen && (
-				<AddExpenseModal
-					isAddExpenseOpen={isRightSidebarOpen}
-					handleAddExpenseClose={onRightSidebarClose}
-					jobScopeId={jobScopeId}
-				/>
-			)}
 
 			<JobFormModal {...createJob} />
 			<JobFormModal variant="edit" {...editJob} />

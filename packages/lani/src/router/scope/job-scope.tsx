@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Button, Flex, Grid, Heading, Text, theme } from '@wealth-wing/tayo';
 import { formatUSD } from '@wealth-wing/utils';
-import { ExpenseResponse, ScopeResponse } from 'data/api-definitions';
 import { NoExpenses } from 'router/jobs/helper-components';
 import { useJobs } from 'router/jobs/jobs.provider';
 
@@ -24,7 +24,7 @@ const JobScopeFooter = ({ jobScopeId, totalSpent }: JobScopeFooterProps) => {
 };
 
 type JobScopeRowProps = {
-	data: ExpenseResponse;
+	data: any;
 };
 
 export const JobScopeRow = ({ data }: JobScopeRowProps) => {
@@ -45,7 +45,7 @@ export const JobScopeRow = ({ data }: JobScopeRowProps) => {
 };
 
 type JobScopeProps = {
-	data: ScopeResponse;
+	data: any;
 };
 
 export const JobScope = ({ data }: JobScopeProps) => {
@@ -69,14 +69,7 @@ export const JobScope = ({ data }: JobScopeProps) => {
 				</Heading>
 				{expensesExist && <Text color="black20">Spent</Text>}
 			</Grid>
-			{expensesExist ? (
-				<Flex gap="s16">
-					{/* TODO: Handle List - li */}
-					{data.expenses.map((e) => (
-						<JobScopeRow key={e.uuid} data={e} />
-					))}
-				</Flex>
-			) : null}
+
 			{!expensesExist && <NoExpenses jobScopeId={data.uuid} />}
 			{expensesExist && (
 				<JobScopeFooter jobScopeId={data.uuid} totalSpent={data.total_cost ?? 0} />
