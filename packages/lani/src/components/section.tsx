@@ -22,7 +22,7 @@ export const Section = ({ children, title, subTitle, button }: SectionProps) => 
 			<Flex direction="column" gap="s20">
 				<Flex direction="column" gap="none">
 					<Flex direction="row" justifyContent="space-between">
-						<Heading tag="h4" font="h5">
+						<Heading tag="h2" font="h5">
 							{title}
 						</Heading>
 						{button}

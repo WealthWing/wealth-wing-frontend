@@ -10,11 +10,12 @@ export const {
 	useUpdateAccountMutation
 } = apiBase.injectEndpoints({
 	endpoints: (builder) => ({
-		getAcccounts: builder.query<AccountResponse, void>({
+		getAcccounts: builder.query<AccountResponse[], void>({
 			query: () => ({
 				url: '/account/all',
 				method: 'GET'
-			})
+			}),
+			providesTags: ['AddAccount']
 		}),
 		getAcccount: builder.query<AccountResponse, { accountId: string }>({
 			query: ({ accountId }) => ({
@@ -27,7 +28,8 @@ export const {
 				url: '/account/create',
 				method: 'POST',
 				body: JSON.stringify(params)
-			})
+			}),
+			invalidatesTags: ['AddAccount']
 		}),
 		updateAccount: builder.mutation<
 			AccountResponse,
@@ -37,7 +39,8 @@ export const {
 				url: `account/${accountId}`,
 				method: 'PUT',
 				body: JSON.stringify(params)
-			})
+			}),
+			invalidatesTags: ['AddAccount']
 		})
 	})
 });

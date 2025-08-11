@@ -10,7 +10,7 @@ const SvgMoreVertical = (props: SVGProps<SVGSVGElement>) => (
 		{...props}
 	>
 		<path d="M56 64a8 8 0 1 1 16 0 8 8 0 0 1-16 0Z" />
-		<path d="M64 30.667a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" fill="currentColor" />
+		<path d="M64 30.667a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" fill="#C4C4C4" />
 		<path d="M56 26.667a8 8 0 1 1 16 0 8 8 0 0 1-16 0ZM56 101.333a8 8 0 1 1 16 0 8 8 0 0 1-16 0Z" />
 	</svg>
 );

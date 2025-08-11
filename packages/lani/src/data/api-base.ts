@@ -16,6 +16,6 @@ export const apiBase = createApi({
 			return headers;
 		}
 	}),
-	tagTypes: ['ScopeResponse', 'ExpenseResponse', 'JobResponse'],
+	tagTypes: ['ScopeResponse', 'ExpenseResponse', 'JobResponse', 'AddAccount'],
 	endpoints: () => ({})
 });

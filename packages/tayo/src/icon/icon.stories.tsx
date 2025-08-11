@@ -42,7 +42,7 @@ export const AllIcons: StoryObj<typeof meta> = {
 					}}
 				>
 					<Icon name={iconName} size="s28" />
-					<Text font="lg" color="black90">
+					<Text font="lg" color="textPrimary">
 						{iconName}
 					</Text>
 				</div>

@@ -28,7 +28,7 @@ export type SelectProps<TFormValues extends Record<string, unknown>> = Omit<
 	icon?: IconName;
 	label: string;
 	hideLabel?: boolean;
-	onChange: ((value: OptionType) => void) | undefined;
+	onChange?: ((value: OptionType) => void) | undefined;
 	options: OptionsOrGroups<OptionType, GroupedOptionType>;
 	isDisabled?: boolean;
 	rules?: RegisterOptions;

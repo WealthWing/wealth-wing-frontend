@@ -1,6 +1,7 @@
 import { FunctionComponent, SVGProps } from 'react';
 
 import Calendar from './calendar';
+import Chase from './chase';
 import CheckSquare from './check-square';
 import CreditCard from './credit-card';
 import DollarSign from './dollar-sign';
@@ -14,6 +15,7 @@ import X from './x';
 
 export const iconNames = [
 	'calendar',
+	'chase',
 	'check-square',
 	'credit-card',
 	'dollar-sign',
@@ -30,6 +32,7 @@ export type IconName = (typeof iconNames)[number];
 
 export const iconMap: Record<IconName, FunctionComponent<SVGProps<any>>> = {
 	calendar: Calendar,
+	chase: Chase,
 	'check-square': CheckSquare,
 	'credit-card': CreditCard,
 	'dollar-sign': DollarSign,
