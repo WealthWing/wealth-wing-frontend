@@ -6,4 +6,5 @@ export type AccountProviderProps = {
 	onLeftModalClose: () => void;
 };
 
-export const [AccountProvider, useJobs] = createProvider<AccountProviderProps>('AccountProvider');
+export const [AccountProvider, useAccount] =
+	createProvider<AccountProviderProps>('AccountProvider');

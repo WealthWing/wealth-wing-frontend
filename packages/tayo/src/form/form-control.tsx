@@ -56,7 +56,7 @@ export const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
 				isDisabled={isDisabled}
 				required={required}
 			>
-				<div ref={ref}>
+				<div ref={ref} css={{ width: '100%' }}>
 					<Label hideLabel={hideLabel}>{label}</Label>
 					<div
 						css={[

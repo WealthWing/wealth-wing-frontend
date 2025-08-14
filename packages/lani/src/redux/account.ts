@@ -1,5 +1,10 @@
 import { apiBase } from 'data/api-base';
-import { AccountRequest, AccountResponse, AccountUpdateRequest } from 'data/api-definitions';
+import {
+	AccountOption,
+	AccountRequest,
+	AccountResponse,
+	AccountUpdateRequest
+} from 'data/api-definitions';
 
 export const {
 	useAddAccountMutation,
@@ -7,12 +12,21 @@ export const {
 	useLazyGetAcccountsQuery,
 	useGetAcccountQuery,
 	useLazyGetAcccountQuery,
-	useUpdateAccountMutation
+	useUpdateAccountMutation,
+	useGetAcccountOptionsQuery,
+	useLazyGetAcccountOptionsQuery
 } = apiBase.injectEndpoints({
 	endpoints: (builder) => ({
 		getAcccounts: builder.query<AccountResponse[], void>({
 			query: () => ({
 				url: '/account/all',
+				method: 'GET'
+			}),
+			providesTags: ['AddAccount']
+		}),
+		getAcccountOptions: builder.query<AccountOption[], void>({
+			query: () => ({
+				url: '/account/options',
 				method: 'GET'
 			}),
 			providesTags: ['AddAccount']

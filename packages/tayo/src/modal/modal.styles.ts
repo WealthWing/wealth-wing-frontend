@@ -64,12 +64,12 @@ export const modal = {
 
 export const modalVariants: Record<ModalVariant, SerializedStyles> = {
 	floatinglarge: css`
-		height: 60rem;
+		height: 50rem;
 		width: 70rem;
 	`,
 	floatingmedium: css`
-		height: 45rem;
-		width: 60rem;
+		height: 35rem;
+		width: 55rem;
 	`,
 	floatingsmall: css`
 		height: 20rem;

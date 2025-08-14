@@ -362,6 +362,23 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
+	'/account/options': {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Get Account Options */
+		get: operations['get_account_options_account_options_get'];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
 	'/account/{account_id}': {
 		parameters: {
 			query?: never;
@@ -415,6 +432,23 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
+	'/import/imports': {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Get Imports */
+		get: operations['get_imports_import_imports_get'];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -441,6 +475,23 @@ export interface components {
 			 * @description Last four digits of the account number
 			 */
 			last_four: string;
+		};
+		/**
+		 * AccountOptionResponse
+		 * @description Schema for account options response.
+		 */
+		AccountOptionResponse: {
+			/**
+			 * Value
+			 * Format: uuid
+			 * @description Unique identifier for the account
+			 */
+			value: string;
+			/**
+			 * Label
+			 * @description Name of the account (e.g., My Checking Account, Visa Platinum Card)
+			 */
+			label: string;
 		};
 		/**
 		 * AccountResponse
@@ -548,6 +599,13 @@ export interface components {
 			/** Description */
 			description?: string | null;
 		};
+		/** FilterByInputs */
+		FilterByInputs: {
+			/** Field Name */
+			field_name: string;
+			/** Values */
+			values: string[];
+		};
 		/** HTTPValidationError */
 		HTTPValidationError: {
 			/** Detail */
@@ -578,6 +636,33 @@ export interface components {
 			/** File Size */
 			file_size: number;
 		};
+		/** ImportFileListItem */
+		ImportFileListItem: {
+			/**
+			 * Uuid
+			 * Format: uuid
+			 */
+			uuid: string;
+			/** File Name */
+			file_name: string;
+			status: components['schemas']['ImportJobStatus'];
+			/**
+			 * Uploaded At
+			 * Format: date-time
+			 */
+			uploaded_at: string;
+			/** Error Message */
+			error_message?: string | null;
+			/**
+			 * Account Id
+			 * Format: uuid
+			 */
+			account_id: string;
+			/** Account Name */
+			account_name: string;
+			/** Institution */
+			institution: string;
+		};
 		/**
 		 * ImportFileResponse
 		 * @description Schema for the response of an import file.
@@ -601,14 +686,20 @@ export interface components {
 			uuid: string;
 			/** File Url */
 			file_url?: string | null;
-			/** Status */
-			status: string;
+			status: components['schemas']['ImportJobStatus'];
 			/**
 			 * Uploaded At
 			 * Format: date-time
 			 */
 			uploaded_at: string;
+			/** Error Message */
+			error_message?: string | null;
 		};
+		/**
+		 * ImportJobStatus
+		 * @enum {string}
+		 */
+		ImportJobStatus: 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'FAILED';
 		/** ProjectCreate */
 		ProjectCreate: {
 			/** Project Name */
@@ -1546,6 +1637,26 @@ export interface operations {
 			};
 		};
 	};
+	get_account_options_account_options_get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['AccountOptionResponse'][];
+				};
+			};
+		};
+	};
 	get_account_account__account_id__get: {
 		parameters: {
 			query?: never;
@@ -1693,7 +1804,45 @@ export interface operations {
 					[name: string]: unknown;
 				};
 				content: {
-					'application/json': unknown;
+					'application/json': components['schemas']['ImportFileResponse'];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['HTTPValidationError'];
+				};
+			};
+		};
+	};
+	get_imports_import_imports_get: {
+		parameters: {
+			query?: {
+				sort_by?: ('file_name' | 'status' | 'uploaded_at') | null;
+				sort_order?: string;
+				page?: number;
+				page_size?: number;
+				search?: string | null;
+				from_date?: string | null;
+				to_date?: string | null;
+				filter_by_inputs?: components['schemas']['FilterByInputs'][] | null;
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['ImportFileListItem'][];
 				};
 			};
 			/** @description Validation Error */

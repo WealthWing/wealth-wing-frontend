@@ -7,9 +7,14 @@ import { accountTypeLabels } from 'router/account/components/account-modal.defin
 type AccountCardProps = {
 	accountDetails: AccountResponse;
 	onUpdateAccountModalOpen: (id: string) => void;
+	onImportOpen: (accountId: string) => void;
 };
 
-export const AccountCard = ({ accountDetails, onUpdateAccountModalOpen }: AccountCardProps) => (
+export const AccountCard = ({
+	accountDetails,
+	onUpdateAccountModalOpen,
+	onImportOpen
+}: AccountCardProps) => (
 	<li>
 		<div css={accountCard.root}>
 			<Flex direction="row" justifyContent="space-between">
@@ -29,6 +34,9 @@ export const AccountCard = ({ accountDetails, onUpdateAccountModalOpen }: Accoun
 						iconColor="textPrimary"
 					/>
 					<Menu>
+						<MenuItem onClick={() => onImportOpen(accountDetails.uuid)}>
+							Import File
+						</MenuItem>
 						<MenuItem onClick={() => onUpdateAccountModalOpen(accountDetails.uuid)}>
 							Edit Account
 						</MenuItem>
