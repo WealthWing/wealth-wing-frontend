@@ -40,10 +40,14 @@ export const Layout = () => {
 				<Flex justifyContent="space-between" css={{ height: '100%' }}>
 					<ul role="menubar" css={sidebar.top}>
 						<li>
-							<SidebarLink iconName="credit-card" label="Accounts" to="/accounts" />
+							<SidebarLink
+								iconName="switch-horizontal"
+								label="Transactions"
+								to="/transactions"
+							/>
 						</li>
 						<li>
-							<SidebarLink iconName="folder-plus" label="Jobs" to="/jobs" />
+							<SidebarLink iconName="credit-card" label="Accounts" to="/accounts" />
 						</li>
 					</ul>
 					<SidebarButton iconName="log-out" onClick={handleSignOut} />

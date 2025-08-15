@@ -20,6 +20,8 @@ import { useUpdateAccount } from 'router/account/hooks/use-update-account';
 import { ImportModal } from 'router/import/components/import-modal';
 import { stickyContainer } from 'router/jobs/jobs.styles';
 
+/* TODO: TABLE SKELETON LOADING */
+
 export const AccountPage = () => {
 	const { onAccountModalOpen, ...createModalRest } = useCreateAccount();
 	const { onAccountModalOpen: onUpdateAccountModalOpen, ...updateModalRest } = useUpdateAccount();

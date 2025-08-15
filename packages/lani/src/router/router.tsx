@@ -3,6 +3,7 @@ import { AccountPage } from 'router/account/account-page';
 import { Jobs } from 'router/jobs/jobs';
 import { Layout } from 'router/layout';
 import { Scope } from 'router/scope/scope';
+import { TransactionsPage } from 'router/transaction/components/transactions-page';
 
 export const router = createBrowserRouter([
 	{
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
 			{
 				path: 'accounts',
 				element: <AccountPage />
+			},
+			{
+				path: 'transactions',
+				element: <TransactionsPage />
 			}
 		]
 	}
