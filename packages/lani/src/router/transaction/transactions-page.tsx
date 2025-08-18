@@ -1,8 +1,10 @@
-import { BarChart, Button, Heading, useDisclosureControl } from '@wealth-wing/tayo';
+import { BarChart, Button, Grid, Heading, useDisclosureControl } from '@wealth-wing/tayo';
 import { ContentArea, ContentScroll } from 'components/content-area';
 import { HeadingContainer } from 'components/heading-container';
 import { Section } from 'components/section';
-import { transactionsPage } from 'router/transaction/components/transaction-page.styles';
+import { Transactions } from 'router/transaction/components/transactions';
+import { TransactionsSummaryCard } from 'router/transaction/components/transactions-summary-card';
+import { transactionsPage } from 'router/transaction/transaction-page.styles';
 
 export const TransactionsPage = () => {
 	const { isOpen, handleOpen, handleClose } = useDisclosureControl();
@@ -16,7 +18,15 @@ export const TransactionsPage = () => {
 			</HeadingContainer>
 			<ContentArea>
 				<ContentScroll>
-					<Section title="Account List">
+					<Section title="Summary">
+						<Grid gap="s12" gridTemplateColumns="1fr 1fr 1fr">
+							<TransactionsSummaryCard title="Money In" amount="$12.345.67" />
+							<TransactionsSummaryCard title="Money Out" amount="$12.345.67" />
+							<TransactionsSummaryCard
+								title="Money Median income"
+								amount="$12.345.67"
+							/>
+						</Grid>
 						<BarChart
 							css={{ width: '100%', minHeight: '200px' }}
 							datasets={[
@@ -36,6 +46,7 @@ export const TransactionsPage = () => {
 							labels={['A', 'B', 'C']}
 						/>
 					</Section>
+					<Transactions />
 				</ContentScroll>
 
 				{isOpen && (

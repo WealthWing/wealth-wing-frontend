@@ -5,8 +5,8 @@ const cellHeight = '3rem';
 
 export const table = {
 	header: css`
-		> :first-child,
-		> :first-child > button {
+		> :first-of-type,
+		> :first-of-type > button {
 			border-radius: ${theme.border.default} 0 0 ${theme.border.default};
 		}
 
@@ -18,8 +18,10 @@ export const table = {
 	sticky: css`
 		position: sticky;
 		top: 0;
+		z-index: 5;
 	`,
 	headerCell: css`
+		background-color: ${theme.color.cardBackground80};
 		border-bottom: 1px solid ${theme.color.cardBackground60};
 		height: ${cellHeight};
 		padding: ${theme.space.s10} ${theme.space.s16};

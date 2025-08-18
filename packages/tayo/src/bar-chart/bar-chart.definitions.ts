@@ -13,7 +13,7 @@ export const barChartOptions = (
 	return {
 		plugins: {
 			legend: {
-				position: 'top',
+				position: 'bottom',
 				display: displayLegend
 			},
 			title: {

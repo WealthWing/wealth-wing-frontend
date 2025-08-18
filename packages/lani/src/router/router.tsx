@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { AccountPage } from 'router/account/account-page';
 import { Layout } from 'router/layout';
-import { TransactionsPage } from 'router/transaction/components/transactions-page';
+import { TransactionsPage } from 'router/transaction/transactions-page';
 
 export const router = createBrowserRouter([
 	{

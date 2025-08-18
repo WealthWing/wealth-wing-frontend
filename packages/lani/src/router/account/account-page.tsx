@@ -47,7 +47,7 @@ export const AccountPage = () => {
 			<HeadingContainer>
 				<Heading tag="h1">Accounts</Heading>
 			</HeadingContainer>
-			<Flex gap="s32">
+			<Flex gap="s16">
 				<Section
 					title="Account List"
 					button={
@@ -99,7 +99,6 @@ export const AccountPage = () => {
 						</ul>
 					)}
 				</Section>
-
 				<AccountImports />
 			</Flex>
 

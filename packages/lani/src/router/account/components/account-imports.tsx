@@ -12,6 +12,7 @@ import {
 	TableRow,
 	TableRowCell
 } from 'components/table/table';
+import { TableSkeletonLoader } from 'components/table/table-skeleton-loader';
 import { ImportFileListItem, ImportJobStatus } from 'data/api-definitions';
 import React from 'react';
 import { useGetImportsQuery } from 'redux/import-queries';
@@ -73,8 +74,10 @@ const columns = [
 	})
 ];
 
+// TODO: empty table state
+
 export const AccountImports = () => {
-	const { data } = useGetImportsQuery({
+	const { data, isLoading, isFetching } = useGetImportsQuery({
 		page: 1,
 		page_size: 5,
 		sort_by: 'uploaded_at',
@@ -87,6 +90,15 @@ export const AccountImports = () => {
 		columnResizeMode: 'onChange',
 		getCoreRowModel: getCoreRowModel()
 	});
+	const isLoadingOrFetching = isLoading || isFetching;
+
+	if (isLoadingOrFetching) {
+		return (
+			<Section title="Recent Imports">
+				<TableSkeletonLoader />
+			</Section>
+		);
+	}
 
 	return (
 		<Section
@@ -97,28 +109,26 @@ export const AccountImports = () => {
 				</Button>
 			}
 		>
-			<div css={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
-				<Table width={table.getTotalSize()}>
-					<TableHeaderRow>
-						{table.getFlatHeaders().map((header) => (
-							<TableHeaderRowCell key={header.id} width={header.getSize()}>
-								{flexRender(header.column.columnDef.header, header.getContext())}
-							</TableHeaderRowCell>
-						))}
-					</TableHeaderRow>
-					<TableBody>
-						{table.getRowModel().rows.map((row) => (
-							<TableRow key={row.id}>
-								{row.getVisibleCells().map((cell) => (
-									<TableRowCell key={cell.id} width={cell.column.getSize()}>
-										{flexRender(cell.column.columnDef.cell, cell.getContext())}
-									</TableRowCell>
-								))}
-							</TableRow>
-						))}
-					</TableBody>
-				</Table>
-			</div>
+			<Table width={table.getTotalSize()}>
+				<TableHeaderRow>
+					{table.getFlatHeaders().map((header) => (
+						<TableHeaderRowCell key={header.id} width={header.getSize()}>
+							{flexRender(header.column.columnDef.header, header.getContext())}
+						</TableHeaderRowCell>
+					))}
+				</TableHeaderRow>
+				<TableBody>
+					{table.getRowModel().rows.map((row) => (
+						<TableRow key={row.id}>
+							{row.getVisibleCells().map((cell) => (
+								<TableRowCell key={cell.id} width={cell.column.getSize()}>
+									{flexRender(cell.column.columnDef.cell, cell.getContext())}
+								</TableRowCell>
+							))}
+						</TableRow>
+					))}
+				</TableBody>
+			</Table>
 		</Section>
 	);
 };

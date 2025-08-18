@@ -104,7 +104,14 @@ export const darkTheme: ThemeDefinitions = {
 	fontSize: {
 		button: '0.875rem',
 		lg: '1rem',
-		h6: '1.125rem'
+		h6: '1.125rem',
+		h1: '3.25rem',
+		h2: '2.5rem',
+		h3: '1.75rem',
+		h4: '1.65rem',
+		h5: '1.375rem',
+		md: '0.85rem',
+		sm: '0.75rem'
 	},
 	space: {
 		none: '0',
@@ -235,7 +242,14 @@ export const theme: Theme = {
 	fontSize: {
 		button: 'var(--ww-t-fontSize-button)',
 		lg: 'var(--ww-t-fontSize-lg)',
-		h6: 'var(--ww-t-fontSize-h6)'
+		h6: 'var(--ww-t-fontSize-h6)',
+		h1: 'var(--ww-t-fontSize-h1)',
+		h2: 'var(--ww-t-fontSize-h2)',
+		h3: 'var(--ww-t-fontSize-h3)',
+		h4: 'var(--ww-t-fontSize-h4)',
+		h5: 'var(--ww-t-fontSize-h5)',
+		md: 'var(--ww-t-fontSize-md)',
+		sm: 'var(--ww-t-fontSize-sm)'
 	},
 	border: {
 		default: 'var(--ww-t-border-default)'

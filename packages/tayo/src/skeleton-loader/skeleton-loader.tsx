@@ -69,7 +69,11 @@ export const SkeletonTextLoader = ({
 		style={{ borderRadius: theme.borderRadius.radiusMedium, width, ...styles }}
 	>
 		{/* Height is established by hidden text below */}
-		<div css={theme.font[variant]} style={{ visibility: 'hidden' }} aria-hidden="true">
+		<div
+			css={{ height: theme.fontSize[variant] }}
+			style={{ visibility: 'hidden' }}
+			aria-hidden="true"
+		>
 			A
 		</div>
 	</div>

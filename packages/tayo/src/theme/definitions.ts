@@ -112,7 +112,7 @@ type FontCustomProperty = `var(--ww-t-font-${FontKeys | HeadingKeys})`;
 type FontTheme = Record<FontKeys | HeadingKeys, FontCustomProperty>;
 export type FontDefinitions = Record<FontKeys | HeadingKeys, string>;
 
-const fontSizes = ['button', 'lg', 'h6'] as const;
+const fontSizes = [...fontKeys, ...headingKeys] as const;
 export type FontSize = (typeof fontSizes)[number];
 type FontSizeCustomProperty = `var(--ww-t-fontSize-${FontSize})`;
 
