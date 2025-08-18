@@ -15,6 +15,7 @@ import {
 	TableRowCell
 } from 'components/table/table';
 import { TableSkeletonLoader } from 'components/table/table-skeleton-loader';
+import { useTransactions } from 'router/transaction/components/transactions-provider';
 
 type Transaction = {
 	date: string;
@@ -113,7 +114,7 @@ const data: Transaction[] = [
 		date: '2025-08-03',
 		description: 'Groceries',
 		category: 'Food',
-		account: 'Credit Card',
+		account: 'Credit Card Credit Card Credit Card Credit Card',
 		amount: -120.45
 	},
 	{
@@ -169,6 +170,7 @@ const columns = [
 ];
 
 export const Transactions = () => {
+	const { onRightPanelOpen } = useTransactions();
 	const table = useReactTable({
 		data,
 		columns,
@@ -189,7 +191,7 @@ export const Transactions = () => {
 					</TableHeaderRow>
 					<TableBody>
 						{table.getRowModel().rows.map((row) => (
-							<TableRow key={row.id}>
+							<TableRow key={row.id} onClick={() => onRightPanelOpen(row.id)}>
 								{row.getVisibleCells().map((cell) => (
 									<TableRowCell key={cell.id} width={cell.column.getSize()}>
 										{flexRender(cell.column.columnDef.cell, cell.getContext())}
