@@ -13,8 +13,10 @@ export const sidebar = {
 		flex-direction: column;
 		gap: ${theme.space.s24};
 		height: calc(100% - ${theme.space.s24});
+		left: ${theme.space.s12};
 		padding: ${theme.space.s16};
 		position: fixed;
+		top: ${theme.space.s12};
 		width: ${sidebarWidth};
 	`,
 	separator: css`
