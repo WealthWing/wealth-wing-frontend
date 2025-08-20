@@ -1,10 +1,10 @@
 import { apiBase } from 'data/api-base';
 import {
-	GetImportsParams,
 	ImportFileCompleteRequest,
 	ImportFileCreateRequest,
 	ImportFileCreateResponse,
-	ImportFileListItem
+	ImportFileListItem,
+	ImportsRequestParams
 } from 'data/api-definitions';
 
 export const {
@@ -28,7 +28,7 @@ export const {
 				body: JSON.stringify(params)
 			})
 		}),
-		getImports: builder.query<ImportFileListItem[], GetImportsParams>({
+		getImports: builder.query<ImportFileListItem[], ImportsRequestParams>({
 			query: (params) => ({
 				url: '/import/imports',
 				method: 'GET',

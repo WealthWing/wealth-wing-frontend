@@ -956,6 +956,15 @@ export interface components {
 			date?: string | null;
 			/** Currency */
 			currency?: string | null;
+			/**
+			 * Type
+			 * @default N/A
+			 */
+			type: string | null;
+			/** Category */
+			category?: string | null;
+			/** Account Name */
+			account_name?: string | null;
 		};
 		/** TransactionResponse */
 		TransactionResponse: {
@@ -975,6 +984,15 @@ export interface components {
 			/** Currency */
 			currency?: string | null;
 			/**
+			 * Type
+			 * @default N/A
+			 */
+			type: string | null;
+			/** Category */
+			category?: string | null;
+			/** Account Name */
+			account_name?: string | null;
+			/**
 			 * Uuid
 			 * Format: uuid
 			 */
@@ -984,6 +1002,17 @@ export interface components {
 			 * Format: uuid
 			 */
 			user_id: string;
+		};
+		/** TransactionsAllResponse */
+		TransactionsAllResponse: {
+			/** Transactions */
+			transactions: components['schemas']['TransactionResponse'][];
+			/** Has More */
+			has_more: boolean;
+			/** Total Pages */
+			total_pages: number;
+			/** Total Count */
+			total_count: number;
 		};
 		/** UserCreateRequest */
 		UserCreateRequest: {
@@ -1416,7 +1445,16 @@ export interface operations {
 	};
 	get_transactions_transaction_all_get: {
 		parameters: {
-			query?: never;
+			query?: {
+				sort_by?: ('amount' | 'date' | 'title' | 'category') | null;
+				sort_order?: string;
+				page?: number;
+				page_size?: number;
+				search?: string | null;
+				from_date?: string | null;
+				to_date?: string | null;
+				filter_by_inputs?: components['schemas']['FilterByInputs'][] | null;
+			};
 			header?: never;
 			path?: never;
 			cookie?: never;
@@ -1429,7 +1467,16 @@ export interface operations {
 					[name: string]: unknown;
 				};
 				content: {
-					'application/json': components['schemas']['TransactionResponse'][];
+					'application/json': components['schemas']['TransactionsAllResponse'];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['HTTPValidationError'];
 				};
 			};
 		};

@@ -26,9 +26,15 @@ import React from 'react';
  * </Table>
  */
 
-export const Table = ({ children, width }: { children: React.ReactNode; width: number }) => (
-	<table css={{ minWidth: '100%', width }}>{children}</table>
-);
+export const Table = ({
+	children,
+	width,
+	isLoadingMore = false
+}: {
+	children: React.ReactNode;
+	width: number;
+	isLoadingMore?: boolean;
+}) => <table css={{ minWidth: '100%', width, opacity: isLoadingMore ? 0.5 : 1 }}>{children}</table>;
 
 type TableHeaderRowProps = {
 	isSticky?: boolean;
@@ -77,8 +83,10 @@ export const TableRowCell = ({
 	children: React.ReactNode;
 	width: number;
 	height?: number;
-}) => (
-	<td css={table.cellContent} style={{ width, height }}>
-		<Text font="md">{children}</Text>
-	</td>
-);
+}) => {
+	return (
+		<td css={table.cellContent} style={{ width, height }}>
+			<Text font="md">{children}</Text>
+		</td>
+	);
+};

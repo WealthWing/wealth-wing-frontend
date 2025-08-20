@@ -17,3 +17,4 @@ export * from './skeleton-loader';
 export * from './tabs';
 export * from './badge';
 export * from './bar-chart';
+export * from './overlay/overlay';

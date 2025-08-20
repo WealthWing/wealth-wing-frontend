@@ -10,7 +10,7 @@
 		"generate:types": "npx openapi-typescript"
 	},
 	"dependencies": {
-		"@reduxjs/toolkit": "2.5.1",
+		"@reduxjs/toolkit": "2.8.2",
 		"aws-amplify": "6.4.0",
 		"@tanstack/react-table": "8.21.3"
 	},
