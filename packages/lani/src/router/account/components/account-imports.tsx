@@ -103,7 +103,7 @@ export const AccountImports = () => {
 	return (
 		<Section
 			title="Recent Imports"
-			button={
+			sectionTools={
 				<Button variant="tertiary" format="text" size="small">
 					View All Imports
 				</Button>

@@ -1,15 +1,14 @@
-import { BarChart, Grid } from '@wealth-wing/tayo';
+import { BarChart } from '@wealth-wing/tayo';
 import { Section } from 'components/section';
-import { TransactionsSummaryCard } from 'router/transaction/components/transactions-summary-card';
+import {
+	SummaryFilters,
+	TransactionSummaryCards
+} from 'router/transaction/components/transaction-summary-helper';
 
 export const TransactionsSummary = () => {
 	return (
-		<Section title="Summary">
-			<Grid gap="s12" gridTemplateColumns="1fr 1fr 1fr">
-				<TransactionsSummaryCard title="Money In" amount="$12.345.67" />
-				<TransactionsSummaryCard title="Money Out" amount="$12.345.67" />
-				<TransactionsSummaryCard title="Money Median income" amount="$12.345.67" />
-			</Grid>
+		<Section title="Summary" sectionTools={<SummaryFilters />}>
+			<TransactionSummaryCards />
 			<BarChart
 				css={{ width: '100%', minHeight: '230px' }}
 				datasets={[

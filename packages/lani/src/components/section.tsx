@@ -5,10 +5,10 @@ type SectionProps = {
 	children: React.ReactNode;
 	title: string;
 	subTitle?: string;
-	button?: React.ReactNode;
+	sectionTools?: React.ReactNode;
 };
 
-export const Section = ({ children, title, subTitle, button }: SectionProps) => {
+export const Section = ({ children, title, subTitle, sectionTools: button }: SectionProps) => {
 	return (
 		<Box
 			tag="section"

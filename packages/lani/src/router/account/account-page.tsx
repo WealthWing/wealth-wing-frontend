@@ -50,7 +50,7 @@ export const AccountPage = () => {
 			<Flex gap="s16">
 				<Section
 					title="Account List"
-					button={
+					sectionTools={
 						<Button
 							variant="tertiary"
 							format="text"
