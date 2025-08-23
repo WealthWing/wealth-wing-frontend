@@ -1,9 +1,17 @@
-export function formatUSD(number: number) {
+type Options = {
+	compactDisplay?: Intl.NumberFormatOptions['compactDisplay'];
+};
+
+export function formatUSD(number: number, options?: Options) {
 	const centsToUsd = number / 100;
 
 	return new Intl.NumberFormat('en-US', {
 		style: 'currency',
-		currency: 'USD'
+		currency: 'USD',
+		...(options?.compactDisplay && {
+			notation: 'compact',
+			compactDisplay: options.compactDisplay
+		})
 	}).format(centsToUsd);
 }
 

@@ -21,3 +21,7 @@ export type ImportJobStatus = Components['ImportJobStatus'];
 export type TransactionResponse = Components['TransactionResponse'];
 export type TransactionRequest = paths['/transaction/all']['get']['parameters']['query'];
 export type TransactionAllResponse = Components['TransactionsAllResponse'];
+export type TransactionSummaryResponse = Components['TransactionSummaryResponse'];
+export type TransactionMonths = Components['TransactionMonths'][];
+export type TransactionTotals = Components['TransactionTotals'];
+export type TransactionSummaryRequest = paths['/transaction/summary']['get']['parameters']['query'];

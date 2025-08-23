@@ -19,8 +19,10 @@ import {
 import { TableGetMore } from 'components/table/table-get-more';
 import { TransactionResponse } from 'data/api-definitions';
 import React from 'react';
-import { useAsdInfiniteQuery } from 'redux/transaction-queries';
+import { useFormContext } from 'react-hook-form';
+import { useTransactionsInfiniteQuery } from 'redux/transaction-queries';
 import { useTransactions } from 'router/transaction/components/transactions-provider';
+import { TransactionsFormFields } from 'router/transaction/components/transactions-provider.definitions';
 
 const columnHelper = createColumnHelper<TransactionResponse>();
 const columns = [
@@ -64,9 +66,13 @@ const columns = [
 
 export const Transactions = () => {
 	const { onRightPanelOpen } = useTransactions();
+	const { watch } = useFormContext<TransactionsFormFields>();
 
 	const { data, isFetchingNextPage, isError, error, status, fetchNextPage, hasNextPage } =
-		useAsdInfiniteQuery();
+		useTransactionsInfiniteQuery({
+			from_date: watch('date.from')?.toISOString(),
+			to_date: watch('date.to')?.toISOString()
+		});
 
 	const tableData = React.useMemo(() => {
 		return data?.pages?.flatMap((page) => page.transactions) ?? [];

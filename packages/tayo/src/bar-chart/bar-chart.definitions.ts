@@ -1,3 +1,4 @@
+import { formatUSD } from '@wealth-wing/utils';
 import type { ChartData, ChartOptions } from 'chart.js';
 
 import { darkTheme } from '../theme';
@@ -25,7 +26,7 @@ export const barChartOptions = (
 				callbacks: {
 					label(context) {
 						const value = context.parsed.y;
-						return isCurrencyFormat ? `$${value}` : `${value}`;
+						return isCurrencyFormat ? formatUSD(value) : `${value}`;
 					}
 				},
 				bodyColor: darkTheme.color.textSecondary,
@@ -42,8 +43,11 @@ export const barChartOptions = (
 				ticks: {
 					color: darkTheme.color.textPrimary,
 					callback(value) {
-						return isCurrencyFormat ? `$${value}` : value;
-					}
+						return isCurrencyFormat
+							? formatUSD(Number(value), { compactDisplay: 'short' })
+							: value;
+					},
+					count: 5
 				}
 			}
 		},

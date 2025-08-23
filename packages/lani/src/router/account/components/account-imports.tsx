@@ -1,6 +1,6 @@
 import { flexRender, useReactTable } from '@tanstack/react-table';
 import { createColumnHelper, getCoreRowModel } from '@tanstack/table-core';
-import { Badge, BadgeVariant, Button } from '@wealth-wing/tayo';
+import { Badge, BadgeVariant } from '@wealth-wing/tayo';
 import { formatUtcDateTime } from '@wealth-wing/utils';
 import { getInstitutionIcon, Institution } from 'components/icons/institutions';
 import { Section } from 'components/section';
@@ -79,7 +79,7 @@ const columns = [
 export const AccountImports = () => {
 	const { data, isLoading, isFetching } = useGetImportsQuery({
 		page: 1,
-		page_size: 5,
+		page_size: 6,
 		sort_by: 'uploaded_at',
 		sort_order: 'desc'
 	});
@@ -101,14 +101,7 @@ export const AccountImports = () => {
 	}
 
 	return (
-		<Section
-			title="Recent Imports"
-			sectionTools={
-				<Button variant="tertiary" format="text" size="small">
-					View All Imports
-				</Button>
-			}
-		>
+		<Section title="Recent Imports">
 			<Table width={table.getTotalSize()}>
 				<TableHeaderRow>
 					{table.getFlatHeaders().map((header) => (

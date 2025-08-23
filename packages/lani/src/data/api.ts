@@ -243,6 +243,45 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
+	'/transaction/summary': {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Get Transaction Summary
+		 * @description Endpoint to retrieve a summary of transactions for the current user.
+		 *
+		 *     This endpoint returns both overall totals and monthly breakdowns of income and expenses
+		 *     for transactions filtered by the provided parameters. Only transactions associated with
+		 *     checking accounts are considered.
+		 *
+		 *     Args:
+		 *         db (DBSession): Database session dependency.
+		 *         params (TransactionsParams): Query parameters for filtering transactions.
+		 *         current_user (UserPool): The currently authenticated user.
+		 *         params_service (ParamsService): Service for processing query parameters.
+		 *         query_service (QueryService): Service for building filtered queries.
+		 *
+		 *     Returns:
+		 *         dict: A dictionary containing:
+		 *             - "totals": Overall totals for money in, money out, and net amount.
+		 *             - "months": List of monthly summaries, each with month, income, expense, and net.
+		 *
+		 *     Raises:
+		 *         HTTPException: If authentication fails or database errors occur.
+		 */
+		get: operations['get_transaction_summary_transaction_summary_get'];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
 	'/project/create': {
 		parameters: {
 			query?: never;
@@ -966,6 +1005,20 @@ export interface components {
 			/** Account Name */
 			account_name?: string | null;
 		};
+		/** TransactionMonths */
+		TransactionMonths: {
+			/**
+			 * Month
+			 * Format: date-time
+			 */
+			month: string;
+			/** Income */
+			income: number;
+			/** Expense */
+			expense: number;
+			/** Net */
+			net: number;
+		};
 		/** TransactionResponse */
 		TransactionResponse: {
 			/**
@@ -1002,6 +1055,23 @@ export interface components {
 			 * Format: uuid
 			 */
 			user_id: string;
+		};
+		/** TransactionSummaryResponse */
+		TransactionSummaryResponse: {
+			totals: components['schemas']['TransactionTotals'];
+			/** Months */
+			months: components['schemas']['TransactionMonths'][];
+		};
+		/** TransactionTotals */
+		TransactionTotals: {
+			/** Income */
+			income: number;
+			/** Expense */
+			expense: number;
+			/** Net */
+			net: number;
+			/** Average Monthly Spent */
+			average_monthly_spent: number;
 		};
 		/** TransactionsAllResponse */
 		TransactionsAllResponse: {
@@ -1468,6 +1538,44 @@ export interface operations {
 				};
 				content: {
 					'application/json': components['schemas']['TransactionsAllResponse'];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['HTTPValidationError'];
+				};
+			};
+		};
+	};
+	get_transaction_summary_transaction_summary_get: {
+		parameters: {
+			query?: {
+				sort_by?: ('amount' | 'date' | 'title' | 'category') | null;
+				sort_order?: string;
+				page?: number;
+				page_size?: number;
+				search?: string | null;
+				from_date?: string | null;
+				to_date?: string | null;
+				filter_by_inputs?: components['schemas']['FilterByInputs'][] | null;
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['TransactionSummaryResponse'];
 				};
 			};
 			/** @description Validation Error */

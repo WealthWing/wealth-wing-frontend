@@ -1,13 +1,24 @@
 import { apiBase } from 'data/api-base';
-import { TransactionAllResponse, TransactionRequest } from 'data/api-definitions';
+import {
+	TransactionAllResponse,
+	TransactionRequest,
+	TransactionSummaryRequest,
+	TransactionSummaryResponse
+} from 'data/api-definitions';
 
 export const transactionQueries = apiBase.injectEndpoints({
 	endpoints: (builder) => ({
-		asd: builder.infiniteQuery<TransactionAllResponse, void, TransactionRequest>({
+		transactions: builder.infiniteQuery<
+			TransactionAllResponse,
+			TransactionRequest,
+			TransactionRequest
+		>({
 			infiniteQueryOptions: {
 				initialPageParam: {
 					page: 1,
-					page_size: 10
+					page_size: 10,
+					sort_by: 'date',
+					sort_order: 'desc'
 				},
 				getNextPageParam: (lastPage, _unused, lastPageParam) => {
 					if (!lastPage.has_more) {
@@ -22,16 +33,27 @@ export const transactionQueries = apiBase.injectEndpoints({
 					};
 				}
 			},
-
-			query({ pageParam }) {
+			query: ({ pageParam, queryArg }) => {
+				const params = { ...pageParam, ...queryArg };
 				return {
 					url: '/transaction/all',
 					method: 'GET',
-					params: pageParam
+					params
 				};
 			}
+		}),
+		transactionsSummary: builder.query<TransactionSummaryResponse, TransactionSummaryRequest>({
+			query: (pageParam) => ({
+				url: 'transaction/summary',
+				method: 'GET',
+				params: pageParam
+			})
 		})
 	})
 });
 
-export const { useAsdInfiniteQuery } = transactionQueries;
+export const {
+	useTransactionsInfiniteQuery,
+	useTransactionsSummaryQuery,
+	useLazyTransactionsSummaryQuery
+} = transactionQueries;

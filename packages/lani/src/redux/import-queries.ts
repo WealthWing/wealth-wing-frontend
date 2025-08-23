@@ -19,21 +19,24 @@ export const {
 				url: '/import/start',
 				method: 'POST',
 				body: JSON.stringify(params)
-			})
+			}),
+			invalidatesTags: ['ImportCreate']
 		}),
 		completeImport: builder.mutation<ImportFileCreateResponse, ImportFileCompleteRequest>({
 			query: (params) => ({
 				url: '/import/complete',
 				method: 'POST',
 				body: JSON.stringify(params)
-			})
+			}),
+			invalidatesTags: ['ImportCreate']
 		}),
 		getImports: builder.query<ImportFileListItem[], ImportsRequestParams>({
 			query: (params) => ({
 				url: '/import/imports',
 				method: 'GET',
 				params
-			})
+			}),
+			providesTags: ['ImportCreate']
 		})
 	})
 });
