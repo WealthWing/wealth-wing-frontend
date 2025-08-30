@@ -1,5 +1,5 @@
 import { Flex } from '@wealth-wing/tayo';
-import { getCurrentUser, /* signIn, */ signOut } from 'aws-amplify/auth';
+import { getCurrentUser, signOut } from 'aws-amplify/auth';
 import { AppWrapper } from 'components/app-wrapper';
 import { Main } from 'components/main';
 import { Sidebar } from 'components/sidebar';
@@ -7,11 +7,15 @@ import { sidebar } from 'components/sidebar.styles';
 import { SidebarButton, SidebarLink } from 'components/sidebar-link';
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { setUserData, useLazyUserDataQuery } from 'redux/auth';
+import { useAppDispatch } from 'redux/hooks';
 import { AuthController } from 'router/auth/auth-controller';
 
 export const Layout = () => {
 	const [isSignedin, setIsSignedin] = React.useState(false);
 	const [shouldVerifyUser, setShouldVerifyUser] = React.useState(false);
+	const dispatch = useAppDispatch();
+	const [getUserInfo] = useLazyUserDataQuery();
 
 	React.useEffect(() => {
 		const checkUser = async () => {
@@ -19,15 +23,21 @@ export const Layout = () => {
 				const user = await getCurrentUser();
 
 				if (user) {
-					setIsSignedin(true);
+					getUserInfo()
+						.unwrap()
+						.then((resp) => {
+							dispatch(setUserData(resp));
+							setIsSignedin(true);
+						});
 				}
 			} catch (error) {
 				signOut({ global: true });
+				setIsSignedin(false);
 			}
 		};
 
 		checkUser();
-	}, [shouldVerifyUser]);
+	}, [dispatch, getUserInfo, shouldVerifyUser]);
 
 	const handleSignOut = () => {
 		signOut({ global: true });

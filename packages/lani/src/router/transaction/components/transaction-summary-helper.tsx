@@ -1,4 +1,4 @@
-import { Flex, Grid } from '@wealth-wing/tayo';
+import { Flex, Grid, SkeletonAreaLoader, SkeletonLoaderContainer } from '@wealth-wing/tayo';
 import { formatUSD } from '@wealth-wing/utils';
 import { TransactionSummaryResponse } from 'data/api-definitions';
 import { useFormContext } from 'react-hook-form';
@@ -48,7 +48,13 @@ type TransactionSummaryCardsProps = {
 
 export const TransactionSummaryCards = ({ data, isLoading }: TransactionSummaryCardsProps) => {
 	if (isLoading) {
-		return <div>...LOADING</div>;
+		return (
+			<SkeletonLoaderContainer
+				size={4}
+				direction="row"
+				renderComponent={() => <SkeletonAreaLoader width="100%" height="150px" />}
+			/>
+		);
 	}
 
 	return (

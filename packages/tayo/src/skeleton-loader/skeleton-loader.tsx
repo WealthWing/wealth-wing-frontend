@@ -15,7 +15,10 @@ import { skeletonLoader } from './skeleton-loader.styles';
 
 export type SkeletonAreaLoaderVariant = 'circular' | 'rounded';
 
-export type SkeletonAreaLoaderProps = { variant?: SkeletonAreaLoaderVariant } & Pick<
+export type SkeletonAreaLoaderProps = {
+	variant?: SkeletonAreaLoaderVariant;
+	className?: string;
+} & Pick<
 	React.CSSProperties,
 	'maxHeight' | 'minHeight' | 'minWidth' | 'maxWidth' | 'height' | 'width'
 >;
@@ -31,7 +34,11 @@ const skeletonAreaVariants: Record<SkeletonAreaLoaderVariant, string> = {
  * @variant circular: only the "width" attibute will be used for sizing
  * @variant rounded: 'maxHeight' | 'minHeight' | 'minWidth' | 'maxWidth' | 'height' | 'width' are available for use
  */
-export const SkeletonAreaLoader = ({ variant = 'rounded', ...styles }: SkeletonAreaLoaderProps) => {
+export const SkeletonAreaLoader = ({
+	variant = 'rounded',
+	className,
+	...styles
+}: SkeletonAreaLoaderProps) => {
 	const isCircular = variant === 'circular';
 	const { width } = styles;
 	const skeletonStyles = isCircular
@@ -44,6 +51,7 @@ export const SkeletonAreaLoader = ({ variant = 'rounded', ...styles }: SkeletonA
 	return (
 		<div
 			css={skeletonLoader.root}
+			className={className}
 			style={{ borderRadius: skeletonAreaVariants[variant], ...skeletonStyles }}
 		/>
 	);

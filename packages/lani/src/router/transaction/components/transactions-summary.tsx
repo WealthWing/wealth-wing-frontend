@@ -12,10 +12,12 @@ import { TransactionsFormFields } from 'router/transaction/components/transactio
 export const TransactionsSummary = () => {
 	const { watch } = useFormContext<TransactionsFormFields>();
 
-	const { data, isLoading } = useTransactionsSummaryQuery({
+	const { data, isLoading, isFetching } = useTransactionsSummaryQuery({
 		from_date: watch('date.from')?.toISOString(),
 		to_date: watch('date.to')?.toISOString()
 	});
+
+	const isFetchingOrLoading = isLoading || isFetching;
 
 	const chartData = data?.months.reduce<{
 		expense: number[];
@@ -37,19 +39,20 @@ export const TransactionsSummary = () => {
 
 	return (
 		<Section title="Summary" sectionTools={<SummaryFilters />}>
-			<TransactionSummaryCards data={data?.totals} isLoading={isLoading} />
+			<TransactionSummaryCards data={data?.totals} isLoading={isFetchingOrLoading} />
 			<BarChart
 				isCurrencyFormat
+				isLoading={isFetchingOrLoading}
 				css={{ width: '100%', minHeight: '230px' }}
 				datasets={[
 					{
-						label: 'Dataset 1',
+						label: 'Monthly In',
 						data: chartData?.income ?? [],
 						borderColor: '#36A2EB',
 						backgroundColor: '#9BD0F5'
 					},
 					{
-						label: 'Dataset 2',
+						label: 'Monthly Out',
 						data: chartData?.expense ?? [],
 						borderColor: '#FF6384',
 						backgroundColor: '#FFB1C1'

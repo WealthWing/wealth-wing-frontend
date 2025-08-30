@@ -9,6 +9,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
+import { SkeletonAreaLoader } from '../skeleton-loader';
 import { BarChartData, barChartOptions } from './bar-chart.definitions';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -23,6 +24,7 @@ type BarChartProps = {
 	displayLegend?: boolean;
 	isCurrencyFormat?: boolean;
 	className?: string;
+	isLoading?: boolean;
 };
 
 export const BarChart = ({
@@ -34,9 +36,15 @@ export const BarChart = ({
 	displayLegend,
 	isCurrencyFormat,
 	title,
+	isLoading = false,
 	className
 }: BarChartProps) => {
 	const options = barChartOptions(title, displayLegend, isCurrencyFormat);
+
+	if (isLoading) {
+		return <SkeletonAreaLoader className={className} />;
+	}
+
 	return (
 		<figure
 			aria-label={ariaLabel}

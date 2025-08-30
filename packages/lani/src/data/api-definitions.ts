@@ -25,3 +25,4 @@ export type TransactionSummaryResponse = Components['TransactionSummaryResponse'
 export type TransactionMonths = Components['TransactionMonths'][];
 export type TransactionTotals = Components['TransactionTotals'];
 export type TransactionSummaryRequest = paths['/transaction/summary']['get']['parameters']['query'];
+export type UserResponse = Components['UserResponse'];
