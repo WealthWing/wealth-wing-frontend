@@ -1,6 +1,7 @@
 import { FunctionComponent, SVGProps } from 'react';
 
 import AlertCircle from './alert-circle';
+import BarChart from './bar-chart';
 import Calendar from './calendar';
 import Chase from './chase';
 import CheckSquare from './check-square';
@@ -25,6 +26,7 @@ import X from './x';
 
 export const iconNames = [
 	'alert-circle',
+	'bar-chart',
 	'calendar',
 	'chase',
 	'check-square',
@@ -52,6 +54,7 @@ export type IconName = (typeof iconNames)[number];
 
 export const iconMap: Record<IconName, FunctionComponent<SVGProps<any>>> = {
 	'alert-circle': AlertCircle,
+	'bar-chart': BarChart,
 	calendar: Calendar,
 	chase: Chase,
 	'check-square': CheckSquare,

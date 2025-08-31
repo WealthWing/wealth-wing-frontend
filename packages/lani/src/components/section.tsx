@@ -6,13 +6,20 @@ type SectionProps = {
 	title: string;
 	subTitle?: string;
 	sectionTools?: React.ReactNode;
+	ariaLabel?: string;
 };
 
-export const Section = ({ children, title, subTitle, sectionTools: button }: SectionProps) => {
+export const Section = ({
+	children,
+	title,
+	subTitle,
+	sectionTools: button,
+	ariaLabel
+}: SectionProps) => {
 	return (
 		<Box
 			tag="section"
-			aria-label="Jobs"
+			aria-label={ariaLabel}
 			width="100%"
 			backgroundColor="cardBackground100"
 			borderRadius="radiusDefault"
