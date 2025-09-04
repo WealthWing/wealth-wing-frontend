@@ -52,7 +52,7 @@ export const TransactionSummaryCards = ({ data, isLoading }: TransactionSummaryC
 			<SkeletonLoaderContainer
 				size={4}
 				direction="row"
-				renderComponent={() => <SkeletonAreaLoader width="100%" height="150px" />}
+				renderComponent={(i) => <SkeletonAreaLoader key={i} width="100%" height="150px" />}
 			/>
 		);
 	}

@@ -1,6 +1,7 @@
 import { BarChart } from '@wealth-wing/tayo';
 import { formatUtcDateTime } from '@wealth-wing/utils';
 import { Section } from 'components/section';
+import { NoData } from 'components/table/table-get-more';
 import { useFormContext } from 'react-hook-form';
 import { useTransactionsSummaryQuery } from 'redux/transaction-queries';
 import {
@@ -36,7 +37,13 @@ export const TransactionsSummary = () => {
 		},
 		{ expense: [], income: [], months: [] }
 	);
-
+	if (data?.months.length === 0) {
+		return (
+			<Section title="Summary" sectionTools={<SummaryFilters />}>
+				<NoData />
+			</Section>
+		);
+	}
 	return (
 		<Section title="Summary" sectionTools={<SummaryFilters />}>
 			<TransactionSummaryCards data={data?.totals} isLoading={isFetchingOrLoading} />

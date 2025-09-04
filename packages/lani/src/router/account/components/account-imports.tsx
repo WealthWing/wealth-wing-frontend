@@ -12,6 +12,7 @@ import {
 	TableRow,
 	TableRowCell
 } from 'components/table/table';
+import { NoData } from 'components/table/table-get-more';
 import { TableSkeletonLoader } from 'components/table/table-skeleton-loader';
 import { ImportFileListItem, ImportJobStatus } from 'data/api-definitions';
 import React from 'react';
@@ -96,6 +97,14 @@ export const AccountImports = () => {
 		return (
 			<Section title="Recent Imports">
 				<TableSkeletonLoader />
+			</Section>
+		);
+	}
+
+	if (!data || data.length === 0) {
+		return (
+			<Section title="Recent Imports">
+				<NoData />
 			</Section>
 		);
 	}

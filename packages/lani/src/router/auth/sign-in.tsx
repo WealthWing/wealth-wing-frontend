@@ -3,6 +3,9 @@ import { signIn } from 'aws-amplify/auth';
 import { useForm } from 'react-hook-form';
 import { useAuth } from 'router/layout-management';
 
+const userName = import.meta.env.VITE_DEMO_USERNAME;
+const userPassword = import.meta.env.VITE_DEMO_USER_PASSWORD;
+
 type FormValues = {
 	email: string;
 	password: string;
@@ -21,6 +24,20 @@ export const SignIn = () => {
 			const user = await signIn({
 				username: data.email,
 				password: data.password
+			});
+			if (user.isSignedIn) {
+				setAuthState('signedIn');
+			}
+		} catch (error) {
+			console.error('Error signing in:', error);
+		}
+	};
+
+	const demoSignIn = async () => {
+		try {
+			const user = await signIn({
+				username: userName,
+				password: userPassword
 			});
 			if (user.isSignedIn) {
 				setAuthState('signedIn');
@@ -76,6 +93,15 @@ export const SignIn = () => {
 					</Flex>
 					<Button variant="primary" format="regular" isFullWidth type="submit">
 						Sign In
+					</Button>
+					<Button
+						variant="secondary"
+						format="regular"
+						isFullWidth
+						type="button"
+						onClick={demoSignIn}
+					>
+						Demo
 					</Button>
 				</Flex>
 			</Form>

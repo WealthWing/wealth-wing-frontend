@@ -9,9 +9,9 @@ type AuthCardProps = {
 export const AuthCard = ({ icon, title }: AuthCardProps) => {
 	return (
 		<Box
-			boxShadow="default100"
+			boxShadow="default200"
 			padding="s12"
-			backgroundColor="cardBackground60"
+			border="default"
 			borderRadius="radiusMedium"
 			width="100%"
 		>

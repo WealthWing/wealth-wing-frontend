@@ -1,5 +1,14 @@
-import { Button, ModalBody, ModalFooter, ScreenReaderOnly, Text } from '@wealth-wing/tayo';
+import {
+	Button,
+	CenterContent,
+	ModalBody,
+	ModalFooter,
+	ScreenReaderOnly,
+	Text,
+	theme
+} from '@wealth-wing/tayo';
 import React, { useRef } from 'react';
+import { MoonLoader } from 'react-spinners';
 import { useCompleteImportMutation, useStartImportMutation } from 'redux/import-queries';
 import { useS3Upload } from 'router/account/hooks/use-s3-upload';
 import { useImport } from 'router/import/components/import-management';
@@ -15,8 +24,8 @@ export const ImportDropZone = () => {
 	const [validationError, setValidationError] = React.useState<string | null>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
 
-	const [startImport] = useStartImportMutation();
-	const [completeImport] = useCompleteImportMutation();
+	const [startImport, { isLoading: isStartLoading }] = useStartImportMutation();
+	const [completeImport, { isLoading: isCompleteLoading }] = useCompleteImportMutation();
 
 	const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
 		e.preventDefault();
@@ -102,6 +111,16 @@ export const ImportDropZone = () => {
 		}
 	};
 
+	if (isStartLoading || isCompleteLoading) {
+		return (
+			<ModalBody>
+				<CenterContent>
+					<MoonLoader color={theme.color.darkBlue40} size={80} />
+				</CenterContent>
+			</ModalBody>
+		);
+	}
+
 	return (
 		<>
 			<ModalBody>
@@ -158,9 +177,6 @@ export const ImportDropZone = () => {
 				<Button variant="tertiary" format="text" onClick={onImportClose}>
 					Close
 				</Button>
-				{/* 				<Button variant="primary" format="light" onClick={handleSelectFile}>
-					Upload
-				</Button> */}
 			</ModalFooter>
 		</>
 	);

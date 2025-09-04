@@ -7,13 +7,6 @@ import { useAuth } from 'router/layout-management';
 export const AuthController = () => {
 	const { authState } = useAuth();
 
-	/* 	const signInUser = async () => {
-		await signIn({
-			username: 'erdo.shazy123@gmail.com',
-			password: 'z#ts7adUGd0fL!4U'
-		});
-		setAuthState('verifying');
-	}; */
 	return (
 		<Box width="100%" height="100%" padding="s20">
 			<Flex direction="row" gap="s20" flex={1} css={{ height: '100%' }}>
@@ -28,7 +21,7 @@ export const AuthController = () => {
 						<Flex direction="row" gap="s4" alignItems="center">
 							<Icon name="graph" size="s64" />
 							<Flex gap="none" direction="column" justifyContent="center">
-								<Heading font="h5" tag="h1">
+								<Heading font="h4" tag="h1">
 									Wealth Wing
 								</Heading>
 								<Text font="sm" color="textSecondary">

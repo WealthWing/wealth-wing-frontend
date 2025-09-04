@@ -22,7 +22,7 @@ export const NoData = () => (
 					No Results Found
 				</div>
 			</ScreenReaderOnly>
-			<Icon name="warning" size="s40" />
+			<Icon name="search" size="s40" />
 			<Text font="lg">No Results Found</Text>
 		</Flex>
 	</CenterContent>

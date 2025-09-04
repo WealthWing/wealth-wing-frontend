@@ -9,12 +9,12 @@ export const router = createBrowserRouter([
 		element: <Layout />,
 		children: [
 			{
-				path: 'accounts',
-				element: <AccountPage />
-			},
-			{
 				path: 'transactions',
 				element: <TransactionsPage />
+			},
+			{
+				path: 'accounts',
+				element: <AccountPage />
 			}
 		]
 	}
