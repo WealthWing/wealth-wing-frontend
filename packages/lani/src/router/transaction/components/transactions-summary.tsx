@@ -1,8 +1,9 @@
-import { BarChart } from '@wealth-wing/tayo';
+import { BarChart, Button } from '@wealth-wing/tayo';
 import { formatUtcDateTime } from '@wealth-wing/utils';
+import { NoFound } from 'components/no-found';
 import { Section } from 'components/section';
-import { NoData } from 'components/table/table-get-more';
 import { useFormContext } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { useTransactionsSummaryQuery } from 'redux/transaction-queries';
 import {
 	SummaryFilters,
@@ -12,7 +13,7 @@ import { TransactionsFormFields } from 'router/transaction/components/transactio
 
 export const TransactionsSummary = () => {
 	const { watch } = useFormContext<TransactionsFormFields>();
-
+	const navigate = useNavigate();
 	const { data, isLoading, isFetching } = useTransactionsSummaryQuery({
 		from_date: watch('date.from')?.toISOString(),
 		to_date: watch('date.to')?.toISOString()
@@ -39,13 +40,25 @@ export const TransactionsSummary = () => {
 	);
 	if (data?.months.length === 0) {
 		return (
-			<Section title="Summary" sectionTools={<SummaryFilters />}>
-				<NoData />
+			<Section title="Summary">
+				<NoFound
+					title="No transactions yet"
+					subtitle="Start by importing your first transactions to see the summary."
+				>
+					<Button
+						variant="primary"
+						format="text"
+						size="medium"
+						onClick={() => navigate('/accounts')}
+					>
+						Import Transactions
+					</Button>
+				</NoFound>
 			</Section>
 		);
 	}
 	return (
-		<Section title="Summary" sectionTools={<SummaryFilters />}>
+		<Section title="Summary" isLoading={isFetchingOrLoading} sectionTools={<SummaryFilters />}>
 			<TransactionSummaryCards data={data?.totals} isLoading={isFetchingOrLoading} />
 			<BarChart
 				isCurrencyFormat

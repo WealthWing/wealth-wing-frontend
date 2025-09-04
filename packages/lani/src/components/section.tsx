@@ -7,6 +7,7 @@ type SectionProps = {
 	subTitle?: string;
 	sectionTools?: React.ReactNode;
 	ariaLabel?: string;
+	isLoading?: boolean;
 };
 
 export const Section = ({
@@ -14,7 +15,8 @@ export const Section = ({
 	title,
 	subTitle,
 	sectionTools: button,
-	ariaLabel
+	ariaLabel,
+	isLoading
 }: SectionProps) => {
 	return (
 		<Box
@@ -32,7 +34,7 @@ export const Section = ({
 						<Heading tag="h2" font="h5">
 							{title}
 						</Heading>
-						{button}
+						{!isLoading && button}
 					</Flex>
 					<Text font="md" color="darkBlue20">
 						{subTitle}

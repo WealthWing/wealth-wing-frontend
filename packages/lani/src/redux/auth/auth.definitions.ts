@@ -7,7 +7,5 @@ export type AuthState = {
 	canCreateOrUpdate?: boolean;
 	canDelete?: boolean;
 	canManageUsers?: boolean;
-	canManageOrgSettings?: boolean;
-	canManageBilling?: boolean;
 	user?: UserResponse;
 };

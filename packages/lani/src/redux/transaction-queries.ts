@@ -40,14 +40,16 @@ export const transactionQueries = apiBase.injectEndpoints({
 					method: 'GET',
 					params
 				};
-			}
+			},
+			providesTags: ['ImportCreate']
 		}),
 		transactionsSummary: builder.query<TransactionSummaryResponse, TransactionSummaryRequest>({
 			query: (pageParam) => ({
 				url: 'transaction/summary',
 				method: 'GET',
 				params: pageParam
-			})
+			}),
+			providesTags: ['ImportCreate']
 		})
 	})
 });

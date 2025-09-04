@@ -14,28 +14,14 @@ export const authSlice = createSlice({
 		setUserData: (state, action: PayloadAction<UserResponse>) => {
 			const { email, role, uuid, organization_id: organizationId } = action.payload;
 
-			const canReadData = [
-				'User_Viewer',
-				'User_Editor',
-				'User_Manager',
-				'Admin',
-				'SuperAdmin'
-			].includes(role);
+			const canReadData = ['User_Viewer', 'User_Editor', 'User_Manager', 'Admin'].includes(
+				role
+			);
+			const canCreateOrUpdate = ['User_Editor', 'User_Manager', 'Admin'].includes(role);
 
-			const canCreateOrUpdate = [
-				'User_Editor',
-				'User_Manager',
-				'Admin',
-				'SuperAdmin'
-			].includes(role);
+			const canDelete = ['User_Manager', 'Admin'].includes(role);
 
-			const canDelete = ['User_Manager', 'Admin', 'SuperAdmin'].includes(role);
-
-			const canManageUsers = ['Admin', 'SuperAdmin'].includes(role);
-
-			const canManageOrgSettings = ['Admin', 'SuperAdmin'].includes(role);
-
-			const canManageBilling = ['Admin', 'SuperAdmin'].includes(role);
+			const canManageUsers = ['Admin'].includes(role);
 
 			return {
 				...state,
@@ -43,8 +29,6 @@ export const authSlice = createSlice({
 				canCreateOrUpdate,
 				canDelete,
 				canManageUsers,
-				canManageOrgSettings,
-				canManageBilling,
 				user: {
 					email,
 					role,
