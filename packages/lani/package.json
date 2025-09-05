@@ -6,7 +6,6 @@
 	"scripts": {
 		"start": "vite",
 		"build": "vite build",
-		"deploy": "./deploy.sh",
 		"preview": "vite preview",
 		"generate:types": "npx openapi-typescript"
 	},
