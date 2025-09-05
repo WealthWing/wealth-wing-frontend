@@ -12,6 +12,7 @@ import {
 } from '@wealth-wing/tayo';
 import { AccountRequest } from 'data/api-definitions';
 import { FormProvider, UseFormReturn } from 'react-hook-form';
+import { useAppSelector } from 'redux/hooks';
 import { AccoundOption, accountOptions } from 'router/account/components/account-modal.definitions';
 
 export type AccountFormValues = Omit<AccountRequest, 'account_type'> & {
@@ -36,6 +37,7 @@ export const AccountFormModal = ({
 	onSubmit,
 	form
 }: AccountModalProps) => {
+	const { canCreateOrUpdate } = useAppSelector((state) => state.auth);
 	const {
 		handleSubmit,
 		register,
@@ -121,7 +123,13 @@ export const AccountFormModal = ({
 				<Button format="outline" variant="tertiary" onClick={onAccountModalClose}>
 					Close
 				</Button>
-				<Button format="regular" variant="primary" type="submit" form="account-modal">
+				<Button
+					format="regular"
+					variant="primary"
+					type="submit"
+					disabled={!canCreateOrUpdate}
+					form="account-modal"
+				>
 					{buttonLabel}
 				</Button>
 			</ModalFooter>

@@ -2,14 +2,19 @@ import { useDisclosureControl } from '@wealth-wing/tayo';
 import { AccountType } from 'data/api-definitions';
 import { useForm } from 'react-hook-form';
 import { useAddAccountMutation } from 'redux/account';
+import { useAppSelector } from 'redux/hooks';
 import { AccountFormValues } from 'router/account/components/account-modal';
 
 export function useCreateAccount() {
 	const [addAccount, { isLoading, reset }] = useAddAccountMutation();
+	const { canCreateOrUpdate } = useAppSelector((state) => state.auth);
 	const { isOpen, handleClose, handleOpen } = useDisclosureControl({ onClose: () => reset() });
 	const form = useForm<AccountFormValues>();
 
 	const onSubmit = async (formData: AccountFormValues) => {
+		if (!canCreateOrUpdate) {
+			return;
+		}
 		try {
 			await addAccount({
 				account_name: formData.account_name,

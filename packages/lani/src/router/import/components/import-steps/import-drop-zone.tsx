@@ -9,6 +9,7 @@ import {
 } from '@wealth-wing/tayo';
 import React, { useRef } from 'react';
 import { MoonLoader } from 'react-spinners';
+import { useAppSelector } from 'redux/hooks';
 import { useCompleteImportMutation, useStartImportMutation } from 'redux/import-queries';
 import { useS3Upload } from 'router/account/hooks/use-s3-upload';
 import { useImport } from 'router/import/components/import-management';
@@ -17,6 +18,7 @@ import { dropZone } from 'router/import/components/import-steps/import-drop-zone
 import { Upload } from 'router/import/icons/upload';
 
 export const ImportDropZone = () => {
+	const { canCreateOrUpdate } = useAppSelector((state) => state.auth);
 	const { accountId, onImportClose } = useImport();
 	const { s3UploadFile } = useS3Upload();
 	const [dragged, setDragged] = React.useState(false);
@@ -55,6 +57,11 @@ export const ImportDropZone = () => {
 		const file = files[0];
 		setFileName(file.name);
 		setValidationError(null);
+
+		if (!canCreateOrUpdate) {
+			setValidationError('You do not have permission to perform this action.');
+			return;
+		}
 		startImport({
 			account_id: accountId,
 			file_name: file.name,
@@ -85,6 +92,10 @@ export const ImportDropZone = () => {
 
 		if (dropZoneValidation(files)) {
 			setValidationError(dropZoneValidation(files));
+			return;
+		}
+		if (!canCreateOrUpdate) {
+			setValidationError('You do not have permission to perform this action.');
 			return;
 		}
 		const file = files?.[0];

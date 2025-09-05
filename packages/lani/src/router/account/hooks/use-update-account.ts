@@ -3,11 +3,13 @@ import { AccountType } from 'data/api-definitions';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLazyGetAcccountQuery, useUpdateAccountMutation } from 'redux/account';
+import { useAppSelector } from 'redux/hooks';
 import { AccountFormValues } from 'router/account/components/account-modal';
 import { getAccountOption } from 'router/account/components/account-modal.definitions';
 
 export function useUpdateAccount() {
 	const [accountId, setAccountId] = React.useState<string | null>(null);
+	const { canCreateOrUpdate } = useAppSelector((state) => state.auth);
 	const [updateAccount, { reset }] = useUpdateAccountMutation();
 	const [getAccountData, { isLoading: isLoadingAccount }] = useLazyGetAcccountQuery();
 	const { isOpen, handleClose, handleOpen } = useDisclosureControl({ onClose: () => reset() });
@@ -15,6 +17,9 @@ export function useUpdateAccount() {
 
 	const onSubmit = async (formData: AccountFormValues) => {
 		if (!accountId) return;
+		if (!canCreateOrUpdate) {
+			return;
+		}
 		try {
 			await updateAccount({
 				accountId,

@@ -29,6 +29,7 @@ export const authSlice = createSlice({
 				canCreateOrUpdate,
 				canDelete,
 				canManageUsers,
+				isSignedIn: true,
 				user: {
 					email,
 					role,

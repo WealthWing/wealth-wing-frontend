@@ -40,7 +40,7 @@ export const TransactionsSummary = () => {
 	);
 	if (data?.months.length === 0) {
 		return (
-			<Section title="Summary">
+			<Section title="Summary" sectionTools={<SummaryFilters />}>
 				<NoFound
 					title="No transactions yet"
 					subtitle="Start by importing your first transactions to see the summary."
