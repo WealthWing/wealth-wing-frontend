@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import checker from 'vite-plugin-checker';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { visualizer } from 'rollup-plugin-visualizer';
+import netlifyPlugin from '@netlify/vite-plugin-react-router';
 
 const PORT = 3001;
 
@@ -18,6 +19,7 @@ export default defineConfig(({ mode }) => {
 		plugins: [
 			react(),
 			tsconfigPaths(),
+			netlifyPlugin(),
 			visualizer({
 				filename: 'stats.html',
 				emitFile: true
