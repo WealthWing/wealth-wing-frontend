@@ -73,7 +73,7 @@ export const Layout = () => {
 										<SidebarLink
 											iconName="switch-horizontal"
 											label="Transactions"
-											to="/transactions"
+											to="/"
 										/>
 									</li>
 									<li>
