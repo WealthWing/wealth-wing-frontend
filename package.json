@@ -12,6 +12,7 @@
 		"lani": "yarn workspace @wealth-wing/lani",
 		"tayo": "yarn workspace @wealth-wing/tayo",
 		"utils": "yarn workspace @wealth-wing/utils",
+		"lani-deploy": "./lani-deploy.sh",
 		"build-storybook": "storybook build"
 	},
 	"dependencies": {
