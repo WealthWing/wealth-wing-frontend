@@ -33,10 +33,7 @@ export const dateShortcuts = (): DateShortcuts => {
 		lastThreeMonths: createDateShortcut(startOfMonth(subMonths(today, 2)), endOfMonth(today)),
 		lastSixMonths: createDateShortcut(startOfMonth(subMonths(today, 5)), endOfMonth(today)),
 		lastTwelveMonths: createDateShortcut(startOfMonth(subMonths(today, 12)), endOfMonth(today)),
-		thisYear: createDateShortcut(
-			startOfYear(subYears(today, 0)),
-			endOfYear(subYears(today, 0))
-		),
+		thisYear: createDateShortcut(startOfYear(subYears(today, 0)), today),
 		lastYear: createDateShortcut(startOfYear(subYears(today, 1)), endOfYear(subYears(today, 1)))
 	};
 };
@@ -56,8 +53,8 @@ export const filters: Filter[] = [
 
 export const defaultTransactionFormValues: TransactionsFormFields = {
 	date: {
-		from: dateShortcuts().lastSixMonths.startDateValue,
-		to: dateShortcuts().lastSixMonths.endDateValue
+		from: dateShortcuts().lastThreeMonths.startDateValue,
+		to: dateShortcuts().lastThreeMonths.endDateValue
 	},
-	selectedFilter: '6M'
+	selectedFilter: '3M'
 };
