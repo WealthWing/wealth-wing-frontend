@@ -1,4 +1,3 @@
-// Temporary mock for DropdownSection (replace with real import when implemented)
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Button } from '../button';
@@ -6,43 +5,6 @@ import { Flex } from '../containers';
 import { Menu, MenuItem } from '../menu';
 import { Dropdown } from './dropdown';
 import { DropdownPanel } from './dropdown-panel';
-
-/* 
-
-function Component(Story, ctx) {
-			return (
-				<>
-					<Dropdown {...ctx.args}>
-						<Button type="button" variant="primary" format="outline">
-							Menu
-						</Button>
-						<Menu>
-							<MenuItem>{1}</MenuItem>
-							<MenuItem>{1}</MenuItem>
-							<MenuItem>{1}</MenuItem>
-						</Menu>
-					</Dropdown>
-
-					<Dropdown {...ctx.args} placement="bottom-end" distance={8}>
-						<Button type="button" variant="primary" format="outline">
-							Panel
-						</Button>
-						<DropdownPanel>
-							<Flex direction="column" gap="s12">
-								<Flex direction="row" gap="s12" alignItems="center">
-									Section
-								</Flex>
-								<Flex direction="row" gap="s12" alignItems="center">
-									Footer
-								</Flex>
-							</Flex>
-						</DropdownPanel>
-					</Dropdown>
-				</>
-			);
-		}
-
-*/
 
 const meta: Meta<typeof Dropdown> = {
 	component: Dropdown,
