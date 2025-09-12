@@ -1,15 +1,3 @@
-import { SVGProps } from 'react';
-
-const SvgWarning = (props: SVGProps<SVGSVGElement>) => (
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		fill="currentColor"
-		viewBox="0 0 64 64"
-		width="1em"
-		height="1em"
-		{...props}
-	>
-		<path d="M63.387 54.853 36.72 4.187A5.333 5.333 0 0 0 32 1.333a5.333 5.333 0 0 0-4.72 2.854L.613 54.853a5.333 5.333 0 0 0 .16 5.334 5.333 5.333 0 0 0 4.56 2.48h53.334a5.333 5.333 0 0 0 4.72-7.814ZM29.333 22.667a2.667 2.667 0 0 1 5.334 0v16a2.667 2.667 0 0 1-5.334 0Zm2.8 30.666a4.08 4.08 0 0 1-4.053-3.92 3.947 3.947 0 0 1 3.92-4.08 4.08 4.08 0 0 1 4.053 3.92 3.947 3.947 0 0 1-3.92 4.08Z" />
-	</svg>
-);
+import { SVGProps } from "react";
+const SvgWarning = (props: SVGProps<SVGSVGElement>) => <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 64 64" width="1em" height="1em" {...props}><path d="M63.387 54.853 36.72 4.187A5.333 5.333 0 0 0 32 1.333a5.333 5.333 0 0 0-4.72 2.854L.613 54.853a5.333 5.333 0 0 0 .16 5.334 5.333 5.333 0 0 0 4.56 2.48h53.334a5.333 5.333 0 0 0 4.72-7.814ZM29.333 22.667a2.667 2.667 0 0 1 5.334 0v16a2.667 2.667 0 0 1-5.334 0Zm2.8 30.666a4.08 4.08 0 0 1-4.053-3.92 3.947 3.947 0 0 1 3.92-4.08 4.08 4.08 0 0 1 4.053 3.92 3.947 3.947 0 0 1-3.92 4.08Z" /></svg>;
 export default SvgWarning;

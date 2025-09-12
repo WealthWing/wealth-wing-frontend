@@ -1,0 +1,3 @@
+import { SVGProps } from "react";
+const SvgGrid = (props: SVGProps<SVGSVGElement>) => <svg viewBox="0 0 128 128" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" {...props}><path d="M12 16a4 4 0 0 1 4-4h37.333a4 4 0 0 1 4 4v37.333a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V16Zm8 4v29.333h29.333V20H20ZM70.667 16a4 4 0 0 1 4-4H112a4 4 0 0 1 4 4v37.333a4 4 0 0 1-4 4H74.667a4 4 0 0 1-4-4V16Zm8 4v29.333H108V20H78.667ZM70.667 74.667a4 4 0 0 1 4-4H112a4 4 0 0 1 4 4V112a4 4 0 0 1-4 4H74.667a4 4 0 0 1-4-4V74.667Zm8 4V108H108V78.667H78.667ZM12 74.667a4 4 0 0 1 4-4h37.333a4 4 0 0 1 4 4V112a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V74.667Zm8 4V108h29.333V78.667H20Z" /></svg>;
+export default SvgGrid;
