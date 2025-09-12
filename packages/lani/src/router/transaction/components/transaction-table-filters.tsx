@@ -18,7 +18,18 @@ type FilterProps = {
 };
 
 export const TransactionTableFilters = ({ onApplyFilters }: FilterProps) => {
-	const { register } = useFormContext<TransactionsFormFields>();
+	const { register, reset, getValues } = useFormContext<TransactionsFormFields>();
+
+	const handleResetFilters = () => {
+		const values = getValues();
+		reset({
+			...values,
+			filters: {
+				search: '',
+				type: 'all'
+			}
+		});
+	};
 
 	return (
 		<Flex direction="row" gap="s12" alignItems="center">
@@ -29,6 +40,26 @@ export const TransactionTableFilters = ({ onApplyFilters }: FilterProps) => {
 				<IconButton format="outline" variant="tertiary" label="filters" iconName="filter" />
 				<DropdownPanel>
 					<Flex direction="column" gap="s16">
+						<fieldset css={fieldsetContainer}>
+							<legend>
+								<Heading tag="h6" font="h6">
+									Sort
+								</Heading>
+							</legend>
+							<Flex direction="row" alignItems="center" gap="s12">
+								<Radio
+									label="Ascending"
+									{...register('filters.type')}
+									value="asc"
+								/>
+								<Radio
+									label="Descending"
+									{...register('filters.type')}
+									value="desc"
+								/>
+								<Radio label="All" {...register('filters.type')} value="all" />
+							</Flex>
+						</fieldset>
 						<fieldset css={fieldsetContainer}>
 							<legend>
 								<Heading tag="h6" font="h6">
@@ -50,7 +81,12 @@ export const TransactionTableFilters = ({ onApplyFilters }: FilterProps) => {
 							</Flex>
 						</fieldset>
 						<Flex direction="row" gap="s8" justifyContent="flex-end">
-							<Button type="button" variant="secondary" format="text">
+							<Button
+								type="button"
+								variant="secondary"
+								format="text"
+								onClick={handleResetFilters}
+							>
 								Reset Filters
 							</Button>
 							<Button
