@@ -8,7 +8,7 @@ import { iconButton } from './icon-button.styles';
 
 export type IconButtonProps = Omit<ButtonProps, 'iconAlignment' | 'iconName' | 'children'> & {
 	iconName: IconName;
-	iconColor: Color;
+	iconColor?: Color;
 	label: string;
 	isLoading?: boolean;
 };
