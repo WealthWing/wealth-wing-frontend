@@ -14,4 +14,7 @@ export type TransactionsFormFields = {
 		to: Date | null;
 	};
 	selectedFilter: string | null;
+	filters: {
+		search: string;
+	};
 };

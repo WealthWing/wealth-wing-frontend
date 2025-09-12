@@ -21,8 +21,12 @@ import { TransactionResponse } from 'data/api-definitions';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useTransactionsInfiniteQuery } from 'redux/transaction-queries';
+import { TransactionTableFilters } from 'router/transaction/components/transaction-table-filters';
 import { useTransactions } from 'router/transaction/components/transactions-provider';
 import { TransactionsFormFields } from 'router/transaction/components/transactions-provider.definitions';
+import { useDebounce } from 'use-debounce';
+
+const debounceTime = 1000;
 
 const columnHelper = createColumnHelper<TransactionResponse>();
 const columns = [
@@ -68,10 +72,13 @@ export const Transactions = () => {
 	const { onRightPanelOpen } = useTransactions();
 	const { watch } = useFormContext<TransactionsFormFields>();
 
+	const [search] = useDebounce(watch('filters.search'), debounceTime);
+
 	const { data, isFetchingNextPage, isError, error, status, fetchNextPage, hasNextPage } =
 		useTransactionsInfiniteQuery({
 			from_date: watch('date.from')?.toISOString(),
-			to_date: watch('date.to')?.toISOString()
+			to_date: watch('date.to')?.toISOString(),
+			search
 		});
 
 	const tableData = React.useMemo(() => {
@@ -100,7 +107,7 @@ export const Transactions = () => {
 	}
 
 	return (
-		<Section title="Transactions">
+		<Section title="Transactions" sectionTools={<TransactionTableFilters />}>
 			<Box maxHeight="400px" overflowX="auto">
 				<TableGetMore
 					hasMore={hasNextPage}
