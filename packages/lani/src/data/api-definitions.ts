@@ -26,3 +26,4 @@ export type TransactionMonths = Components['TransactionMonths'][];
 export type TransactionTotals = Components['TransactionTotals'];
 export type TransactionSummaryRequest = paths['/transaction/summary']['get']['parameters']['query'];
 export type UserResponse = Components['UserResponse'];
+export type TransactionTypes = 'income' | 'expense' | 'transfer' | 'deposit' | 'withdrawal';

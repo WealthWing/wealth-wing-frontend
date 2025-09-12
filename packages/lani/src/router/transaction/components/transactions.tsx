@@ -70,16 +70,26 @@ const columns = [
 
 export const Transactions = () => {
 	const { onRightPanelOpen } = useTransactions();
-	const { watch } = useFormContext<TransactionsFormFields>();
+	const { getValues, watch } = useFormContext<TransactionsFormFields>();
 
 	const [search] = useDebounce(watch('filters.search'), debounceTime);
-
-	const { data, isFetchingNextPage, isError, error, status, fetchNextPage, hasNextPage } =
-		useTransactionsInfiniteQuery({
-			from_date: watch('date.from')?.toISOString(),
-			to_date: watch('date.to')?.toISOString(),
-			search
-		});
+	const { type } = getValues().filters;
+	const {
+		data,
+		isFetchingNextPage,
+		isError,
+		error,
+		status,
+		fetchNextPage,
+		hasNextPage,
+		refetch
+	} = useTransactionsInfiniteQuery({
+		from_date: watch('date.from')?.toISOString(),
+		to_date: watch('date.to')?.toISOString(),
+		search,
+		filter_by_inputs:
+			type && type !== 'all' ? [{ field_name: 'type', values: [type] }] : undefined
+	});
 
 	const tableData = React.useMemo(() => {
 		return data?.pages?.flatMap((page) => page.transactions) ?? [];
@@ -106,8 +116,15 @@ export const Transactions = () => {
 		return <span>Error: {error.message}</span>;
 	}
 
+	const handleSubmitFilters = () => {
+		refetch();
+	};
+
 	return (
-		<Section title="Transactions" sectionTools={<TransactionTableFilters />}>
+		<Section
+			title="Transactions"
+			sectionTools={<TransactionTableFilters onApplyFilters={handleSubmitFilters} />}
+		>
 			<Box maxHeight="400px" overflowX="auto">
 				<TableGetMore
 					hasMore={hasNextPage}

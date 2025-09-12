@@ -4,7 +4,7 @@ import { theme } from '../theme';
 
 export const dropdownPanel = {
 	menu: css`
-		background-color: ${theme.color.cardBackground80};
+		background-color: ${theme.color.cardBackground90};
 		border-radius: ${theme.borderRadius.radiusSmall};
 		box-shadow: ${theme.shadow.default200};
 		display: flex;

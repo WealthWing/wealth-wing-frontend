@@ -1,3 +1,4 @@
+import { TransactionTypes } from 'data/api-definitions';
 import { DateShortcutsKey } from 'router/transaction/components/helpers';
 
 export type TransactionsContextProps = {
@@ -16,5 +17,6 @@ export type TransactionsFormFields = {
 	selectedFilter: string | null;
 	filters: {
 		search: string;
+		type?: TransactionTypes | 'all';
 	};
 };

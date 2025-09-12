@@ -35,10 +35,16 @@ export const transactionQueries = apiBase.injectEndpoints({
 			},
 			query: ({ pageParam, queryArg }) => {
 				const params = { ...pageParam, ...queryArg };
+
 				return {
 					url: '/transaction/all',
 					method: 'GET',
-					params
+					params: {
+						...params,
+						filter_by_inputs: JSON.stringify(
+							queryArg?.filter_by_inputs ? queryArg.filter_by_inputs : []
+						)
+					}
 				};
 			},
 			providesTags: ['ImportCreate']
