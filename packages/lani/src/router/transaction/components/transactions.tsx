@@ -21,8 +21,12 @@ import { TransactionResponse } from 'data/api-definitions';
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useTransactionsInfiniteQuery } from 'redux/transaction-queries';
+import { TransactionTableFilters } from 'router/transaction/components/transaction-table-filters';
 import { useTransactions } from 'router/transaction/components/transactions-provider';
 import { TransactionsFormFields } from 'router/transaction/components/transactions-provider.definitions';
+import { useDebounce } from 'use-debounce';
+
+const debounceTime = 1000;
 
 const columnHelper = createColumnHelper<TransactionResponse>();
 const columns = [
@@ -66,13 +70,26 @@ const columns = [
 
 export const Transactions = () => {
 	const { onRightPanelOpen } = useTransactions();
-	const { watch } = useFormContext<TransactionsFormFields>();
+	const { getValues, watch } = useFormContext<TransactionsFormFields>();
 
-	const { data, isFetchingNextPage, isError, error, status, fetchNextPage, hasNextPage } =
-		useTransactionsInfiniteQuery({
-			from_date: watch('date.from')?.toISOString(),
-			to_date: watch('date.to')?.toISOString()
-		});
+	const [search] = useDebounce(watch('filters.search'), debounceTime);
+	const { type } = getValues().filters;
+	const {
+		data,
+		isFetchingNextPage,
+		isError,
+		error,
+		status,
+		fetchNextPage,
+		hasNextPage,
+		refetch
+	} = useTransactionsInfiniteQuery({
+		from_date: watch('date.from')?.toISOString(),
+		to_date: watch('date.to')?.toISOString(),
+		search,
+		filter_by_inputs:
+			type && type !== 'all' ? [{ field_name: 'type', values: [type] }] : undefined
+	});
 
 	const tableData = React.useMemo(() => {
 		return data?.pages?.flatMap((page) => page.transactions) ?? [];
@@ -99,8 +116,15 @@ export const Transactions = () => {
 		return <span>Error: {error.message}</span>;
 	}
 
+	const handleSubmitFilters = () => {
+		refetch();
+	};
+
 	return (
-		<Section title="Transactions">
+		<Section
+			title="Transactions"
+			sectionTools={<TransactionTableFilters onApplyFilters={handleSubmitFilters} />}
+		>
 			<Box maxHeight="400px" overflowX="auto">
 				<TableGetMore
 					hasMore={hasNextPage}

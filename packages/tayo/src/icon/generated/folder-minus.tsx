@@ -1,0 +1,3 @@
+import { SVGProps } from "react";
+const SvgFolderMinus = (props: SVGProps<SVGSVGElement>) => <svg viewBox="0 0 128 128" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" {...props}><path d="M21.333 20a6.667 6.667 0 0 0-6.666 6.667v74.666A6.666 6.666 0 0 0 21.333 108h85.334a6.665 6.665 0 0 0 6.666-6.667V42.667A6.667 6.667 0 0 0 106.667 36h-48a4 4 0 0 1-3.329-1.781L45.86 20H21.333Zm-10.37-3.704A14.666 14.666 0 0 1 21.332 12H48a4 4 0 0 1 3.328 1.781L60.808 28h45.859a14.669 14.669 0 0 1 14.666 14.667v58.666A14.667 14.667 0 0 1 106.667 116H21.333a14.665 14.665 0 0 1-14.666-14.667V26.667c0-3.89 1.545-7.62 4.295-10.371Z" /><path d="M44 74.667a4 4 0 0 1 4-4h32a4 4 0 0 1 0 8H48a4 4 0 0 1-4-4Z" /></svg>;
+export default SvgFolderMinus;

@@ -12,7 +12,7 @@ const SvgMoneyBill = (props: SVGProps<SVGSVGElement>) => (
 	>
 		<style>
 			{
-				'.money-bill_svg__st0{fill:none;stroke:#000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10}'
+				'.money-bill_svg__st0{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10}'
 			}
 		</style>
 		<path className="money-bill_svg__st0" d="M3 9h26v14H3z" />

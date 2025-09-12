@@ -1,0 +1,3 @@
+import { SVGProps } from "react";
+const SvgFilter = (props: SVGProps<SVGSVGElement>) => <svg viewBox="0 0 128 128" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" {...props}><path d="M7.038 14.316A4 4 0 0 1 10.667 12h106.666a4 4 0 0 1 3.055 6.583L78.667 67.918V112a4.001 4.001 0 0 1-5.79 3.578l-21.332-10.667a4.001 4.001 0 0 1-2.212-3.578V67.918L7.613 18.583a4 4 0 0 1-.575-4.266ZM19.288 20l37.1 43.87a4 4 0 0 1 .945 2.583v32.408l13.334 6.667V66.453a4 4 0 0 1 .945-2.583l37.1-43.87H19.288Z" /></svg>;
+export default SvgFilter;
