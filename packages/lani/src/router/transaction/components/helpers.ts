@@ -57,5 +57,5 @@ export const defaultTransactionFormValues: TransactionsFormFields = {
 		to: dateShortcuts().lastThreeMonths.endDateValue
 	},
 	selectedFilter: '3M',
-	filters: { search: '', type: 'all' }
+	filters: { search: '', type: 'all', sortBy: { label: 'Date', value: 'date' }, sortOrder: 'asc' }
 };

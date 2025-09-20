@@ -73,7 +73,8 @@ export const Transactions = () => {
 	const { getValues, watch } = useFormContext<TransactionsFormFields>();
 
 	const [search] = useDebounce(watch('filters.search'), debounceTime);
-	const { type } = getValues().filters;
+	const { type, sortBy, sortOrder } = getValues().filters;
+
 	const {
 		data,
 		isFetchingNextPage,
@@ -87,6 +88,8 @@ export const Transactions = () => {
 		from_date: watch('date.from')?.toISOString(),
 		to_date: watch('date.to')?.toISOString(),
 		search,
+		sort_by: sortBy?.value,
+		sort_order: sortOrder,
 		filter_by_inputs:
 			type && type !== 'all' ? [{ field_name: 'type', values: [type] }] : undefined
 	});

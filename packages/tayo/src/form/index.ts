@@ -5,3 +5,4 @@ export * from './textarea/textarea';
 export * from './select';
 export * from './date-picker';
 export * from './radio';
+export * from './label/label';
