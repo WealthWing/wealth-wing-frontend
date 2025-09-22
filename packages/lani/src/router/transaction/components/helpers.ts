@@ -30,10 +30,22 @@ export const dateShortcuts = (): DateShortcuts => {
 			startOfMonth(subMonths(today, 1)),
 			endOfMonth(subMonths(today, 1))
 		),
-		lastThreeMonths: createDateShortcut(startOfMonth(subMonths(today, 2)), endOfMonth(today)),
-		lastSixMonths: createDateShortcut(startOfMonth(subMonths(today, 5)), endOfMonth(today)),
-		lastTwelveMonths: createDateShortcut(startOfMonth(subMonths(today, 12)), endOfMonth(today)),
-		thisYear: createDateShortcut(startOfYear(subYears(today, 0)), today),
+		lastThreeMonths: createDateShortcut(
+			startOfMonth(subMonths(today, 3)),
+			endOfMonth(subMonths(today, 1))
+		),
+		lastSixMonths: createDateShortcut(
+			startOfMonth(subMonths(today, 6)),
+			endOfMonth(subMonths(today, 1))
+		),
+		lastTwelveMonths: createDateShortcut(
+			startOfMonth(subMonths(today, 12)),
+			endOfMonth(subMonths(today, 1))
+		),
+		thisYear: createDateShortcut(
+			startOfYear(subYears(today, 0)),
+			endOfMonth(subMonths(today, 1))
+		),
 		lastYear: createDateShortcut(startOfYear(subYears(today, 1)), endOfYear(subYears(today, 1)))
 	};
 };
