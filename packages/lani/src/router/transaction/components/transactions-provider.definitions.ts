@@ -15,8 +15,7 @@ type SortOrder = 'asc' | 'desc';
 export const sortByOptions: { label: string; value: SortBy }[] = [
 	{ label: 'Date', value: 'date' },
 	{ label: 'Amount', value: 'amount' },
-	{ label: 'Title', value: 'title' },
-	{ label: 'Category', value: 'category' }
+	{ label: 'Title', value: 'title' }
 ];
 
 export type TransactionsFormFields = {

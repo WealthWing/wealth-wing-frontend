@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import {
 	createColumnHelper,
 	flexRender,
@@ -68,31 +67,31 @@ const columns = [
 	})
 ];
 
+type Filters = TransactionsFormFields['filters'];
+
 export const Transactions = () => {
 	const { onRightPanelOpen } = useTransactions();
 	const { getValues, watch } = useFormContext<TransactionsFormFields>();
-
 	const [search] = useDebounce(watch('filters.search'), debounceTime);
-	const { type, sortBy, sortOrder } = getValues().filters;
-
-	const {
-		data,
-		isFetchingNextPage,
-		isError,
-		error,
-		status,
-		fetchNextPage,
-		hasNextPage,
-		refetch
-	} = useTransactionsInfiniteQuery({
-		from_date: watch('date.from')?.toISOString(),
-		to_date: watch('date.to')?.toISOString(),
-		search,
-		sort_by: sortBy?.value,
-		sort_order: sortOrder,
-		filter_by_inputs:
-			type && type !== 'all' ? [{ field_name: 'type', values: [type] }] : undefined
+	const [filters, setFilters] = React.useState<Filters>({
+		search: '',
+		type: 'all',
+		sortBy: { label: 'Date', value: 'date' },
+		sortOrder: 'asc'
 	});
+
+	const { data, isFetchingNextPage, isError, error, status, fetchNextPage, hasNextPage } =
+		useTransactionsInfiniteQuery({
+			from_date: watch('date.from')?.toISOString(),
+			to_date: watch('date.to')?.toISOString(),
+			search,
+			sort_by: filters.sortBy?.value,
+			sort_order: filters.sortOrder,
+			filter_by_inputs:
+				filters.type && filters.type !== 'all'
+					? [{ field_name: 'type', values: [filters.type] }]
+					: undefined
+		});
 
 	const tableData = React.useMemo(() => {
 		return data?.pages?.flatMap((page) => page.transactions) ?? [];
@@ -120,7 +119,14 @@ export const Transactions = () => {
 	}
 
 	const handleSubmitFilters = () => {
-		refetch();
+		const values = getValues();
+		const newFilters = {
+			search: values.filters.search,
+			type: values.filters.type,
+			sortBy: values.filters.sortBy,
+			sortOrder: values.filters.sortOrder
+		};
+		setFilters(newFilters);
 	};
 
 	return (
