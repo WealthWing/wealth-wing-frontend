@@ -6,7 +6,7 @@ type ContentAreaProps = {
 };
 
 export const ContentArea = ({ children }: ContentAreaProps) => (
-	<div css={contentArea.area}>{children}</div>
+	<section css={contentArea.area}>{children}</section>
 );
 
 export type ContentScrollProps = {

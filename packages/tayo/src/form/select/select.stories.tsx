@@ -16,32 +16,6 @@ const flavourOptions: readonly OptionType[] = [
 	{ value: 'salted-caramel', label: 'Salted Caramel' }
 ];
 
-/* const colourOptions: readonly OptionType[] = [
-	{ value: 'ocean', label: 'Ocean' },
-	{ value: 'blue', label: 'Blue', isDisabled: true },
-	{ value: 'purple', label: 'Purple' },
-	{ value: 'red', label: 'Red' },
-	{ value: 'orange', label: 'Orange' },
-	{ value: 'yellow', label: 'Yellow' },
-	{ value: 'green', label: 'Green' },
-	{ value: 'forest', label: 'Forest' },
-	{ value: 'slate', label: 'Slate' },
-	{ value: 'silver', label: 'Silver' }
-]; */
-
-/* const groupedOptions: readonly GroupedOptionType[] = [
-	{
-		label: 'Colours',
-		options: colourOptions,
-		amount: 10
-	},
-	{
-		label: 'Flavours',
-		options: flavourOptions,
-		amount: 4
-	}
-]; */
-
 const StoryComponentSingle = (args: SelectProps<FormValues>) => {
 	const form = useForm<FormValues>();
 	// eslint-disable-next-line no-console

@@ -1,4 +1,4 @@
-import { TransactionTypes } from 'data/api-definitions';
+import { TransactionRequest, TransactionTypes } from 'data/api-definitions';
 import { DateShortcutsKey } from 'router/transaction/components/helpers';
 
 export type TransactionsContextProps = {
@@ -9,6 +9,15 @@ export type TransactionsContextProps = {
 	onFilterSelect: (shortCut: DateShortcutsKey, selectedFilter: string) => void;
 };
 
+type SortBy = NonNullable<NonNullable<TransactionRequest>['sort_by']>;
+type SortOrder = 'asc' | 'desc';
+
+export const sortByOptions: { label: string; value: SortBy }[] = [
+	{ label: 'Date', value: 'date' },
+	{ label: 'Amount', value: 'amount' },
+	{ label: 'Title', value: 'title' }
+];
+
 export type TransactionsFormFields = {
 	date: {
 		from: Date | null;
@@ -18,5 +27,7 @@ export type TransactionsFormFields = {
 	filters: {
 		search: string;
 		type?: TransactionTypes | 'all';
+		sortBy?: { label: string; value: SortBy };
+		sortOrder?: SortOrder;
 	};
 };

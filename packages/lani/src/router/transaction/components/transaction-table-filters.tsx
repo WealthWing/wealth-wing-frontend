@@ -4,14 +4,18 @@ import {
 	DropdownPanel,
 	Flex,
 	FormControl,
-	Heading,
 	IconButton,
 	Input,
-	Radio
+	Radio,
+	Select,
+	Text
 } from '@wealth-wing/tayo';
 import { useFormContext } from 'react-hook-form';
 import { fieldsetContainer } from 'router/transaction/components/transaction-table-filters.style';
-import { TransactionsFormFields } from 'router/transaction/components/transactions-provider.definitions';
+import {
+	sortByOptions,
+	TransactionsFormFields
+} from 'router/transaction/components/transactions-provider.definitions';
 
 type FilterProps = {
 	onApplyFilters: () => void;
@@ -40,31 +44,36 @@ export const TransactionTableFilters = ({ onApplyFilters }: FilterProps) => {
 				<IconButton format="outline" variant="tertiary" label="filters" iconName="filter" />
 				<DropdownPanel>
 					<Flex direction="column" gap="s16">
+						<Select<TransactionsFormFields>
+							name="filters.sortBy"
+							label="Sort By"
+							options={sortByOptions}
+						/>
 						<fieldset css={fieldsetContainer}>
 							<legend>
-								<Heading tag="h6" font="h6">
-									Sort
-								</Heading>
+								<Text font="sm" color="textSecondary">
+									Sort Order
+								</Text>
 							</legend>
 							<Flex direction="row" alignItems="center" gap="s12">
 								<Radio
 									label="Ascending"
-									{...register('filters.type')}
+									{...register('filters.sortOrder')}
 									value="asc"
 								/>
 								<Radio
 									label="Descending"
-									{...register('filters.type')}
+									{...register('filters.sortOrder')}
 									value="desc"
 								/>
-								<Radio label="All" {...register('filters.type')} value="all" />
 							</Flex>
 						</fieldset>
+
 						<fieldset css={fieldsetContainer}>
 							<legend>
-								<Heading tag="h6" font="h6">
+								<Text font="sm" color="textSecondary">
 									Transaction Type
-								</Heading>
+								</Text>
 							</legend>
 							<Flex direction="row" alignItems="center" gap="s12">
 								<Radio
