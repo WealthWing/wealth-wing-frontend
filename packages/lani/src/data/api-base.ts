@@ -18,6 +18,13 @@ export const apiBase = createApi({
 			return headers;
 		}
 	}),
-	tagTypes: ['ScopeResponse', 'ExpenseResponse', 'JobResponse', 'AddAccount', 'ImportCreate'],
+	tagTypes: [
+		'ScopeResponse',
+		'ExpenseResponse',
+		'JobResponse',
+		'AddAccount',
+		'ImportCreate',
+		'SubscriptionList'
+	],
 	endpoints: () => ({})
 });
