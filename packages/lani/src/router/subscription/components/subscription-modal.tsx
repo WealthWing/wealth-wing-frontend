@@ -2,6 +2,11 @@ import { Button, Form, Modal, ModalBody, ModalFooter, ModalHeader } from '@wealt
 import { SubscriptionRequest, SubscriptionResponse } from 'data/api-definitions';
 import * as React from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import {
+	mapFormToRequest,
+	SubscriptionFormValues,
+	toFormDefaults
+} from 'router/subscription/components/subscription-form.utils';
 import { SubscriptionInput } from 'router/subscription/components/subscription-input';
 
 type SubscriptionModalProps = {
@@ -19,29 +24,27 @@ export const SubscriptionModal = ({
 	initialData,
 	isLoading = false
 }: SubscriptionModalProps) => {
-	const form = useForm<SubscriptionRequest>({
-		defaultValues: {
-			name: initialData?.name || '',
-			amount: initialData?.amount || 0,
-			billing_frequency: initialData?.billing_frequency || '',
-			category_id: initialData?.category_id || null,
-			start_date: initialData?.start_date || '',
-			end_date: initialData?.end_date || null,
-			auto_renew: initialData?.auto_renew !== false
-		}
+	const form = useForm<SubscriptionFormValues>({
+		defaultValues: toFormDefaults(initialData)
 	});
 
-	const { control, handleSubmit, reset } = form;
+	const { handleSubmit, reset } = form;
 
 	React.useEffect(() => {
 		if (!isOpen) {
-			reset();
+			reset(toFormDefaults());
 		}
 	}, [isOpen, reset]);
 
-	const onModalSubmit: SubmitHandler<SubscriptionRequest> = async (data) => {
+	React.useEffect(() => {
+		if (isOpen && initialData) {
+			reset(toFormDefaults(initialData));
+		}
+	}, [initialData, isOpen, reset]);
+
+	const onModalSubmit: SubmitHandler<SubscriptionFormValues> = async (data) => {
 		try {
-			await onSubmit(data);
+			await onSubmit(mapFormToRequest(data));
 			// Only close and reset on successful submission
 			reset();
 			onClose();
@@ -51,12 +54,12 @@ export const SubscriptionModal = ({
 	};
 
 	return (
-		<Modal isOpen={isOpen} onClose={onClose} variant="floatingsmall">
+		<Modal isOpen={isOpen} onClose={onClose} variant="floatinglarge">
 			<ModalHeader title={initialData ? 'Edit Subscription' : 'Add Subscription'} />
 			<ModalBody>
 				<FormProvider {...form}>
 					<Form onSubmit={handleSubmit(onModalSubmit)} id="subscription-modal">
-						<SubscriptionInput control={control} />
+						<SubscriptionInput />
 					</Form>
 				</FormProvider>
 			</ModalBody>

@@ -17,7 +17,7 @@ export const {
 	endpoints: (builder) => ({
 		getSubscriptions: builder.query<SubscriptionResponse[], void>({
 			query: () => ({
-				url: '/subscription/summary',
+				url: '/subscription/all',
 				method: 'GET'
 			}),
 			providesTags: ['SubscriptionList']

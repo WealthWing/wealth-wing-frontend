@@ -1,4 +1,5 @@
-import { Button, Heading } from '@wealth-wing/tayo';
+import { Box, Button, Heading } from '@wealth-wing/tayo';
+import { formatUtcDateTime } from '@wealth-wing/utils';
 import { HeadingContainer } from 'components/heading-container';
 import { NoFound } from 'components/no-found';
 import { Section } from 'components/section';
@@ -21,11 +22,17 @@ export const SubscriptionsPage = () => {
 
 	return (
 		<>
-			<HeadingContainer>
+			<HeadingContainer
+				css={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+			>
 				<Heading tag="h1">Subscriptions</Heading>
+				<Box padding="s20" backgroundColor="cardBackground60" borderRadius="radiusXLarge">
+					{formatUtcDateTime(new Date().toISOString(), { dateFormat: 'month-day-year' })}
+				</Box>
 			</HeadingContainer>
 			<Section
-				title="Active Subscriptions"
+				title="Get started with subscriptions"
+				subTitle="View, progress and manage subscription efficiently"
 				sectionTools={
 					<Button
 						variant="tertiary"

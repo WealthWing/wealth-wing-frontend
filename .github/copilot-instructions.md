@@ -243,3 +243,6 @@ Netlify deployment via `lani-deploy.sh` script – configures output dir and rou
 11. **Make sure to use versions**: from the packages json files to avoid version conflicts.
 12. **CamelCase for variable and function names**: Follow JavaScript conventions for naming variables and functions to ensure consistency.
 13. **For managing state if it is getting larger use use createProvider tayo/src/provider/create-provider.tsx**: This will help to manage the state in a better way and avoid prop drilling.
+14. **Always check for existing components**: Before creating a new component, check if there is an existing one in the `tayo` package that can be reused or extended.
+    example: If you need a button, check if there is already a `Select` component in `tayo` that you can use instead of creating a new one from scratch.
+15. **Use the existing API hooks**: If you need to fetch data, check if there is already an RTK Query hook available in `lani/src/data/api.ts` that you can use instead of creating a new one.
