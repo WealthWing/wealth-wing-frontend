@@ -1,32 +1,23 @@
-import { SubscriptionResponse } from 'data/api-definitions';
 import { SubscriptionCard } from 'router/subscription/components/subscription-card';
 import { subscriptionCard } from 'router/subscription/components/subscription-card.styles';
+import { SubscriptionListItem } from 'router/subscription/subscriptions-page.data';
 
 type SubscriptionsListProps = {
-	subscriptions: SubscriptionResponse[];
-	isLoading: boolean;
-	onUpdateModalOpen: (id: string) => void;
-	onDeleteClick: (id: string) => void;
+	items: SubscriptionListItem[];
+	selectedId?: string;
+	onSelect: (id: string) => void;
 };
 
-export const SubscriptionsList = ({
-	subscriptions,
-	isLoading,
-	onUpdateModalOpen,
-	onDeleteClick
-}: SubscriptionsListProps) => {
-	if (isLoading) {
-		return <div>LOADING ...</div>;
-	}
-
+export const SubscriptionsList = ({ items, selectedId, onSelect }: SubscriptionsListProps) => {
 	return (
 		<ul css={subscriptionCard.container}>
-			{subscriptions.map((subscription) => (
+			{items.map((item) => (
 				<SubscriptionCard
-					key={subscription.uuid}
-					subscriptionDetails={subscription}
-					onUpdateModalOpen={onUpdateModalOpen}
-					onDeleteClick={onDeleteClick}
+					key={item.id}
+					item={item}
+					isSelected={selectedId === item.id}
+					isEnded={item.status === 'ended'}
+					onSelect={onSelect}
 				/>
 			))}
 		</ul>

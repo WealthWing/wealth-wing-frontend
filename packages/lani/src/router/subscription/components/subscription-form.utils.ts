@@ -1,5 +1,5 @@
 import { OptionType } from '@wealth-wing/tayo';
-import { convertToCents, formatUSD } from '@wealth-wing/utils';
+import { convertToCents } from '@wealth-wing/utils';
 import { SubscriptionRequest, SubscriptionResponse } from 'data/api-definitions';
 
 export const billingFrequencyOptions: OptionType[] = [
