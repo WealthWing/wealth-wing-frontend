@@ -17,6 +17,7 @@ import { AccountCard } from 'router/account/components/account-card';
 import { accountCard } from 'router/account/components/account-card.styles';
 import { AccountImports } from 'router/account/components/account-imports';
 import { AccountFormModal } from 'router/account/components/account-modal';
+import { SubscriptionCandidatesTable } from 'router/account/components/subscription-candidates-table';
 import { useCreateAccount } from 'router/account/hooks/use-create-account';
 import { useUpdateAccount } from 'router/account/hooks/use-update-account';
 import { ImportModal } from 'router/import/components/import-modal';
@@ -32,19 +33,19 @@ export const AccountPage = () => {
 		handleClose: onImportClose,
 		handleOpen: onImportOpen
 	} = useDisclosureControl({ onClose: () => setDefaultAccountId(null) });
-	const { data: subscriptionCandidatesData } = useSubscriptionCandidatesQuery();
+	const { data: subscriptionCandidatesData, isLoading: isLoadingCandidates } =
+		useSubscriptionCandidatesQuery();
 
 	const { data, isLoading, isFetching } = useGetAcccountsQuery();
 
 	const isLoadingOrfetchingAccounts = isLoading || isFetching;
 
 	const isEmpty = !isLoadingOrfetchingAccounts && data?.length === 0;
-
 	const handleOpenImportModal = (accountId: string) => {
 		onImportOpen();
 		setDefaultAccountId(accountId);
 	};
-	console.log(subscriptionCandidatesData, 'subscriptionCandidatesData');
+
 	return (
 		<>
 			<HeadingContainer>
@@ -113,9 +114,10 @@ export const AccountPage = () => {
 							title="Subscription Candidates"
 							subTitle="Automatically identified recurring patterns. Click to confirm, create a subscription, or associate with an existing one."
 						>
-							<Flex direction="column" gap="s8">
-								{subscriptionCandidatesData?.map((c) => c.title)}
-							</Flex>
+							<SubscriptionCandidatesTable
+								data={subscriptionCandidatesData}
+								isLoading={isLoadingCandidates}
+							/>
 						</Section>
 					</Grid>
 				</Flex>

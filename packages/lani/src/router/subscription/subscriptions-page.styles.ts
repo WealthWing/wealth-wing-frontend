@@ -7,7 +7,7 @@ export const subscriptionsPageStyles = {
 		display: grid;
 		gap: ${theme.space.s16};
 		grid-template-areas: 'sidebar center details';
-		grid-template-columns: 280px minmax(0, 1fr) 420px;
+		grid-template-columns: 280px minmax(0, 1fr) 380px;
 		grid-template-rows: 1fr;
 		height: calc(100% - ${headerHeight});
 		min-height: 0;
