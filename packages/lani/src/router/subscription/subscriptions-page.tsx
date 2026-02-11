@@ -63,32 +63,35 @@ export const SubscriptionsPage = () => {
 				</Box>
 			</HeadingContainer>
 
-			<div css={subscriptionsPageStyles.layout}>
-				<aside css={subscriptionsPageStyles.sidebar}>
-					<div css={subscriptionsPageStyles.sidebarHeader}>
-						<Heading tag="h2" font="h5">
-							Subscriptions
-						</Heading>
-					</div>
-					<div css={subscriptionsPageStyles.sidebarList}>
-						<SubscriptionsList
-							items={filteredSubscriptions ?? []}
-							selectedId={selectedId}
-							onSelect={setSelectedId}
-							isLoading={isLoading}
-							onEditOpen={onUpdateModalOpen}
-						/>
-						<Button
-							variant="tertiary"
-							format="text"
-							size="small"
-							onClick={onCreateModalOpen}
-						>
-							Add New Subscription +
-						</Button>
-					</div>
-				</aside>
+		<div css={subscriptionsPageStyles.layout}>
+			{/* ── Left column: sidebar ─────────────────────────── */}
+			<aside css={subscriptionsPageStyles.sidebar}>
+				<div css={subscriptionsPageStyles.sidebarHeader}>
+					<Heading tag="h2" font="h5">
+						Subscriptions
+					</Heading>
+				</div>
+				<div css={subscriptionsPageStyles.sidebarList}>
+					<SubscriptionsList
+						items={filteredSubscriptions ?? []}
+						selectedId={selectedId}
+						onSelect={setSelectedId}
+						isLoading={isLoading}
+						onEditOpen={onUpdateModalOpen}
+					/>
+					<Button
+						variant="tertiary"
+						format="text"
+						size="small"
+						onClick={onCreateModalOpen}
+					>
+						Add New Subscription +
+					</Button>
+				</div>
+			</aside>
 
+			{/* ── Middle column: sticky filters + scrollable transactions ── */}
+			<div css={subscriptionsPageStyles.center}>
 				<SubscriptionSummary
 					items={filteredSubscriptions ?? []}
 					activeFilter={statusFilter}
@@ -96,21 +99,21 @@ export const SubscriptionsPage = () => {
 					summaryData={subscriptionSummaryData}
 				/>
 
-				<div css={subscriptionsPageStyles.details}>
-					<Heading tag="h2" font="h5">
-						Details
-					</Heading>
-					<SubscriptionDetails summaryData={subscriptionSummaryData} />
-				</div>
-
-				<div css={subscriptionsPageStyles.table}>
+				<div css={subscriptionsPageStyles.content}>
 					<Section title="All Transactions">
 						<SubscriptionTransactions selectedId={selectedId} />
 					</Section>
 				</div>
 			</div>
 
-			<SubscriptionModal
+			{/* ── Right column: sticky details ─────────────────── */}
+			<div css={subscriptionsPageStyles.details}>
+				<Heading tag="h2" font="h5">
+					Details
+				</Heading>
+				<SubscriptionDetails summaryData={subscriptionSummaryData} />
+			</div>
+		</div>			<SubscriptionModal
 				isOpen={isCreateModalOpen}
 				onClose={onCreateModalClose}
 				onSubmit={onCreateSubmit}

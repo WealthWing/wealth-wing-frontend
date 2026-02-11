@@ -25,57 +25,62 @@ export const SubscriptionSummary = ({
 	const annualTotal = activeMonthlyTotal * 12;
 
 	return (
-		<Grid gap="s20" gridTemplateColumns="1fr">
-			<Grid gap="s20" gridTemplateColumns="1fr 1fr">
-				<button
-					css={[
-						subscriptionsPageStyles.summaryTile,
-						subscriptionsPageStyles.summaryTileButton,
-						activeFilter === 'active' && subscriptionsPageStyles.summaryTileActive
-					]}
-					onClick={() => onFilterChange('active')}
-					aria-pressed={activeFilter === 'active'}
-				>
-					<Flex direction="column" alignItems="flex-start" gap="s4">
-						<Icon
-							name={activeFilter === 'active' ? 'check-square' : 'square'}
-							size="s40"
-							color="green100"
-						/>
+		<>
+			{/* ── Sticky filter buttons ────────────────────────── */}
+			<div css={subscriptionsPageStyles.filters}>
+				<Grid gap="s12" gridTemplateColumns="1fr 1fr">
+					<button
+						css={[
+							subscriptionsPageStyles.summaryTile,
+							subscriptionsPageStyles.summaryTileButton,
+							activeFilter === 'active' && subscriptionsPageStyles.summaryTileActive
+						]}
+						onClick={() => onFilterChange('active')}
+						aria-pressed={activeFilter === 'active'}
+					>
+						<Flex direction="column" alignItems="flex-start" gap="s4">
+							<Icon
+								name={activeFilter === 'active' ? 'check-square' : 'square'}
+								size="s40"
+								color="green100"
+							/>
+							<Text font="sm" color="textSecondary">
+								Active Subscriptions
+							</Text>
+						</Flex>
+						<Heading tag="h3" font="h2">
+							{summaryData?.total_active_subscriptions_count}
+						</Heading>
+					</button>
 
-						<Text font="sm" color="textSecondary">
-							Active Subscriptions
-						</Text>
-					</Flex>
-					<Heading tag="h3" font="h2">
-						{summaryData?.total_active_subscriptions_count}
-					</Heading>
-				</button>
-				<button
-					css={[
-						subscriptionsPageStyles.summaryTile,
-						subscriptionsPageStyles.summaryTileButton,
-						activeFilter === 'cancelled' && subscriptionsPageStyles.summaryTileActive
-					]}
-					onClick={() => onFilterChange('cancelled')}
-					aria-pressed={activeFilter === 'cancelled'}
-				>
-					<Flex direction="column" alignItems="flex-start" gap="s4">
-						<Icon
-							name={activeFilter === 'cancelled' ? 'check-square' : 'square'}
-							size="s40"
-							color="red100"
-						/>
-						<Text font="sm" color="textSecondary">
-							Ended Subscriptions
-						</Text>
-					</Flex>
+					<button
+						css={[
+							subscriptionsPageStyles.summaryTile,
+							subscriptionsPageStyles.summaryTileButton,
+							activeFilter === 'cancelled' &&
+								subscriptionsPageStyles.summaryTileActive
+						]}
+						onClick={() => onFilterChange('cancelled')}
+						aria-pressed={activeFilter === 'cancelled'}
+					>
+						<Flex direction="column" alignItems="flex-start" gap="s4">
+							<Icon
+								name={activeFilter === 'cancelled' ? 'check-square' : 'square'}
+								size="s40"
+								color="red100"
+							/>
+							<Text font="sm" color="textSecondary">
+								Ended Subscriptions
+							</Text>
+						</Flex>
+						<Heading tag="h3" font="h2">
+							{summaryData?.total_inactive_subscriptions_count}
+						</Heading>
+					</button>
+				</Grid>
+			</div>
 
-					<Heading tag="h3" font="h2">
-						{summaryData?.total_inactive_subscriptions_count}
-					</Heading>
-				</button>
-			</Grid>
+			{/* ── Subscription cost overview (scrolls with content) ── */}
 			<Section title="Subscription Details" subTitle="Overview of your subscription costs">
 				<Grid gap="s20" gridTemplateColumns="1fr 1fr">
 					<Box css={subscriptionsPageStyles.summaryTile}>
@@ -113,6 +118,7 @@ export const SubscriptionSummary = ({
 							Annual Cost (This Year)
 						</Text>
 					</Box>
+
 					<Box css={subscriptionsPageStyles.summaryTile}>
 						<Flex direction="row" justifyContent="space-between" alignItems="center">
 							<Icon name="money-bill" size="s24" />
@@ -126,6 +132,6 @@ export const SubscriptionSummary = ({
 					</Box>
 				</Grid>
 			</Section>
-		</Grid>
+		</>
 	);
 };
