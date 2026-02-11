@@ -119,5 +119,22 @@ export const subscriptionsPageStyles = {
 	`,
 	summaryTileActive: css`
 		border-color: ${theme.color.primary60};
+	`,
+	detailTile: css`
+		align-items: center;
+		aspect-ratio: 1;
+		background-color: ${theme.color.cardBackground80};
+		border: 1px solid transparent;
+		border-radius: ${theme.borderRadius.radiusMedium};
+		box-shadow: ${theme.shadow.default100};
+		display: flex;
+		flex-direction: column;
+		gap: ${theme.space.s8};
+		justify-content: center;
+		max-width: 150px;
+		padding: ${theme.space.s12};
+		text-align: center;
+		transition: border-color 0.2s ease, transform 0.2s ease;
+		width: 100%;
 	`
 };
