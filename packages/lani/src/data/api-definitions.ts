@@ -33,3 +33,4 @@ export type SubscriptionRequest = Components['SubscriptionCreate'];
 export type SubscriptionUpdateRequest = Components['SubscriptionCreate'];
 export type SubscriptionTransactionsAllResponse = Components['TransactionsAllResponse'];
 export type SubscriptionSummaryResponse = Components['SubscriptionSummaryResponse'];
+export type SubscriptionCandidateResponse = Components['SubscriptionCandidateResponse'];

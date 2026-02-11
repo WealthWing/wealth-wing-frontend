@@ -67,6 +67,7 @@ export function formatTimestamp(timestamp: number, options?: TimestampOptions) {
 }
 
 export function formatUtcDateTime(date: string, options?: TimestampOptions) {
+	if (!date) return '-';
 	const { timeZone } = Intl.DateTimeFormat().resolvedOptions();
 	const dateFormat = dateFormats[options?.dateFormat ?? 'month-day'];
 

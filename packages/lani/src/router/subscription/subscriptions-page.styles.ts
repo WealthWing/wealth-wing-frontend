@@ -6,15 +6,14 @@ export const subscriptionsPageStyles = {
 	layout: css`
 		display: grid;
 		gap: ${theme.space.s16};
-		grid-template-areas:
-			'sidebar summary details'
-			'sidebar table table';
-		grid-template-columns: 280px minmax(0, 1fr) 420px;
-		grid-template-rows: auto 1fr;
+		grid-template-areas: 'sidebar center details';
+		grid-template-columns: 280px minmax(0, 1fr) 380px;
+		grid-template-rows: 1fr;
 		height: calc(100% - ${headerHeight});
 		min-height: 0;
-		overflow: auto;
 	`,
+
+	/* ── Left column: sidebar (unchanged) ────────────────────────── */
 	sidebar: css`
 		background-color: ${theme.color.cardBackground100};
 		border-radius: ${theme.borderRadius.radiusDefault};
@@ -24,6 +23,7 @@ export const subscriptionsPageStyles = {
 		gap: ${theme.space.s12};
 		grid-area: sidebar;
 		min-height: 0;
+		overflow-y: auto;
 		padding: ${theme.space.s16};
 		position: sticky;
 		top: 0;
@@ -42,13 +42,54 @@ export const subscriptionsPageStyles = {
 		gap: ${theme.space.s12};
 		min-height: 0;
 	`,
-	summary: css`
+
+	/* ── Middle column: filters (sticky) + scrollable content ───── */
+	center: css`
+		display: flex;
+		flex-direction: column;
+		gap: ${theme.space.s16};
+		grid-area: center;
+		min-height: 0;
+		overflow-y: auto;
+	`,
+	filters: css`
 		background-color: ${theme.color.cardBackground100};
 		border-radius: ${theme.borderRadius.radiusDefault};
 		box-shadow: ${theme.shadow.default200};
-		grid-area: summary;
 		padding: ${theme.space.s16};
+		position: sticky;
+		top: 0;
+		z-index: 2;
 	`,
+	content: css`
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		min-height: 0;
+	`,
+
+	/* ── Right column: details (sticky, full-height, scrollable) ── */
+	details: css`
+		align-self: start;
+		background-color: ${theme.color.cardBackground100};
+		border-radius: ${theme.borderRadius.radiusDefault};
+		box-shadow: ${theme.shadow.default200};
+		grid-area: details;
+		max-height: calc(100dvh - ${headerHeight} - ${theme.space.s32});
+		min-height: 0;
+		overflow-y: auto;
+		padding: ${theme.space.s16};
+		position: sticky;
+		top: 0;
+		z-index: 1;
+	`,
+	detailsBody: css`
+		display: flex;
+		flex-direction: column;
+		gap: ${theme.space.s12};
+	`,
+
+	/* ── Shared tile styles (used by SubscriptionSummary) ───────── */
 	summaryGrid: css`
 		display: grid;
 		gap: ${theme.space.s12};
@@ -79,21 +120,21 @@ export const subscriptionsPageStyles = {
 	summaryTileActive: css`
 		border-color: ${theme.color.primary60};
 	`,
-	table: css`
-		grid-area: table;
-		min-height: 0;
-	`,
-	details: css`
-		background-color: ${theme.color.cardBackground100};
-		border-radius: ${theme.borderRadius.radiusDefault};
-		box-shadow: ${theme.shadow.default200};
-		grid-area: details;
-		min-height: 0;
-		padding: ${theme.space.s16};
-	`,
-	detailsBody: css`
+	detailTile: css`
+		align-items: center;
+		aspect-ratio: 1;
+		background-color: ${theme.color.cardBackground80};
+		border: 1px solid transparent;
+		border-radius: ${theme.borderRadius.radiusMedium};
+		box-shadow: ${theme.shadow.default100};
 		display: flex;
 		flex-direction: column;
-		gap: ${theme.space.s12};
+		gap: ${theme.space.s8};
+		justify-content: center;
+		max-width: 150px;
+		padding: ${theme.space.s12};
+		text-align: center;
+		transition: border-color 0.2s ease, transform 0.2s ease;
+		width: 100%;
 	`
 };

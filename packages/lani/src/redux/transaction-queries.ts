@@ -1,5 +1,6 @@
 import { apiBase } from 'data/api-base';
 import {
+	SubscriptionCandidateResponse,
 	TransactionAllResponse,
 	TransactionRequest,
 	TransactionSummaryRequest,
@@ -49,6 +50,13 @@ export const transactionQueries = apiBase.injectEndpoints({
 			},
 			providesTags: ['ImportCreate']
 		}),
+		subscriptionCandidates: builder.query<SubscriptionCandidateResponse[], void>({
+			query: () => ({
+				url: 'transaction/subscription-candidates',
+				method: 'GET'
+			}),
+			providesTags: ['ImportCreate']
+		}),
 		transactionsSummary: builder.query<TransactionSummaryResponse, TransactionSummaryRequest>({
 			query: (pageParam) => ({
 				url: 'transaction/summary',
@@ -63,5 +71,7 @@ export const transactionQueries = apiBase.injectEndpoints({
 export const {
 	useTransactionsInfiniteQuery,
 	useTransactionsSummaryQuery,
-	useLazyTransactionsSummaryQuery
+	useLazyTransactionsSummaryQuery,
+	useSubscriptionCandidatesQuery,
+	useLazySubscriptionCandidatesQuery
 } = transactionQueries;

@@ -62,8 +62,8 @@ export const SubscriptionsPage = () => {
 					{formatUtcDateTime(new Date().toISOString(), { dateFormat: 'month-day-year' })}
 				</Box>
 			</HeadingContainer>
-
 			<div css={subscriptionsPageStyles.layout}>
+				{/* ── Left column: sidebar ─────────────────────────── */}
 				<aside css={subscriptionsPageStyles.sidebar}>
 					<div css={subscriptionsPageStyles.sidebarHeader}>
 						<Heading tag="h2" font="h5">
@@ -89,27 +89,30 @@ export const SubscriptionsPage = () => {
 					</div>
 				</aside>
 
-				<SubscriptionSummary
-					items={filteredSubscriptions ?? []}
-					activeFilter={statusFilter}
-					onFilterChange={setStatusFilter}
-					summaryData={subscriptionSummaryData}
-				/>
+				{/* ── Middle column: sticky filters + scrollable transactions ── */}
+				<div css={subscriptionsPageStyles.center}>
+					<SubscriptionSummary
+						activeFilter={statusFilter}
+						onFilterChange={setStatusFilter}
+						summaryData={subscriptionSummaryData}
+						selectedSubscription={selectedSubscription}
+					/>
 
+					<div css={subscriptionsPageStyles.content}>
+						<Section title="All Transactions">
+							<SubscriptionTransactions selectedId={selectedId} />
+						</Section>
+					</div>
+				</div>
+
+				{/* ── Right column: sticky details ─────────────────── */}
 				<div css={subscriptionsPageStyles.details}>
 					<Heading tag="h2" font="h5">
 						Details
 					</Heading>
 					<SubscriptionDetails summaryData={subscriptionSummaryData} />
 				</div>
-
-				<div css={subscriptionsPageStyles.table}>
-					<Section title="All Transactions">
-						<SubscriptionTransactions selectedId={selectedId} />
-					</Section>
-				</div>
 			</div>
-
 			<SubscriptionModal
 				isOpen={isCreateModalOpen}
 				onClose={onCreateModalClose}
