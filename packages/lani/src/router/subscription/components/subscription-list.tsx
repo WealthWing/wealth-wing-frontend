@@ -1,21 +1,38 @@
+import { SkeletonLoaderContainer, SkeletonTextLoader } from '@wealth-wing/tayo';
+import { SubscriptionResponse } from 'data/api-definitions';
 import { SubscriptionCard } from 'router/subscription/components/subscription-card';
 import { subscriptionCard } from 'router/subscription/components/subscription-card.styles';
-import { SubscriptionListItem } from 'router/subscription/subscriptions-page.data';
 
 type SubscriptionsListProps = {
-	items: SubscriptionListItem[];
+	items: SubscriptionResponse[];
 	selectedId?: string;
 	onSelect: (id: string) => void;
+	isLoading?: boolean;
 };
 
-export const SubscriptionsList = ({ items, selectedId, onSelect }: SubscriptionsListProps) => {
+export const SubscriptionsList = ({
+	items,
+	selectedId,
+	onSelect,
+	isLoading
+}: SubscriptionsListProps) => {
+	if (isLoading) {
+		return (
+			<SkeletonLoaderContainer
+				size={5}
+				gap="s8"
+				renderComponent={(key) => <SkeletonTextLoader key={key} variant="h2" />}
+			/>
+		);
+	}
+
 	return (
 		<ul css={subscriptionCard.container}>
 			{items.map((item) => (
 				<SubscriptionCard
-					key={item.id}
+					key={item.uuid}
 					item={item}
-					isSelected={selectedId === item.id}
+					isSelected={selectedId === item.uuid}
 					isEnded={item.status === 'ended'}
 					onSelect={onSelect}
 				/>

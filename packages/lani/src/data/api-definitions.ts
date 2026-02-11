@@ -31,3 +31,5 @@ export type TransactionTypes = 'income' | 'expense' | 'transfer' | 'deposit' | '
 export type SubscriptionResponse = Components['SubscriptionResponse'];
 export type SubscriptionRequest = Components['SubscriptionCreate'];
 export type SubscriptionUpdateRequest = Components['SubscriptionCreate'];
+export type SubscriptionTransactionsAllResponse = Components['TransactionsAllResponse'];
+export type SubscriptionSummaryResponse = Components['SubscriptionSummaryResponse'];

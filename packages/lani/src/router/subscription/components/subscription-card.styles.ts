@@ -24,6 +24,7 @@ export const subscriptionCard = {
 		gap: ${theme.space.s10};
 		list-style: none;
 		margin: 0;
+		overflow: auto;
 		padding: 0;
 	`,
 	cardButton: css`

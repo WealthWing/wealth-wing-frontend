@@ -73,7 +73,7 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
-	'/subscription/summary': {
+	'/subscription/all': {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -81,7 +81,7 @@ export interface paths {
 			cookie?: never;
 		};
 		/** Get User Subscriptions */
-		get: operations['get_user_subscriptions_subscription_summary_get'];
+		get: operations['get_user_subscriptions_subscription_all_get'];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -107,6 +107,23 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
+	'/subscription/{subscription_id}/transactions': {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Get Subscription Transactions */
+		get: operations['get_subscription_transactions_subscription__subscription_id__transactions_get'];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
 	'/subscription/delete/{subscription_id}': {
 		parameters: {
 			query?: never;
@@ -119,6 +136,23 @@ export interface paths {
 		post?: never;
 		/** Delete Subscription */
 		delete: operations['delete_subscription_subscription_delete__subscription_id__delete'];
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	'/subscription/summary': {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Get Subscription Summary */
+		get: operations['get_subscription_summary_subscription_summary_get'];
+		put?: never;
+		post?: never;
+		delete?: never;
 		options?: never;
 		head?: never;
 		patch?: never;
@@ -260,6 +294,23 @@ export interface paths {
 		patch?: never;
 		trace?: never;
 	};
+	'/transaction/': {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Get Transactions */
+		get: operations['get_transactions_transaction__get'];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
 	'/transaction/summary': {
 		parameters: {
 			query?: never;
@@ -291,6 +342,40 @@ export interface paths {
 		 *         HTTPException: If authentication fails or database errors occur.
 		 */
 		get: operations['get_transaction_summary_transaction_summary_get'];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	'/transaction/subscription-candidates': {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Get Subscription Candidates */
+		get: operations['get_subscription_candidates_transaction_subscription_candidates_get'];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	'/transaction/{transaction_id}': {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/** Get Transaction By Id */
+		get: operations['get_transaction_by_id_transaction__transaction_id__get'];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -814,6 +899,52 @@ export interface components {
 			/** Parent Id */
 			parent_id?: string | null;
 		};
+		/** SubscriptionCandidateResponse */
+		SubscriptionCandidateResponse: {
+			/**
+			 * Category Id
+			 * Format: uuid
+			 */
+			category_id: string;
+			/** Title */
+			title: string;
+			/** Amount */
+			amount: number;
+			/** Description */
+			description?: string | null;
+			/** Date */
+			date?: string | null;
+			/** Currency */
+			currency?: string | null;
+			/**
+			 * Type
+			 * @default N/A
+			 */
+			type: string | null;
+			/** Category */
+			category?: string | null;
+			/** Account Name */
+			account_name?: string | null;
+			/**
+			 * Subscription Candidate
+			 * @default false
+			 */
+			subscription_candidate: boolean;
+			/** Subscription Id */
+			subscription_id?: string | null;
+			/**
+			 * Uuid
+			 * Format: uuid
+			 */
+			uuid: string;
+			/**
+			 * User Id
+			 * Format: uuid
+			 */
+			user_id: string;
+			/** Frequency */
+			frequency?: string | null;
+		};
 		/** SubscriptionCreate */
 		SubscriptionCreate: {
 			/**
@@ -940,7 +1071,19 @@ export interface components {
 			 * Format: date-time
 			 */
 			updated_at: string;
-			user: components['schemas']['UserResponse'];
+		};
+		/** SubscriptionSummaryResponse */
+		SubscriptionSummaryResponse: {
+			/** Total Monthly Cost Cents */
+			total_monthly_cost_cents: number;
+			/** Total Subscriptions Count */
+			total_subscriptions_count: number;
+			/** Total Active Subscriptions Count */
+			total_active_subscriptions_count: number;
+			/** Total Inactive Subscriptions Count */
+			total_inactive_subscriptions_count: number;
+			/** Total Paused Subscriptions Count */
+			total_paused_subscriptions_count: number;
 		};
 		/** SubscriptionUpdate */
 		SubscriptionUpdate: {
@@ -988,12 +1131,73 @@ export interface components {
 		/** SubscriptionsAllResponse */
 		SubscriptionsAllResponse: {
 			/**
+			 * User Id
+			 * Format: uuid
+			 */
+			user_id?: string;
+			/** Category Id */
+			category_id: string | null;
+			/** Name */
+			name: string;
+			/** Amount */
+			amount: number;
+			/** Currency */
+			currency?: string | null;
+			/** Billing Frequency */
+			billing_frequency?: string | null;
+			/** Start Date */
+			start_date?: string | null;
+			/** End Date */
+			end_date?: string | null;
+			/** Next Billing Date */
+			next_billing_date?: string | null;
+			/**
+			 * Auto Renew
+			 * @default true
+			 */
+			auto_renew: boolean | null;
+			/** Status */
+			status?: string | null;
+			/** Payment Method */
+			payment_method?: string | null;
+			/** Notes */
+			notes?: string | null;
+			/** Cancellation Date */
+			cancellation_date?: string | null;
+			/**
+			 * Trial Period
+			 * @default false
+			 */
+			trial_period: boolean | null;
+			/** Trial End Date */
+			trial_end_date?: string | null;
+			/** Total Amount Spent */
+			total_amount_spent?: string | null;
+			/** Contract Length */
+			contract_length?: string | null;
+			/** Contract End Date */
+			contract_end_date?: string | null;
+			/** Usage Limits */
+			usage_limits?: string | null;
+			/** Support Contact */
+			support_contact?: string | null;
+			/** Website Url */
+			website_url?: string | null;
+			/**
 			 * Uuid
 			 * Format: uuid
 			 */
 			uuid: string;
-			/** Name */
-			name: string;
+			/**
+			 * Created At
+			 * Format: date-time
+			 */
+			created_at: string;
+			/**
+			 * Updated At
+			 * Format: date-time
+			 */
+			updated_at: string;
 		};
 		/** TransactionCreate */
 		TransactionCreate: {
@@ -1021,6 +1225,13 @@ export interface components {
 			category?: string | null;
 			/** Account Name */
 			account_name?: string | null;
+			/**
+			 * Subscription Candidate
+			 * @default false
+			 */
+			subscription_candidate: boolean;
+			/** Subscription Id */
+			subscription_id?: string | null;
 		};
 		/** TransactionMonths */
 		TransactionMonths: {
@@ -1063,6 +1274,13 @@ export interface components {
 			/** Account Name */
 			account_name?: string | null;
 			/**
+			 * Subscription Candidate
+			 * @default false
+			 */
+			subscription_candidate: boolean;
+			/** Subscription Id */
+			subscription_id?: string | null;
+			/**
 			 * Uuid
 			 * Format: uuid
 			 */
@@ -1092,13 +1310,25 @@ export interface components {
 		};
 		/** TransactionsAllResponse */
 		TransactionsAllResponse: {
-			/** Transactions */
+			/**
+			 * Transactions
+			 * @default []
+			 */
 			transactions: components['schemas']['TransactionResponse'][];
-			/** Has More */
+			/**
+			 * Has More
+			 * @default false
+			 */
 			has_more: boolean;
-			/** Total Pages */
+			/**
+			 * Total Pages
+			 * @default 0
+			 */
 			total_pages: number;
-			/** Total Count */
+			/**
+			 * Total Count
+			 * @default 0
+			 */
 			total_count: number;
 		};
 		/** UserCreateRequest */
@@ -1140,16 +1370,19 @@ export interface components {
 		};
 		/**
 		 * UserRole
+		 * @description Enumeration of user roles within the system, sorted by importance.
+		 *
+		 *     Attributes:
+		 *         SuperAdmin: Represents a user with the highest level of administrative privileges.
+		 *         Admin: Represents a user with administrative privileges.
+		 *         User_Admin: Represents a user with administrative privileges specific to user management.
+		 *         User_Manager: Represents a user with permissions to manage other users.
+		 *         User_Editor: Represents a user with permissions to edit content.
+		 *         User_Viewer: Represents a user with read-only access.
+		 *         User: Represents a standard user with basic access.
 		 * @enum {string}
 		 */
-		UserRole:
-			| 'SuperAdmin'
-			| 'Admin'
-			| 'User'
-			| 'User_Manager'
-			| 'User_Admin'
-			| 'User_Viewer'
-			| 'User_Editor';
+		UserRole: 'Admin' | 'User' | 'User_Manager' | 'User_Admin' | 'User_Viewer' | 'User_Editor';
 		/** ValidationError */
 		ValidationError: {
 			/** Location */
@@ -1276,7 +1509,7 @@ export interface operations {
 			};
 		};
 	};
-	get_user_subscriptions_subscription_summary_get: {
+	get_user_subscriptions_subscription_all_get: {
 		parameters: {
 			query?: never;
 			header?: never;
@@ -1327,6 +1560,46 @@ export interface operations {
 			};
 		};
 	};
+	get_subscription_transactions_subscription__subscription_id__transactions_get: {
+		parameters: {
+			query?: {
+				sort_by?: ('amount' | 'date' | 'title') | null;
+				sort_order?: string;
+				page?: number;
+				page_size?: number;
+				search?: string | null;
+				from_date?: string | null;
+				to_date?: string | null;
+				filter_by_inputs?: components['schemas']['FilterByInputs'][] | null;
+			};
+			header?: never;
+			path: {
+				subscription_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['TransactionsAllResponse'];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['HTTPValidationError'];
+				};
+			};
+		};
+	};
 	delete_subscription_subscription_delete__subscription_id__delete: {
 		parameters: {
 			query?: never;
@@ -1352,6 +1625,26 @@ export interface operations {
 				};
 				content: {
 					'application/json': components['schemas']['HTTPValidationError'];
+				};
+			};
+		};
+	};
+	get_subscription_summary_subscription_summary_get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['SubscriptionSummaryResponse'];
 				};
 			};
 		};
@@ -1553,7 +1846,8 @@ export interface operations {
 	get_transactions_transaction_all_get: {
 		parameters: {
 			query?: {
-				sort_by?: ('amount' | 'date' | 'title' | 'category') | null;
+				account_type?: components['schemas']['AccountTypeEnum'] | null;
+				sort_by?: ('amount' | 'date' | 'title') | null;
 				sort_order?: string;
 				page?: number;
 				page_size?: number;
@@ -1588,10 +1882,49 @@ export interface operations {
 			};
 		};
 	};
+	get_transactions_transaction__get: {
+		parameters: {
+			query?: {
+				account_type?: components['schemas']['AccountTypeEnum'] | null;
+				sort_by?: ('amount' | 'date' | 'title') | null;
+				sort_order?: string;
+				page?: number;
+				page_size?: number;
+				search?: string | null;
+				from_date?: string | null;
+				to_date?: string | null;
+				filter_by_inputs?: components['schemas']['FilterByInputs'][] | null;
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': unknown;
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['HTTPValidationError'];
+				};
+			};
+		};
+	};
 	get_transaction_summary_transaction_summary_get: {
 		parameters: {
 			query?: {
-				sort_by?: ('amount' | 'date' | 'title' | 'category') | null;
+				sort_by?: ('amount' | 'date' | 'title') | null;
 				sort_order?: string;
 				page?: number;
 				page_size?: number;
@@ -1613,6 +1946,69 @@ export interface operations {
 				};
 				content: {
 					'application/json': components['schemas']['TransactionSummaryResponse'];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['HTTPValidationError'];
+				};
+			};
+		};
+	};
+	get_subscription_candidates_transaction_subscription_candidates_get: {
+		parameters: {
+			query?: {
+				account_type?: components['schemas']['AccountTypeEnum'] | null;
+				limit?: number;
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['SubscriptionCandidateResponse'][];
+				};
+			};
+			/** @description Validation Error */
+			422: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['HTTPValidationError'];
+				};
+			};
+		};
+	};
+	get_transaction_by_id_transaction__transaction_id__get: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				transaction_id: string;
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			/** @description Successful Response */
+			200: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content: {
+					'application/json': components['schemas']['TransactionResponse'];
 				};
 			};
 			/** @description Validation Error */

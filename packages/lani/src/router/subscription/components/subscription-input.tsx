@@ -7,7 +7,14 @@ import {
 	SubscriptionFormValues
 } from 'router/subscription/components/subscription-form.utils';
 
-export const statusOptions = [
+export type StatusValue = 'active' | 'inactive' | 'paused' | 'cancelled';
+
+type StatusOption = {
+	value: StatusValue;
+	label: string;
+};
+
+export const statusOptions: StatusOption[] = [
 	{ value: 'active', label: 'Active' },
 	{ value: 'inactive', label: 'Inactive' },
 	{ value: 'paused', label: 'Paused' },
@@ -57,7 +64,7 @@ export const SubscriptionInput = () => {
 
 	return (
 		<Grid gap="s20" gridTemplateColumns="1fr">
-			<Grid gap="s20" gridTemplateColumns="1fr 1fr">
+			<Grid gap="s20" gridTemplateColumns="1fr 1fr 1fr">
 				<FormControl
 					label="Subscription Name"
 					id="name"
@@ -82,24 +89,6 @@ export const SubscriptionInput = () => {
 						step="0.01"
 					/>
 				</FormControl>
-			</Grid>
-
-			<Grid gap="s20" gridTemplateColumns="1fr">
-				<Select<SubscriptionFormValues>
-					name="category_id"
-					label="Category"
-					options={categoryOptions}
-					placeholder="Select category"
-				/>
-			</Grid>
-
-			<Grid gap="s20" gridTemplateColumns="1fr 1fr">
-				<Select<SubscriptionFormValues>
-					name="billing_frequency"
-					label="Billing Frequency"
-					options={billingFrequencyOptions}
-					placeholder="Select frequency"
-				/>
 
 				<FormControl
 					label="Payment Method"
@@ -110,14 +99,42 @@ export const SubscriptionInput = () => {
 				</FormControl>
 			</Grid>
 
-			<Grid gap="s20" gridTemplateColumns="1fr 1fr">
+			<Grid gap="s20" gridTemplateColumns="1fr 1fr 1fr">
+				<Select<SubscriptionFormValues>
+					name="category_id"
+					label="Category"
+					options={categoryOptions}
+					placeholder="Select category"
+				/>
+
+				<Select<SubscriptionFormValues>
+					name="billing_frequency"
+					label="Billing Frequency"
+					options={billingFrequencyOptions}
+					placeholder="Select frequency"
+				/>
+
 				<Select<SubscriptionFormValues>
 					name="status"
 					label="Status"
 					options={statusOptions}
 					placeholder="Select status"
+					required
+					rules={{ required: 'Status is required' }}
 				/>
+			</Grid>
 
+			<Grid gap="s20" gridTemplateColumns="1fr 1fr">
+				<FormControl
+					label="Contract Length"
+					id="contract_length"
+					error={errors?.contract_length?.message}
+				>
+					<Input {...register('contract_length')} placeholder="e.g., 12 months" />
+				</FormControl>
+			</Grid>
+
+			<Grid gap="s20" gridTemplateColumns="1fr 1fr 1fr 1fr 1fr">
 				<FormControl label="Auto Renew" id="auto_renew">
 					<Grid gap="s12" gridTemplateColumns="1fr 1fr">
 						<Radio
@@ -136,18 +153,7 @@ export const SubscriptionInput = () => {
 						/>
 					</Grid>
 				</FormControl>
-			</Grid>
 
-			<Grid gap="s20" gridTemplateColumns="1fr 1fr">
-				<DatePicker name="start_date" label="Start Date" />
-				<DatePicker name="end_date" label="End Date" />
-			</Grid>
-
-			<Grid gap="s20" gridTemplateColumns="1fr 1fr">
-				<DatePicker name="cancellation_date" label="Cancellation Date" />
-			</Grid>
-
-			<Grid gap="s20" gridTemplateColumns="1fr 1fr">
 				<FormControl label="Trial Period" id="trial_period">
 					<Grid gap="s12" gridTemplateColumns="1fr 1fr">
 						<Radio
@@ -166,31 +172,15 @@ export const SubscriptionInput = () => {
 						/>
 					</Grid>
 				</FormControl>
-
+				<DatePicker name="start_date" label="Start Date" />
+				<DatePicker name="end_date" label="End Date" />
 				<DatePicker name="trial_end_date" label="Trial End Date" />
 			</Grid>
-
-			<Grid gap="s20" gridTemplateColumns="1fr 1fr">
-				<FormControl
-					label="Contract Length"
-					id="contract_length"
-					error={errors?.contract_length?.message}
-				>
-					<Input {...register('contract_length')} placeholder="e.g., 12 months" />
-				</FormControl>
-
+			<Grid gap="s20" gridTemplateColumns="1fr 1fr ">
 				<DatePicker name="contract_end_date" label="Contract End Date" />
+				<DatePicker name="cancellation_date" label="Cancellation Date" />
 			</Grid>
-
 			<Grid gap="s20" gridTemplateColumns="1fr 1fr">
-				<FormControl
-					label="Support Contact"
-					id="support_contact"
-					error={errors?.support_contact?.message}
-				>
-					<Input {...register('support_contact')} placeholder="support@company.com" />
-				</FormControl>
-
 				<FormControl
 					label="Website URL"
 					id="website_url"
@@ -202,8 +192,14 @@ export const SubscriptionInput = () => {
 						placeholder="https://example.com"
 					/>
 				</FormControl>
+				<FormControl
+					label="Support Contact"
+					id="support_contact"
+					error={errors?.support_contact?.message}
+				>
+					<Input {...register('support_contact')} placeholder="support@company.com" />
+				</FormControl>
 			</Grid>
-
 			<FormControl label="Notes" id="notes" error={errors?.notes?.message}>
 				<TextArea {...register('notes')} lines={4} placeholder="Add any notes..." />
 			</FormControl>

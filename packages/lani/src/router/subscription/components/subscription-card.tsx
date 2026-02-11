@@ -1,10 +1,10 @@
 import { Flex, Heading, Text } from '@wealth-wing/tayo';
-import { formatUSD } from '@wealth-wing/utils';
+import { capitalizedFirstLetter } from '@wealth-wing/utils';
+import { SubscriptionResponse } from 'data/api-definitions';
 import { subscriptionCard } from 'router/subscription/components/subscription-card.styles';
-import { SubscriptionListItem } from 'router/subscription/subscriptions-page.data';
 
 type SubscriptionCardProps = {
-	item: SubscriptionListItem;
+	item: SubscriptionResponse;
 	isSelected: boolean;
 	isEnded: boolean;
 	onSelect: (id: string) => void;
@@ -19,7 +19,7 @@ export const SubscriptionCard = ({
 	<li>
 		<button
 			css={subscriptionCard.cardButton}
-			onClick={() => onSelect(item.id)}
+			onClick={() => onSelect(item.uuid)}
 			aria-pressed={isSelected}
 		>
 			<div
@@ -35,16 +35,13 @@ export const SubscriptionCard = ({
 							{item.name}
 						</Heading>
 					</Flex>
-					<Text font="sm" color="textSecondary">
-						{formatUSD(item.monthlyCost)} / mo
-					</Text>
 				</Flex>
 
 				<div css={subscriptionCard.metaRow}>
 					<Text font="sm" color="textSecondary">
-						Next Billing
+						Billing Frequency
 					</Text>
-					<Text font="sm">{item.nextBillingLabel}</Text>
+					<Text font="sm">{capitalizedFirstLetter(item?.billing_frequency ?? '')}</Text>
 				</div>
 			</div>
 		</button>

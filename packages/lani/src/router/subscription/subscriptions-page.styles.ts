@@ -13,6 +13,7 @@ export const subscriptionsPageStyles = {
 		grid-template-rows: auto 1fr;
 		height: calc(100% - ${headerHeight});
 		min-height: 0;
+		overflow: auto;
 	`,
 	sidebar: css`
 		background-color: ${theme.color.cardBackground100};
@@ -24,6 +25,9 @@ export const subscriptionsPageStyles = {
 		grid-area: sidebar;
 		min-height: 0;
 		padding: ${theme.space.s16};
+		position: sticky;
+		top: 0;
+		z-index: 1;
 	`,
 	sidebarHeader: css`
 		align-items: center;
@@ -32,9 +36,11 @@ export const subscriptionsPageStyles = {
 		justify-content: space-between;
 	`,
 	sidebarList: css`
+		display: flex;
 		flex: 1;
+		flex-direction: column;
+		gap: ${theme.space.s12};
 		min-height: 0;
-		overflow: auto;
 	`,
 	summary: css`
 		background-color: ${theme.color.cardBackground100};

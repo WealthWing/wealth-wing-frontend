@@ -23,3 +23,8 @@ export function formatEmail(email: string) {
 
 	return `${maskedLocal}@${maskedDomain}`;
 }
+
+export function capitalizedFirstLetter(str?: string) {
+	if (!str) return str;
+	return str.charAt(0).toUpperCase() + str.slice(1);
+}

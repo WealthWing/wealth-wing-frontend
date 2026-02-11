@@ -1,5 +1,11 @@
-import { Box, IconButton, Text } from '@wealth-wing/tayo';
-import { formatUSD } from '@wealth-wing/utils';
+import {
+	createColumnHelper,
+	flexRender,
+	getCoreRowModel,
+	useReactTable
+} from '@tanstack/react-table';
+import { Box, SkeletonLoaderContainer, SkeletonTextLoader, Text } from '@wealth-wing/tayo';
+import { formatUSD, formatUtcDateTime } from '@wealth-wing/utils';
 import {
 	Table,
 	TableBody,
@@ -9,16 +15,65 @@ import {
 	TableRowCell
 } from 'components/table/table';
 import { NoData } from 'components/table/table-get-more';
-import { SubscriptionTransaction } from 'router/subscription/subscriptions-page.data';
+import { TransactionResponse } from 'data/api-definitions';
+import { useGetSubscriptionTransactionsQuery } from 'redux/subscription-queries';
+
+const columnHelper = createColumnHelper<TransactionResponse>();
+
+const columns = [
+	columnHelper.accessor('title', {
+		header: 'Merchant',
+		size: 220,
+		cell: (info) => info.getValue()
+	}),
+	columnHelper.accessor('amount', {
+		header: 'Amount',
+		size: 140,
+		cell: ({ getValue }) => {
+			const value = getValue();
+			return <Text color={value < 0 ? 'red90' : 'green90'}>{formatUSD(value)}</Text>;
+		}
+	}),
+	columnHelper.accessor('date', {
+		header: 'Date',
+		size: 160,
+		cell: ({ getValue }) => {
+			const value = getValue();
+			if (value) {
+				return formatUtcDateTime(value, { dateFormat: 'month-day-year' });
+			}
+			return '-';
+		}
+	})
+];
 
 type SubscriptionTransactionsProps = {
-	transactions: SubscriptionTransaction[];
+	selectedId?: string;
 };
 
-export const SubscriptionTransactions = ({ transactions }: SubscriptionTransactionsProps) => {
-	const columnWidths = [220, 140, 160, 80];
+export const SubscriptionTransactions = ({ selectedId }: SubscriptionTransactionsProps) => {
+	const { data, isLoading } = useGetSubscriptionTransactionsQuery(
+		{ subscriptionId: selectedId! },
+		{ skip: !selectedId }
+	);
 
-	if (transactions.length === 0) {
+	const table = useReactTable({
+		data: data?.transactions ?? [],
+		columns,
+		getCoreRowModel: getCoreRowModel()
+	});
+
+	if (isLoading) {
+		return (
+			<SkeletonLoaderContainer
+				size={5}
+				gap="s8"
+				renderComponent={(key) => <SkeletonTextLoader key={key} variant="h2" />}
+			/>
+		);
+	}
+
+	if (!data || data?.transactions.length === 0) {
 		return (
 			<Box>
 				<NoData />
@@ -28,31 +83,22 @@ export const SubscriptionTransactions = ({ transactions }: SubscriptionTransacti
 
 	return (
 		<Box maxHeight="400px" overflowX="auto">
-			<Table width={columnWidths.reduce((acc, w) => acc + w, 0)}>
+			<Table width={table.getTotalSize()}>
 				<TableHeaderRow isSticky>
-					<TableHeaderRowCell width={columnWidths[0]}>Name</TableHeaderRowCell>
-					<TableHeaderRowCell width={columnWidths[1]}>Amount</TableHeaderRowCell>
-					<TableHeaderRowCell width={columnWidths[2]}>Date</TableHeaderRowCell>
-					<TableHeaderRowCell width={columnWidths[3]}>Action</TableHeaderRowCell>
+					{table.getFlatHeaders().map((header) => (
+						<TableHeaderRowCell key={header.id} width={header.getSize()}>
+							{flexRender(header.column.columnDef.header, header.getContext())}
+						</TableHeaderRowCell>
+					))}
 				</TableHeaderRow>
 				<TableBody>
-					{transactions.map((transaction) => (
-						<TableRow key={transaction.id}>
-							<TableRowCell width={columnWidths[0]}>{transaction.name}</TableRowCell>
-							<TableRowCell width={columnWidths[1]}>
-								<Text color={transaction.amount < 0 ? 'red90' : 'green90'}>
-									{formatUSD(transaction.amount)}
-								</Text>
-							</TableRowCell>
-							<TableRowCell width={columnWidths[2]}>{transaction.date}</TableRowCell>
-							<TableRowCell width={columnWidths[3]}>
-								<IconButton
-									variant="tertiary"
-									format="text"
-									iconName="x"
-									label="Remove transaction"
-								/>
-							</TableRowCell>
+					{table.getRowModel().rows.map((row) => (
+						<TableRow key={row.id}>
+							{row.getVisibleCells().map((cell) => (
+								<TableRowCell key={cell.id} width={cell.column.getSize()}>
+									{flexRender(cell.column.columnDef.cell, cell.getContext())}
+								</TableRowCell>
+							))}
 						</TableRow>
 					))}
 				</TableBody>

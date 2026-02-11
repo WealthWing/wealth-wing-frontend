@@ -2,6 +2,8 @@ import { apiBase } from 'data/api-base';
 import {
 	SubscriptionRequest,
 	SubscriptionResponse,
+	SubscriptionSummaryResponse,
+	SubscriptionTransactionsAllResponse,
 	SubscriptionUpdateRequest
 } from 'data/api-definitions';
 
@@ -12,7 +14,11 @@ export const {
 	useLazyGetSubscriptionQuery,
 	useCreateSubscriptionMutation,
 	useUpdateSubscriptionMutation,
-	useDeleteSubscriptionMutation
+	useDeleteSubscriptionMutation,
+	useGetSubscriptionTransactionsQuery,
+	useLazyGetSubscriptionTransactionsQuery,
+	useGetSubscriptionSummaryQuery,
+	useLazyGetSubscriptionSummaryQuery
 } = apiBase.injectEndpoints({
 	endpoints: (builder) => ({
 		getSubscriptions: builder.query<SubscriptionResponse[], void>({
@@ -25,6 +31,21 @@ export const {
 		getSubscription: builder.query<SubscriptionResponse, { subscriptionId: string }>({
 			query: ({ subscriptionId }) => ({
 				url: `/subscription/detail/${subscriptionId}`,
+				method: 'GET'
+			})
+		}),
+		getSubscriptionTransactions: builder.query<
+			SubscriptionTransactionsAllResponse,
+			{ subscriptionId: string }
+		>({
+			query: ({ subscriptionId }) => ({
+				url: `/subscription/${subscriptionId}/transactions`,
+				method: 'GET'
+			})
+		}),
+		getSubscriptionSummary: builder.query<SubscriptionSummaryResponse, void>({
+			query: () => ({
+				url: `/subscription/summary`,
 				method: 'GET'
 			})
 		}),

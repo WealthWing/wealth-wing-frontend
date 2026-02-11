@@ -3,7 +3,7 @@ resolve:
         headers:
             - matches: http://127.0.0.1:8000/**
               name: Authorization
-              value: Bearer <token>
+              value: Bearer eyJraWQiOiJVTXQ3UjcyS28rZnlBTlBJTVpkbzAyc25peXNiUEtFeVRSemFHRVI4UFwvUT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI5NDg4YjRmOC05MDkxLTcwMzYtYmIwNC1iN2I0YThlZWZkZTAiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfR0JiTkRralViIiwiY29nbml0bzp1c2VybmFtZSI6Ijk0ODhiNGY4LTkwOTEtNzAzNi1iYjA0LWI3YjRhOGVlZmRlMCIsIm9yaWdpbl9qdGkiOiJkODM2MzhiNS01ZjMxLTQ4MjgtYjZiYi03MzIxMjRkYmJlZDYiLCJhdWQiOiIxMnRpaG9xMThtc2l0djZmZDVmY3MxYThqNyIsImV2ZW50X2lkIjoiOWM5NzM3OWUtNGViNi00YzQxLTg3YzgtZTYyZTU5NGU1YzM2IiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE3NzA3NzE1NzksImV4cCI6MTc3MDg1Nzk3OSwiaWF0IjoxNzcwNzcxNTc5LCJqdGkiOiI5YmFhNmNmNy01NGJmLTRlMTgtODgwYS05MjdkMTY1MTQ3MjQiLCJlbWFpbCI6ImVyZG8uc2hhenkxMjNAZ21haWwuY29tIn0.xb2zcKs3quwJ5hdpXP6uP7MBJsF7NByG2ZPuDuZOJyLXHa4mLdwMM8tKB3brD8uHv9W9_MuTY1CFzEtiHFqZ0-0fAKONKgXwI3D5Z4irUnppbK0DFp_KcL8Ex0BFDSymzQeuqNQurNlv_El5jOunhjhtAx7kXyE7_qVz63opwk1m3yyxJv5sAlW5OSW0K-dRcwg-cB7pW7Vahbuc9RfC0nIocmG3RPZONjrf_1rx1eKIM4Tjnu7S0UU_5_Lcy-WDxmHkXIB4akYCt9psOzaL4fjL_kl9Oz03DlyApZxaMzCNVS1q3KXFAW4fShy8WgyI_hkisSdt5Go854P3ClW4Ow
 apis:
     api:
         root: http://127.0.0.1:8000/openapi.json

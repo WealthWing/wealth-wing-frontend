@@ -3,7 +3,6 @@ import { convertToCents } from '@wealth-wing/utils';
 import { SubscriptionRequest, SubscriptionResponse } from 'data/api-definitions';
 
 export const billingFrequencyOptions: OptionType[] = [
-	{ value: 'daily', label: 'Daily' },
 	{ value: 'weekly', label: 'Weekly' },
 	{ value: 'monthly', label: 'Monthly' },
 	{ value: 'quarterly', label: 'Quarterly' },
