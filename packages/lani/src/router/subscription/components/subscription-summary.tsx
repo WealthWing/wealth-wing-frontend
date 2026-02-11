@@ -19,7 +19,7 @@ export const SubscriptionSummary = ({
 	summaryData
 }: SubscriptionSummaryProps) => {
 	const activeItems = items.filter((item) => item.status === 'active');
-	const endedItems = items.filter((item) => item.status === 'cancelled');
+
 	const activeMonthlyTotal = activeItems.reduce((total, item) => total + item.amount, 0);
 	const averageCost = activeItems.length ? activeMonthlyTotal / activeItems.length : 0;
 	const annualTotal = activeMonthlyTotal * 12;

@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Text } from '@wealth-wing/tayo';
+import { Box, Button, Heading } from '@wealth-wing/tayo';
 import { formatUtcDateTime } from '@wealth-wing/utils';
 import { HeadingContainer } from 'components/heading-container';
 import { Section } from 'components/section';
@@ -7,20 +7,21 @@ import {
 	useGetSubscriptionsQuery,
 	useGetSubscriptionSummaryQuery
 } from 'redux/subscription-queries';
+import { SubscriptionDetails } from 'router/subscription/components/subscription-details';
 import { StatusValue } from 'router/subscription/components/subscription-input';
 import { SubscriptionsList } from 'router/subscription/components/subscription-list';
 import { SubscriptionModal } from 'router/subscription/components/subscription-modal';
 import { SubscriptionSummary } from 'router/subscription/components/subscription-summary';
 import { SubscriptionTransactions } from 'router/subscription/components/subscription-transactions';
 import { useCreateSubscription } from 'router/subscription/hooks/use-create-subscription';
+import { useUpdateSubscription } from 'router/subscription/hooks/use-update-subscription';
 import { subscriptionsPageStyles } from 'router/subscription/subscriptions-page.styles';
 
 export const SubscriptionsPage = () => {
 	const [statusFilter, setStatusFilter] = React.useState<StatusValue>('active');
 
 	const { data: subscriptionsData, isLoading } = useGetSubscriptionsQuery();
-	const { data: subscriptionSummaryData, isLoading: isSummaryLoading } =
-		useGetSubscriptionSummaryQuery();
+	const { data: subscriptionSummaryData } = useGetSubscriptionSummaryQuery();
 	const {
 		isOpen: isCreateModalOpen,
 		onCreateModalOpen,
@@ -28,6 +29,14 @@ export const SubscriptionsPage = () => {
 		onCreateSubmit,
 		isLoading: isCreating
 	} = useCreateSubscription();
+
+	const {
+		isOpen: isUpdateOpen,
+		onUpdateModalOpen,
+		onUpdateModalClose,
+		onUpdateSubmit,
+		isLoading: isUpdating
+	} = useUpdateSubscription();
 
 	const filteredSubscriptions = React.useMemo(() => {
 		return subscriptionsData?.filter((item) => item.status === statusFilter);
@@ -67,6 +76,7 @@ export const SubscriptionsPage = () => {
 							selectedId={selectedId}
 							onSelect={setSelectedId}
 							isLoading={isLoading}
+							onEditOpen={onUpdateModalOpen}
 						/>
 						<Button
 							variant="tertiary"
@@ -90,37 +100,7 @@ export const SubscriptionsPage = () => {
 					<Heading tag="h2" font="h5">
 						Details
 					</Heading>
-					<Box css={[subscriptionsPageStyles.detailsBody, { marginTop: '12px' }]}>
-						{!selectedSubscription && (
-							<Text font="md" color="textSecondary">
-								Select a subscription to see details.
-							</Text>
-						)}
-						{selectedSubscription && (
-							<>
-								<Text font="sm" color="textSecondary">
-									Name
-								</Text>
-								<Heading tag="h3" font="h5">
-									{selectedSubscription.name}
-								</Heading>
-								<Text font="sm" color="textSecondary">
-									Status
-								</Text>
-								<Text font="md">
-									{selectedSubscription.status === 'active' ? 'Active' : 'Ended'}
-								</Text>
-								<Text font="sm" color="textSecondary">
-									Monthly Cost
-								</Text>
-								<Text font="md">TBD</Text>
-								<Text font="sm" color="textSecondary">
-									Next Billing
-								</Text>
-								<Text font="md">TBD</Text>
-							</>
-						)}
-					</Box>
+					<SubscriptionDetails summaryData={subscriptionSummaryData} />
 				</div>
 
 				<div css={subscriptionsPageStyles.table}>
@@ -135,6 +115,13 @@ export const SubscriptionsPage = () => {
 				onClose={onCreateModalClose}
 				onSubmit={onCreateSubmit}
 				isLoading={isCreating}
+			/>
+			<SubscriptionModal
+				isOpen={isUpdateOpen}
+				onClose={onUpdateModalClose}
+				onSubmit={onUpdateSubmit}
+				isLoading={isUpdating}
+				initialData={selectedSubscription}
 			/>
 		</>
 	);

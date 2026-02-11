@@ -8,13 +8,15 @@ type SubscriptionsListProps = {
 	selectedId?: string;
 	onSelect: (id: string) => void;
 	isLoading?: boolean;
+	onEditOpen: (id: string) => void;
 };
 
 export const SubscriptionsList = ({
 	items,
 	selectedId,
 	onSelect,
-	isLoading
+	isLoading,
+	onEditOpen
 }: SubscriptionsListProps) => {
 	if (isLoading) {
 		return (
@@ -35,6 +37,7 @@ export const SubscriptionsList = ({
 					isSelected={selectedId === item.uuid}
 					isEnded={item.status === 'ended'}
 					onSelect={onSelect}
+					onEditOpen={onEditOpen}
 				/>
 			))}
 		</ul>
