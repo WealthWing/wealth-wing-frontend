@@ -4,7 +4,9 @@ import {
 	TransactionAllResponse,
 	TransactionRequest,
 	TransactionSummaryRequest,
-	TransactionSummaryResponse
+	TransactionSummaryResponse,
+	TransactionUpdateSubscriptionRequest,
+	TransactionUpdateSubscriptionResponse
 } from 'data/api-definitions';
 
 export const transactionQueries = apiBase.injectEndpoints({
@@ -57,6 +59,19 @@ export const transactionQueries = apiBase.injectEndpoints({
 			}),
 			providesTags: ['ImportCreate']
 		}),
+		addTransactionToSubscription: builder.mutation<
+			TransactionUpdateSubscriptionResponse,
+			TransactionUpdateSubscriptionRequest
+		>({
+			query: ({ subscription_id, transaction_name }) => ({
+				url: 'transaction/update-subscription',
+				method: 'POST',
+				body: {
+					transaction_name,
+					subscription_id
+				}
+			})
+		}),
 		transactionsSummary: builder.query<TransactionSummaryResponse, TransactionSummaryRequest>({
 			query: (pageParam) => ({
 				url: 'transaction/summary',
@@ -73,5 +88,6 @@ export const {
 	useTransactionsSummaryQuery,
 	useLazyTransactionsSummaryQuery,
 	useSubscriptionCandidatesQuery,
-	useLazySubscriptionCandidatesQuery
+	useLazySubscriptionCandidatesQuery,
+	useAddTransactionToSubscriptionMutation
 } = transactionQueries;

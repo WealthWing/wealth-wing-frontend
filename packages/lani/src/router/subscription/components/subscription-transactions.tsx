@@ -82,7 +82,7 @@ export const SubscriptionTransactions = ({ selectedId }: SubscriptionTransaction
 	}
 
 	return (
-		<Box overflowX="auto">
+		<Box overflowX="auto" maxHeight="50vh">
 			<Table width={table.getTotalSize()}>
 				<TableHeaderRow isSticky>
 					{table.getFlatHeaders().map((header) => (
