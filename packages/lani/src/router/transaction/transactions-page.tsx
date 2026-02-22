@@ -2,6 +2,7 @@ import { Heading } from '@wealth-wing/tayo';
 import { ContentArea, ContentScroll } from 'components/content-area';
 import { HeadingContainer } from 'components/heading-container';
 import { PageRightPanel } from 'components/page-right-panel';
+import { TransactionDetails } from 'router/transaction/components/transaction-details';
 import { Transactions } from 'router/transaction/components/transactions';
 import {
 	TransactionsProvider,
@@ -23,9 +24,7 @@ const TransactionPageContent = () => {
 				onClose={onRightPanelClose}
 				isOpen={isRightPanelOpen}
 			>
-				<Heading tag="h1" font="h4">
-					{activeTransactionId}
-				</Heading>
+				<TransactionDetails transactionId={activeTransactionId} />
 			</PageRightPanel>
 		</ContentArea>
 	);

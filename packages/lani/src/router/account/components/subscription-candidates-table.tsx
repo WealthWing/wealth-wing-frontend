@@ -4,7 +4,7 @@ import {
 	getCoreRowModel,
 	useReactTable
 } from '@tanstack/react-table';
-import { Dropdown, IconButton, Menu, MenuItem } from '@wealth-wing/tayo';
+import { Dropdown, IconButton, Menu, MenuItem, useDisclosureControl } from '@wealth-wing/tayo';
 import { capitalizedFirstLetter } from '@wealth-wing/utils';
 import {
 	Table,
@@ -23,7 +23,7 @@ import { AddSubscriptionModal } from 'router/account/components/add-subscription
 const columnHelper = createColumnHelper<SubscriptionCandidateResponse>();
 
 type GetColumnsProps = {
-	onAddSubscription: (candidate: SubscriptionCandidateResponse) => void;
+	onAddSubscription: (id: string) => void;
 	onRemoveFromList: (candidate: SubscriptionCandidateResponse) => void;
 };
 
@@ -58,7 +58,7 @@ const getColumns = ({ onAddSubscription, onRemoveFromList }: GetColumnsProps) =>
 					iconColor="textPrimary"
 				/>
 				<Menu>
-					<MenuItem onClick={() => onAddSubscription(row.original)}>
+					<MenuItem onClick={() => onAddSubscription(row.original.uuid)}>
 						Add to Subscription
 					</MenuItem>
 					<MenuItem onClick={() => onRemoveFromList(row.original)}>
@@ -79,6 +79,7 @@ export const SubscriptionCandidatesTable = ({
 	data,
 	isLoading
 }: SubscriptionCandidatesTableProps) => {
+	const { isOpen, handleOpen: onOpen, handleClose: onClose } = useDisclosureControl();
 	const [selectedCandidate, setSelectedCandidate] =
 		React.useState<SubscriptionCandidateResponse | null>(null);
 	const [removedCandidateIds, setRemovedCandidateIds] = React.useState<string[]>([]);
@@ -94,13 +95,22 @@ export const SubscriptionCandidatesTable = ({
 		[data, removedCandidateIds]
 	);
 
+	const handleOpen = React.useCallback(
+		(id: string) => {
+			const candidate = data?.find((item) => item.uuid === id) || null;
+			setSelectedCandidate(candidate);
+			onOpen();
+		},
+		[data, onOpen]
+	);
+
 	const columns = React.useMemo(
 		() =>
 			getColumns({
-				onAddSubscription: setSelectedCandidate,
+				onAddSubscription: handleOpen,
 				onRemoveFromList
 			}),
-		[onRemoveFromList]
+		[handleOpen, onRemoveFromList]
 	);
 
 	const table = useReactTable({
@@ -140,9 +150,9 @@ export const SubscriptionCandidatesTable = ({
 				</TableBody>
 			</Table>
 			<AddSubscriptionModal
-				isOpen={Boolean(selectedCandidate)}
+				isOpen={isOpen}
 				candidate={selectedCandidate}
-				onClose={() => setSelectedCandidate(null)}
+				onClose={onClose}
 				onSuccess={onRemoveFromList}
 			/>
 		</>

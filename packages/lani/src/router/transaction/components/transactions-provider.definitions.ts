@@ -18,6 +18,8 @@ export const sortByOptions: { label: string; value: SortBy }[] = [
 	{ label: 'Title', value: 'title' }
 ];
 
+export type AccountTypeFilter = 'CREDIT_CARD' | 'CHECKING' | 'all';
+
 export type TransactionsFormFields = {
 	date: {
 		from: Date | null;
@@ -27,6 +29,8 @@ export type TransactionsFormFields = {
 	filters: {
 		search: string;
 		type?: TransactionTypes | 'all';
+		accountType?: AccountTypeFilter;
+		itemsPerPage: { label: string; value: string };
 		sortBy?: { label: string; value: SortBy };
 		sortOrder?: SortOrder;
 	};
