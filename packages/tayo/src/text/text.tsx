@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { CSSProperties, forwardRef } from 'react';
+import { css, CSSObject } from '@emotion/react';
+import { forwardRef } from 'react';
 
 import { Color, FontKeys, theme } from '../theme';
 
@@ -29,9 +29,9 @@ export type TextTag = 'div' | 'p' | 'span';
 export type TextOptions = Pick<React.AllHTMLAttributes<HTMLElement>, 'id'> & {
 	color?: Color;
 	font?: FontKeys;
-	textAlign?: CSSProperties['textAlign'];
-	wordBreak?: CSSProperties['wordBreak'];
-	whiteSpace?: CSSProperties['whiteSpace'];
+	textAlign?: CSSObject['textAlign'];
+	wordBreak?: CSSObject['wordBreak'];
+	whiteSpace?: CSSObject['whiteSpace'];
 	indent?: string;
 	underline?: boolean;
 	uppercase?: boolean;

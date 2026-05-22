@@ -40,6 +40,7 @@ const GroupComponent = () => {
 	});
 
 	const onSubmit = (data: GroupFormValues) => {
+		// eslint-disable-next-line no-alert
 		alert(data.iceCreamFlavor);
 		return undefined;
 	};

@@ -1,10 +1,12 @@
+import { ReactElement } from 'react';
+
 import { Space, theme } from '../theme';
 import { skeletonLoaderContainerDefault } from './skeleton-loader-container.styles';
 
 export type SkeletonLoaderContainerProps = {
 	size?: number;
 	className?: string;
-	renderComponent: (index: number) => JSX.Element;
+	renderComponent: (index: number) => ReactElement;
 	containerPadding?: Space;
 	gap?: Space;
 	wrap?: 'wrap' | 'nowrap';
