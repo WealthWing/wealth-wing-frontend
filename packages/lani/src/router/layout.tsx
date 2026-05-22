@@ -90,6 +90,13 @@ export const Layout = () => {
 											to="/subscriptions"
 										/>
 									</li>
+									<li>
+										<SidebarLink
+											iconName="bar-chart"
+											label="Reports"
+											to="/reports"
+										/>
+									</li>
 								</ul>
 								<SidebarButton
 									iconName="log-out"
