@@ -1,0 +1,15 @@
+{
+	"name": "@wealth-wing/kaya",
+	"version": "1.0.0",
+	"private": true,
+	"main": "pages/index.tsx",
+	"scripts": {
+		"start": "next dev",
+		"build": "next build",
+		"preview": "next start"
+	},
+	"dependencies": {
+		"@wealth-wing/tayo": "1.0.0",
+		"next": "15.5.18"
+	}
+}

@@ -50,6 +50,8 @@ Thumbs.db
 
 # Production Build
 build/
+.next/
+**/.next/
 
 # Environment Files
 env

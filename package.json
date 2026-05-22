@@ -13,6 +13,7 @@
 	},
 	"scripts": {
 		"lani": "yarn workspace @wealth-wing/lani",
+		"kaya": "yarn workspace @wealth-wing/kaya",
 		"tayo": "yarn workspace @wealth-wing/tayo",
 		"utils": "yarn workspace @wealth-wing/utils",
 		"lani-deploy": "./lani-deploy.sh",
