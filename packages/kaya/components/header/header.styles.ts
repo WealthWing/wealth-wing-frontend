@@ -1,10 +1,10 @@
 import { css } from '@emotion/react';
-import { theme } from '@wealth-wing/tayo';
+import { mqValues, theme } from '@wealth-wing/tayo';
 
 const HEADER_HEIGHT = '5rem';
 const MAX_WIDTH = '72rem';
-const TABLET_BREAK = '@media (max-width: 768px)';
-const MOBILE_BREAK = '@media (max-width: 480px)';
+const TABLET_BREAK = `@media (max-width: ${mqValues.tabletLarge - 1}px)`;
+const MOBILE_BREAK = `@media (max-width: ${mqValues.tabletSmall - 1}px)`;
 
 export const headerStyles = {
 	root: css({
@@ -181,7 +181,7 @@ export const mobileMenuStyles = {
 		visibility: 'hidden',
 		transform: 'translateY(-0.5rem)',
 		transition: 'opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease',
-		'@media (min-width: 769px)': {
+		[`@media (min-width: ${mqValues.tabletLarge}px)`]: {
 			display: 'none'
 		}
 	}),
@@ -223,7 +223,7 @@ export const mobileMenuStyles = {
 
 	ctaWrapper: css({
 		marginTop: theme.space.s24,
-		'@media (min-width: 481px)': {
+		[`@media (min-width: ${mqValues.tabletSmall}px)`]: {
 			display: 'none'
 		}
 	}),
