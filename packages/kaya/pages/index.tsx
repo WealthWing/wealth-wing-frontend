@@ -9,6 +9,7 @@ import { TrustStrip } from '../components/trust-strip';
 import { AboutSection } from '../components/about';
 import { CtaFooter } from '../components/cta-footer';
 import { TrustPillarsSection } from '../components/trust-pillars';
+import { ProductionFootprint } from '../components/production-footprint';
 
 const page = css({
 	background: theme.color.pageBackground,
@@ -19,17 +20,10 @@ const page = css({
 const Home = () => {
 	return (
 		<main css={page}>
-			<Header
-				links={[
-					{ label: 'Work', href: '#work' },
-					{ label: 'Process', href: '#process' },
-					{ label: 'Contact', href: '#contact' }
-				]}
-				ctaLabel="Start the conversation"
-				ctaHref="#contact"
-			/>
-			<Hero showEyebrow={false} />
-			<TrustStrip />
+			<Header />
+			<Hero />
+			<ProductionFootprint />
+
 			<ServicesSection />
 			<ProblemsSection />
 			<ProcessSection />

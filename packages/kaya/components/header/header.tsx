@@ -7,6 +7,7 @@ import { useActiveSection } from '../../hooks';
 import { MobileMenu } from './mobile-menu';
 import { headerStyles } from './header.styles';
 import {
+	DEFAULT_AVAILABILITY_LABEL,
 	DEFAULT_CTA_HREF,
 	DEFAULT_CTA_LABEL,
 	DEFAULT_NAV_LINKS,
@@ -16,7 +17,8 @@ import {
 export const Header = ({
 	links = DEFAULT_NAV_LINKS,
 	ctaLabel = DEFAULT_CTA_LABEL,
-	ctaHref = DEFAULT_CTA_HREF
+	ctaHref = DEFAULT_CTA_HREF,
+	availabilityLabel = DEFAULT_AVAILABILITY_LABEL
 }: HeaderProps) => {
 	const [isScrolled, setIsScrolled] = React.useState(false);
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -49,12 +51,18 @@ export const Header = ({
 		<>
 			<header css={[headerStyles.root, isScrolled && headerStyles.scrolled]}>
 				<div css={headerStyles.inner}>
-					<Link href="/" css={headerStyles.logo}>
-						ED SHAZIMAN
-						<span css={headerStyles.logoDot} aria-hidden="true">
-							.
+					<div css={headerStyles.logoGroup}>
+						<Link href="/" css={headerStyles.logo}>
+							ED SHAZIMAN
+							<span css={headerStyles.logoDot} aria-hidden="true">
+								.
+							</span>
+						</Link>
+						<span css={headerStyles.availabilityPill} aria-label="Availability status">
+							<span css={headerStyles.availabilityDot} aria-hidden="true" />
+							{availabilityLabel}
 						</span>
-					</Link>
+					</div>
 
 					<nav css={headerStyles.nav} aria-label="Main Navigation">
 						{links.map((link) => {
@@ -120,6 +128,7 @@ export const Header = ({
 				ctaLabel={ctaLabel}
 				ctaHref={ctaHref}
 				onLinkClick={scrollToSection}
+				isScrolled={isScrolled}
 			/>
 		</>
 	);

@@ -11,7 +11,8 @@ export const MobileMenu = ({
 	onClose,
 	ctaLabel,
 	ctaHref,
-	onLinkClick
+	onLinkClick,
+	isScrolled
 }: MobileMenuProps) => {
 	const sectionIds = links.filter((l) => l.href.startsWith('#')).map((l) => l.href.slice(1));
 	const activeId = useActiveSection(sectionIds);
@@ -19,7 +20,11 @@ export const MobileMenu = ({
 	return (
 		<div
 			id="mobile-menu"
-			css={[mobileMenuStyles.panel, isOpen && mobileMenuStyles.panelOpen]}
+			css={[
+				mobileMenuStyles.panel,
+				isOpen && mobileMenuStyles.panelOpen,
+				isScrolled && mobileMenuStyles.panelScrolled
+			]}
 			aria-hidden={!isOpen}
 		>
 			<nav css={mobileMenuStyles.navList} aria-label="Mobile Navigation">

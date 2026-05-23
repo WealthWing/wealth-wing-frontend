@@ -1,8 +1,14 @@
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import { mq, mqValues, theme } from '@wealth-wing/tayo';
 import { MAX_WIDTH } from '../hero/hero.styles';
 
 const HEADER_HEIGHT = '5rem';
+const HEADER_HEIGHT_SCROLLED = '3.5rem';
+
+const pulseKeyframe = keyframes`
+	0%, 100% { opacity: 1; transform: scale(1); }
+	50%       { opacity: 0.45; transform: scale(0.85); }
+`;
 
 export const headerStyles = {
 	root: css({
@@ -12,12 +18,14 @@ export const headerStyles = {
 		right: 0,
 		zIndex: 100,
 		backgroundColor: 'transparent',
-		transition: 'background-color 0.3s ease, border-color 0.3s ease'
+		height: HEADER_HEIGHT,
+		transition: 'background-color 0.3s ease, border-color 0.3s ease, height 0.25s ease'
 	}),
 
 	scrolled: css({
 		backgroundColor: theme.color.cardBackground100,
-		borderBottom: theme.border.default
+		borderBottom: theme.border.default,
+		height: HEADER_HEIGHT_SCROLLED
 	}),
 
 	inner: css({
@@ -37,8 +45,15 @@ export const headerStyles = {
 		}
 	}),
 
-	logo: css({
+	logoGroup: css({
 		gridArea: 'logo',
+		display: 'flex',
+		alignItems: 'center',
+		gap: theme.space.s16,
+		minWidth: 0
+	}),
+
+	logo: css({
 		font: theme.font.h5,
 		color: theme.color.textPrimary,
 		textDecoration: 'none',
@@ -51,6 +66,27 @@ export const headerStyles = {
 			outlineOffset: '4px',
 			borderRadius: theme.borderRadius.radiusSmall
 		}
+	}),
+
+	availabilityPill: css({
+		display: 'none',
+		alignItems: 'center',
+		gap: theme.space.s8,
+		font: theme.font.sm,
+		color: '#4ADE80',
+		whiteSpace: 'nowrap',
+		[mq.tabletLarge]: {
+			display: 'inline-flex'
+		}
+	}),
+
+	availabilityDot: css({
+		width: '8px',
+		height: '8px',
+		borderRadius: '50%',
+		backgroundColor: '#4ADE80',
+		flexShrink: 0,
+		animation: `${pulseKeyframe} 2s ease-in-out infinite`
 	}),
 
 	logoDot: css({
@@ -188,6 +224,10 @@ export const mobileMenuStyles = {
 		opacity: 1,
 		visibility: 'visible',
 		transform: 'translateY(0)'
+	}),
+
+	panelScrolled: css({
+		top: HEADER_HEIGHT_SCROLLED
 	}),
 
 	navList: css({

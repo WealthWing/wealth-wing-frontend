@@ -7,6 +7,7 @@ export type HeaderProps = {
 	links?: NavLink[];
 	ctaLabel?: string;
 	ctaHref?: string;
+	availabilityLabel?: string;
 };
 
 export type MobileMenuProps = {
@@ -16,13 +17,15 @@ export type MobileMenuProps = {
 	ctaLabel: string;
 	ctaHref: string;
 	onLinkClick: (href: string) => void;
+	isScrolled?: boolean;
 };
 
 export const DEFAULT_NAV_LINKS: NavLink[] = [
-	{ label: 'Work', href: '#work' },
-	{ label: 'Process', href: '#process' },
+	{ label: 'Capabilities', href: '#work' },
+	{ label: 'Operational Process', href: '#process' },
 	{ label: 'Contact', href: '#contact' }
 ];
 
-export const DEFAULT_CTA_LABEL = 'Start the conversation';
+export const DEFAULT_CTA_LABEL = "Let's Chat";
 export const DEFAULT_CTA_HREF = '#contact';
+export const DEFAULT_AVAILABILITY_LABEL = 'Available for Contracts';

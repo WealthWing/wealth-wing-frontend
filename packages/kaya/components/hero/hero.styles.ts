@@ -79,11 +79,19 @@ export const heroStyles = {
 	// ─── Copy ────────────────────────────────────────────────────────────────────
 	eyebrow: css({
 		margin: 0,
+		display: 'inline-flex',
+		alignItems: 'center',
 		font: theme.font.sm,
-		color: theme.color.textSecondary,
-		letterSpacing: '0.08em',
+		color: theme.color.primary100,
+		letterSpacing: '0.1em',
 		textTransform: 'uppercase',
-		opacity: 0.75
+		fontSize: '0.68rem',
+		fontWeight: 700,
+		background: withAlpha(theme.color.primary100, 8),
+		border: `1px solid ${withAlpha(theme.color.primary100, 22)}`,
+		padding: `5px ${theme.space.s12}`,
+		borderRadius: theme.borderRadius.radiusSmall,
+		width: 'fit-content'
 	}),
 
 	headline: css({
@@ -183,8 +191,8 @@ export const heroStyles = {
 		}
 	}),
 
-	// ─── Dashboard mockup shell ───────────────────────────────────────────────────
-	mockup: css({
+	// ─── Capability Stack card ───────────────────────────────────────────────────
+	capabilityCard: css({
 		backgroundColor: theme.color.indigo100,
 		borderRadius: theme.borderRadius.radiusXLarge,
 		border: `1px solid ${withAlpha(theme.color.indigo60, 32)}`,
@@ -192,173 +200,137 @@ export const heroStyles = {
 		boxShadow: `0 0 0 1px ${withAlpha(theme.color.primary100, 8)}, ${theme.shadow.default200}`
 	}),
 
-	// ─── Window chrome ────────────────────────────────────────────────────────────
-	mockupChrome: css({
+	capabilityHeader: css({
 		display: 'flex',
 		alignItems: 'center',
-		gap: theme.space.s8,
-		padding: `${theme.space.s12} ${theme.space.s16}`,
+		justifyContent: 'space-between',
+		padding: `${theme.space.s12} ${theme.space.s20}`,
 		borderBottom: `1px solid ${withAlpha(theme.color.indigo60, 20)}`
 	}),
 
-	chromeDot: css({
-		width: '10px',
-		height: '10px',
-		borderRadius: '50%',
-		display: 'inline-block',
-		flexShrink: 0
-	}),
-
-	chromeDotError: css({
-		backgroundColor: theme.color.red80
-	}),
-
-	chromeDotWarning: css({
-		backgroundColor: theme.color.yellow100
-	}),
-
-	chromeDotSuccess: css({
-		backgroundColor: theme.color.green100
-	}),
-
-	chromeLabel: css({
+	capabilityHeaderLabel: css({
 		font: theme.font.sm,
 		color: theme.color.textSecondary,
-		margin: '0 auto',
-		opacity: 0.55,
-		fontSize: '0.7rem',
-		letterSpacing: '0.03em'
-	}),
-
-	// ─── Code card ───────────────────────────────────────────────────────────────
-	mockupPad: css({
-		padding: `${theme.space.s16} ${theme.space.s16} 0`
-	}),
-
-	mockupCodeCard: css({
-		backgroundColor: theme.color.indigo90,
-		border: `1px solid ${withAlpha(theme.color.indigo60, 24)}`,
-		borderRadius: theme.borderRadius.radiusLarge,
-		padding: `${theme.space.s16} ${theme.space.s20}`
-	}),
-
-	code: css({
-		margin: 0,
-		fontFamily: "'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Courier New', monospace",
-		fontSize: '0.82rem',
-		lineHeight: 1.6,
-		color: theme.color.textSecondary,
-		whiteSpace: 'pre'
-	}),
-
-	codeKeyword: css({ color: theme.color.primary100, fontWeight: 600 }),
-	codeIdent: css({ color: theme.color.textPrimary }),
-	codeOp: css({ color: theme.color.indigo40 }),
-	codeIdent2: css({ color: theme.color.indigo20 }),
-	codeIdent3: css({ color: theme.color.green40 }),
-
-	// ─── Connector ───────────────────────────────────────────────────────────────
-	connector: css({
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		padding: `${theme.space.s4} 0`,
-		gap: '3px'
-	}),
-
-	connectorLine: css({
-		width: '1px',
-		height: '14px',
-		backgroundColor: theme.color.primary100,
-		opacity: 0.45
-	}),
-
-	connectorArrow: css({
-		color: theme.color.primary100,
-		opacity: 0.5,
-		lineHeight: 1,
-		fontSize: '0.7rem'
-	}),
-
-	// ─── UI output card ───────────────────────────────────────────────────────────
-	mockupUiCard: css({
-		backgroundColor: theme.color.indigo90,
-		border: `1px solid ${withAlpha(theme.color.indigo60, 24)}`,
-		borderRadius: theme.borderRadius.radiusLarge,
-		padding: `${theme.space.s16} ${theme.space.s20}`,
-		display: 'flex',
-		flexDirection: 'column',
-		gap: theme.space.s12,
-		marginBottom: theme.space.s16
-	}),
-
-	uiCardHeader: css({
-		display: 'flex',
-		alignItems: 'center',
-		gap: theme.space.s8
-	}),
-
-	uiStatusDot: css({
-		width: '7px',
-		height: '7px',
-		borderRadius: '50%',
-		backgroundColor: theme.color.primary100,
-		flexShrink: 0
-	}),
-
-	uiLabel: css({
-		font: theme.font.sm,
-		color: theme.color.textSecondary,
-		fontWeight: 600,
 		fontSize: '0.68rem',
-		letterSpacing: '0.07em',
-		textTransform: 'uppercase'
+		letterSpacing: '0.1em',
+		textTransform: 'uppercase',
+		opacity: 0.6
 	}),
 
-	uiMetrics: css({
+	capabilityHeaderStatus: css({
+		display: 'flex',
+		alignItems: 'center',
+		gap: '6px',
+		font: theme.font.sm,
+		color: theme.color.green40,
+		fontSize: '0.68rem',
+		letterSpacing: '0.04em'
+	}),
+
+	capabilityStatusPulse: css({
+		width: '6px',
+		height: '6px',
+		borderRadius: '50%',
+		backgroundColor: theme.color.green40,
+		flexShrink: 0,
+		animation: 'capabilityPulse 2.4s ease-in-out infinite',
+		'@keyframes capabilityPulse': {
+			'0%, 100%': { opacity: 1, transform: 'scale(1)' },
+			'50%': { opacity: 0.35, transform: 'scale(0.85)' }
+		}
+	}),
+
+	capabilityTiers: css({
+		padding: `${theme.space.s8} 0`
+	}),
+
+	capabilityTier: css({
+		display: 'flex',
+		alignItems: 'flex-start',
+		gap: theme.space.s16,
+		padding: `${theme.space.s16} ${theme.space.s20}`,
+		transition: 'background-color 0.15s ease',
+		'&:hover': {
+			backgroundColor: withAlpha(theme.color.indigo60, 8)
+		}
+	}),
+
+	tierDivider: css({
+		height: '1px',
+		backgroundColor: withAlpha(theme.color.indigo60, 18),
+		margin: `0 ${theme.space.s20}`
+	}),
+
+	tierDotWrapper: css({
+		paddingTop: '3px',
+		flexShrink: 0
+	}),
+
+	tierDotIndigo: css({
+		display: 'block',
+		width: '8px',
+		height: '8px',
+		borderRadius: '50%',
+		backgroundColor: theme.color.indigo20,
+		boxShadow: `0 0 7px 1px ${withAlpha(theme.color.indigo20, 55)}`
+	}),
+
+	tierDotPrimary: css({
+		display: 'block',
+		width: '8px',
+		height: '8px',
+		borderRadius: '50%',
+		backgroundColor: theme.color.primary100,
+		boxShadow: `0 0 7px 1px ${withAlpha(theme.color.primary100, 55)}`
+	}),
+
+	tierDotGreen: css({
+		display: 'block',
+		width: '8px',
+		height: '8px',
+		borderRadius: '50%',
+		backgroundColor: theme.color.green40,
+		boxShadow: `0 0 7px 1px ${withAlpha(theme.color.green40, 55)}`
+	}),
+
+	tierContent: css({
 		display: 'flex',
 		flexDirection: 'column',
-		gap: theme.space.s8
+		gap: '4px'
 	}),
 
-	uiMetricRow: css({
+	tierLabel: css({
+		font: theme.font.sm,
+		color: theme.color.textPrimary,
+		fontWeight: 600,
+		fontSize: '0.88rem',
+		letterSpacing: '-0.01em',
+		lineHeight: 1.3
+	}),
+
+	tierSub: css({
+		font: theme.font.sm,
+		color: theme.color.textSecondary,
+		fontSize: '0.73rem',
+		lineHeight: 1.45,
+		opacity: 0.7
+	}),
+
+	capabilityFooter: css({
+		padding: `${theme.space.s12} ${theme.space.s20}`,
+		borderTop: `1px solid ${withAlpha(theme.color.indigo60, 18)}`,
 		display: 'flex',
 		alignItems: 'center',
 		gap: theme.space.s8
 	}),
 
-	uiMetricCheck: css({
-		color: theme.color.green40,
-		fontSize: '0.7rem',
-		lineHeight: 1,
-		flexShrink: 0
-	}),
-
-	uiMetricText: css({
+	capabilityFooterNote: css({
 		font: theme.font.sm,
 		color: theme.color.textSecondary,
-		fontSize: '0.78rem',
-		flex: 1
-	}),
-
-	uiMetricBadge: css({
-		font: theme.font.sm,
-		color: theme.color.primary100,
-		fontSize: '0.75rem',
-		fontWeight: 700
-	}),
-
-	progressTrack: css({
-		height: '4px',
-		backgroundColor: withAlpha(theme.color.indigo60, 28),
-		borderRadius: '2px',
-		overflow: 'hidden',
-		marginTop: theme.space.s4
-	}),
-
-	progressFill: css({
-		height: '100%',
-		backgroundColor: theme.color.primary100,
-		borderRadius: '2px'
+		fontSize: '0.7rem',
+		opacity: 0.45,
+		letterSpacing: '0.06em',
+		textTransform: 'uppercase',
+		fontStyle: 'italic'
 	})
 };

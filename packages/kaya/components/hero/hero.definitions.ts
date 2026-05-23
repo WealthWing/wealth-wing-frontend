@@ -1,3 +1,1 @@
-export type HeroProps = {
-	showEyebrow?: boolean;
-};
+export type HeroProps = Record<string, never>;

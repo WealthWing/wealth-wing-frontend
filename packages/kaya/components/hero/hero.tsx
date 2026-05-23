@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 
-import { HeroProps } from './hero.definitions';
 import { heroStyles } from './hero.styles';
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
@@ -22,7 +21,7 @@ const itemVariants = {
 	}
 };
 
-const mockupVariants = {
+const cardVariants = {
 	hidden: { opacity: 0, x: 40, scale: 0.97 },
 	visible: {
 		opacity: 1,
@@ -32,72 +31,62 @@ const mockupVariants = {
 	}
 };
 
-const DashboardMockup = () => (
-	<div css={heroStyles.mockup}>
-		{/* Window chrome */}
-		<div css={heroStyles.mockupChrome}>
-			<span css={[heroStyles.chromeDot, heroStyles.chromeDotError]} />
-			<span css={[heroStyles.chromeDot, heroStyles.chromeDotWarning]} />
-			<span css={[heroStyles.chromeDot, heroStyles.chromeDotSuccess]} />
-			<span css={heroStyles.chromeLabel}>clean.ts</span>
+const CapabilityStack = () => (
+	<div css={heroStyles.capabilityCard}>
+		{/* Card header */}
+		<div css={heroStyles.capabilityHeader}>
+			<span css={heroStyles.capabilityHeaderLabel}>Capability Stack</span>
+			<span css={heroStyles.capabilityHeaderStatus}>
+				<span css={heroStyles.capabilityStatusPulse} aria-hidden="true" />
+				All systems active
+			</span>
 		</div>
 
-		{/* Code card */}
-		<div css={heroStyles.mockupPad}>
-			<div css={heroStyles.mockupCodeCard}>
-				<pre css={heroStyles.code}>
-					<span css={heroStyles.codeKeyword}>const</span>{' '}
-					<span css={heroStyles.codeIdent}>clean</span>{' '}
-					<span css={heroStyles.codeOp}>=</span>{' '}
-					<span css={heroStyles.codeIdent2}>code</span>{' '}
-					<span css={heroStyles.codeOp}>+</span>{' '}
-					<span css={heroStyles.codeIdent3}>UI</span>
-				</pre>
-			</div>
-		</div>
-
-		{/* Connector */}
-		<div css={heroStyles.connector} aria-hidden="true">
-			<div css={heroStyles.connectorLine} />
-			<span css={heroStyles.connectorArrow}>↓</span>
-		</div>
-
-		{/* UI output card */}
-		<div css={heroStyles.mockupPad}>
-			<div css={heroStyles.mockupUiCard}>
-				<div css={heroStyles.uiCardHeader}>
-					<span css={heroStyles.uiStatusDot} />
-					<span css={heroStyles.uiLabel}>Polished UI</span>
+		{/* Tiers */}
+		<div css={heroStyles.capabilityTiers}>
+			<div css={heroStyles.capabilityTier}>
+				<div css={heroStyles.tierDotWrapper}>
+					<span css={heroStyles.tierDotIndigo} aria-hidden="true" />
 				</div>
-
-				<div css={heroStyles.uiMetrics}>
-					<div css={heroStyles.uiMetricRow}>
-						<span css={heroStyles.uiMetricCheck}>✓</span>
-						<span css={heroStyles.uiMetricText}>Ships on time</span>
-						<span css={heroStyles.uiMetricBadge}>98%</span>
-					</div>
-
-					<div css={heroStyles.uiMetricRow}>
-						<span css={heroStyles.uiMetricCheck}>✓</span>
-						<span css={heroStyles.uiMetricText}>Clean codebase</span>
-						<span css={heroStyles.uiMetricBadge}>Solid</span>
-					</div>
-
-					<div css={heroStyles.progressTrack}>
-						<motion.div
-							css={heroStyles.progressFill}
-							initial={{ width: 0 }}
-							animate={{ width: '92%' }}
-							transition={{ duration: 1.3, delay: 1.1, ease: smoothEase }}
-						/>
-					</div>
+				<div css={heroStyles.tierContent}>
+					<span css={heroStyles.tierLabel}>UI Layer</span>
+					<span css={heroStyles.tierSub}>High-density dashboards · Data-heavy tools</span>
 				</div>
 			</div>
+
+			<div css={heroStyles.tierDivider} aria-hidden="true" />
+
+			<div css={heroStyles.capabilityTier}>
+				<div css={heroStyles.tierDotWrapper}>
+					<span css={heroStyles.tierDotPrimary} aria-hidden="true" />
+				</div>
+				<div css={heroStyles.tierContent}>
+					<span css={heroStyles.tierLabel}>Full-Stack Core</span>
+					<span css={heroStyles.tierSub}>APIs · Auth · DB · Infrastructure</span>
+				</div>
+			</div>
+
+			<div css={heroStyles.tierDivider} aria-hidden="true" />
+
+			<div css={heroStyles.capabilityTier}>
+				<div css={heroStyles.tierDotWrapper}>
+					<span css={heroStyles.tierDotGreen} aria-hidden="true" />
+				</div>
+				<div css={heroStyles.tierContent}>
+					<span css={heroStyles.tierLabel}>AI Orchestration</span>
+					<span css={heroStyles.tierSub}>RAG · Multi-agent · LLM pipelines</span>
+				</div>
+			</div>
+		</div>
+
+		{/* Footer note */}
+		<div css={heroStyles.capabilityFooter}>
+			<span css={heroStyles.capabilityFooterNote}>No hand-holding required</span>
 		</div>
 	</div>
 );
 
-export const Hero = ({ showEyebrow = false }: HeroProps) => {
+export const Hero = () => {
 	return (
 		<section css={heroStyles.section} aria-label="Hero">
 			<div css={heroStyles.gridOverlay} aria-hidden="true" />
@@ -110,45 +99,43 @@ export const Hero = ({ showEyebrow = false }: HeroProps) => {
 						initial="hidden"
 						animate="visible"
 					>
-						{showEyebrow && (
-							<motion.p css={heroStyles.eyebrow} variants={itemVariants}>
-								Trusted by remote teams
-							</motion.p>
-						)}
+						<motion.p css={heroStyles.eyebrow} variants={itemVariants}>
+							Senior Full-Stack / AI Integration Engineer
+						</motion.p>
 
 						<motion.h1 css={heroStyles.headline} variants={itemVariants}>
-							Reliable software, shipped{' '}
-							<span css={heroStyles.accent}>without the chaos.</span>
+							Vague Requirements In.{' '}
+							<span css={heroStyles.accent}>Production-Ready Products Out.</span>
 						</motion.h1>
 
 						<motion.p css={heroStyles.body} variants={itemVariants}>
-							I help small teams clean up messy apps, modernize outdated interfaces,
-							and ship websites, dashboards, internal tools, and full-stack features
-							that are easier to maintain.
+							I build high-density UIs, robust full-stack architectures, and
+							production-ready AI orchestration layers for fast-moving businesses. No
+							hand-holding required.
 						</motion.p>
 
 						<motion.div css={heroStyles.ctaGroup} variants={itemVariants}>
-							<a href="#" css={heroStyles.ctaPrimary}>
-								Start the conversation
+							<a href="#contact" css={heroStyles.ctaPrimary}>
+								Schedule a Scope Call
 								<span css={heroStyles.ctaArrow} aria-hidden="true">
 									↗
 								</span>
 							</a>
-							<a href="#" css={heroStyles.ctaSecondary}>
-								See how I work
+							<a href="#work" css={heroStyles.ctaSecondary}>
+								Explore System Capabilities ↓
 							</a>
 						</motion.div>
 					</motion.div>
 
-					{/* Right: dashboard mockup */}
+					{/* Right: capability stack */}
 					<motion.div
 						css={heroStyles.rightCol}
-						variants={mockupVariants}
+						variants={cardVariants}
 						initial="hidden"
 						animate="visible"
 						aria-hidden="true"
 					>
-						<DashboardMockup />
+						<CapabilityStack />
 					</motion.div>
 				</div>
 			</div>

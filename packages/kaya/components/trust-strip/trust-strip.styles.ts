@@ -17,12 +17,12 @@ export const trustStripStyles = {
 	inner: css({
 		maxWidth: MAX_WIDTH,
 		margin: '0 auto',
-		padding: `${theme.space.s32} 0`,
+		padding: `${theme.space.s16} 0`,
 		display: 'grid',
 		gridTemplateColumns: 'repeat(4, 1fr)',
 		[TABLET_BREAK]: {
 			gridTemplateColumns: 'repeat(2, 1fr)',
-			padding: `${theme.space.s24} ${theme.space.s24}`
+			padding: `${theme.space.s16} ${theme.space.s16}`
 		},
 		[MOBILE_BREAK]: {
 			gridTemplateColumns: '1fr',
