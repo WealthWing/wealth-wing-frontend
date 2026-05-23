@@ -58,16 +58,18 @@ export const ProcessSection = () => {
 		  };
 
 	return (
-		<section id="process" css={processStyles.root} aria-labelledby="process-heading">
+		<section
+			id="operational-blueprint"
+			css={processStyles.root}
+			aria-labelledby="operational-blueprint-heading"
+		>
 			<div css={processStyles.inner}>
 				<header css={processStyles.header}>
 					<p css={processStyles.eyebrow} aria-hidden="true">
-						Process
+						Operational Blueprint
 					</p>
-					<h2 css={processStyles.heading} id="process-heading">
-						No black boxes. Just clear
-						<br />
-						communication and shipping.
+					<h2 css={processStyles.heading} id="operational-blueprint-heading">
+						The Planner-Executor Framework.
 					</h2>
 				</header>
 

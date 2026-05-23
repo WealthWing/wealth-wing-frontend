@@ -15,7 +15,7 @@ export const productionFootprintStyles = {
 		background: `radial-gradient(ellipse at 50% -20%, ${withAlpha(
 			theme.color.indigo60,
 			15
-		)}, transparent 70%), ${theme.color.darkBlue90}`,
+		)}, transparent 70%), ${theme.color.darkBlue100}`,
 		borderTop: `1px solid ${withAlpha(theme.color.indigo60, 30)}`,
 		borderBottom: `1px solid ${withAlpha(theme.color.indigo60, 30)}`,
 		overflow: 'hidden'

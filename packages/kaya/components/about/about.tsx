@@ -7,6 +7,11 @@ const smoothEase = [0.16, 1, 0.3, 1] as const;
 export const AboutSection = () => {
 	const reduceMotion = useReducedMotion();
 
+	const headingVariants = {
+		hidden: { opacity: 0, y: reduceMotion ? 0 : 16 },
+		visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: smoothEase } }
+	};
+
 	const photoVariants = {
 		hidden: { opacity: 0, x: reduceMotion ? 0 : -20 },
 		visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: smoothEase } }
@@ -34,6 +39,16 @@ export const AboutSection = () => {
 	return (
 		<section css={aboutStyles.root} aria-labelledby="about-heading">
 			<div css={aboutStyles.inner}>
+				<motion.h2
+					css={aboutStyles.sectionHeading}
+					id="about-heading"
+					variants={headingVariants}
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, amount: 0.15 }}
+				>
+					{ABOUT_COPY.sectionHeading}
+				</motion.h2>
 				<div css={aboutStyles.grid}>
 					{/* Photo placeholder — replace div with <img> once photo is ready */}
 					<motion.div
@@ -53,31 +68,12 @@ export const AboutSection = () => {
 						whileInView="visible"
 						viewport={{ once: true, amount: 0.15 }}
 					>
-						<motion.p
-							css={aboutStyles.eyebrow}
-							variants={childVariants}
-							aria-hidden="true"
-						>
-							{ABOUT_COPY.eyebrow}
-						</motion.p>
-						<motion.h2
-							css={aboutStyles.heading}
-							id="about-heading"
-							variants={childVariants}
-						>
-							{ABOUT_COPY.heading}
-						</motion.h2>
 						<motion.p css={aboutStyles.pullQuote} variants={childVariants}>
 							{ABOUT_COPY.pullQuote}
 						</motion.p>
 						<motion.p css={aboutStyles.body} variants={childVariants}>
 							{ABOUT_COPY.body}
 						</motion.p>
-						<motion.div variants={childVariants}>
-							<a css={aboutStyles.cta} href={ABOUT_COPY.cta.href}>
-								{ABOUT_COPY.cta.label}
-							</a>
-						</motion.div>
 					</motion.div>
 				</div>
 			</div>

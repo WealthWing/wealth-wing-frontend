@@ -10,7 +10,7 @@ const MOBILE_BREAK = `@media (max-width: ${mqValues.tabletSmall - 1}px)`;
 
 export const servicesStyles = {
 	root: css({
-		backgroundColor: theme.color.pageBackground,
+		backgroundColor: theme.color.darkBlue100,
 		padding: `${theme.space.s96} 0`,
 		[TABLET_BREAK]: {
 			padding: `${theme.space.s64} 0`
@@ -70,7 +70,7 @@ export const servicesStyles = {
 			gridTemplateColumns: 'repeat(2, 1fr)'
 		},
 		[LAPTOP_UP]: {
-			gridTemplateColumns: 'repeat(4, 1fr)'
+			gridTemplateColumns: 'repeat(3, 1fr)'
 		}
 	}),
 
@@ -107,6 +107,60 @@ export const servicesStyles = {
 		color: theme.color.textSecondary,
 		lineHeight: 1.6,
 		flex: 1
+	}),
+
+	tagGroup: css({
+		display: 'flex',
+		flexWrap: 'wrap',
+		gap: theme.space.s8,
+		marginTop: 'auto',
+		paddingTop: theme.space.s8
+	}),
+
+	tag: css({
+		display: 'inline-block',
+		padding: `${theme.space.s4} ${theme.space.s8}`,
+		backgroundColor: theme.color.cardBackground80,
+		borderRadius: theme.borderRadius.radiusSmall,
+		font: theme.font.sm,
+		color: theme.color.textSecondary,
+		lineHeight: 1.4
+	}),
+
+	techStrip: css({
+		backgroundColor: theme.color.cardBackground90,
+		border: theme.border.default,
+		borderRadius: theme.borderRadius.radiusLarge,
+		padding: theme.space.s24,
+		display: 'flex',
+		flexDirection: 'column',
+		gap: theme.space.s12,
+		marginTop: theme.space.s24
+	}),
+
+	techStripRow: css({
+		display: 'flex',
+		alignItems: 'baseline',
+		gap: theme.space.s12,
+		font: theme.font.sm,
+		flexWrap: 'wrap'
+	}),
+
+	techStripLabel: css({
+		color: theme.color.primary100,
+		font: theme.font.button,
+		whiteSpace: 'nowrap',
+		flexShrink: 0
+	}),
+
+	techStripItems: css({
+		color: theme.color.textSecondary,
+		lineHeight: 1.5
+	}),
+
+	techStripDivider: css({
+		height: '1px',
+		backgroundColor: theme.color.cardBackground80
 	}),
 
 	ctaWrapper: css({

@@ -7,22 +7,22 @@ export type ProcessStep = {
 export const PROCESS_STEPS: ProcessStep[] = [
 	{
 		number: '01',
-		title: 'Understand',
-		body: 'We clarify your business goals, target users, constraints, and what success looks like.'
+		title: 'The 48-Hour Parse',
+		body: 'Turning vague notes into a clear architectural delivery plan.'
 	},
 	{
 		number: '02',
-		title: 'Shape',
-		body: 'I translate vague requirements into a concrete, scoped-down technical plan.'
+		title: 'Planner Execution',
+		body: 'Clean React codebases with fast feedback via staging branches.'
 	},
 	{
 		number: '03',
-		title: 'Build',
-		body: 'I write the code — handling both frontend polish and backend logic — with regular check-ins.'
+		title: 'Intelligent Layering',
+		body: 'Integrating low-latency vector loops and custom AI agents.'
 	},
 	{
 		number: '04',
-		title: 'Launch & Improve',
-		body: 'We deploy safely, measure real-world impact, and iterate.'
+		title: 'Raw Ownership',
+		body: 'Zero technical debt. Modular, perfectly typed.'
 	}
 ];

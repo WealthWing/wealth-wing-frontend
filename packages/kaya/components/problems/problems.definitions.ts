@@ -1,28 +1,34 @@
-export type ProblemItem = {
-	number: string;
-	title: string;
-	body: string;
+export type FrictionItem = {
+	trap: string;
+	fix: string;
 };
 
-export const PROBLEMS: ProblemItem[] = [
+export const FRICTION_MATRIX: FrictionItem[] = [
 	{
-		number: '01',
-		title: 'Slow, Repetitive Workflows',
-		body: "You're drowning in manual tasks and scattered tools. I build custom automations and internal apps to win your time back."
+		trap: '3 weeks of Figma mockups, zero code shipped.',
+		fix: 'High-fidelity execution straight into React — no design-to-dev hand-off lag.'
 	},
 	{
-		number: '02',
-		title: 'Hard-to-Maintain Apps',
-		body: 'Codebases that are terrifying to update or hand off. I stabilise and refactor messy apps so you can ship new features safely.'
+		trap: 'Fragile state, janky interactions, slow initial loads.',
+		fix: 'Performance-first UI with clean state architecture and sub-2s load targets.'
 	},
 	{
-		number: '03',
-		title: 'The "Spreadsheet" Ceiling',
-		body: 'Your team relies on duct-taped spreadsheets for core operations. I turn those fragile workarounds into secure, fast web tools.'
+		trap: 'AI features that hallucinate, fail on edge cases, or need constant babysitting.',
+		fix: 'Deeply tested RAG pipelines and multi-agent logic built for production reliability.'
 	},
 	{
-		number: '04',
-		title: 'AI Workflow Confusion',
-		body: 'You want AI to help, but the tooling feels disjointed. I build pragmatic AI integrations that deliver real business value, not just hype.'
+		trap: 'Vague spec handed to a dev agency — comes back unrecognisable.',
+		fix: 'I own the ambiguity. Vague goal in → stable, reasoned architecture out.'
 	}
 ];
+
+export const FRICTION_LABELS = {
+	trap: 'The Freelance / Agency Trap',
+	fix: 'The Autonomous Resolution'
+};
+
+export const FRICTION_HEADER = {
+	eyebrow: 'The Friction Matrix',
+	heading: "You've hit the founder's ceiling.",
+	sub: "These aren't edge cases. They're the default when hiring without the right fit."
+};

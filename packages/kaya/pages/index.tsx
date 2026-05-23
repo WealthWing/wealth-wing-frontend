@@ -8,7 +8,6 @@ import { ServicesSection } from '../components/services';
 import { TrustStrip } from '../components/trust-strip';
 import { AboutSection } from '../components/about';
 import { CtaFooter } from '../components/cta-footer';
-import { TrustPillarsSection } from '../components/trust-pillars';
 import { ProductionFootprint } from '../components/production-footprint';
 
 const page = css({
@@ -23,11 +22,9 @@ const Home = () => {
 			<Header />
 			<Hero />
 			<ProductionFootprint />
-
-			<ServicesSection />
 			<ProblemsSection />
+			<ServicesSection />
 			<ProcessSection />
-			<TrustPillarsSection />
 			<AboutSection />
 			<CtaFooter />
 		</main>

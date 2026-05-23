@@ -20,7 +20,7 @@ const CONNECTOR_COLOR = withAlpha(theme.color.black100, 12);
 
 export const processStyles = {
 	root: css({
-		backgroundColor: theme.color.pageBackground,
+		backgroundColor: theme.color.darkBlue90,
 		padding: `${theme.space.s96} 0`,
 		[TABLET_BREAK]: {
 			padding: `${theme.space.s64} 0`

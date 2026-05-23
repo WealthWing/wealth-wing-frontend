@@ -1,11 +1,6 @@
 export const ABOUT_COPY = {
-	eyebrow: 'THE DEVELOPER',
-	heading: "Hi, I'm Ed.",
+	sectionHeading: 'The Engineer Behind the Code',
 	pullQuote:
-		'I build software that feels clear: clear to use, clear to maintain, and clear to improve.',
-	body: "More than just writing code, I partner with founders and teams to figure out what actually needs to be built. Whether it's turning vague requirements into a polished web app, or integrating AI tools to speed up your workflow, I focus on reliable execution and transparent communication.",
-	cta: {
-		label: "Let's discuss your project ↗",
-		href: '#contact'
-	}
+		"I don't pitch decks, and I don't hide behind account managers. I'm a full-stack engineer who works directly with founders and product leads to build systems that scale cleanly from day one.",
+	body: 'My focus is simple: high technical density, zero communication friction, and shipping clean, maintainable software that solves real business problems.'
 } as const;

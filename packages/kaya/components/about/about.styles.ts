@@ -54,25 +54,21 @@ export const aboutStyles = {
 		gap: theme.space.s24,
 		justifyContent: 'center'
 	}),
-	eyebrow: css({
-		margin: `0 0 ${theme.space.s8}`,
-		font: theme.font.sm,
-		color: theme.color.primary100,
-		letterSpacing: '0.08em',
-		textTransform: 'uppercase'
-	}),
-	heading: css({
-		margin: 0,
+	sectionHeading: css({
+		margin: `0 0 ${theme.space.s40}`,
 		font: theme.font.h2,
 		color: theme.color.textPrimary,
 		letterSpacing: '-0.03em',
+		textTransform: 'uppercase',
 		[TABLET_BREAK]: {
 			font: theme.font.h3,
-			letterSpacing: '-0.025em'
+			letterSpacing: '-0.025em',
+			marginBottom: theme.space.s32
 		},
 		[MOBILE_BREAK]: {
 			font: theme.font.h4,
-			letterSpacing: '-0.02em'
+			letterSpacing: '-0.02em',
+			marginBottom: theme.space.s24
 		}
 	}),
 	pullQuote: css({
@@ -88,19 +84,4 @@ export const aboutStyles = {
 		margin: 0,
 		lineHeight: 1.7
 	}),
-	cta: css({
-		display: 'inline-flex',
-		alignItems: 'center',
-		alignSelf: 'flex-start',
-		padding: `${theme.space.s12} ${theme.space.s24}`,
-		border: `1.5px solid ${theme.color.primary100}`,
-		borderRadius: theme.borderRadius.radiusLarge,
-		color: theme.color.primary100,
-		font: theme.font.button,
-		textDecoration: 'none',
-		transition: 'background 0.2s ease',
-		'&:hover': {
-			background: theme.color.primary05
-		}
-	})
 };

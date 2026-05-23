@@ -33,6 +33,7 @@ export const problemsStyles = {
 
 	header: css({
 		marginBottom: theme.space.s64,
+		maxWidth: '640px',
 		[TABLET_BREAK]: {
 			marginBottom: theme.space.s40
 		},
@@ -50,7 +51,7 @@ export const problemsStyles = {
 	}),
 
 	heading: css({
-		margin: 0,
+		margin: `0 0 ${theme.space.s16}`,
 		font: theme.font.h2,
 		color: theme.color.textPrimary,
 		letterSpacing: '-0.03em',
@@ -64,48 +65,153 @@ export const problemsStyles = {
 		}
 	}),
 
-	grid: css({
-		display: 'grid',
-		gridTemplateColumns: '1fr',
-		gap: theme.space.s24,
-		[TABLET_LARGE_UP]: {
-			gridTemplateColumns: 'repeat(2, 1fr)'
-		}
-	}),
-
-	card: css({
-		backgroundColor: theme.color.cardBackground90,
-		border: theme.border.default,
-		borderRadius: theme.borderRadius.radiusLarge,
-		padding: theme.space.s32,
-		display: 'flex',
-		flexDirection: 'column',
-		gap: theme.space.s12,
-		transition: 'border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease',
-		'&:hover': {
-			borderColor: theme.color.primary100,
-			boxShadow: theme.shadow.default100,
-			transform: 'translateY(-4px)'
-		}
-	}),
-
-	cardNumber: css({
-		margin: 0,
-		font: theme.font.h2,
-		color: withAlpha(theme.color.primary100, 40),
-		lineHeight: 1
-	}),
-
-	cardTitle: css({
-		margin: 0,
-		font: theme.font.h5,
-		color: theme.color.textPrimary
-	}),
-
-	cardBody: css({
+	subheading: css({
 		margin: 0,
 		font: theme.font.md,
 		color: theme.color.textSecondary,
-		lineHeight: 1.65
+		lineHeight: 1.6
+	}),
+
+	// ── Comparison panel ─────────────────────────────────────────────────────
+
+	comparisonPanel: css({
+		borderRadius: theme.borderRadius.radiusLarge,
+		overflow: 'hidden',
+		border: theme.border.default
+	}),
+
+	// Column headers row — two equal columns
+	columnHeaderRow: css({
+		display: 'grid',
+		gridTemplateColumns: '1fr 1fr',
+		[MOBILE_BREAK]: {
+			gridTemplateColumns: '1fr'
+		}
+	}),
+
+	columnHeader: css({
+		display: 'flex',
+		alignItems: 'center',
+		gap: theme.space.s10,
+		padding: `${theme.space.s16} ${theme.space.s24}`,
+		font: theme.font.h6,
+		letterSpacing: '-0.01em'
+	}),
+
+	trapColumnHeader: css({
+		backgroundColor: theme.color.cardBackground90,
+		color: theme.color.textSecondary,
+		borderBottom: `1px solid ${withAlpha(theme.color.indigo60, 30)}`
+	}),
+
+	fixColumnHeader: css({
+		backgroundColor: withAlpha(theme.color.primary100, 10),
+		color: theme.color.primary100,
+		borderBottom: `1px solid ${withAlpha(theme.color.primary100, 20)}`
+	}),
+
+	trapHeaderIcon: css({
+		display: 'inline-flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		width: '20px',
+		height: '20px',
+		borderRadius: '50%',
+		backgroundColor: withAlpha(theme.color.indigo60, 20),
+		fontSize: '0.65rem',
+		color: theme.color.indigo40,
+		flexShrink: 0
+	}),
+
+	fixHeaderIcon: css({
+		display: 'inline-flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		width: '20px',
+		height: '20px',
+		borderRadius: '50%',
+		backgroundColor: withAlpha(theme.color.primary100, 15),
+		fontSize: '0.65rem',
+		color: theme.color.primary100,
+		flexShrink: 0
+	}),
+
+	// Rows wrapper — stack rows vertically
+	rowsWrapper: css({
+		display: 'flex',
+		flexDirection: 'column'
+	}),
+
+	// Each FrictionRow is its own two-column grid so cells align perfectly
+	row: css({
+		display: 'grid',
+		gridTemplateColumns: '1fr 1fr',
+		[MOBILE_BREAK]: {
+			gridTemplateColumns: '1fr'
+		}
+	}),
+
+	trapCell: css({
+		display: 'flex',
+		alignItems: 'flex-start',
+		gap: theme.space.s12,
+		backgroundColor: theme.color.cardBackground90,
+		padding: `${theme.space.s20} ${theme.space.s24}`,
+		borderBottom: `1px solid ${withAlpha(theme.color.indigo60, 18)}`,
+		borderRight: `1px solid ${withAlpha(theme.color.indigo60, 18)}`,
+		[MOBILE_BREAK]: {
+			borderRight: 'none'
+		},
+		'&:last-of-type': {
+			borderBottom: 'none'
+		}
+	}),
+
+	fixCell: css({
+		display: 'flex',
+		alignItems: 'flex-start',
+		gap: theme.space.s12,
+		backgroundColor: withAlpha(theme.color.primary100, 5),
+		padding: `${theme.space.s20} ${theme.space.s24}`,
+		borderBottom: `1px solid ${withAlpha(theme.color.primary100, 12)}`,
+		'&:last-of-type': {
+			borderBottom: 'none'
+		}
+	}),
+
+	cellText: css({
+		margin: 0,
+		font: theme.font.md,
+		color: theme.color.textSecondary,
+		lineHeight: 1.6,
+		flex: 1
+	}),
+
+	bullet: css({
+		display: 'inline-flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		width: '20px',
+		height: '20px',
+		borderRadius: '50%',
+		backgroundColor: withAlpha(theme.color.indigo60, 15),
+		fontSize: '0.6rem',
+		color: theme.color.indigo40,
+		flexShrink: 0,
+		marginTop: '2px'
+	}),
+
+	checkmark: css({
+		display: 'inline-flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+		width: '20px',
+		height: '20px',
+		borderRadius: '50%',
+		backgroundColor: withAlpha(theme.color.primary100, 15),
+		fontSize: '0.65rem',
+		color: theme.color.primary100,
+		flexShrink: 0,
+		marginTop: '2px'
 	})
 };

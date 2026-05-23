@@ -2,7 +2,12 @@ import * as React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { Icon } from '@wealth-wing/tayo';
 
-import { SERVICES, ServiceItem } from './services.definitions';
+import {
+	CAPABILITIES,
+	CAPABILITIES_HEADER,
+	TECH_STACK,
+	CapabilityItem
+} from './services.definitions';
 import { servicesStyles } from './services.styles';
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
@@ -24,12 +29,12 @@ const cardVariants = {
 	}
 };
 
-type ServiceCardProps = {
-	item: ServiceItem;
+type CapabilityCardProps = {
+	item: CapabilityItem;
 	reducedMotion: boolean;
 };
 
-const ServiceCard = ({ item, reducedMotion }: ServiceCardProps) => {
+const CapabilityCard = ({ item, reducedMotion }: CapabilityCardProps) => {
 	const [isHovered, setIsHovered] = React.useState(false);
 
 	return (
@@ -49,6 +54,13 @@ const ServiceCard = ({ item, reducedMotion }: ServiceCardProps) => {
 			</div>
 			<h3 css={servicesStyles.cardTitle}>{item.title}</h3>
 			<p css={servicesStyles.cardBody}>{item.description}</p>
+			<div css={servicesStyles.tagGroup}>
+				{item.tags.map((tag) => (
+					<span key={tag} css={servicesStyles.tag}>
+						{tag}
+					</span>
+				))}
+			</div>
 		</motion.article>
 	);
 };
@@ -70,22 +82,36 @@ export const ServicesSection = () => {
 			<div css={servicesStyles.inner}>
 				<header css={servicesStyles.header}>
 					<p css={servicesStyles.eyebrow} aria-hidden="true">
-						How I help
+						{CAPABILITIES_HEADER.eyebrow}
 					</p>
 					<h2 css={servicesStyles.heading} id="services-heading">
-						What I can take off your plate
+						{CAPABILITIES_HEADER.heading}
 					</h2>
 				</header>
 
 				<motion.div css={servicesStyles.grid} {...containerAnimationProps}>
-					{SERVICES.map((item) => (
-						<ServiceCard
+					{CAPABILITIES.map((item) => (
+						<CapabilityCard
 							key={item.title}
 							item={item}
 							reducedMotion={shouldReduceMotion}
 						/>
 					))}
 				</motion.div>
+
+				<div css={servicesStyles.techStrip}>
+					<div css={servicesStyles.techStripRow}>
+						<span css={servicesStyles.techStripLabel}>{TECH_STACK.label}</span>
+						<span css={servicesStyles.techStripItems}>
+							{TECH_STACK.items.join(' · ')}
+						</span>
+					</div>
+					<div css={servicesStyles.techStripDivider} aria-hidden="true" />
+					<div css={servicesStyles.techStripRow}>
+						<span css={servicesStyles.techStripLabel}>Best for</span>
+						<span css={servicesStyles.techStripItems}>{TECH_STACK.bestFor}</span>
+					</div>
+				</div>
 
 				<div css={servicesStyles.ctaWrapper}>
 					<a href="#contact" css={servicesStyles.ctaLink}>

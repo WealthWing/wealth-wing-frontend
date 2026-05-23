@@ -4,22 +4,20 @@ export type HeadlinePart = {
 };
 
 export const CTA_HEADLINE_PARTS: HeadlinePart[] = [
-	{ text: 'Ready to get something ', accent: false },
-	{ text: 'built', accent: true },
-	{ text: ', ', accent: false },
-	{ text: 'fixed', accent: true },
-	{ text: ', or ', accent: false },
-	{ text: 'modernized', accent: true },
-	{ text: '?', accent: false }
+	{ text: "LET'S TALK ", accent: false },
+	{ text: 'ARCHITECTURE', accent: true }
 ];
 
 export const CTA_SUBTEXT =
-	"Let's talk about your project. No pressure—just a quick chat to see if we're a good fit.";
+	'If your product boundaries are still loose, I can help turn ambiguity into an executable system map. We will define the schema, contracts, and operational edges before architecture becomes expensive to unwind.';
 
-export const CTA_BUTTON_LABEL = 'Start the conversation';
-export const CTA_BUTTON_HREF = 'mailto:hello@edshaziman.com?subject=Project%20Inquiry';
+export const CTA_BUTTON_LABEL = 'INITIATE SYSTEM SCOPE CALL';
 
-export const AVAILABILITY_LABEL = 'Available for new projects';
+export const AVAILABILITY_LABEL = '1 Contract Spot Available for Q3';
+
+export const FORM_PROJECT_PLACEHOLDER =
+	'What are you building, modernizing, or trying to untangle? Share scope, goals, constraints, and where the boundaries feel fuzzy.';
+export const FORM_EMAIL_PLACEHOLDER = 'your.email@company.com';
 
 export const FOOTER_NAME = 'Ed Shaziman';
 export const FOOTER_TAGLINE = 'Full-Stack / Front-End Engineer';
@@ -49,4 +47,4 @@ export const FOOTER_LINKS: FooterLink[] = [
 	}
 ];
 
-export const FOOTER_COPYRIGHT = '© 2026 Ed Shaziman. All rights reserved.';
+export const FOOTER_COPYRIGHT = '© 2026 Erdoan S.';

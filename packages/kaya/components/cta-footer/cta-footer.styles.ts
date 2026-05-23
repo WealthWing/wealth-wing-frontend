@@ -15,6 +15,28 @@ const pulse = keyframes({
 	'50%': { opacity: 0.55, transform: 'scale(0.8)' }
 });
 
+const formField = css({
+	width: '100%',
+	boxSizing: 'border-box',
+	backgroundColor: theme.color.darkBlue80,
+	border: theme.border.default,
+	borderRadius: theme.borderRadius.radiusMedium,
+	padding: `${theme.space.s16} ${theme.space.s20}`,
+	font: theme.font.md,
+	color: theme.color.textPrimary,
+	boxShadow: 'none',
+	transition: 'border-color 0.15s ease, box-shadow 0.15s ease',
+	'&::placeholder': {
+		color: theme.color.textSecondary,
+		opacity: 0.72
+	},
+	'&:focus': {
+		outline: 'none',
+		borderColor: theme.color.primary100,
+		boxShadow: `0 0 0 3px ${withAlpha(theme.color.primary100, 20)}`
+	}
+});
+
 export const ctaFooterStyles = {
 	// ── CTA Block ──────────────────────────────────────────────────────────────
 	ctaBlock: css({
@@ -22,7 +44,7 @@ export const ctaFooterStyles = {
 		overflow: 'hidden',
 		backgroundColor: theme.color.darkBlue100,
 		padding: `${theme.space.s96} 0`,
-		textAlign: 'center',
+		textAlign: 'left',
 		[TABLET_BREAK]: {
 			padding: `${theme.space.s64} 0`
 		},
@@ -71,18 +93,24 @@ export const ctaFooterStyles = {
 		}
 	}),
 
+	formWrapper: css({
+		maxWidth: '44rem',
+		margin: '0 auto',
+		textAlign: 'left'
+	}),
+
 	headline: css({
 		margin: `0 0 ${theme.space.s16}`,
 		font: theme.font.h2,
 		color: theme.color.textPrimary,
-		letterSpacing: '-0.03em',
+		letterSpacing: 0,
 		[TABLET_BREAK]: {
 			font: theme.font.h3,
-			letterSpacing: '-0.025em'
+			letterSpacing: 0
 		},
 		[MOBILE_BREAK]: {
 			font: theme.font.h4,
-			letterSpacing: '-0.02em'
+			letterSpacing: 0
 		}
 	}),
 
@@ -91,22 +119,57 @@ export const ctaFooterStyles = {
 	}),
 
 	subtext: css({
-		margin: `0 auto ${theme.space.s32}`,
+		margin: `0 0 ${theme.space.s32}`,
 		maxWidth: '36rem',
 		font: theme.font.md,
 		color: theme.color.textSecondary,
 		lineHeight: 1.7
 	}),
 
+	form: css({
+		display: 'grid',
+		gap: theme.space.s16
+	}),
+
+	formField,
+
+	formTextarea: css([
+		formField,
+		{
+			minHeight: '8rem',
+			resize: 'vertical'
+		}
+	]),
+
+	formEmail: css([
+		formField,
+		{
+			minHeight: '3.5rem'
+		}
+	]),
+
+	formRow: css({
+		display: 'flex',
+		alignItems: 'center',
+		gap: theme.space.s16,
+		[MOBILE_BREAK]: {
+			alignItems: 'stretch',
+			flexDirection: 'column'
+		}
+	}),
+
 	ctaButton: css({
 		display: 'inline-flex',
 		alignItems: 'center',
+		justifyContent: 'center',
 		gap: theme.space.s8,
 		font: theme.font.button,
 		color: theme.color.black100,
 		backgroundColor: theme.color.primary100,
+		border: 'none',
 		padding: `${theme.space.s16} ${theme.space.s32}`,
 		borderRadius: theme.borderRadius.radiusMedium,
+		cursor: 'pointer',
 		textDecoration: 'none',
 		whiteSpace: 'nowrap',
 		transition: 'opacity 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease',
@@ -123,6 +186,9 @@ export const ctaFooterStyles = {
 			outline: `2px solid ${theme.color.primary100}`,
 			outlineOffset: '3px',
 			borderRadius: theme.borderRadius.radiusMedium
+		},
+		[MOBILE_BREAK]: {
+			width: '100%'
 		}
 	}),
 
@@ -135,9 +201,7 @@ export const ctaFooterStyles = {
 	availabilityPill: css({
 		display: 'flex',
 		alignItems: 'center',
-		justifyContent: 'center',
 		gap: theme.space.s8,
-		marginTop: theme.space.s20,
 		font: theme.font.sm,
 		color: theme.color.textSecondary
 	}),

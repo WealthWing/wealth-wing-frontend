@@ -1,18 +1,25 @@
+'use client';
+
 import * as React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 
 import {
 	AVAILABILITY_LABEL,
-	CTA_BUTTON_HREF,
 	CTA_BUTTON_LABEL,
 	CTA_HEADLINE_PARTS,
 	CTA_SUBTEXT,
 	FOOTER_COPYRIGHT,
 	FOOTER_LINKS,
 	FOOTER_NAME,
-	FOOTER_TAGLINE
+	FOOTER_TAGLINE,
+	FORM_EMAIL_PLACEHOLDER,
+	FORM_PROJECT_PLACEHOLDER
 } from './cta-footer.definitions';
 import { ctaFooterStyles } from './cta-footer.styles';
+
+const CONTACT_EMAIL = 'hello@edshaziman.com';
+const FORM_EMAIL_NAME = 'email';
+const FORM_PROJECT_NAME = 'projectScope';
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
 
@@ -36,6 +43,26 @@ const itemVariants = {
 export const CtaFooter = () => {
 	const shouldReduceMotion = useReducedMotion() ?? false;
 
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+
+		const formData = new FormData(event.currentTarget);
+		const projectScope = String(formData.get(FORM_PROJECT_NAME) ?? '').trim();
+		const email = String(formData.get(FORM_EMAIL_NAME) ?? '').trim();
+		const subject = encodeURIComponent('System Scope Call');
+		const body = encodeURIComponent(
+			[
+				'Project scope / goals:',
+				projectScope,
+				'',
+				'Reply-to email:',
+				email
+			].join('\n')
+		);
+
+		window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+	};
+
 	const containerProps = shouldReduceMotion
 		? {}
 		: {
@@ -55,7 +82,7 @@ export const CtaFooter = () => {
 				<div css={ctaFooterStyles.glowOverlay} aria-hidden="true" />
 
 				<div css={ctaFooterStyles.inner}>
-					<motion.div {...containerProps}>
+					<motion.div css={ctaFooterStyles.formWrapper} {...containerProps}>
 						<motion.h2 id="cta-heading" css={ctaFooterStyles.headline} {...itemProps}>
 							{CTA_HEADLINE_PARTS.map(({ text, accent }, index) =>
 								accent ? (
@@ -73,21 +100,36 @@ export const CtaFooter = () => {
 						</motion.p>
 
 						<motion.div {...itemProps}>
-							<a href={CTA_BUTTON_HREF} css={ctaFooterStyles.ctaButton}>
-								{CTA_BUTTON_LABEL}
-								<span css={ctaFooterStyles.ctaArrow} aria-hidden="true">
-									↗
-								</span>
-							</a>
-						</motion.div>
+							<form css={ctaFooterStyles.form} onSubmit={handleSubmit}>
+								<textarea
+									aria-label="Project scope and goals"
+									css={ctaFooterStyles.formTextarea}
+									name={FORM_PROJECT_NAME}
+									placeholder={FORM_PROJECT_PLACEHOLDER}
+									required
+								/>
+								<input
+									aria-label="Email address"
+									css={ctaFooterStyles.formEmail}
+									name={FORM_EMAIL_NAME}
+									placeholder={FORM_EMAIL_PLACEHOLDER}
+									required
+									type="email"
+								/>
+								<div css={ctaFooterStyles.formRow}>
+									<button type="submit" css={ctaFooterStyles.ctaButton}>
+										{CTA_BUTTON_LABEL}
+										<span css={ctaFooterStyles.ctaArrow} aria-hidden="true">
+											↗
+										</span>
+									</button>
 
-						<motion.div
-							css={ctaFooterStyles.availabilityPill}
-							aria-live="polite"
-							{...itemProps}
-						>
-							<span css={ctaFooterStyles.availabilityDot} aria-hidden="true" />
-							<span>{AVAILABILITY_LABEL}</span>
+									<div css={ctaFooterStyles.availabilityPill} aria-live="polite">
+										<span css={ctaFooterStyles.availabilityDot} aria-hidden="true" />
+										<span>{AVAILABILITY_LABEL}</span>
+									</div>
+								</div>
+							</form>
 						</motion.div>
 					</motion.div>
 				</div>
