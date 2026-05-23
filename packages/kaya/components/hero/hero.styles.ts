@@ -1,8 +1,8 @@
 import { css } from '@emotion/react';
-import { mqValues, theme } from '@wealth-wing/tayo';
+import { mqValues, theme, mq } from '@wealth-wing/tayo';
 
 const HEADER_HEIGHT = '5rem';
-const MAX_WIDTH = '72rem';
+export const MAX_WIDTH = '78rem';
 const TABLET_BREAK = `@media (max-width: ${mqValues.tabletLarge - 1}px)`;
 const MOBILE_BREAK = `@media (max-width: ${mqValues.tabletSmall - 1}px)`;
 const withAlpha = (color: string, alphaPercent: number) =>
@@ -14,15 +14,16 @@ export const heroStyles = {
 		position: 'relative',
 		overflow: 'hidden',
 		background: `linear-gradient(155deg, ${theme.color.darkBlue90} 0%, ${theme.color.darkBlue100} 65%)`,
-		paddingTop: `calc(${HEADER_HEIGHT} + 5rem)`,
-		paddingBottom: '7rem',
-		[TABLET_BREAK]: {
-			paddingTop: `calc(${HEADER_HEIGHT} + 3.5rem)`,
-			paddingBottom: '5rem'
+		paddingTop: `calc(${HEADER_HEIGHT} + 2.5rem)`,
+		paddingBottom: '4rem',
+
+		[mq.laptop]: {
+			paddingTop: `calc(${HEADER_HEIGHT} + 3rem)`,
+			paddingBottom: '2.5rem'
 		},
-		[MOBILE_BREAK]: {
-			paddingTop: `calc(${HEADER_HEIGHT} + 2.5rem)`,
-			paddingBottom: '4rem'
+		[mq.desktop]: {
+			paddingTop: `calc(${HEADER_HEIGHT} + 5rem)`,
+			paddingBottom: '7rem'
 		}
 	}),
 
@@ -90,7 +91,7 @@ export const heroStyles = {
 		font: theme.font.h1,
 		color: theme.color.textPrimary,
 		letterSpacing: '-0.03em',
-		lineHeight: 1.06,
+
 		[TABLET_BREAK]: {
 			font: theme.font.h2,
 			letterSpacing: '-0.025em'

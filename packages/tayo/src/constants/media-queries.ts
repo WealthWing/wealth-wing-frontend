@@ -4,8 +4,8 @@ export const mqValues: Record<Media, number> = {
 	mobile: 0,
 	tabletSmall: 600,
 	tabletLarge: 800,
-	laptop: 1200,
-	desktop: 1920
+	laptop: 1280,
+	desktop: 1600
 };
 
 export const mq: Record<Media, string> = {

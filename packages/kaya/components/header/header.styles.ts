@@ -1,10 +1,8 @@
 import { css } from '@emotion/react';
-import { mqValues, theme } from '@wealth-wing/tayo';
+import { mq, mqValues, theme } from '@wealth-wing/tayo';
+import { MAX_WIDTH } from '../hero/hero.styles';
 
 const HEADER_HEIGHT = '5rem';
-const MAX_WIDTH = '72rem';
-const TABLET_BREAK = `@media (max-width: ${mqValues.tabletLarge - 1}px)`;
-const MOBILE_BREAK = `@media (max-width: ${mqValues.tabletSmall - 1}px)`;
 
 export const headerStyles = {
 	root: css({
@@ -32,7 +30,7 @@ export const headerStyles = {
 		gridTemplateAreas: '"logo nav actions"',
 		alignItems: 'center',
 		gap: theme.space.s24,
-		[TABLET_BREAK]: {
+		[mq.tabletLarge]: {
 			gridTemplateColumns: '1fr auto',
 			gridTemplateAreas: '"logo actions"',
 			padding: `0 ${theme.space.s16}`
@@ -66,7 +64,7 @@ export const headerStyles = {
 		justifyContent: 'center',
 		alignItems: 'center',
 		gap: theme.space.s32,
-		[TABLET_BREAK]: {
+		[mq.tabletLarge]: {
 			display: 'none'
 		}
 	}),
@@ -135,7 +133,7 @@ export const headerStyles = {
 			outlineOffset: '3px',
 			borderRadius: theme.borderRadius.radiusMedium
 		},
-		[MOBILE_BREAK]: {
+		[mq.tabletSmall]: {
 			display: 'none'
 		}
 	}),
@@ -161,7 +159,7 @@ export const headerStyles = {
 			outline: `2px solid ${theme.color.primary100}`,
 			outlineOffset: '2px'
 		},
-		[TABLET_BREAK]: {
+		[mq.tabletLarge]: {
 			display: 'flex'
 		}
 	})

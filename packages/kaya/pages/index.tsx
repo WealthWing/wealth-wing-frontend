@@ -2,6 +2,8 @@ import { css } from '@emotion/react';
 import { theme } from '@wealth-wing/tayo';
 import { Header } from '../components/header';
 import { Hero } from '../components/hero';
+import { ServicesSection } from '../components/services';
+import { TrustStrip } from '../components/trust-strip';
 
 const page = css({
 	background: theme.color.pageBackground,
@@ -22,6 +24,8 @@ const Home = () => {
 				ctaHref="#"
 			/>
 			<Hero showEyebrow={false} />
+			<TrustStrip />
+			<ServicesSection />
 		</main>
 	);
 };
