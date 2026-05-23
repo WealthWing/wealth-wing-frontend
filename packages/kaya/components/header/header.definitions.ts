@@ -15,14 +15,14 @@ export type MobileMenuProps = {
 	onClose: () => void;
 	ctaLabel: string;
 	ctaHref: string;
+	onLinkClick: (href: string) => void;
 };
 
 export const DEFAULT_NAV_LINKS: NavLink[] = [
-	{ label: 'Services', href: '/services' },
-	{ label: 'Work', href: '/work' },
-	{ label: 'Process', href: '/process' },
-	{ label: 'About', href: '/about' }
+	{ label: 'Work', href: '#work' },
+	{ label: 'Process', href: '#process' },
+	{ label: 'Contact', href: '#contact' }
 ];
 
 export const DEFAULT_CTA_LABEL = 'Start the conversation';
-export const DEFAULT_CTA_HREF = '/contact';
+export const DEFAULT_CTA_HREF = '#contact';

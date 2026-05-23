@@ -53,10 +53,18 @@ export const AboutSection = () => {
 						whileInView="visible"
 						viewport={{ once: true, amount: 0.15 }}
 					>
-						<motion.p css={aboutStyles.eyebrow} variants={childVariants} aria-hidden="true">
+						<motion.p
+							css={aboutStyles.eyebrow}
+							variants={childVariants}
+							aria-hidden="true"
+						>
 							{ABOUT_COPY.eyebrow}
 						</motion.p>
-						<motion.h2 css={aboutStyles.heading} id="about-heading" variants={childVariants}>
+						<motion.h2
+							css={aboutStyles.heading}
+							id="about-heading"
+							variants={childVariants}
+						>
 							{ABOUT_COPY.heading}
 						</motion.h2>
 						<motion.p css={aboutStyles.pullQuote} variants={childVariants}>

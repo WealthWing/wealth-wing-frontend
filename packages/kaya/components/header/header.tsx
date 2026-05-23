@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { Icon } from '@wealth-wing/tayo';
+import { Icon, useMediaQueries } from '@wealth-wing/tayo';
 
+import { useSmoothScroll } from '../../hooks';
+import { useActiveSection } from '../../hooks';
 import { MobileMenu } from './mobile-menu';
 import { headerStyles } from './header.styles';
 import {
@@ -17,9 +18,17 @@ export const Header = ({
 	ctaLabel = DEFAULT_CTA_LABEL,
 	ctaHref = DEFAULT_CTA_HREF
 }: HeaderProps) => {
-	const { pathname } = useRouter();
 	const [isScrolled, setIsScrolled] = React.useState(false);
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+	const { isDesktop, isLaptop } = useMediaQueries();
+	const isWideViewport = isDesktop || isLaptop;
+	const { scrollToSection } = useSmoothScroll();
+	const sectionIds = links.filter((l) => l.href.startsWith('#')).map((l) => l.href.slice(1));
+	const activeId = useActiveSection(sectionIds);
+
+	React.useEffect(() => {
+		if (isWideViewport) setIsMenuOpen(false);
+	}, [isWideViewport]);
 
 	React.useEffect(() => {
 		const handleScroll = () => setIsScrolled(window.scrollY > 16);
@@ -49,7 +58,8 @@ export const Header = ({
 
 					<nav css={headerStyles.nav} aria-label="Main Navigation">
 						{links.map((link) => {
-							const isActive = pathname === link.href;
+							const sectionId = link.href.startsWith('#') ? link.href.slice(1) : null;
+							const isActive = sectionId ? activeId === sectionId : false;
 							return (
 								<Link
 									key={link.href}
@@ -59,6 +69,12 @@ export const Header = ({
 										isActive && headerStyles.navLinkActive
 									]}
 									aria-current={isActive ? 'page' : undefined}
+									onClick={(e) => {
+										if (link.href.startsWith('#')) {
+											e.preventDefault();
+											scrollToSection(link.href);
+										}
+									}}
 								>
 									{link.label}
 								</Link>
@@ -67,13 +83,21 @@ export const Header = ({
 					</nav>
 
 					<div css={headerStyles.actions}>
-						<a href={ctaHref} css={headerStyles.ctaLink}>
+						<a
+							href={ctaHref}
+							css={headerStyles.ctaLink}
+							onClick={(e) => {
+								if (ctaHref.startsWith('#')) {
+									e.preventDefault();
+									scrollToSection(ctaHref);
+								}
+							}}
+						>
 							{ctaLabel}
 							<span css={headerStyles.ctaArrow} aria-hidden="true">
 								↗
 							</span>
 						</a>
-
 						<button
 							css={headerStyles.menuButton}
 							aria-label={
@@ -95,6 +119,7 @@ export const Header = ({
 				onClose={() => setIsMenuOpen(false)}
 				ctaLabel={ctaLabel}
 				ctaHref={ctaHref}
+				onLinkClick={scrollToSection}
 			/>
 		</>
 	);

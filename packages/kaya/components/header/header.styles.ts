@@ -23,17 +23,17 @@ export const headerStyles = {
 	inner: css({
 		maxWidth: MAX_WIDTH,
 		margin: '0 auto',
-		padding: `0 ${theme.space.s24}`,
+		padding: `0 ${theme.space.s16}`,
 		height: HEADER_HEIGHT,
 		display: 'grid',
-		gridTemplateColumns: '1fr auto 1fr',
-		gridTemplateAreas: '"logo nav actions"',
+		gridTemplateColumns: '1fr auto',
+		gridTemplateAreas: '"logo actions"',
 		alignItems: 'center',
 		gap: theme.space.s24,
 		[mq.tabletLarge]: {
-			gridTemplateColumns: '1fr auto',
-			gridTemplateAreas: '"logo actions"',
-			padding: `0 ${theme.space.s16}`
+			gridTemplateColumns: '1fr auto 1fr',
+			gridTemplateAreas: '"logo nav actions"',
+			padding: `0 ${theme.space.s24}`
 		}
 	}),
 
@@ -60,12 +60,12 @@ export const headerStyles = {
 
 	nav: css({
 		gridArea: 'nav',
-		display: 'flex',
+		display: 'none',
 		justifyContent: 'center',
 		alignItems: 'center',
 		gap: theme.space.s32,
 		[mq.tabletLarge]: {
-			display: 'none'
+			display: 'flex'
 		}
 	}),
 
@@ -109,7 +109,7 @@ export const headerStyles = {
 	}),
 
 	ctaLink: css({
-		display: 'inline-flex',
+		display: 'none',
 		alignItems: 'center',
 		gap: theme.space.s8,
 		font: theme.font.button,
@@ -134,7 +134,7 @@ export const headerStyles = {
 			borderRadius: theme.borderRadius.radiusMedium
 		},
 		[mq.tabletSmall]: {
-			display: 'none'
+			display: 'inline-flex'
 		}
 	}),
 
@@ -145,7 +145,7 @@ export const headerStyles = {
 	}),
 
 	menuButton: css({
-		display: 'none',
+		display: 'flex',
 		background: 'transparent',
 		border: 'none',
 		color: theme.color.textPrimary,
@@ -160,7 +160,7 @@ export const headerStyles = {
 			outlineOffset: '2px'
 		},
 		[mq.tabletLarge]: {
-			display: 'flex'
+			display: 'none'
 		}
 	})
 };

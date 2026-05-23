@@ -66,7 +66,7 @@ export const ServicesSection = () => {
 		  };
 
 	return (
-		<section css={servicesStyles.root} aria-labelledby="services-heading">
+		<section id="work" css={servicesStyles.root} aria-labelledby="services-heading">
 			<div css={servicesStyles.inner}>
 				<header css={servicesStyles.header}>
 					<p css={servicesStyles.eyebrow} aria-hidden="true">
