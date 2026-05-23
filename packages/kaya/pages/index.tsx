@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import { Box, Heading, theme } from '@wealth-wing/tayo';
+import { Header } from '../components/header';
 
 const page = css({
 	background: theme.color.pageBackground,
@@ -48,6 +49,15 @@ const card = css({
 const Home = () => {
 	return (
 		<main css={page}>
+			<Header
+				links={[
+					{ label: 'Features', href: '/features' },
+					{ label: 'Features', href: '/features' },
+					{ label: 'Features', href: '/features' }
+				]}
+				ctaLabel="Book a call"
+				ctaHref="/book"
+			/>
 			<Box _css={shell}>
 				<Box tag="p" _css={eyebrow}>
 					Kaya
@@ -56,16 +66,16 @@ const Home = () => {
 					Midnight Fire is ready for the personal site.
 				</Heading>
 				<Box tag="p" _css={intro}>
-					The Kaya package is initialized as a Next.js app and is already wrapped in
-					Tayo with the new theme.
+					The Kaya package is initialized as a Next.js app and is already wrapped in Tayo
+					with the new theme.
 				</Box>
 				<Box tag="section" _css={card}>
 					<Heading tag="h2" font="h4">
 						Theme checkpoint
 					</Heading>
 					<Box tag="p" color="textSecondary">
-						Orange is reserved for action and emphasis, graphite owns the surfaces,
-						and silver handles the quiet details.
+						Orange is reserved for action and emphasis, graphite owns the surfaces, and
+						silver handles the quiet details.
 					</Box>
 				</Box>
 			</Box>
