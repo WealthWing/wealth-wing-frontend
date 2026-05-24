@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 
 import { heroStyles } from './hero.styles';
+import { link } from 'fs/promises';
+import { useSmoothScroll } from '../../hooks';
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
 
@@ -87,6 +89,7 @@ const CapabilityStack = () => (
 );
 
 export const Hero = () => {
+	const { scrollToSection } = useSmoothScroll();
 	return (
 		<section css={heroStyles.section} aria-label="Hero">
 			<div css={heroStyles.gridOverlay} aria-hidden="true" />
@@ -115,13 +118,27 @@ export const Hero = () => {
 						</motion.p>
 
 						<motion.div css={heroStyles.ctaGroup} variants={itemVariants}>
-							<a href="#contact" css={heroStyles.ctaPrimary}>
+							<a
+								href="#contact"
+								css={heroStyles.ctaPrimary}
+								onClick={(e) => {
+									e.preventDefault();
+									scrollToSection('#contact');
+								}}
+							>
 								Schedule a Scope Call
 								<span css={heroStyles.ctaArrow} aria-hidden="true">
 									↗
 								</span>
 							</a>
-							<a href="#work" css={heroStyles.ctaSecondary}>
+							<a
+								href="#work"
+								css={heroStyles.ctaSecondary}
+								onClick={(e) => {
+									e.preventDefault();
+									scrollToSection('#work');
+								}}
+							>
 								Explore System Capabilities ↓
 							</a>
 						</motion.div>

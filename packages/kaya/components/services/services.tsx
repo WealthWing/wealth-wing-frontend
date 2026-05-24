@@ -9,6 +9,7 @@ import {
 	CapabilityItem
 } from './services.definitions';
 import { servicesStyles } from './services.styles';
+import { useSmoothScroll } from '../../hooks';
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
 
@@ -66,6 +67,7 @@ const CapabilityCard = ({ item, reducedMotion }: CapabilityCardProps) => {
 };
 
 export const ServicesSection = () => {
+	const { scrollToSection } = useSmoothScroll();
 	const shouldReduceMotion = useReducedMotion() ?? false;
 
 	const containerAnimationProps = shouldReduceMotion
@@ -114,7 +116,14 @@ export const ServicesSection = () => {
 				</div>
 
 				<div css={servicesStyles.ctaWrapper}>
-					<a href="#contact" css={servicesStyles.ctaLink}>
+					<a
+						href="#contact"
+						css={servicesStyles.ctaLink}
+						onClick={(e) => {
+							e.preventDefault();
+							scrollToSection('#contact');
+						}}
+					>
 						Let&apos;s discuss your project
 						<span css={servicesStyles.ctaArrow} aria-hidden="true">
 							↗

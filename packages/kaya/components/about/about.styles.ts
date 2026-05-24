@@ -36,6 +36,7 @@ export const aboutStyles = {
 		}
 	}),
 	photoBox: css({
+		position: 'relative',
 		borderRadius: theme.borderRadius.radiusXLarge,
 		boxShadow: theme.shadow.default100,
 		backgroundColor: theme.color.cardBackground100,
@@ -80,8 +81,8 @@ export const aboutStyles = {
 	}),
 	body: css({
 		font: theme.font.md,
-		color: theme.color.black60,
+		color: theme.color.textSecondary,
 		margin: 0,
 		lineHeight: 1.7
-	}),
+	})
 };

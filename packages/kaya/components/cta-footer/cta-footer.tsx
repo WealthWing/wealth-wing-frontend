@@ -51,13 +51,7 @@ export const CtaFooter = () => {
 		const email = String(formData.get(FORM_EMAIL_NAME) ?? '').trim();
 		const subject = encodeURIComponent('System Scope Call');
 		const body = encodeURIComponent(
-			[
-				'Project scope / goals:',
-				projectScope,
-				'',
-				'Reply-to email:',
-				email
-			].join('\n')
+			['Project scope / goals:', projectScope, '', 'Reply-to email:', email].join('\n')
 		);
 
 		window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
@@ -108,6 +102,7 @@ export const CtaFooter = () => {
 									placeholder={FORM_PROJECT_PLACEHOLDER}
 									required
 								/>
+
 								<input
 									aria-label="Email address"
 									css={ctaFooterStyles.formEmail}
@@ -125,7 +120,10 @@ export const CtaFooter = () => {
 									</button>
 
 									<div css={ctaFooterStyles.availabilityPill} aria-live="polite">
-										<span css={ctaFooterStyles.availabilityDot} aria-hidden="true" />
+										<span
+											css={ctaFooterStyles.availabilityDot}
+											aria-hidden="true"
+										/>
 										<span>{AVAILABILITY_LABEL}</span>
 									</div>
 								</div>

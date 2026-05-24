@@ -13,7 +13,7 @@ export const CTA_SUBTEXT =
 
 export const CTA_BUTTON_LABEL = 'INITIATE SYSTEM SCOPE CALL';
 
-export const AVAILABILITY_LABEL = '1 Contract Spot Available for Q3';
+export const AVAILABILITY_LABEL = 'Contract Spot Available';
 
 export const FORM_PROJECT_PLACEHOLDER =
 	'What are you building, modernizing, or trying to untangle? Share scope, goals, constraints, and where the boundaries feel fuzzy.';

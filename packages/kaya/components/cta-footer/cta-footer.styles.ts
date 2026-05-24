@@ -164,7 +164,7 @@ export const ctaFooterStyles = {
 		justifyContent: 'center',
 		gap: theme.space.s8,
 		font: theme.font.button,
-		color: theme.color.black100,
+		color: theme.color.textPrimary,
 		backgroundColor: theme.color.primary100,
 		border: 'none',
 		padding: `${theme.space.s16} ${theme.space.s32}`,
