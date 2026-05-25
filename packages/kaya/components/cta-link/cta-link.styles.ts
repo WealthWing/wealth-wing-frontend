@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { theme } from '@wealth-wing/tayo';
+import { theme } from '@wealth-wing/tayo/src/theme/dark-theme';
 
 export const ctaLinkStyles = {
 	root: css({

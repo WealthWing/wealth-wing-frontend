@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
-import { mqValues, theme, mq } from '@wealth-wing/tayo';
+import { mq, mqValues } from '@wealth-wing/tayo/src/constants/media-queries';
+import { theme } from '@wealth-wing/tayo/src/theme/dark-theme';
 import { MAX_WIDTH } from '../hero/hero.styles';
 
 const MOBILE_BREAK = `@media (max-width: ${mqValues.tabletSmall - 1}px)`;

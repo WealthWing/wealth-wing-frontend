@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Text } from '@wealth-wing/tayo';
+import { Text } from '@wealth-wing/tayo/src/text/text';
 import { FOOTPRINT_SLOTS } from './production-footprint.definitions';
 import { productionFootprintStyles } from './production-footprint.styles';
 import { TrustStrip } from '../trust-strip';

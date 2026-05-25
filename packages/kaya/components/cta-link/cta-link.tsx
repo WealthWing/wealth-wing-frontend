@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon } from '@wealth-wing/tayo';
+import { Icon } from '@wealth-wing/tayo/src/icon/icon';
 
 import { useSmoothScroll } from '../../hooks';
 import { CtaLinkProps } from './cta-link.definitions';

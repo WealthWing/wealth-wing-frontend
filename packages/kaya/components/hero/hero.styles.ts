@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
-import { mqValues, theme, mq } from '@wealth-wing/tayo';
+import { mq, mqValues } from '@wealth-wing/tayo/src/constants/media-queries';
+import { theme } from '@wealth-wing/tayo/src/theme/dark-theme';
 
 const HEADER_HEIGHT = '5rem';
 export const MAX_WIDTH = '78rem';

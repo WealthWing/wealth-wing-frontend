@@ -1,4 +1,4 @@
-import { Icon } from '@wealth-wing/tayo';
+import { Icon } from '@wealth-wing/tayo/src/icon/icon';
 
 import { TRUST_ITEMS } from './trust-strip.definitions';
 import { trustStripStyles } from './trust-strip.styles';

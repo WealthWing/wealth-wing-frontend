@@ -1,5 +1,5 @@
 import type { Node, Edge } from '@xyflow/react';
-import { theme } from '@wealth-wing/tayo';
+import { theme } from '@wealth-wing/tayo/src/theme/dark-theme';
 
 export type FlowNodeData = {
 	label: string;

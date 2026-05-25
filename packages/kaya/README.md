@@ -66,19 +66,19 @@ yarn kaya preview
 
 ## Deploy to Netlify
 
-This repository includes a root `netlify.toml` for Kaya:
+Kaya includes its own `netlify.toml`:
 
 ```toml
 [build]
-	command = "yarn kaya build"
-	publish = "packages/kaya/.next"
+	command = "yarn build"
+	publish = ".next"
 ```
 
 To deploy:
 
 1. Connect the repository to Netlify.
-2. Keep the base directory unset so Netlify installs dependencies from the repository root.
-3. Use the build settings from `netlify.toml`.
+2. Set the base directory to `packages/kaya`.
+3. Use the build settings from `packages/kaya/netlify.toml`.
 4. Add `RESEND_API_KEY` in Netlify under Site configuration > Environment variables.
 5. Deploy the site.
 

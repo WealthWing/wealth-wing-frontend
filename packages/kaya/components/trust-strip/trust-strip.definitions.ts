@@ -1,4 +1,4 @@
-import { IconName } from '@wealth-wing/tayo';
+import type { IconName } from '@wealth-wing/tayo/src/icon/generated';
 
 export type TrustItem = {
 	icon: IconName;

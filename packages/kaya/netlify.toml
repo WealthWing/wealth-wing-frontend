@@ -1,6 +1,6 @@
 [build]
-	command = "yarn kaya build"
-	publish = "packages/kaya/.next"
+	command = "yarn build"
+	publish = ".next"
 
 [build.environment]
 	NODE_VERSION = "20"

@@ -1,6 +1,7 @@
 import type * as React from 'react';
 import type { Interpolation, Theme } from '@emotion/react';
-import type { IconName, IconSize } from '@wealth-wing/tayo';
+import type { IconName } from '@wealth-wing/tayo/src/icon/generated';
+import type { IconSize } from '@wealth-wing/tayo/src/icon/icon.definitions';
 
 type CtaLinkBase = {
 	children: React.ReactNode;

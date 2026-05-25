@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Link from 'next/link';
-import { Icon, useMediaQueries } from '@wealth-wing/tayo';
+import { Icon } from '@wealth-wing/tayo/src/icon/icon';
+import { useMediaQueries } from '@wealth-wing/tayo/src/hooks/use-media-queries';
 
 import { useSmoothScroll } from '../../hooks';
 import { useActiveSection } from '../../hooks';

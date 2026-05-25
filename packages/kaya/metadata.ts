@@ -14,10 +14,8 @@ export const siteMetadata = {
 	twitterDescription: 'Turning vague requirements into production-ready products.',
 	favicons: {
 		icon: '/favicon/favicon.ico',
-		svgIcon: '/favicon/favicon.svg',
 		pngIcon: '/favicon/favicon-96x96.png',
-		appleTouchIcon: '/favicon/apple-touch-icon.png',
-		manifest: '/favicon/site.webmanifest'
+		appleTouchIcon: '/favicon/apple-touch-icon.png'
 	}
 } as const;
 

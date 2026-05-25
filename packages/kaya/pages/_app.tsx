@@ -1,5 +1,6 @@
 import '@xyflow/react/dist/style.css';
-import { kayaDarkTheme, TayoProvider } from '@wealth-wing/tayo';
+import { TayoProvider } from '@wealth-wing/tayo/src/providers/tayo-provider';
+import { kayaDarkTheme } from '@wealth-wing/tayo/src/theme/kaya-theme';
 import type { AppProps } from 'next/app';
 
 const App = ({ Component, pageProps }: AppProps) => {

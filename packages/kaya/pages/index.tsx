@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { css } from '@emotion/react';
-import { theme } from '@wealth-wing/tayo';
+import { theme } from '@wealth-wing/tayo/src/theme/dark-theme';
 import { Header } from '../components/header';
 import { Hero } from '../components/hero';
 import { ProcessSection } from '../components/process';
@@ -42,18 +42,11 @@ const Home = () => {
 					key="favicon-png"
 				/>
 				<link
-					rel="icon"
-					href={siteMetadata.favicons.svgIcon}
-					type="image/svg+xml"
-					key="favicon-svg"
-				/>
-				<link
 					rel="apple-touch-icon"
 					href={siteMetadata.favicons.appleTouchIcon}
 					sizes="180x180"
 					key="apple-touch-icon"
 				/>
-				<link rel="manifest" href={siteMetadata.favicons.manifest} key="manifest" />
 
 				<meta property="og:type" content="website" key="og:type" />
 				<meta property="og:url" content={siteMetadata.url} key="og:url" />

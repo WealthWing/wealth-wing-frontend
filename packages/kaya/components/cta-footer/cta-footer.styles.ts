@@ -1,5 +1,6 @@
 import { css, keyframes } from '@emotion/react';
-import { mqValues, theme } from '@wealth-wing/tayo';
+import { mqValues } from '@wealth-wing/tayo/src/constants/media-queries';
+import { theme } from '@wealth-wing/tayo/src/theme/dark-theme';
 
 import { MAX_WIDTH } from '../hero/hero.styles';
 
