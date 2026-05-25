@@ -1,0 +1,7 @@
+[build]
+	command = "yarn kaya build"
+	publish = "packages/kaya/.next"
+
+[build.environment]
+	NODE_VERSION = "20"
+	NEXT_TELEMETRY_DISABLED = "1"
