@@ -295,5 +295,92 @@ export const ctaFooterStyles = {
 		font: theme.font.sm,
 		color: theme.color.textSecondary,
 		textAlign: 'center'
+	}),
+
+	// ── Success & Error States ─────────────────────────────────────────────────
+	successPanel: css({
+		display: 'flex',
+		flexDirection: 'column',
+		gap: theme.space.s24,
+		[MOBILE_BREAK]: {
+			alignItems: 'center',
+			textAlign: 'center'
+		}
+	}),
+
+	successIcon: css({
+		position: 'relative',
+		flexShrink: 0,
+		width: '3.5rem',
+		height: '3.5rem',
+		borderRadius: '50%',
+		border: `2px solid ${theme.color.green100}`,
+		'&::after': {
+			content: '"✓"',
+			position: 'absolute',
+			top: '50%',
+			left: '50%',
+			transform: 'translate(-50%, -50%)',
+			color: theme.color.green100,
+			fontSize: '1.25rem',
+			lineHeight: 1
+		}
+	}),
+
+	successHeadline: css({
+		margin: 0,
+		font: theme.font.h3,
+		color: theme.color.textPrimary,
+		letterSpacing: 0,
+		[MOBILE_BREAK]: {
+			font: theme.font.h4,
+			letterSpacing: 0
+		}
+	}),
+
+	successBody: css({
+		margin: 0,
+		font: theme.font.md,
+		color: theme.color.textSecondary,
+		lineHeight: 1.7
+	}),
+
+	successReset: css({
+		display: 'inline-block',
+		background: 'none',
+		border: 'none',
+		cursor: 'pointer',
+		font: theme.font.sm,
+		color: theme.color.textSecondary,
+		padding: `${theme.space.s8} 0`,
+		textAlign: 'left',
+		transition: 'color 0.15s ease',
+		'&:hover': {
+			color: theme.color.textPrimary
+		},
+		'&:focus-visible': {
+			outline: `2px solid ${theme.color.primary100}`,
+			outlineOffset: '3px',
+			borderRadius: theme.borderRadius.radiusSmall
+		},
+		[MOBILE_BREAK]: {
+			display: 'block',
+			width: '100%',
+			minHeight: '44px',
+			textAlign: 'center'
+		}
+	}),
+
+	formError: css({
+		margin: 0,
+		font: theme.font.sm,
+		color: theme.color.red60,
+		lineHeight: 1.5
+	}),
+
+	ctaButtonDisabled: css({
+		opacity: 0.5,
+		cursor: 'not-allowed',
+		pointerEvents: 'none'
 	})
 };

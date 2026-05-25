@@ -48,3 +48,12 @@ export const FOOTER_LINKS: FooterLink[] = [
 ];
 
 export const FOOTER_COPYRIGHT = '© 2022–2026 Erdoan Shaziman. All rights reserved.';
+
+export type FormState = 'idle' | 'submitting' | 'success' | 'error';
+
+export const FORM_SUCCESS_HEADLINE = 'Received.';
+export const FORM_SUCCESS_BODY =
+	"I'll read through what you've shared and get back to you within a day or two. If it's a fit, I'll say so directly — and tell you what I'd do first.";
+export const FORM_SUCCESS_RESET_LABEL = 'Send a different message';
+export const FORM_ERROR_MESSAGE =
+	'Something went wrong sending that. Try emailing me directly at erdoanshaziman@gmail.com';
