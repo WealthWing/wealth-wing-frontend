@@ -2,6 +2,7 @@ import * as React from 'react';
 import Link from 'next/link';
 
 import { useActiveSection } from '../../hooks';
+import { CtaLink } from '../cta-link';
 import { mobileMenuStyles } from './header.styles';
 import { MobileMenuProps } from './header.definitions';
 
@@ -55,20 +56,15 @@ export const MobileMenu = ({
 			</nav>
 
 			<div css={mobileMenuStyles.ctaWrapper}>
-				<a
+				<CtaLink
 					href={ctaHref}
 					css={mobileMenuStyles.ctaLink}
-					onClick={(e) => {
-						if (ctaHref.startsWith('#')) {
-							e.preventDefault();
-							onLinkClick(ctaHref);
-						}
+					onClick={() => {
 						onClose();
 					}}
 				>
 					{ctaLabel}
-					<span aria-hidden="true">↗</span>
-				</a>
+				</CtaLink>
 			</div>
 		</div>
 	);

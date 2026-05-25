@@ -5,20 +5,20 @@ export type FrictionItem = {
 
 export const FRICTION_MATRIX: FrictionItem[] = [
 	{
-		trap: '3 weeks of Figma mockups, zero code shipped.',
-		fix: 'High-fidelity execution straight into React — no design-to-dev hand-off lag.'
+		trap: 'Long planning cycles before anything usable exists.',
+		fix: 'I shape the scope, then move quickly into working software.'
 	},
 	{
-		trap: 'Fragile state, janky interactions, slow initial loads.',
-		fix: 'Performance-first UI with clean state architecture and sub-2s load targets.'
+		trap: 'Fragile UI state, janky interactions, and slow product flows.',
+		fix: 'I build performance-aware interfaces with clean state architecture and stable interaction patterns.'
 	},
 	{
-		trap: 'AI features that hallucinate, fail on edge cases, or need constant babysitting.',
-		fix: 'Deeply tested RAG pipelines and multi-agent logic built for production reliability.'
+		trap: 'AI features that look impressive in demos but break in real workflows.',
+		fix: 'I design AI workflows around retrieval quality, data boundaries, guardrails, and failure cases.'
 	},
 	{
-		trap: 'Vague spec handed to a dev agency — comes back unrecognisable.',
-		fix: 'I own the ambiguity. Vague goal in → stable, reasoned architecture out.'
+		trap: 'Vague requirements passed from person to person until the result misses the point.',
+		fix: 'I work directly with you to turn ambiguity into a clear technical path and shippable system.'
 	}
 ];
 

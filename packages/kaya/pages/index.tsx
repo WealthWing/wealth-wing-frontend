@@ -4,7 +4,7 @@ import { Header } from '../components/header';
 import { Hero } from '../components/hero';
 import { ProcessSection } from '../components/process';
 import { ProblemsSection } from '../components/problems';
-import { ServicesSection } from '../components/services';
+import { ServicesSection } from '../components/capabilities';
 import { TrustStrip } from '../components/trust-strip';
 import { AboutSection } from '../components/about';
 import { CtaFooter } from '../components/cta-footer';

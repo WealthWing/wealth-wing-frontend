@@ -22,7 +22,7 @@ export type MobileMenuProps = {
 
 export const DEFAULT_NAV_LINKS: NavLink[] = [
 	{ label: 'Capabilities', href: '#work' },
-	{ label: 'Operational Process', href: '#process' },
+	{ label: 'Operational Process', href: '#operational-blueprint' },
 	{ label: 'Contact', href: '#contact' }
 ];
 

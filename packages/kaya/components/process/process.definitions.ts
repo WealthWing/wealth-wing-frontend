@@ -23,6 +23,6 @@ export const PROCESS_STEPS: ProcessStep[] = [
 	{
 		number: '04',
 		title: 'Raw Ownership',
-		body: 'Zero technical debt. Modular, perfectly typed.'
+		body: 'Intentional structure, typed boundaries, and code that is easier to maintain.'
 	}
 ];

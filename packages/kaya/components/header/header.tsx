@@ -4,6 +4,7 @@ import { Icon, useMediaQueries } from '@wealth-wing/tayo';
 
 import { useSmoothScroll } from '../../hooks';
 import { useActiveSection } from '../../hooks';
+import { CtaLink } from '../cta-link';
 import { MobileMenu } from './mobile-menu';
 import { headerStyles } from './header.styles';
 import {
@@ -91,21 +92,9 @@ export const Header = ({
 					</nav>
 
 					<div css={headerStyles.actions}>
-						<a
-							href={ctaHref}
-							css={headerStyles.ctaLink}
-							onClick={(e) => {
-								if (ctaHref.startsWith('#')) {
-									e.preventDefault();
-									scrollToSection(ctaHref);
-								}
-							}}
-						>
+						<CtaLink href={ctaHref} css={headerStyles.ctaLink}>
 							{ctaLabel}
-							<span css={headerStyles.ctaArrow} aria-hidden="true">
-								↗
-							</span>
-						</a>
+						</CtaLink>
 						<button
 							css={headerStyles.menuButton}
 							aria-label={

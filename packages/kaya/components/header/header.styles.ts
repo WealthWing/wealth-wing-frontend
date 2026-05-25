@@ -174,12 +174,6 @@ export const headerStyles = {
 		}
 	}),
 
-	ctaArrow: css({
-		fontSize: '0.875rem',
-		lineHeight: 1,
-		display: 'inline-block'
-	}),
-
 	menuButton: css({
 		display: 'flex',
 		background: 'transparent',

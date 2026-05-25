@@ -160,12 +160,6 @@ export const heroStyles = {
 		}
 	}),
 
-	ctaArrow: css({
-		fontSize: '0.875rem',
-		lineHeight: 1,
-		display: 'inline-block'
-	}),
-
 	ctaSecondary: css({
 		display: 'inline-flex',
 		alignItems: 'center',

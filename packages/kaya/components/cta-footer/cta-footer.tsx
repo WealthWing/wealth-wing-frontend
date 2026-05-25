@@ -15,6 +15,7 @@ import {
 	FORM_EMAIL_PLACEHOLDER,
 	FORM_PROJECT_PLACEHOLDER
 } from './cta-footer.definitions';
+import { CtaLink } from '../cta-link';
 import { ctaFooterStyles } from './cta-footer.styles';
 
 const CONTACT_EMAIL = 'hello@edshaziman.com';
@@ -112,12 +113,13 @@ export const CtaFooter = () => {
 									type="email"
 								/>
 								<div css={ctaFooterStyles.formRow}>
-									<button type="submit" css={ctaFooterStyles.ctaButton}>
+									<CtaLink
+										as="button"
+										type="submit"
+										css={ctaFooterStyles.ctaButton}
+									>
 										{CTA_BUTTON_LABEL}
-										<span css={ctaFooterStyles.ctaArrow} aria-hidden="true">
-											↗
-										</span>
-									</button>
+									</CtaLink>
 
 									<div css={ctaFooterStyles.availabilityPill} aria-live="polite">
 										<span

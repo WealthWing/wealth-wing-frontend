@@ -1,6 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ABOUT_COPY } from './about.definitions';
 import { aboutStyles } from './about.styles';
+
 import Image from 'next/image';
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
@@ -68,7 +69,6 @@ export const AboutSection = () => {
 						/>
 					</motion.div>
 
-					{/* Text column */}
 					<motion.div
 						css={aboutStyles.textColumn}
 						variants={textVariants}

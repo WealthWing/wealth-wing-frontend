@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
 
 import { heroStyles } from './hero.styles';
-import { link } from 'fs/promises';
-import { useSmoothScroll } from '../../hooks';
+import { CtaLink } from '../cta-link';
 
 const smoothEase = [0.16, 1, 0.3, 1] as const;
 
@@ -83,13 +82,14 @@ const CapabilityStack = () => (
 
 		{/* Footer note */}
 		<div css={heroStyles.capabilityFooter}>
-			<span css={heroStyles.capabilityFooterNote}>No hand-holding required</span>
+			<span css={heroStyles.capabilityFooterNote}>
+				Built with ownership, not constant oversight.
+			</span>
 		</div>
 	</div>
 );
 
 export const Hero = () => {
-	const { scrollToSection } = useSmoothScroll();
 	return (
 		<section css={heroStyles.section} aria-label="Hero">
 			<div css={heroStyles.gridOverlay} aria-hidden="true" />
@@ -103,7 +103,7 @@ export const Hero = () => {
 						animate="visible"
 					>
 						<motion.p css={heroStyles.eyebrow} variants={itemVariants}>
-							Senior Full-Stack / AI Integration Engineer
+							Full-Stack Engineer for Reliable Web Products and AI Workflows
 						</motion.p>
 
 						<motion.h1 css={heroStyles.headline} variants={itemVariants}>
@@ -113,34 +113,21 @@ export const Hero = () => {
 
 						<motion.p css={heroStyles.body} variants={itemVariants}>
 							I build high-density UIs, robust full-stack architectures, and
-							production-ready AI orchestration layers for fast-moving businesses. No
-							hand-holding required.
+							AI-assisted workflows that are useful beyond the demo. Clear ownership
+							from scope to launch.
 						</motion.p>
 
 						<motion.div css={heroStyles.ctaGroup} variants={itemVariants}>
-							<a
-								href="#contact"
-								css={heroStyles.ctaPrimary}
-								onClick={(e) => {
-									e.preventDefault();
-									scrollToSection('#contact');
-								}}
-							>
+							<CtaLink href="#contact" css={heroStyles.ctaPrimary}>
 								Schedule a Scope Call
-								<span css={heroStyles.ctaArrow} aria-hidden="true">
-									↗
-								</span>
-							</a>
-							<a
-								href="#work"
+							</CtaLink>
+							<CtaLink
+								href="#contact"
 								css={heroStyles.ctaSecondary}
-								onClick={(e) => {
-									e.preventDefault();
-									scrollToSection('#work');
-								}}
+								iconName="arrow-down"
 							>
-								Explore System Capabilities ↓
-							</a>
+								Explore System Capabilities
+							</CtaLink>
 						</motion.div>
 					</motion.div>
 

@@ -30,21 +30,21 @@ export type FooterLink = {
 
 export const FOOTER_LINKS: FooterLink[] = [
 	{
-		label: 'hello@edshaziman.com',
-		href: 'mailto:hello@edshaziman.com',
+		label: 'erdoanshaziman@gmail.com',
+		href: 'mailto:erdoanshaziman@gmail.com',
 		ariaLabel: 'Send an email'
 	},
 	{ label: 'Carlstadt, NJ (EST)' },
 	{
 		label: 'LinkedIn',
-		href: 'https://linkedin.com/in/ed-shaziman',
+		href: 'https://www.linkedin.com/in/erdoan-ed-shaziman-0533611b9',
 		ariaLabel: 'LinkedIn profile'
 	},
 	{
 		label: 'GitHub',
-		href: 'https://github.com/edshaziman',
+		href: 'https://github.com/shazy89',
 		ariaLabel: 'GitHub profile'
 	}
 ];
 
-export const FOOTER_COPYRIGHT = '© 2026 Erdoan S.';
+export const FOOTER_COPYRIGHT = '© 2022–2026 Erdoan Shaziman. All rights reserved.';
