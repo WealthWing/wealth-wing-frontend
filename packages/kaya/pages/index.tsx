@@ -10,6 +10,7 @@ import { TrustStrip } from '../components/trust-strip';
 import { AboutSection } from '../components/about';
 import { CtaFooter } from '../components/cta-footer';
 import { ProductionFootprint } from '../components/production-footprint';
+import { serializedPersonJsonLd, siteMetadata } from '../metadata';
 
 const page = css({
 	background: theme.color.pageBackground,
@@ -21,68 +22,64 @@ const Home = () => {
 	return (
 		<>
 			<Head>
-				<title>Ed Shaziman | Full-Stack React & Python Developer for Startups</title>
-				<meta
-					name="description"
-					content="Senior full-stack engineer specializing in React, TypeScript, Python, and AI integrations. I build high-density UIs and production-ready MVPs for founders and product teams. Book a scope call."
-				/>
+				<title>{siteMetadata.title}</title>
+				<meta name="description" content={siteMetadata.description} key="description" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<link rel="canonical" href="https://edshaziman.com/" />
-
-				{/* Open Graph */}
-				<meta property="og:type" content="website" />
-				<meta property="og:url" content="https://edshaziman.com/" />
+				<meta name="application-name" content={siteMetadata.siteName} key="application-name" />
 				<meta
-					property="og:title"
-					content="Ed Shaziman | Full-Stack React & Python Developer"
+					name="apple-mobile-web-app-title"
+					content={siteMetadata.siteName}
+					key="apple-mobile-web-app-title"
 				/>
+				<meta name="theme-color" content={siteMetadata.themeColor} key="theme-color" />
+				<link rel="canonical" href={siteMetadata.url} key="canonical" />
+				<link rel="icon" href={siteMetadata.favicons.icon} sizes="any" key="favicon-ico" />
+				<link
+					rel="icon"
+					href={siteMetadata.favicons.pngIcon}
+					type="image/png"
+					sizes="96x96"
+					key="favicon-png"
+				/>
+				<link
+					rel="icon"
+					href={siteMetadata.favicons.svgIcon}
+					type="image/svg+xml"
+					key="favicon-svg"
+				/>
+				<link
+					rel="apple-touch-icon"
+					href={siteMetadata.favicons.appleTouchIcon}
+					sizes="180x180"
+					key="apple-touch-icon"
+				/>
+				<link rel="manifest" href={siteMetadata.favicons.manifest} key="manifest" />
+
+				<meta property="og:type" content="website" key="og:type" />
+				<meta property="og:url" content={siteMetadata.url} key="og:url" />
+				<meta property="og:site_name" content={siteMetadata.siteName} key="og:site_name" />
+				<meta property="og:locale" content={siteMetadata.locale} key="og:locale" />
+				<meta property="og:title" content={siteMetadata.twitterTitle} key="og:title" />
 				<meta
 					property="og:description"
-					content="I build high-density UIs, robust APIs, and AI-powered workflows for founders and product teams. Clear ownership from scope to launch."
+					content={siteMetadata.shortDescription}
+					key="og:description"
 				/>
-				<meta property="og:image" content="https://edshaziman.com/images/og-preview.jpg" />
+				<meta property="og:image" content={siteMetadata.ogImage} key="og:image" />
 
-				{/* Twitter Card */}
-				<meta name="twitter:card" content="summary_large_image" />
-				<meta name="twitter:title" content="Ed Shaziman | Full-Stack Developer" />
+				<meta name="twitter:card" content={siteMetadata.twitterCard} key="twitter:card" />
+				<meta name="twitter:title" content={siteMetadata.twitterTitle} key="twitter:title" />
 				<meta
 					name="twitter:description"
-					content="Turning vague requirements into production-ready products."
+					content={siteMetadata.twitterDescription}
+					key="twitter:description"
 				/>
-				<meta name="twitter:image" content="https://edshaziman.com/images/og-preview.jpg" />
+				<meta name="twitter:image" content={siteMetadata.ogImage} key="twitter:image" />
 
-				{/* JSON-LD Structured Data */}
 				<script
 					type="application/ld+json"
 					dangerouslySetInnerHTML={{
-						__html: JSON.stringify({
-							'@context': 'https://schema.org',
-							'@type': 'Person',
-							name: 'Erdoan Shaziman',
-							alternateName: 'Ed Shaziman',
-							jobTitle: 'Full-Stack Software Engineer',
-							url: 'https://edshaziman.com',
-							email: 'erdoanshaziman@gmail.com',
-							address: {
-								'@type': 'PostalAddress',
-								addressLocality: 'Carlstadt',
-								addressRegion: 'NJ'
-							},
-							sameAs: [
-								'https://www.linkedin.com/in/erdoan-ed-shaziman-0533611b9',
-								'https://github.com/shazy89'
-							],
-							knowsAbout: [
-								'React',
-								'TypeScript',
-								'Python',
-								'Next.js',
-								'FastAPI',
-								'AI Integration',
-								'Full-Stack Development',
-								'MVP Development'
-							]
-						})
+						__html: serializedPersonJsonLd
 					}}
 				/>
 			</Head>

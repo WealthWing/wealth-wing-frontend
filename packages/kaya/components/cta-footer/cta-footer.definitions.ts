@@ -20,7 +20,7 @@ export const FORM_PROJECT_PLACEHOLDER =
 export const FORM_EMAIL_PLACEHOLDER = 'your.email@company.com';
 
 export const FOOTER_NAME = 'Ed Shaziman';
-export const FOOTER_TAGLINE = 'Full-Stack / Front-End Engineer';
+export const FOOTER_TAGLINE = 'Full-Stack Engineer — React, Python & AI';
 
 export type FooterLink = {
 	label: string;
