@@ -10,11 +10,11 @@ export const FRICTION_MATRIX: FrictionItem[] = [
 	},
 	{
 		trap: 'Fragile UI state, janky interactions, and slow product flows.',
-		fix: 'I build performance-aware interfaces with clean state architecture and stable interaction patterns.'
+		fix: 'I build interfaces that stay fast as the product grows — not ones that need to be rewritten six months later.'
 	},
 	{
 		trap: 'AI features that look impressive in demos but break in real workflows.',
-		fix: 'I design AI workflows around retrieval quality, data boundaries, guardrails, and failure cases.'
+		fix: 'I design AI workflows around retrieval quality, data boundaries, and what happens when the model is wrong.'
 	},
 	{
 		trap: 'Vague requirements passed from person to person until the result misses the point.',
@@ -24,11 +24,11 @@ export const FRICTION_MATRIX: FrictionItem[] = [
 
 export const FRICTION_LABELS = {
 	trap: 'The Freelance / Agency Trap',
-	fix: 'The Autonomous Resolution'
+	fix: 'How I work instead'
 };
 
 export const FRICTION_HEADER = {
-	eyebrow: 'The Friction Matrix',
-	heading: "You've hit the founder's ceiling.",
+	eyebrow: 'Why Hires Go Wrong',
+	heading: "What goes wrong when the person building your product doesn't own the outcome.",
 	sub: "These aren't edge cases. They're the default when hiring without the right fit."
 };

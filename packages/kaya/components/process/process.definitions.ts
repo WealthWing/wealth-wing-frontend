@@ -12,17 +12,17 @@ export const PROCESS_STEPS: ProcessStep[] = [
 	},
 	{
 		number: '02',
-		title: 'Planner Execution',
-		body: 'Clean React codebases with fast feedback via staging branches.'
+		title: 'Building in public.',
+		body: 'Working code in staging from day one. You see progress weekly, not at delivery.'
 	},
 	{
 		number: '03',
-		title: 'Intelligent Layering',
-		body: 'Integrating low-latency vector loops and custom AI agents.'
+		title: 'AI that actually works in production.',
+		body: 'When AI fits the product, I build it to handle edge cases, bad inputs, and real data — not just the demo scenario.'
 	},
 	{
 		number: '04',
-		title: 'Raw Ownership',
-		body: 'Intentional structure, typed boundaries, and code that is easier to maintain.'
+		title: 'Clean handoff.',
+		body: 'The code you receive has typed boundaries, documented decisions, and no landmines for the next developer.'
 	}
 ];

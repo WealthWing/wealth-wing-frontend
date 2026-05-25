@@ -18,7 +18,7 @@ import {
 import { CtaLink } from '../cta-link';
 import { ctaFooterStyles } from './cta-footer.styles';
 
-const CONTACT_EMAIL = 'hello@edshaziman.com';
+const CONTACT_EMAIL = 'erdoanshaziman@gmail.com';
 const FORM_EMAIL_NAME = 'email';
 const FORM_PROJECT_NAME = 'projectScope';
 
@@ -44,20 +44,32 @@ const itemVariants = {
 export const CtaFooter = () => {
 	const shouldReduceMotion = useReducedMotion() ?? false;
 
-	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (event: React.SubmitEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
 		const formData = new FormData(event.currentTarget);
 		const projectScope = String(formData.get(FORM_PROJECT_NAME) ?? '').trim();
 		const email = String(formData.get(FORM_EMAIL_NAME) ?? '').trim();
-		const subject = encodeURIComponent('System Scope Call');
-		const body = encodeURIComponent(
-			['Project scope / goals:', projectScope, '', 'Reply-to email:', email].join('\n')
-		);
 
-		window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+		const response = await fetch('/api/contact', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				projectScope,
+				email
+			})
+		});
+
+		if (!response.ok) {
+			// show error toast/message here
+			return;
+		}
+
+		// show success toast/message here
+		event.currentTarget.reset();
 	};
-
 	const containerProps = shouldReduceMotion
 		? {}
 		: {
@@ -102,6 +114,7 @@ export const CtaFooter = () => {
 									name={FORM_PROJECT_NAME}
 									placeholder={FORM_PROJECT_PLACEHOLDER}
 									required
+									maxLength={1500}
 								/>
 
 								<input
@@ -111,6 +124,14 @@ export const CtaFooter = () => {
 									placeholder={FORM_EMAIL_PLACEHOLDER}
 									required
 									type="email"
+									maxLength={120}
+								/>
+								<input
+									type="text"
+									name="company"
+									tabIndex={-1}
+									autoComplete="off"
+									style={{ display: 'none' }}
 								/>
 								<div css={ctaFooterStyles.formRow}>
 									<CtaLink

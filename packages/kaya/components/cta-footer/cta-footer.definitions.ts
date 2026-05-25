@@ -4,14 +4,14 @@ export type HeadlinePart = {
 };
 
 export const CTA_HEADLINE_PARTS: HeadlinePart[] = [
-	{ text: "LET'S TALK ", accent: false },
-	{ text: 'ARCHITECTURE', accent: true }
+	{ text: "LET'S TALK ABOUT ", accent: false },
+	{ text: 'YOUR PRODUCT', accent: true }
 ];
 
 export const CTA_SUBTEXT =
-	'If your product boundaries are still loose, I can help turn ambiguity into an executable system map. We will define the schema, contracts, and operational edges before architecture becomes expensive to unwind.';
+	"If you're still figuring out what to build — or you have something broken that needs fixing — send me a quick description. I'll tell you honestly if it's a fit and what I'd do first.";
 
-export const CTA_BUTTON_LABEL = 'INITIATE SYSTEM SCOPE CALL';
+export const CTA_BUTTON_LABEL = 'Send Your Project Brief';
 
 export const AVAILABILITY_LABEL = 'Contract Spot Available';
 

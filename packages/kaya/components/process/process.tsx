@@ -66,10 +66,10 @@ export const ProcessSection = () => {
 			<div css={processStyles.inner}>
 				<header css={processStyles.header}>
 					<p css={processStyles.eyebrow} aria-hidden="true">
-						Operational Blueprint
+						How a project actually runs
 					</p>
 					<h2 css={processStyles.heading} id="operational-blueprint-heading">
-						The Planner-Executor Framework.
+						How I work from first call to shipped code.
 					</h2>
 				</header>
 

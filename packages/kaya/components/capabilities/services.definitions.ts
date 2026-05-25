@@ -30,7 +30,7 @@ export const ARCHITECTURE_TRACKS: ArchitectureTrack[] = [
 		id: 'ui',
 		tabLabel: 'Track 1: High-Density UI',
 		coreFocus:
-			'Modernizing legacy codebases into snappy, fluid, component-driven client interfaces.',
+			'Taking legacy React apps and making them fast, maintainable, and something a new developer can actually work in.',
 		stackItems: ['React', 'TypeScript', 'Vite', 'Monorepo', 'Shared Design Systems'],
 		metrics: [
 			{ key: 'DEV', value: '−40% dev builds via Vite' },
@@ -91,7 +91,8 @@ export const ARCHITECTURE_TRACKS: ArchitectureTrack[] = [
 	{
 		id: 'fullstack',
 		tabLabel: 'Track 2: Full-Stack',
-		coreFocus: 'Smashing backend execution bottlenecks and designing frontend-friendly APIs.',
+		coreFocus:
+			'Fixing slow APIs and backend processing times without requiring the frontend to change.',
 		stackItems: ['FastAPI', 'Node.js', 'PostgreSQL', 'SQLAlchemy', 'Docker'],
 		metrics: [
 			{ key: 'LATENCY', value: '~5 min → 1–2 min processing' },
@@ -303,6 +304,6 @@ export const ARCHITECTURE_TRACKS: ArchitectureTrack[] = [
 
 export const ARCHITECTURE_HEADER = {
 	eyebrow: 'Capabilities & Architecture',
-	heading: 'The Architecture Interactive Hub',
-	subheading: 'Select a blueprint to inspect live stacks and verified metrics.'
+	heading: 'Three ways I get involved — and what each one produces.',
+	subheading: 'Pick the track closest to your problem. The metrics are from real projects.'
 };

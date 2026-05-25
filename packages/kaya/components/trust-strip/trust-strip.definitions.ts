@@ -6,8 +6,8 @@ export type TrustItem = {
 };
 
 export const TRUST_ITEMS: TrustItem[] = [
-	{ icon: 'flag', label: 'Transparent communication' },
-	{ icon: 'settings', label: 'Pragmatic execution' },
-	{ icon: 'check-square', label: 'Maintainable code' },
-	{ icon: 'schedule', label: 'Reliable long-term support' }
+	{ icon: 'flag', label: "You know what I'm working on, every day" },
+	{ icon: 'settings', label: 'I cut scope before I cut quality' },
+	{ icon: 'check-square', label: 'No black-box code — the next dev can read it' },
+	{ icon: 'schedule', label: "I'm still available after launch" }
 ];

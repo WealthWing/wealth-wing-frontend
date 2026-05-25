@@ -102,19 +102,19 @@ export const Hero = () => {
 						initial="hidden"
 						animate="visible"
 					>
-						<motion.p css={heroStyles.eyebrow} variants={itemVariants}>
-							Full-Stack Engineer for Reliable Web Products and AI Workflows
-						</motion.p>
-
-						<motion.h1 css={heroStyles.headline} variants={itemVariants}>
-							Vague Requirements In.{' '}
-							<span css={heroStyles.accent}>Production-Ready Products Out.</span>
+						<motion.h1 css={heroStyles.eyebrow} variants={itemVariants}>
+							I build the product your last developer left half-finished.
 						</motion.h1>
 
+						<motion.p css={heroStyles.headline} variants={itemVariants}>
+							Vague Requirements In.{' '}
+							<span css={heroStyles.accent}>Production-Ready Products Out.</span>
+						</motion.p>
+
 						<motion.p css={heroStyles.body} variants={itemVariants}>
-							I build high-density UIs, robust full-stack architectures, and
-							AI-assisted workflows that are useful beyond the demo. Clear ownership
-							from scope to launch.
+							I work directly with founders and product leads — from scope call to
+							deployed software. No handoffs, no translation layer. You talk to the
+							person writing the code.
 						</motion.p>
 
 						<motion.div css={heroStyles.ctaGroup} variants={itemVariants}>
