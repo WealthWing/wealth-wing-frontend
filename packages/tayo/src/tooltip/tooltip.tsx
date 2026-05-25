@@ -18,10 +18,12 @@ import {
 import {
 	Children,
 	cloneElement,
+	ForwardedRef,
 	forwardRef,
 	MutableRefObject,
 	ReactElement,
 	ReactNode,
+	Ref,
 	RefObject,
 	useRef,
 	useState
@@ -35,6 +37,10 @@ import { container, content } from './tooltip.styles';
 type RenderReturnTooltip = {
 	close: () => void;
 	isOpen: boolean;
+};
+
+type TooltipChildProps = {
+	innerRef?: ForwardedRef<unknown>;
 };
 
 type TooltipProviderProps = ReturnType<typeof useFloating> &
@@ -104,11 +110,9 @@ export const Tooltip = forwardRef(
 				{typeof children === 'function'
 					? children({ close: () => setOpen(false), isOpen })
 					: Children.map(children, (child) => {
-							const element = child as ReactElement;
+							const element = child as ReactElement<TooltipChildProps>;
 
-							return element
-								? cloneElement(element, { ...element.props, innerRef: ref })
-								: null;
+							return element ? cloneElement(element, { innerRef: ref }) : null;
 					  })}
 			</TooltipProvider>
 		);
@@ -116,9 +120,9 @@ export const Tooltip = forwardRef(
 );
 
 type TooltipTriggerProps = {
-	children: ReactElement;
+	children: ReactElement<Record<string, unknown>>;
 	preventDefault?: boolean;
-	innerRef?: RefObject<unknown>;
+	innerRef?: RefObject<Element | null>;
 };
 
 /** Note: this component will provide aria-label, and aria-labelledby to its child */
@@ -128,6 +132,9 @@ export const TooltipTrigger = ({
 	innerRef
 }: TooltipTriggerProps) => {
 	const { getReferenceProps, floatingId, isOpen, refs, setOpen } = useTooltip();
+	const referenceRef = (
+		innerRef ? mergeRefs([refs.setReference, innerRef]) : refs.setReference
+	) as Ref<Element>;
 
 	return (
 		<>
@@ -140,7 +147,7 @@ export const TooltipTrigger = ({
 							setOpen(true);
 						}
 					},
-					ref: innerRef ? mergeRefs([refs.setReference, innerRef]) : refs.setReference,
+					ref: referenceRef,
 					...children.props,
 					'aria-label': 'Tooltip:',
 					'aria-labelledby': isOpen ? floatingId : ''

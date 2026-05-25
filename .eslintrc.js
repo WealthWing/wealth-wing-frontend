@@ -27,6 +27,8 @@ const rules = {
 	'react/prop-types': 'off',
 	'react/require-default-props': 'off',
 	'react/no-unknown-property': ['error', { ignore: ['css'] }],
+	'react-hooks/incompatible-library': 'off',
+	'react-hooks/refs': 'off',
 
 	'import/no-extraneous-dependencies': 'off',
 

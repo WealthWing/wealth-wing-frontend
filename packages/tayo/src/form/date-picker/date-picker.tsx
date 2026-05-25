@@ -16,6 +16,7 @@ type SinglePickerProps = Omit<
 	| 'icon'
 	| 'customInput'
 	| 'onChange'
+	| 'formatMultipleDates'
 	| 'selectsMultiple'
 	| 'selectRange'
 >;
@@ -64,7 +65,8 @@ export const DatePicker = ({
 							id={name}
 							name={name}
 							selected={value}
-							selectsMultiple={undefined}
+							selectsRange={false}
+							selectsMultiple={false}
 							showMonthYearDropdown={undefined}
 							ariaDescribedBy={error ? errorWrapperId : undefined}
 							ariaInvalid={error ? 'true' : undefined}
@@ -82,7 +84,7 @@ export const DatePicker = ({
 									/>
 								) : undefined
 							}
-							onChange={(date) => {
+							onChange={(date: Date | null) => {
 								onFieldChange(date);
 								if (onChange) {
 									onChange(date);

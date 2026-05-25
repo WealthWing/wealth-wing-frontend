@@ -44,5 +44,5 @@ export const Date: StoryObj<typeof meta> = {
 		disabled: false,
 		required: true
 	},
-	render: (args) => <StoryComponentSingle {...args} />
+	render: (args) => <StoryComponentSingle {...(args as DatePickerProps)} />
 };

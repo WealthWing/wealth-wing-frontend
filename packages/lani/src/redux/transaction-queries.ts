@@ -3,8 +3,11 @@ import {
 	SubscriptionCandidateResponse,
 	TransactionAllResponse,
 	TransactionRequest,
+	TransactionResponse,
 	TransactionSummaryRequest,
-	TransactionSummaryResponse
+	TransactionSummaryResponse,
+	TransactionUpdateSubscriptionRequest,
+	TransactionUpdateSubscriptionResponse
 } from 'data/api-definitions';
 
 export const transactionQueries = apiBase.injectEndpoints({
@@ -17,7 +20,7 @@ export const transactionQueries = apiBase.injectEndpoints({
 			infiniteQueryOptions: {
 				initialPageParam: {
 					page: 1,
-					page_size: 10,
+					page_size: 20,
 					sort_by: 'date',
 					sort_order: 'desc'
 				},
@@ -42,6 +45,7 @@ export const transactionQueries = apiBase.injectEndpoints({
 					method: 'GET',
 					params: {
 						...params,
+						account_type: queryArg?.account_type,
 						filter_by_inputs: JSON.stringify(
 							queryArg?.filter_by_inputs ? queryArg.filter_by_inputs : []
 						)
@@ -56,6 +60,25 @@ export const transactionQueries = apiBase.injectEndpoints({
 				method: 'GET'
 			}),
 			providesTags: ['ImportCreate']
+		}),
+		addTransactionToSubscription: builder.mutation<
+			TransactionUpdateSubscriptionResponse,
+			TransactionUpdateSubscriptionRequest
+		>({
+			query: ({ subscription_id, transaction_name }) => ({
+				url: 'transaction/update-subscription',
+				method: 'POST',
+				body: {
+					transaction_name,
+					subscription_id
+				}
+			})
+		}),
+		transactionById: builder.query<TransactionResponse, { transactionId: string }>({
+			query: ({ transactionId }) => ({
+				url: `/transaction/${transactionId}`,
+				method: 'GET'
+			})
 		}),
 		transactionsSummary: builder.query<TransactionSummaryResponse, TransactionSummaryRequest>({
 			query: (pageParam) => ({
@@ -73,5 +96,7 @@ export const {
 	useTransactionsSummaryQuery,
 	useLazyTransactionsSummaryQuery,
 	useSubscriptionCandidatesQuery,
-	useLazySubscriptionCandidatesQuery
+	useLazySubscriptionCandidatesQuery,
+	useAddTransactionToSubscriptionMutation,
+	useTransactionByIdQuery
 } = transactionQueries;

@@ -13,15 +13,22 @@ import {
 import { useFormContext } from 'react-hook-form';
 import { fieldsetContainer } from 'router/transaction/components/transaction-table-filters.style';
 import {
+	AccountTypeFilter,
 	sortByOptions,
 	TransactionsFormFields
 } from 'router/transaction/components/transactions-provider.definitions';
 
 type FilterProps = {
 	onApplyFilters: () => void;
+	activeAccountType: AccountTypeFilter;
+	onAccountTypeChange: (value: AccountTypeFilter) => void;
 };
 
-export const TransactionTableFilters = ({ onApplyFilters }: FilterProps) => {
+export const TransactionTableFilters = ({
+	onApplyFilters,
+	activeAccountType,
+	onAccountTypeChange
+}: FilterProps) => {
 	const { register, reset, getValues } = useFormContext<TransactionsFormFields>();
 
 	const handleResetFilters = () => {
@@ -30,13 +37,43 @@ export const TransactionTableFilters = ({ onApplyFilters }: FilterProps) => {
 			...values,
 			filters: {
 				search: '',
-				type: 'all'
+				type: 'all',
+				accountType: 'all',
+				itemsPerPage: { label: '20', value: '20' },
+				sortBy: { label: 'Date', value: 'date' },
+				sortOrder: 'asc'
 			}
 		});
 	};
 
 	return (
 		<Flex direction="row" gap="s12" alignItems="center">
+			<Flex direction="row" gap="s8" alignItems="center">
+				<Button
+					type="button"
+					variant={activeAccountType === 'all' ? 'primary' : 'secondary'}
+					format="text"
+					onClick={() => onAccountTypeChange('all')}
+				>
+					All Accounts
+				</Button>
+				<Button
+					type="button"
+					variant={activeAccountType === 'CREDIT_CARD' ? 'primary' : 'secondary'}
+					format="text"
+					onClick={() => onAccountTypeChange('CREDIT_CARD')}
+				>
+					Credit Card
+				</Button>
+				<Button
+					type="button"
+					variant={activeAccountType === 'CHECKING' ? 'primary' : 'secondary'}
+					format="text"
+					onClick={() => onAccountTypeChange('CHECKING')}
+				>
+					Debit
+				</Button>
+			</Flex>
 			<FormControl label="Search transactions" hideLabel>
 				<Input placeholder="Search transactions..." {...register('filters.search')} />
 			</FormControl>

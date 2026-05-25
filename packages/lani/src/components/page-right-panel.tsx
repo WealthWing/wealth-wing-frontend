@@ -11,7 +11,7 @@ type PageRightPanelProps = {
 };
 
 export const PageRightPanel = ({ id, title, children, onClose, isOpen }: PageRightPanelProps) => {
-	const inertProps = !isOpen ? ({ inert: '', 'aria-hidden': true } as const) : {};
+	const inertProps = !isOpen ? ({ inert: true, 'aria-hidden': true } as const) : {};
 
 	return (
 		<aside

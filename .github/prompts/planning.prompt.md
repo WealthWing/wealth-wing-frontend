@@ -1,7 +1,6 @@
 ---
 name: sa-plan
-description: Structured Autonomy Planning Prompt
-model: Claude Sonnet 4.5 (copilot)
+description: Structured Autonomy Planning Prompts
 agent: agent
 ---
 

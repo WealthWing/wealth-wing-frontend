@@ -1,5 +1,4 @@
-import { css, SerializedStyles } from '@emotion/react';
-import { CSSProperties } from 'react';
+import { css, CSSObject, SerializedStyles } from '@emotion/react';
 
 import { Border, BorderKey, Color, Shadow, SizeValue, Space, theme } from '../../theme';
 
@@ -24,8 +23,8 @@ export type BoxOptions = {
 	ml?: Space;
 	mr?: Space;
 	mt?: Space;
-	overflowX?: CSSProperties['overflowX'];
-	overflowY?: CSSProperties['overflowY'];
+	overflowX?: CSSObject['overflowX'];
+	overflowY?: CSSObject['overflowY'];
 	padding?: Space;
 	pb?: Space;
 	pl?: Space;

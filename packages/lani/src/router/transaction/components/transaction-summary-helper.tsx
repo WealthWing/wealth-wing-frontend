@@ -1,4 +1,11 @@
-import { Flex, Grid, SkeletonAreaLoader, SkeletonLoaderContainer } from '@wealth-wing/tayo';
+import {
+	DatePicker,
+	Flex,
+	Grid,
+	SkeletonAreaLoader,
+	SkeletonLoaderContainer,
+	theme
+} from '@wealth-wing/tayo';
 import { formatUSD } from '@wealth-wing/utils';
 import { TransactionSummaryResponse } from 'data/api-definitions';
 import { useFormContext } from 'react-hook-form';
@@ -24,9 +31,14 @@ export const SummaryFilterButton = ({ label, active, onClick }: SummaryFilterBut
 
 export const SummaryFilters = () => {
 	const { onFilterSelect } = useTransactions();
-	const { watch } = useFormContext<TransactionsFormFields>();
+	const { watch, setValue } = useFormContext<TransactionsFormFields>();
 
 	const activeFilter = watch('selectedFilter');
+
+	const handleDateChange = () => {
+		setValue('selectedFilter', null);
+	};
+
 	return (
 		<Flex direction="row" alignItems="center" gap="s8">
 			{filters.map(({ label, value }) => (
@@ -37,6 +49,32 @@ export const SummaryFilters = () => {
 					onClick={() => onFilterSelect(value, label)}
 				/>
 			))}
+			<div
+				css={{
+					width: '1px',
+					height: theme.space.s24,
+					backgroundColor: theme.color.cardBackground60,
+					margin: `0 ${theme.space.s8}`
+				}}
+			/>
+			<Flex direction="row" gap="s8" alignItems="center">
+				<div css={{ width: '150px' }}>
+					<DatePicker
+						name="date.from"
+						label="From"
+						placeholderText="Start Date"
+						onChange={handleDateChange}
+					/>
+				</div>
+				<div css={{ width: '150px' }}>
+					<DatePicker
+						name="date.to"
+						label="To"
+						placeholderText="End Date"
+						onChange={handleDateChange}
+					/>
+				</div>
+			</Flex>
 		</Flex>
 	);
 };

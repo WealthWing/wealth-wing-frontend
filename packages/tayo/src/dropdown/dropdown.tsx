@@ -13,6 +13,12 @@ import React from 'react';
 
 import { useDisclosureControl } from '../hooks/use-disclosure-control';
 
+type DropdownChildProps = {
+	ref?: React.Ref<unknown>;
+	style?: React.CSSProperties;
+	'aria-expanded'?: boolean;
+};
+
 type DropdownProps = {
 	placement?: Placement;
 	distance?: number;
@@ -41,15 +47,17 @@ export const Dropdown = ({ placement, distance = 0, children }: DropdownProps) =
 		<>
 			{React.Children.map(children, (child, i) => {
 				if (React.isValidElement(child)) {
+					const element = child as React.ReactElement<DropdownChildProps>;
+
 					if (i === 0) {
-						return React.cloneElement(child as React.ReactElement, {
+						return React.cloneElement(element, {
 							ref: refs.setReference,
 							'aria-expanded': isOpen,
 							...getReferenceProps()
 						});
 					}
 					if (i === 1 && isOpen) {
-						return React.cloneElement(child as React.ReactElement, {
+						return React.cloneElement(element, {
 							ref: refs.setFloating,
 							style: {
 								...floatingStyles

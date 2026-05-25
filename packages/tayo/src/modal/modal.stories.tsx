@@ -28,6 +28,7 @@ const ModalContent = ({ onClose }: { onClose: () => void }) => {
 					</Button>
 					<Flex direction="row" gap="s16">
 						<Button
+							// eslint-disable-next-line no-alert
 							onClick={() => alert('Primary Action')}
 							variant="tertiary"
 							format="outline"
@@ -35,6 +36,7 @@ const ModalContent = ({ onClose }: { onClose: () => void }) => {
 							Primary Action
 						</Button>
 						<Button
+							// eslint-disable-next-line no-alert
 							onClick={() => alert('Secondary Action')}
 							variant="tertiary"
 							format="outline"
@@ -57,7 +59,7 @@ const meta = {
 		}
 	},
 	decorators: [
-		(Story, ctx) => {
+		(_Story, ctx) => {
 			const [, setArgs] = useArgs<typeof ctx.args>();
 
 			const onClose = () => {
@@ -86,9 +88,7 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
-
-export const ModalStory: Story = {
+export const ModalStory: StoryObj<typeof meta> = {
 	args: {
 		isOpen: false,
 		children: '',

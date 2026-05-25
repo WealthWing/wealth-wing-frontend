@@ -48,8 +48,8 @@ export const SubscriptionSummary = ({
 				},
 				{
 					key: 'Website',
-					value: selectedSubscription.website_url || '-',
-					isLink: !!selectedSubscription.website_url
+					value: selectedSubscription.name || '-',
+					link: selectedSubscription.website_url
 				},
 				{
 					key: 'Total Amount Spent',
@@ -116,33 +116,27 @@ export const SubscriptionSummary = ({
 			</div>
 
 			<Section title="Subscription Details" subTitle="Overview of your subscription costs">
-				<Grid gap="s12" gridTemplateColumns="repeat(auto-fit, minmax(90px, 110px))">
+				<Flex direction="row" gap="s12" flexFlow="wrap">
 					{subscriptionDetails.map((detail) => (
 						<Box key={detail.key} css={subscriptionsPageStyles.detailTile}>
-							<Flex direction="column" gap="s8" alignItems="center">
-								<Text font="sm" color="textSecondary">
-									{detail.key}
-								</Text>
-								{detail.isLink ? (
-									<a
-										href={detail.value}
-										target="_blank"
-										rel="noopener noreferrer"
-										css={{ textDecoration: 'none' }}
-									>
-										<Heading tag="h3" font="h5">
-											{detail.value}
-										</Heading>
-									</a>
-								) : (
-									<Heading tag="h3" font="h6">
-										{detail.value}
-									</Heading>
-								)}
-							</Flex>
+							<Text font="sm" color="textSecondary">
+								{detail.key}
+							</Text>
+							{detail.link ? (
+								<a
+									href={detail.link}
+									target="_blank"
+									rel="noopener noreferrer"
+									css={{ textDecoration: 'none' }}
+								>
+									<Text font="lg">{detail.value}</Text>
+								</a>
+							) : (
+								<Text font="lg">{detail.value}</Text>
+							)}
 						</Box>
 					))}
-				</Grid>
+				</Flex>
 			</Section>
 		</>
 	);

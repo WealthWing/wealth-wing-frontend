@@ -1,7 +1,7 @@
-import { css } from '@emotion/react';
-import { CSSProperties, forwardRef } from 'react';
+import { css, CSSObject } from '@emotion/react';
+import { forwardRef } from 'react';
 
-import { Color, FontKeys, theme } from '../theme';
+import { Color, FontKeys, HeadingKeys, theme } from '../theme';
 
 const mixinTextEllipsis = css`
 	overflow: hidden;
@@ -28,10 +28,10 @@ export type TextTag = 'div' | 'p' | 'span';
 
 export type TextOptions = Pick<React.AllHTMLAttributes<HTMLElement>, 'id'> & {
 	color?: Color;
-	font?: FontKeys;
-	textAlign?: CSSProperties['textAlign'];
-	wordBreak?: CSSProperties['wordBreak'];
-	whiteSpace?: CSSProperties['whiteSpace'];
+	font?: FontKeys | HeadingKeys;
+	textAlign?: CSSObject['textAlign'];
+	wordBreak?: CSSObject['wordBreak'];
+	whiteSpace?: CSSObject['whiteSpace'];
 	indent?: string;
 	underline?: boolean;
 	uppercase?: boolean;
@@ -41,6 +41,7 @@ export type TextProps = TextOptions & {
 	children: React.ReactNode;
 	tag?: TextTag;
 	lines?: number;
+	className?: string;
 };
 
 const text = ({
@@ -65,9 +66,14 @@ const text = ({
 	});
 
 export const Text = forwardRef<HTMLDivElement, TextProps>(
-	({ id, children, font = 'lg', lines, tag: Tag = 'div', ...textProps }, ref) => {
+	({ id, children, font = 'lg', lines, tag: Tag = 'div', className, ...textProps }, ref) => {
 		return (
-			<Tag id={id} ref={ref} css={[text({ font, ...textProps }), turnication(lines)]}>
+			<Tag
+				id={id}
+				ref={ref}
+				className={className}
+				css={[text({ font, ...textProps }), turnication(lines)]}
+			>
 				{children}
 			</Tag>
 		);
