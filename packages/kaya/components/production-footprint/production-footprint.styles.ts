@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { mqValues, theme } from '@wealth-wing/tayo';
+import { mqValues, theme, mq } from '@wealth-wing/tayo';
 import { MAX_WIDTH } from '../hero/hero.styles';
 
 const MOBILE_BREAK = `@media (max-width: ${mqValues.tabletSmall - 1}px)`;
@@ -70,7 +70,12 @@ export const productionFootprintStyles = {
 		display: 'flex',
 		alignItems: 'center',
 		gap: theme.space.s16,
-		flexWrap: 'wrap'
+		flexWrap: 'wrap',
+		[MOBILE_BREAK]: {
+			display: 'grid',
+			gridTemplateColumns: '1fr 1fr',
+			width: '100%'
+		}
 	}),
 
 	slot: css({

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-
+import { Text } from '@wealth-wing/tayo';
 import { FOOTPRINT_SLOTS } from './production-footprint.definitions';
 import { productionFootprintStyles } from './production-footprint.styles';
 import { TrustStrip } from '../trust-strip';
@@ -26,10 +26,10 @@ export const ProductionFootprint = () => {
 	return (
 		<section css={productionFootprintStyles.root} aria-label="Live production footprint">
 			<div css={productionFootprintStyles.inner}>
-				<p css={productionFootprintStyles.label}>
+				<Text font="sm" color="textSecondary" uppercase>
 					Live Production Footprint — Systems I&apos;ve shipped code for are currently
 					running at:
-				</p>
+				</Text>
 
 				<div css={productionFootprintStyles.divider} aria-hidden="true" />
 

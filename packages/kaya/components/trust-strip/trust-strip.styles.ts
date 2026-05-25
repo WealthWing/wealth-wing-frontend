@@ -59,7 +59,7 @@ export const trustStripStyles = {
 
 		[MOBILE_BREAK]: {
 			padding: `${theme.space.s20} 0`,
-			justifyContent: 'center',
+			justifyContent: 'flex-start',
 			// Reset all borders from tablet
 			borderRight: 'none',
 			'&:nth-of-type(2n+1)': {
