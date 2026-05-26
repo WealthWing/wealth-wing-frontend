@@ -1,6 +1,6 @@
 export const ABOUT_COPY = {
-	sectionHeading: 'A bit about me',
+	sectionHeading: 'The Engineer Behind the Code',
 	pullQuote:
-		'I’m Ed Shaziman — full name Erdoan Shaziman. I work directly with founders, product leads, and small teams to understand what needs to be built, make the tradeoffs clear, and turn loose requirements into software people can actually use.',
-	body: "I communicate directly — no status theater, no ambiguous updates. Whether I'm cleaning up an existing app, building a full-stack feature, or adding AI into a workflow, my goal is to keep the work grounded, useful, and easy to build on."
+		"I don't pitch decks, and I don't hide behind account managers. I'm a full-stack engineer who works directly with founders and product leads to build systems that scale cleanly from day one.",
+	body: 'My focus is simple: high technical density, zero communication friction, and shipping clean, maintainable software that solves real business problems.'
 } as const;

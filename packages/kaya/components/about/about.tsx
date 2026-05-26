@@ -2,8 +2,6 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { ABOUT_COPY } from './about.definitions';
 import { aboutStyles } from './about.styles';
 
-import Image from 'next/image';
-
 const smoothEase = [0.16, 1, 0.3, 1] as const;
 
 export const AboutSection = () => {
@@ -52,23 +50,17 @@ export const AboutSection = () => {
 					{ABOUT_COPY.sectionHeading}
 				</motion.h2>
 				<div css={aboutStyles.grid}>
+					{/* Photo placeholder — replace div with <img> once photo is ready */}
 					<motion.div
-						css={aboutStyles.photoBox}
 						variants={photoVariants}
 						initial="hidden"
 						whileInView="visible"
 						viewport={{ once: true, amount: 0.15 }}
 					>
-						<Image
-							src="/images/ed-shaziman.png"
-							alt="Photo of Ed Shaziman"
-							fill
-							style={{ objectFit: 'cover', objectPosition: 'center top' }}
-							sizes="(max-width: 768px) 100vw, 40vw"
-							priority
-						/>
+						<div css={aboutStyles.photoBox} role="img" aria-label="Photo of Ed" />
 					</motion.div>
 
+					{/* Text column */}
 					<motion.div
 						css={aboutStyles.textColumn}
 						variants={textVariants}

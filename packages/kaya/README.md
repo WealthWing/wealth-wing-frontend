@@ -70,16 +70,16 @@ Kaya includes its own `netlify.toml`:
 
 ```toml
 [build]
+	base = "packages/kaya"
 	command = "yarn build"
-	publish = ".next"
+	publish = "packages/kaya/.next"
 ```
 
 To deploy:
 
 1. Connect the repository to Netlify.
-2. Set the base directory to `packages/kaya`.
-3. Use the build settings from `packages/kaya/netlify.toml`.
-4. Add `RESEND_API_KEY` in Netlify under Site configuration > Environment variables.
-5. Deploy the site.
+2. Use the build settings from `packages/kaya/netlify.toml`.
+3. Add `RESEND_API_KEY` in Netlify under Site configuration > Environment variables.
+4. Deploy the site.
 
 Netlify detects the Next.js app from the build output and uses its Next.js adapter automatically, so no manual Next.js plugin is required.
