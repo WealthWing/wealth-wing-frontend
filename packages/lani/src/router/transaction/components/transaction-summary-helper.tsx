@@ -58,22 +58,19 @@ export const SummaryFilters = () => {
 				}}
 			/>
 			<Flex direction="row" gap="s8" alignItems="center">
-				<div css={{ width: '150px' }}>
-					<DatePicker
-						name="date.from"
-						label="From"
-						placeholderText="Start Date"
-						onChange={handleDateChange}
-					/>
-				</div>
-				<div css={{ width: '150px' }}>
-					<DatePicker
-						name="date.to"
-						label="To"
-						placeholderText="End Date"
-						onChange={handleDateChange}
-					/>
-				</div>
+				<DatePicker
+					name="date.from"
+					label="From"
+					placeholderText="Start Date"
+					onChange={handleDateChange}
+				/>
+
+				<DatePicker
+					name="date.to"
+					label="To"
+					placeholderText="End Date"
+					onChange={handleDateChange}
+				/>
 			</Flex>
 		</Flex>
 	);

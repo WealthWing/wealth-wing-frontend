@@ -74,6 +74,17 @@ export const kayaDarkTheme: ThemeDefinitions = {
 		cardBackground80: '#3E3F46',
 		cardBackground60: '#575863'
 	},
+	gradient: {
+		primary:
+			'linear-gradient(90deg, var(--ww-t-color-primary60) 0%, var(--ww-t-color-primary100) 100%)',
+		secondary:
+			'linear-gradient(90deg, var(--ww-t-color-secondary60) 0%, var(--ww-t-color-secondary100) 100%)',
+		success:
+			'linear-gradient(90deg, var(--ww-t-color-green60) 0%, var(--ww-t-color-green100) 100%)',
+		warning:
+			'linear-gradient(90deg, var(--ww-t-color-yellow60) 0%, var(--ww-t-color-yellow100) 100%)',
+		danger: 'linear-gradient(90deg, var(--ww-t-color-red60) 0%, var(--ww-t-color-red100) 100%)'
+	},
 	borderRadius: {
 		radiusDefault: '0.875rem',
 		radiusLarge: '1rem',

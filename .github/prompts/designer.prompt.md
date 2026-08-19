@@ -1,7 +1,6 @@
 ---
 name: sa-designer-review
 description: Senior Designer Review Prompt for Personal Service Website
-model: Gemini 3.1 Pro (Preview) (copilot)
 agent: agent
 ---
 

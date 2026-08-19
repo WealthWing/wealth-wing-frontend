@@ -3,10 +3,23 @@ import { AccountPage } from 'router/account/account-page';
 import { Layout } from 'router/layout';
 import { PageNotFound } from 'router/not-found';
 import { ReportsPage } from 'router/reports/reports-page';
+import { SandboxPage } from 'router/sandbox/sandbox-page';
 import { SubscriptionsPage } from 'router/subscription/subscriptions-page';
 import { TransactionsPage } from 'router/transaction/transactions-page';
 
 export const router = createBrowserRouter([
+	{
+		path: '/sandbox',
+		element: <SandboxPage activeRoute="home" />
+	},
+	{
+		path: '/sandbox/architecture',
+		element: <SandboxPage activeRoute="architecture" />
+	},
+	{
+		path: '/sandbox/motion',
+		element: <SandboxPage activeRoute="motion" />
+	},
 	{
 		path: '/',
 		element: <Layout />,

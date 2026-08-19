@@ -18,4 +18,5 @@ export * from './tabs';
 export * from './badge';
 export * from './bar-chart';
 export * from './pie-chart';
+export * from './progress-bar';
 export * from './overlay/overlay';

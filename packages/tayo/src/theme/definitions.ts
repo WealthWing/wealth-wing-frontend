@@ -41,6 +41,16 @@ export type ColorCustomProperty = `var(--ww-t-color-${Color})`;
 
 type ColorDefinition = { [k in Color]: ColorCustomProperty };
 
+// GRADIENTS
+export const gradientKeys = ['primary', 'secondary', 'success', 'warning', 'danger'] as const;
+export type Gradient = (typeof gradientKeys)[number];
+
+export type GradientValue = `linear-gradient(${string})`;
+export type GradientCustomProperty = `var(--ww-t-gradient-${Gradient})`;
+
+type GradientDefinition = Record<Gradient, GradientValue>;
+type GradientTheme = Record<Gradient, GradientCustomProperty>;
+
 // Space
 export const spaceNames = [
 	'none',
@@ -121,6 +131,7 @@ export type FontSizeDefinitions = Record<FontSize, SizeValue>;
 
 export type ThemeDefinitions = {
 	color: Record<Color, ColorValue>;
+	gradient: GradientDefinition;
 	space: SpaceDefinition;
 	borderRadius: BorderRadiusDefinition;
 	border: BorderDefinition;
@@ -131,6 +142,7 @@ export type ThemeDefinitions = {
 
 export type Theme = {
 	color: ColorDefinition;
+	gradient: GradientTheme;
 	space: SpaceTheme;
 	borderRadius: BorderRadiusTheme;
 	border: BorderTheme;

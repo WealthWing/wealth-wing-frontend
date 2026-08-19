@@ -74,6 +74,17 @@ export const darkTheme: ThemeDefinitions = {
 		cardBackground80: '#4F4C6F',
 		cardBackground60: '#7B7993'
 	},
+	gradient: {
+		primary:
+			'linear-gradient(90deg, var(--ww-t-color-primary60) 0%, var(--ww-t-color-primary100) 100%)',
+		secondary:
+			'linear-gradient(90deg, var(--ww-t-color-secondary60) 0%, var(--ww-t-color-secondary100) 100%)',
+		success:
+			'linear-gradient(90deg, var(--ww-t-color-green60) 0%, var(--ww-t-color-green100) 100%)',
+		warning:
+			'linear-gradient(90deg, var(--ww-t-color-yellow60) 0%, var(--ww-t-color-yellow100) 100%)',
+		danger: 'linear-gradient(90deg, var(--ww-t-color-red60) 0%, var(--ww-t-color-red100) 100%)'
+	},
 	borderRadius: {
 		radiusDefault: '0.75rem',
 		radiusLarge: '0.5rem',
@@ -209,6 +220,13 @@ export const theme: Theme = {
 		cardBackground90: 'var(--ww-t-color-cardBackground90)',
 		cardBackground80: 'var(--ww-t-color-cardBackground80)',
 		cardBackground60: 'var(--ww-t-color-cardBackground60)'
+	},
+	gradient: {
+		primary: 'var(--ww-t-gradient-primary)',
+		secondary: 'var(--ww-t-gradient-secondary)',
+		success: 'var(--ww-t-gradient-success)',
+		warning: 'var(--ww-t-gradient-warning)',
+		danger: 'var(--ww-t-gradient-danger)'
 	},
 	space: {
 		none: 'var(--ww-t-space-none)',

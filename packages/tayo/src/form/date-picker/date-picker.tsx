@@ -7,6 +7,11 @@ import { FormControl } from '../form-control';
 import { input } from '../input/input.styles';
 import { datePicker } from './date-picker.styles';
 
+const formatShortWeekDay = (dayName: string) => {
+	console.log(dayName.slice(0, 3));
+	return dayName.slice(0, 3);
+};
+
 type SinglePickerProps = Omit<
 	ReactDatePickerProps,
 	| 'selectsRange'
@@ -75,6 +80,7 @@ export const DatePicker = ({
 							customInput={<input css={input} />}
 							dateFormat="dd/MM/yyyy"
 							disabled={disabled}
+							formatWeekDay={formatShortWeekDay}
 							icon={
 								icon ? (
 									<Icon
