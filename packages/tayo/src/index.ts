@@ -20,3 +20,4 @@ export * from './bar-chart';
 export * from './pie-chart';
 export * from './progress-bar';
 export * from './overlay/overlay';
+export * from './kpi-card';
