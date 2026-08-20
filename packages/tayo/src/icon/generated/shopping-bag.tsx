@@ -1,0 +1,3 @@
+import { SVGProps } from "react";
+const SvgShoppingBag = (props: SVGProps<SVGSVGElement>) => <svg width="1em" height="1em" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M17.5 5v11.667a1.667 1.667 0 0 1-1.667 1.666H4.167A1.667 1.667 0 0 1 2.5 16.667V5L5 1.667h10L17.5 5Zm-15 0h15m-4.167 3.333a3.333 3.333 0 0 1-6.666 0" stroke="#1E1E1E" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" /></svg>;
+export default SvgShoppingBag;
