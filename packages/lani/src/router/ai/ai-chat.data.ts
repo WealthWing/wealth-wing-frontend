@@ -1,0 +1,244 @@
+import { AnalystResponse, ChatTopic, ChatTurn } from 'router/ai/ai-chat.definitions';
+
+export const quickTopics: Array<{ topic: ChatTopic; label: string; prompt: string }> = [
+	{
+		topic: 'spending',
+		label: 'Spending',
+		prompt: 'How much did I spend on dining last month?'
+	},
+	{
+		topic: 'subscriptions',
+		label: 'Subscriptions',
+		prompt: 'Which subscriptions cost me the most?'
+	},
+	{
+		topic: 'cash-flow',
+		label: 'Cash flow',
+		prompt: 'How did my cash flow change last month?'
+	}
+];
+
+export const analystResponses: Record<ChatTopic, AnalystResponse> = {
+	spending: {
+		topic: 'spending',
+		title: 'Dining spending analysis',
+		scope: 'Mar 1–31  •  All accounts  •  USD',
+		kpis: [
+			{
+				label: 'Dining spending',
+				value: '$842.31',
+				supportingText: 'last month',
+				icon: 'money-bill',
+				accentColor: 'primary60'
+			},
+			{
+				label: 'Change',
+				value: '+$129.31',
+				supportingText: '+18% vs February',
+				icon: 'trending-up',
+				accentColor: 'yellow60'
+			},
+			{
+				label: 'Activity',
+				value: '14',
+				supportingText: 'transactions · 2 accounts',
+				icon: 'switch-horizontal',
+				accentColor: 'secondary60'
+			}
+		],
+		chart: {
+			label: 'Mar 1–31',
+			comparisonLabel: 'Feb 1–28',
+			labels: [
+				'Mar 1',
+				'Mar 4',
+				'Mar 8',
+				'Mar 12',
+				'Mar 15',
+				'Mar 19',
+				'Mar 23',
+				'Mar 27',
+				'Mar 31'
+			],
+			values: [42, 24, 65, 48, 91, 52, 19, 38, 46],
+			comparisonValues: [36, 31, 54, 43, 39, 58, 29, 45, 33]
+		},
+		insight:
+			'You spent $129.31 more on dining than in February. Restaurant frequency and weekend spending were the main contributors.',
+		evidenceSummary: '14 transactions  •  2 accounts',
+		evidence: [
+			{
+				id: 'dining-1',
+				merchant: 'Via Carota',
+				date: 'Mar 23',
+				account: 'Credit',
+				amount: '$112.75'
+			},
+			{
+				id: 'dining-2',
+				merchant: 'The Smith',
+				date: 'Mar 8',
+				account: 'Checking',
+				amount: '$68.42'
+			},
+			{
+				id: 'dining-3',
+				merchant: 'Sweetgreen',
+				date: 'Mar 16',
+				account: 'Credit',
+				amount: '$24.18'
+			}
+		],
+		suggestions: ['Top restaurants', 'Compare groceries', 'Show transactions']
+	},
+	subscriptions: {
+		topic: 'subscriptions',
+		title: 'Subscription cost analysis',
+		scope: 'Monthly estimate  •  All accounts  •  USD',
+		kpis: [
+			{
+				label: 'Monthly cost',
+				value: '$186.47',
+				supportingText: 'across active plans',
+				icon: 'schedule',
+				accentColor: 'primary60'
+			},
+			{
+				label: 'Change',
+				value: '+$21.99',
+				supportingText: '+13% vs February',
+				icon: 'trending-up',
+				accentColor: 'yellow60'
+			},
+			{
+				label: 'Active plans',
+				value: '9',
+				supportingText: '2 renew this week',
+				icon: 'calendar',
+				accentColor: 'secondary60'
+			}
+		],
+		chart: {
+			label: 'Current month',
+			comparisonLabel: 'Previous month',
+			labels: ['Streaming', 'Software', 'Fitness', 'News', 'Cloud'],
+			values: [74, 60, 25, 12, 15],
+			comparisonValues: [62, 49, 25, 12, 16]
+		},
+		insight:
+			'Streaming and software make up 64% of your recurring costs. Two annual renewals account for most of the increase this month.',
+		evidenceSummary: '9 subscriptions  •  2 accounts',
+		evidence: [
+			{
+				id: 'subscription-1',
+				merchant: 'Adobe Creative Cloud',
+				date: 'Mar 5',
+				account: 'Credit',
+				amount: '$59.99'
+			},
+			{
+				id: 'subscription-2',
+				merchant: 'YouTube TV',
+				date: 'Mar 12',
+				account: 'Credit',
+				amount: '$49.99'
+			},
+			{
+				id: 'subscription-3',
+				merchant: 'Spotify',
+				date: 'Mar 18',
+				account: 'Checking',
+				amount: '$11.99'
+			}
+		],
+		suggestions: ['Largest renewals', 'Find unused plans', 'Show transactions']
+	},
+	'cash-flow': {
+		topic: 'cash-flow',
+		title: 'Cash flow analysis',
+		scope: 'Mar 1–31  •  All accounts  •  USD',
+		kpis: [
+			{
+				label: 'Net cash flow',
+				value: '+$1,284.60',
+				supportingText: '+$410 vs February',
+				icon: 'swap-vert',
+				accentColor: 'green60'
+			},
+			{
+				label: 'Income',
+				value: '$6,420.00',
+				supportingText: '3 deposits',
+				icon: 'arrow-up-right',
+				accentColor: 'green60'
+			},
+			{
+				label: 'Outflows',
+				value: '$5,135.40',
+				supportingText: 'excluding transfers',
+				icon: 'arrow-down',
+				accentColor: 'secondary60'
+			}
+		],
+		chart: {
+			label: 'March',
+			comparisonLabel: 'February',
+			labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+			values: [810, -320, 1120, -325],
+			comparisonValues: [640, -510, 980, -236]
+		},
+		insight:
+			'Your cash flow improved by $410 compared with February. Stable income and lower utility spending offset higher dining costs.',
+		evidenceSummary: '47 transactions  •  2 accounts',
+		evidence: [
+			{
+				id: 'cash-flow-1',
+				merchant: 'Payroll deposit',
+				date: 'Mar 15',
+				account: 'Checking',
+				amount: '+$3,210.00'
+			},
+			{
+				id: 'cash-flow-2',
+				merchant: 'Rent payment',
+				date: 'Mar 1',
+				account: 'Checking',
+				amount: '-$1,850.00'
+			},
+			{
+				id: 'cash-flow-3',
+				merchant: 'Utility bill',
+				date: 'Mar 20',
+				account: 'Credit',
+				amount: '-$146.38'
+			}
+		],
+		suggestions: ['Explain the improvement', 'Review large outflows', 'Show transactions']
+	}
+};
+
+export const getTopicForPrompt = (prompt: string): ChatTopic => {
+	const normalizedPrompt = prompt.toLowerCase();
+
+	if (normalizedPrompt.includes('subscription') || normalizedPrompt.includes('renewal')) {
+		return 'subscriptions';
+	}
+
+	if (
+		normalizedPrompt.includes('cash flow') ||
+		normalizedPrompt.includes('income') ||
+		normalizedPrompt.includes('outflow') ||
+		normalizedPrompt.includes('improvement')
+	) {
+		return 'cash-flow';
+	}
+
+	return 'spending';
+};
+
+export const createSeededTurn = (): ChatTurn => ({
+	id: 'seeded-dining-analysis',
+	prompt: quickTopics[0].prompt,
+	timestamp: '9:41 AM',
+	response: analystResponses.spending
+});

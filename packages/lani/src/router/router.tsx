@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { AccountPage } from 'router/account/account-page';
+import { AiChatPage } from 'router/ai/ai-chat-page';
 import { Layout } from 'router/layout';
 import { PageNotFound } from 'router/not-found';
 import { ReportsPage } from 'router/reports/reports-page';
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
 		path: '/',
 		element: <Layout />,
 		children: [
+			{
+				path: 'ai',
+				element: <AiChatPage />
+			},
 			{
 				path: '',
 				element: <TransactionsPage />

@@ -19,7 +19,12 @@ export const AuthController = () => {
 						css={{ height: '100%' }}
 					>
 						<Flex direction="row" gap="s4" alignItems="center">
-							<Icon name="graph" size="s64" />
+							<Icon
+								name="wealth-wing"
+								size="s64"
+								color="primary60"
+								aria-hidden="true"
+							/>
 							<Flex gap="none" direction="column" justifyContent="center">
 								<Heading font="h4" tag="h1">
 									Wealth Wing

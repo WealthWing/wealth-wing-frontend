@@ -19,6 +19,11 @@ export const sidebar = {
 		top: ${theme.space.s12};
 		width: ${sidebarWidth};
 	`,
+	hiddenOnMobile: css`
+		@media screen and (max-width: 599px) {
+			display: none;
+		}
+	`,
 	separator: css`
 		background: linear-gradient(
 			90deg,

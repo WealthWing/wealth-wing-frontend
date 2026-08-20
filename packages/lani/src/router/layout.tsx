@@ -7,7 +7,7 @@ import { Sidebar } from 'components/sidebar';
 import { sidebar } from 'components/sidebar.styles';
 import { SidebarButton, SidebarLink } from 'components/sidebar-link';
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { setUserData, useLazyUserDataQuery } from 'redux/auth';
 import { useAppDispatch } from 'redux/hooks';
 import { AuthController } from 'router/auth/auth-controller';
@@ -15,6 +15,8 @@ import { AuthProvider, AuthProviderProps, AuthState } from 'router/layout-manage
 
 export const Layout = () => {
 	const [authState, setAuthState] = React.useState<AuthState>('verifying');
+	const location = useLocation();
+	const isAiRoute = location.pathname === '/ai';
 
 	const dispatch = useAppDispatch();
 	const [getUserInfo] = useLazyUserDataQuery();
@@ -66,9 +68,12 @@ export const Layout = () => {
 				{authState === 'verifying' && <GeneralLoader>Loading...</GeneralLoader>}
 				{authState === 'signedIn' && (
 					<>
-						<Sidebar>
+						<Sidebar hideOnMobile={isAiRoute}>
 							<Flex justifyContent="space-between" css={{ height: '100%' }}>
 								<ul role="menubar" css={sidebar.top}>
+									<li>
+										<SidebarLink iconName="sparkles" label="Lani AI" to="/ai" />
+									</li>
 									<li>
 										<SidebarLink
 											iconName="switch-horizontal"
@@ -105,7 +110,7 @@ export const Layout = () => {
 								/>
 							</Flex>
 						</Sidebar>
-						<Main>
+						<Main fullWidthOnMobile={isAiRoute}>
 							<Outlet />
 						</Main>
 					</>

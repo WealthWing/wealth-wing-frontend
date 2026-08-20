@@ -16,6 +16,20 @@ export const main = css`
 	width: calc(100% - ${sidebarWidth});
 `;
 
-export const Main = ({ children }: { children: React.ReactNode }) => (
-	<main css={main}>{children}</main>
+const fullWidthMobile = css`
+	@media screen and (max-width: 599px) {
+		height: calc(100dvh - ${theme.space.s24});
+		margin-left: 0;
+		padding: 0;
+		width: 100%;
+	}
+`;
+
+type MainProps = {
+	children: React.ReactNode;
+	fullWidthOnMobile?: boolean;
+};
+
+export const Main = ({ children, fullWidthOnMobile = false }: MainProps) => (
+	<main css={[main, fullWidthOnMobile && fullWidthMobile]}>{children}</main>
 );

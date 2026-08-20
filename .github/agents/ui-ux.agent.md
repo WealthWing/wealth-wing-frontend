@@ -1,8 +1,7 @@
 ---
 name: 'SE-UX-Designer'
 description: 'Jobs-to-be-Done analysis, user journey mapping, and UX research artifacts for Figma and design workflows'
-model: Gemini 3 Pro (Preview) (copilot)
-tools: ['search/codebase', 'edit/editFiles', 'search', 'fetch']
+tools: ['search/codebase', 'edit/editFiles', 'search']
 ---
 
 # UX/UI Designer

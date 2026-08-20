@@ -1,0 +1,58 @@
+import { SVGProps } from 'react';
+
+const SvgWealthWing = (props: SVGProps<SVGSVGElement>) => (
+	<svg
+		viewBox="0 0 24 24"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		width="1em"
+		height="1em"
+		{...props}
+	>
+		<path
+			d="M7.25 8L9.55 17L12 11.5L14.45 17L16.75 8"
+			stroke="currentColor"
+			strokeWidth={2.2}
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+		<path
+			d="M7.1 9.25C5.35 8.82 3.85 7.75 2.75 6.25"
+			stroke="currentColor"
+			strokeWidth={1.7}
+			strokeLinecap="round"
+		/>
+		<path
+			d="M6.8 11.65C4.65 11.42 2.95 10.55 1.65 9.2"
+			stroke="currentColor"
+			strokeWidth={1.7}
+			strokeLinecap="round"
+		/>
+		<path
+			d="M6.55 14C4.35 14.05 2.7 13.5 1.4 12.45"
+			stroke="currentColor"
+			strokeWidth={1.7}
+			strokeLinecap="round"
+		/>
+		<path
+			d="M16.9 9.25C18.65 8.82 20.15 7.75 21.25 6.25"
+			stroke="currentColor"
+			strokeWidth={1.7}
+			strokeLinecap="round"
+		/>
+		<path
+			d="M17.2 11.65C19.35 11.42 21.05 10.55 22.35 9.2"
+			stroke="currentColor"
+			strokeWidth={1.7}
+			strokeLinecap="round"
+		/>
+		<path
+			d="M17.45 14C19.65 14.05 21.3 13.5 22.6 12.45"
+			stroke="currentColor"
+			strokeWidth={1.7}
+			strokeLinecap="round"
+		/>
+	</svg>
+);
+
+export default SvgWealthWing;

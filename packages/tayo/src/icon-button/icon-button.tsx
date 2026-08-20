@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { ButtonProps } from '../button/base.definitions';
-import { button, outline } from '../button/button.styles';
+import { button, disabledStyle, outline } from '../button/button.styles';
 import { Icon, IconName } from '../icon';
 import { Color } from '../theme';
 import { iconButton } from './icon-button.styles';
@@ -33,12 +33,14 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
 			<button
 				ref={ref}
 				aria-disabled={disabled || isLoading ? 'true' : undefined}
+				disabled={disabled || isLoading}
 				aria-label={label}
 				onClick={disabled || isLoading ? undefined : onClick}
 				css={[
 					button(format, variant, size),
 					format === 'outline' && outline(variant),
-					iconButton(format, size)
+					iconButton(format, size),
+					(disabled || isLoading) && disabledStyle
 				]}
 				{...rest}
 			>
