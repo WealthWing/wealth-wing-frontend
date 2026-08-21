@@ -20,3 +20,7 @@ export type ImportFileResponse = Components['ImportFileResponse'];
 export type ImportFileListItem = Components['ImportFileListItem'];
 export type ImportJobStatus = Components['ImportJobStatus'];
 export type UserResponse = Components['UserResponse'];
+export type TransactionSummaryResponse = Components['TransactionSummaryResponse'];
+export type TransactionSummaryRequest = NonNullable<
+	paths['/transaction/summary']['get']['parameters']['query']
+>;
