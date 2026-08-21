@@ -1,4 +1,5 @@
-import { BarChart, Box, Flex, Heading, Icon, Text } from '@wealth-wing/tayo';
+import { BarChart, Box, Flex, Heading, Text } from '@wealth-wing/tayo';
+import { WWLogo } from 'components/ilustrations/ww-logo';
 import { Section } from 'components/section';
 import { AuthCardContainer } from 'router/auth/components/auth-card';
 import { SignIn } from 'router/auth/sign-in';
@@ -19,12 +20,7 @@ export const AuthController = () => {
 						css={{ height: '100%' }}
 					>
 						<Flex direction="row" gap="s4" alignItems="center">
-							<Icon
-								name="wealth-wing"
-								size="s64"
-								color="primary60"
-								aria-hidden="true"
-							/>
+							<WWLogo />
 							<Flex gap="none" direction="column" justifyContent="center">
 								<Heading font="h4" tag="h1">
 									Wealth Wing

@@ -20,6 +20,7 @@ export type EvidenceTransaction = {
 
 export type AnalystResponse = {
 	topic: ChatTopic;
+	answer: string;
 	title: string;
 	scope: string;
 	kpis: AnalystKpi[];
@@ -39,6 +40,5 @@ export type AnalystResponse = {
 export type ChatTurn = {
 	id: string;
 	prompt: string;
-	timestamp: string;
 	response: AnalystResponse;
 };

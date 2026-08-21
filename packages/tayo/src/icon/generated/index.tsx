@@ -38,6 +38,7 @@ import SwitchHorizontal from './switch-horizontal'
 import TrendingUp from './trending-up'
 import Warning from './warning'
 import WealthWing from './wealth-wing'
+import WwLogo from './ww-logo'
 import X from './x'
 
 export const iconNames = [
@@ -78,6 +79,7 @@ export const iconNames = [
 'trending-up',
 'warning',
 'wealth-wing',
+'ww-logo',
 'x'
 ] as const
 
@@ -121,5 +123,6 @@ export const iconMap: Record<IconName, FunctionComponent<SVGProps<any>>> = {
 'trending-up': TrendingUp,
 'warning': Warning,
 'wealth-wing': WealthWing,
+'ww-logo': WwLogo,
 'x': X
 }

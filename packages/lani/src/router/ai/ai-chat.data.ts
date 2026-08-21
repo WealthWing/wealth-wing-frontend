@@ -21,6 +21,7 @@ export const quickTopics: Array<{ topic: ChatTopic; label: string; prompt: strin
 export const analystResponses: Record<ChatTopic, AnalystResponse> = {
 	spending: {
 		topic: 'spending',
+		answer: 'You spent $842.31 on dining last month across 14 transactions. That was $129.31 (18%) more than in February, mainly because you dined out more often and spent more on weekends.',
 		title: 'Dining spending analysis',
 		scope: 'Mar 1–31  •  All accounts  •  USD',
 		kpis: [
@@ -93,6 +94,7 @@ export const analystResponses: Record<ChatTopic, AnalystResponse> = {
 	},
 	subscriptions: {
 		topic: 'subscriptions',
+		answer: "Your subscriptions cost an estimated $186.47 per month across 9 active plans. Streaming and software make up 64% of that total, and two annual renewals account for most of this month's increase.",
 		title: 'Subscription cost analysis',
 		scope: 'Monthly estimate  •  All accounts  •  USD',
 		kpis: [
@@ -155,6 +157,7 @@ export const analystResponses: Record<ChatTopic, AnalystResponse> = {
 	},
 	'cash-flow': {
 		topic: 'cash-flow',
+		answer: 'Your net cash flow was positive $1,284.60 last month, an improvement of $410 from February. Stable income and lower utility spending more than offset the increase in dining costs.',
 		title: 'Cash flow analysis',
 		scope: 'Mar 1–31  •  All accounts  •  USD',
 		kpis: [
@@ -239,6 +242,5 @@ export const getTopicForPrompt = (prompt: string): ChatTopic => {
 export const createSeededTurn = (): ChatTurn => ({
 	id: 'seeded-dining-analysis',
 	prompt: quickTopics[0].prompt,
-	timestamp: '9:41 AM',
 	response: analystResponses.spending
 });
