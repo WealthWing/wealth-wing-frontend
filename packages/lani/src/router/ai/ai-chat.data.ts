@@ -7,11 +7,6 @@ export const quickTopics: Array<{ topic: ChatTopic; label: string; prompt: strin
 		prompt: 'How much did I spend on dining last month?'
 	},
 	{
-		topic: 'subscriptions',
-		label: 'Subscriptions',
-		prompt: 'Which subscriptions cost me the most?'
-	},
-	{
 		topic: 'cash-flow',
 		label: 'Cash flow',
 		prompt: 'How did my cash flow change last month?'
@@ -92,69 +87,6 @@ export const analystResponses: Record<ChatTopic, AnalystResponse> = {
 		],
 		suggestions: ['Top restaurants', 'Compare groceries', 'Show transactions']
 	},
-	subscriptions: {
-		topic: 'subscriptions',
-		answer: "Your subscriptions cost an estimated $186.47 per month across 9 active plans. Streaming and software make up 64% of that total, and two annual renewals account for most of this month's increase.",
-		title: 'Subscription cost analysis',
-		scope: 'Monthly estimate  •  All accounts  •  USD',
-		kpis: [
-			{
-				label: 'Monthly cost',
-				value: '$186.47',
-				supportingText: 'across active plans',
-				icon: 'schedule',
-				accentColor: 'primary60'
-			},
-			{
-				label: 'Change',
-				value: '+$21.99',
-				supportingText: '+13% vs February',
-				icon: 'trending-up',
-				accentColor: 'yellow60'
-			},
-			{
-				label: 'Active plans',
-				value: '9',
-				supportingText: '2 renew this week',
-				icon: 'calendar',
-				accentColor: 'secondary60'
-			}
-		],
-		chart: {
-			label: 'Current month',
-			comparisonLabel: 'Previous month',
-			labels: ['Streaming', 'Software', 'Fitness', 'News', 'Cloud'],
-			values: [74, 60, 25, 12, 15],
-			comparisonValues: [62, 49, 25, 12, 16]
-		},
-		insight:
-			'Streaming and software make up 64% of your recurring costs. Two annual renewals account for most of the increase this month.',
-		evidenceSummary: '9 subscriptions  •  2 accounts',
-		evidence: [
-			{
-				id: 'subscription-1',
-				merchant: 'Adobe Creative Cloud',
-				date: 'Mar 5',
-				account: 'Credit',
-				amount: '$59.99'
-			},
-			{
-				id: 'subscription-2',
-				merchant: 'YouTube TV',
-				date: 'Mar 12',
-				account: 'Credit',
-				amount: '$49.99'
-			},
-			{
-				id: 'subscription-3',
-				merchant: 'Spotify',
-				date: 'Mar 18',
-				account: 'Checking',
-				amount: '$11.99'
-			}
-		],
-		suggestions: ['Largest renewals', 'Find unused plans', 'Show transactions']
-	},
 	'cash-flow': {
 		topic: 'cash-flow',
 		answer: 'Your net cash flow was positive $1,284.60 last month, an improvement of $410 from February. Stable income and lower utility spending more than offset the increase in dining costs.',
@@ -222,10 +154,6 @@ export const analystResponses: Record<ChatTopic, AnalystResponse> = {
 
 export const getTopicForPrompt = (prompt: string): ChatTopic => {
 	const normalizedPrompt = prompt.toLowerCase();
-
-	if (normalizedPrompt.includes('subscription') || normalizedPrompt.includes('renewal')) {
-		return 'subscriptions';
-	}
 
 	if (
 		normalizedPrompt.includes('cash flow') ||

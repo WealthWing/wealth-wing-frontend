@@ -1,6 +1,6 @@
 import { Color, IconName } from '@wealth-wing/tayo';
 
-export type ChatTopic = 'spending' | 'subscriptions' | 'cash-flow';
+export type ChatTopic = 'spending' | 'cash-flow';
 
 export type AnalystKpi = {
 	label: string;

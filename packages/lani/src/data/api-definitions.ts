@@ -19,22 +19,4 @@ export type ImportsRequestParams = paths['/import/imports']['get']['parameters']
 export type ImportFileResponse = Components['ImportFileResponse'];
 export type ImportFileListItem = Components['ImportFileListItem'];
 export type ImportJobStatus = Components['ImportJobStatus'];
-export type TransactionResponse = Components['TransactionResponse'];
-export type TransactionRequest = paths['/transaction/all']['get']['parameters']['query'];
-export type TransactionAllResponse = Components['TransactionsAllResponse'];
-export type TransactionSummaryResponse = Components['TransactionSummaryResponse'];
-export type TransactionMonths = Components['TransactionMonths'][];
-export type TransactionTotals = Components['TransactionTotals'];
-export type TransactionSummaryRequest = paths['/transaction/summary']['get']['parameters']['query'];
 export type UserResponse = Components['UserResponse'];
-export type TransactionTypes = 'income' | 'expense' | 'transfer' | 'deposit' | 'withdrawal';
-export type SubscriptionResponse = Components['SubscriptionResponse'];
-export type SubscriptionRequest = Components['SubscriptionCreate'];
-export type SubscriptionUpdateRequest = Components['SubscriptionCreate'];
-export type SubscriptionTransactionsAllResponse = Components['TransactionsAllResponse'];
-export type SubscriptionSummaryResponse = Components['SubscriptionSummaryResponse'];
-export type SubscriptionCandidateResponse = Components['SubscriptionCandidateResponse'];
-export type TransactionUpdateSubscriptionRequest =
-	Components['TransactionUpdateSubscriptionRequest'];
-export type TransactionUpdateSubscriptionResponse =
-	Components['TransactionUpdateSubscriptionResponse'];

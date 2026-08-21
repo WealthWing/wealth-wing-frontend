@@ -1,44 +1,285 @@
 import { css } from '@emotion/react';
 import { theme } from '@wealth-wing/tayo';
 
-const mobile = '@media screen and (max-width: 599px)';
-const tablet = '@media screen and (max-width: 799px)';
+const mobile = '@media screen and (max-width: 767px)';
+const compactLaptop = '@media screen and (max-width: 1100px)';
 
 const focusRing = css`
 	:focus-visible {
 		outline: 2px solid ${theme.color.primary40};
-		outline-offset: 2px;
+		outline-offset: 3px;
 	}
+`;
+
+const bareButton = css`
+	${focusRing}
+	appearance: none;
+	border: 0;
+	cursor: pointer;
+	font: inherit;
 `;
 
 export const aiChatPage = {
 	root: css`
-		background: linear-gradient(145deg, ${theme.color.darkBlue100}, ${theme.color.indigo100});
-		border-radius: ${theme.borderRadius.radiusDefault};
+		background: radial-gradient(
+				circle at 72% 22%,
+				color-mix(in srgb, ${theme.color.darkBlue80} 42%, transparent),
+				transparent 33rem
+			),
+			linear-gradient(
+				145deg,
+				${theme.color.darkBlue100} 0%,
+				${theme.color.darkBlue90} 48%,
+				${theme.color.indigo100} 100%
+			);
+		color: ${theme.color.textPrimary};
+		display: grid;
+		grid-template-columns: 286px minmax(0, 1fr);
+		height: 100%;
+		isolation: isolate;
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+		}
+
+		${compactLaptop} {
+			grid-template-columns: 250px minmax(0, 1fr);
+		}
+
+		${mobile} {
+			display: block;
+		}
+	`,
+	conversationRail: css`
+		background: linear-gradient(180deg, ${theme.color.darkBlue100}, ${theme.color.indigo100});
+		border-right: 1px solid color-mix(in srgb, ${theme.color.indigo60} 35%, transparent);
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		min-width: 0;
+		overflow: hidden;
+		position: relative;
+		z-index: 5;
+
+		${mobile} {
+			box-shadow: 18px 0 48px color-mix(in srgb, ${theme.color.black100} 45%, transparent);
+			left: 0;
+			max-width: 320px;
+			position: absolute;
+			top: 0;
+			transform: translateX(-105%);
+			transition: transform 180ms ease;
+			width: 86vw;
+		}
+	`,
+	conversationRailOpen: css`
+		${mobile} {
+			transform: translateX(0);
+		}
+	`,
+	railBackdrop: css`
+		${bareButton}
+		background: color-mix(in srgb, ${theme.color.darkBlue100} 66%, transparent);
+		display: none;
+		inset: 0;
+		position: absolute;
+		z-index: 4;
+	`,
+	railBackdropOpen: css`
+		${mobile} {
+			display: block;
+		}
+	`,
+	railHeader: css`
+		align-items: center;
+		display: flex;
+		font: ${theme.font.h6};
+		justify-content: space-between;
+		min-height: 82px;
+		padding: ${theme.space.s20} ${theme.space.s24};
+
+		${compactLaptop} {
+			padding-inline: ${theme.space.s20};
+		}
+	`,
+	railIconButton: css`
+		${bareButton}
+		align-items: center;
+		background: transparent;
+		border-radius: ${theme.borderRadius.radiusMedium};
+		color: ${theme.color.textSecondary};
+		display: inline-flex;
+		height: 40px;
+		justify-content: center;
+		width: 40px;
+
+		:hover {
+			background: color-mix(in srgb, ${theme.color.primary100} 20%, transparent);
+			color: ${theme.color.textPrimary};
+		}
+	`,
+	railScroll: css`
+		flex: 1;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		padding: 0 ${theme.space.s12} ${theme.space.s24};
+		scrollbar-color: ${theme.color.indigo80} transparent;
+	`,
+	railEyebrow: css`
+		color: ${theme.color.indigo40};
+		font: ${theme.font.sm};
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		padding: ${theme.space.s8} ${theme.space.s12} ${theme.space.s10};
+		text-transform: uppercase;
+	`,
+	activeConversation: css`
+		${bareButton}
+		align-items: flex-start;
+		background: linear-gradient(
+			105deg,
+			${theme.color.cardBackground90},
+			${theme.color.indigo100}
+		);
+		border-radius: ${theme.borderRadius.radiusMedium};
+		color: ${theme.color.textPrimary};
+		display: grid;
+		font: ${theme.font.md};
+		gap: ${theme.space.s8};
+		grid-template-columns: minmax(0, 1fr) auto;
+		line-height: 1.55;
+		margin-bottom: ${theme.space.s12};
+		padding: ${theme.space.s16} ${theme.space.s12};
+		position: relative;
+		text-align: left;
+		width: 100%;
+
+		::before {
+			background: ${theme.color.secondary60};
+			border-radius: 0 999px 999px 0;
+			content: '';
+			inset: ${theme.space.s4} auto ${theme.space.s4} 0;
+			position: absolute;
+			width: 3px;
+		}
+
+		time {
+			color: ${theme.color.secondary60};
+			font: ${theme.font.sm};
+			white-space: nowrap;
+		}
+	`,
+	backToApp: css`
+		${focusRing}
+		align-items: center;
+		border-top: 1px solid color-mix(in srgb, ${theme.color.indigo60} 30%, transparent);
+		color: ${theme.color.textSecondary};
+		display: none;
+		font: ${theme.font.button};
+		gap: ${theme.space.s12};
+		min-height: 58px;
+		padding: ${theme.space.s12} ${theme.space.s24};
+
+		span {
+			color: ${theme.color.indigo40};
+			font-size: 1.4rem;
+			margin-left: auto;
+		}
+
+		${mobile} {
+			display: flex;
+		}
+	`,
+	topicNav: css`
+		border-bottom: 1px solid color-mix(in srgb, ${theme.color.indigo60} 30%, transparent);
+		border-top: 1px solid color-mix(in srgb, ${theme.color.indigo60} 30%, transparent);
+		margin-bottom: ${theme.space.s20};
+
+		button {
+			${bareButton}
+			align-items: center;
+			background: transparent;
+			border-bottom: 1px solid color-mix(in srgb, ${theme.color.indigo60} 22%, transparent);
+			color: ${theme.color.textSecondary};
+			display: grid;
+			font: ${theme.font.md};
+			gap: ${theme.space.s12};
+			grid-template-columns: auto minmax(0, 1fr) auto;
+			min-height: 56px;
+			padding: ${theme.space.s12};
+			text-align: left;
+			width: 100%;
+
+			:last-of-type {
+				border-bottom: 0;
+			}
+
+			:hover {
+				background: color-mix(in srgb, ${theme.color.cardBackground80} 32%, transparent);
+				color: ${theme.color.textPrimary};
+			}
+
+			> :last-child {
+				color: ${theme.color.indigo40};
+				font-size: 1.4rem;
+			}
+		}
+	`,
+	previousChats: css`
+		display: flex;
+		flex-direction: column;
+
+		button {
+			${bareButton}
+			align-items: center;
+			background: transparent;
+			border-radius: ${theme.borderRadius.radiusMedium};
+			color: ${theme.color.textSecondary};
+			display: grid;
+			font: ${theme.font.sm};
+			gap: ${theme.space.s8};
+			grid-template-columns: minmax(0, 1fr) auto;
+			min-height: 45px;
+			padding: ${theme.space.s8} ${theme.space.s12};
+			text-align: left;
+			width: 100%;
+
+			:hover {
+				background: color-mix(in srgb, ${theme.color.cardBackground80} 32%, transparent);
+				color: ${theme.color.textPrimary};
+			}
+
+			time {
+				color: ${theme.color.indigo40};
+				white-space: nowrap;
+			}
+		}
+	`,
+	chatShell: css`
 		display: grid;
 		grid-template-rows: auto minmax(0, 1fr) auto;
 		height: 100%;
+		min-width: 0;
 		overflow: hidden;
-		width: 100%;
-
-		${mobile} {
-			border-radius: 0;
-		}
 	`,
 	header: css`
 		align-items: center;
-		background: ${theme.color.cardBackground100};
-		border-bottom: ${theme.border.default};
-		border-color: ${theme.color.indigo80};
+		background: color-mix(in srgb, ${theme.color.darkBlue100} 62%, transparent);
+		border-bottom: 1px solid color-mix(in srgb, ${theme.color.indigo60} 13%, transparent);
 		display: flex;
 		justify-content: space-between;
-		min-height: 84px;
-		padding: ${theme.space.s16} ${theme.space.s28};
+		min-height: 96px;
+		padding: ${theme.space.s16} ${theme.space.s32};
 		z-index: 2;
 
 		${mobile} {
-			min-height: 60px;
-			padding: ${theme.space.s8} ${theme.space.s16};
+			min-height: 68px;
+			padding: ${theme.space.s10} ${theme.space.s12};
 		}
 	`,
 	brand: css`
@@ -49,8 +290,7 @@ export const aiChatPage = {
 	`,
 	brandIcon: css`
 		align-items: center;
-		background: transparent;
-		border-radius: 50%;
+		color: ${theme.color.secondary60};
 		display: flex;
 		flex: 0 0 auto;
 		height: 40px;
@@ -58,80 +298,133 @@ export const aiChatPage = {
 		width: 40px;
 
 		${mobile} {
-			height: 36px;
-			width: 36px;
+			display: none;
 		}
 	`,
 	title: css`
-		font: ${theme.font.h6};
+		color: ${theme.color.textPrimary};
+		font-weight: 600;
+		letter-spacing: -0.02em;
+
+		${mobile} {
+			font: ${theme.font.h6};
+			font-weight: 600;
+		}
 	`,
 	subtitle: css`
 		color: ${theme.color.textSecondary};
-		font: ${theme.font.sm};
+		font: ${theme.font.md};
+		margin-top: ${theme.space.s2};
 
 		${mobile} {
 			display: none;
 		}
 	`,
-	desktopNewChat: css`
-		display: block;
-
-		${mobile} {
-			display: none;
-		}
-	`,
-	newChatContent: css`
+	mobileMenuButton: css`
+		${bareButton}
 		align-items: center;
-		display: inline-flex;
-		gap: ${theme.space.s8};
-	`,
-	mobileNewChat: css`
+		background: transparent;
+		border-radius: ${theme.borderRadius.radiusMedium};
+		color: ${theme.color.textSecondary};
 		display: none;
+		height: 44px;
+		justify-content: center;
+		width: 44px;
 
 		${mobile} {
-			display: block;
+			display: inline-flex;
+		}
+	`,
+	headerActions: css`
+		align-items: center;
+		display: flex;
+		gap: ${theme.space.s12};
 
-			button {
-				min-height: 44px;
-				min-width: 44px;
+		${mobile} {
+			gap: ${theme.space.s8};
+
+			> button:last-child {
+				display: none;
+			}
+		}
+	`,
+	newChatButton: css`
+		${bareButton}
+		align-items: center;
+		background: ${theme.gradient.primary};
+		border-radius: ${theme.borderRadius.radiusMedium};
+		box-shadow: 0 10px 28px color-mix(in srgb, ${theme.color.primary100} 22%, transparent);
+		color: ${theme.color.textPrimary};
+		display: inline-flex;
+		font: ${theme.font.button};
+		gap: ${theme.space.s8};
+		min-height: 48px;
+		padding: ${theme.space.s12} ${theme.space.s20};
+
+		:hover {
+			filter: brightness(1.12);
+		}
+
+		${mobile} {
+			height: 44px;
+			justify-content: center;
+			min-height: 44px;
+			padding: 0;
+			width: 44px;
+
+			span {
+				display: none;
 			}
 		}
 	`,
 	feed: css`
+		min-height: 0;
 		overflow-y: auto;
 		overscroll-behavior: contain;
 		scroll-behavior: smooth;
+		scrollbar-color: ${theme.color.indigo80} transparent;
 	`,
 	feedInner: css`
 		display: flex;
 		flex-direction: column;
-		gap: ${theme.space.s32};
+		gap: ${theme.space.s36};
 		margin: 0 auto;
 		max-width: 1080px;
-		padding: ${theme.space.s32} ${theme.space.s24} ${theme.space.s40};
+		padding: ${theme.space.s24} ${theme.space.s28} ${theme.space.s32};
 		width: 100%;
+
+		${compactLaptop} {
+			padding-inline: ${theme.space.s20};
+		}
 
 		${mobile} {
 			gap: ${theme.space.s24};
-			padding: ${theme.space.s24} ${theme.space.s16} ${theme.space.s32};
+			padding: ${theme.space.s20} ${theme.space.s12} ${theme.space.s24};
 		}
 	`,
 	emptyState: css`
 		align-items: center;
+		color: ${theme.color.textSecondary};
 		display: flex;
 		flex-direction: column;
 		gap: ${theme.space.s16};
 		justify-content: center;
 		margin: auto;
 		max-width: 620px;
-		min-height: 100%;
+		min-height: 52vh;
 		padding: ${theme.space.s40} 0;
 		text-align: center;
 	`,
 	emptyIcon: css`
 		align-items: center;
-		background: ${theme.gradient.primary};
+		background: linear-gradient(
+			135deg,
+			color-mix(in srgb, ${theme.color.secondary100} 26%, transparent),
+			color-mix(in srgb, ${theme.color.primary100} 30%, transparent)
+		);
+		border: 1px solid color-mix(in srgb, ${theme.color.secondary60} 32%, transparent);
 		border-radius: 50%;
+		color: ${theme.color.secondary60};
 		display: flex;
 		height: 64px;
 		justify-content: center;
@@ -143,38 +436,6 @@ export const aiChatPage = {
 		gap: ${theme.space.s8};
 		justify-content: center;
 		margin-top: ${theme.space.s8};
-
-		${mobile} {
-			align-items: stretch;
-			flex-direction: column;
-			width: 100%;
-		}
-	`,
-	topicButton: css`
-		${focusRing}
-		align-items: center;
-		background: ${theme.color.cardBackground100};
-		border: ${theme.border.default};
-		border-color: ${theme.color.indigo60};
-		border-radius: ${theme.borderRadius.radiusXLarge};
-		color: ${theme.color.textPrimary};
-		cursor: pointer;
-		display: inline-flex;
-		font: ${theme.font.button};
-		gap: ${theme.space.s8};
-		justify-content: center;
-		min-height: 44px;
-		padding: ${theme.space.s10} ${theme.space.s16};
-		transition: border-color 0.2s ease, background-color 0.2s ease;
-
-		:hover {
-			background: ${theme.color.indigo80};
-			border-color: ${theme.color.primary60};
-		}
-
-		${mobile} {
-			width: 100%;
-		}
 	`,
 	turn: css`
 		display: flex;
@@ -183,12 +444,10 @@ export const aiChatPage = {
 	`,
 	userPrompt: css`
 		align-self: flex-end;
-		background: linear-gradient(135deg, ${theme.color.darkBlue90}, ${theme.color.indigo100});
-		border: ${theme.border.default};
-		border-color: ${theme.color.primary60};
-		border-radius: ${theme.borderRadius.radiusXLarge} ${theme.borderRadius.radiusXLarge}
-			${theme.borderRadius.radiusSmall} ${theme.borderRadius.radiusXLarge};
-		box-shadow: ${theme.shadow.default100};
+		background: linear-gradient(135deg, ${theme.color.darkBlue80}, ${theme.color.indigo90});
+		border: 1px solid color-mix(in srgb, ${theme.color.indigo60} 65%, transparent);
+		border-radius: 18px;
+		box-shadow: 0 12px 32px color-mix(in srgb, ${theme.color.black100} 16%, transparent);
 		color: ${theme.color.textPrimary};
 		font: ${theme.font.lg};
 		max-width: 620px;
@@ -196,21 +455,25 @@ export const aiChatPage = {
 		white-space: pre-wrap;
 
 		${mobile} {
+			border-radius: 16px;
 			font: ${theme.font.md};
-			max-width: 88%;
+			max-width: 90%;
+			padding: ${theme.space.s12} ${theme.space.s16} ${theme.space.s8};
 		}
 	`,
 	userPromptText: css`
-		margin-bottom: ${theme.space.s8};
+		line-height: 1.55;
 	`,
 	messageMeta: css`
-		color: ${theme.color.textSecondary};
+		color: ${theme.color.indigo40};
 		display: block;
 		font: ${theme.font.sm};
+		margin-top: ${theme.space.s4};
 		text-align: right;
 
 		span {
-			color: ${theme.color.primary40};
+			color: ${theme.color.green60};
+			letter-spacing: -0.18em;
 			margin-left: ${theme.space.s4};
 		}
 	`,
@@ -221,29 +484,32 @@ export const aiChatPage = {
 	`,
 	assistantMark: css`
 		align-items: center;
-		background: transparent;
-		border-radius: 50%;
+		color: ${theme.color.secondary60};
 		display: flex;
 		height: 24px;
 		justify-content: center;
 		width: 24px;
 	`,
 	report: css`
-		background: linear-gradient(145deg, rgb(9 24 65 / 94%), rgb(35 31 75 / 96%));
-		border: ${theme.border.default};
-		border-color: ${theme.color.indigo60};
-		border-radius: ${theme.borderRadius.radiusDefault};
-		box-shadow: ${theme.shadow.default100};
+		background: radial-gradient(
+				circle at 85% 30%,
+				color-mix(in srgb, ${theme.color.darkBlue80} 58%, transparent),
+				transparent 28rem
+			),
+			linear-gradient(145deg, ${theme.color.darkBlue90}, ${theme.color.indigo100});
+		border: 1px solid color-mix(in srgb, ${theme.color.indigo60} 54%, transparent);
+		border-radius: 18px;
+		box-shadow: 0 18px 44px color-mix(in srgb, ${theme.color.black100} 20%, transparent);
 		overflow: hidden;
 	`,
 	reportHeader: css`
 		align-items: center;
 		display: flex;
 		justify-content: space-between;
-		padding: ${theme.space.s16} ${theme.space.s20} ${theme.space.s12};
+		padding: ${theme.space.s20} ${theme.space.s24} ${theme.space.s12};
 
 		${mobile} {
-			padding: ${theme.space.s16};
+			padding: ${theme.space.s16} ${theme.space.s16} ${theme.space.s12};
 		}
 	`,
 	reportTitle: css`
@@ -251,6 +517,7 @@ export const aiChatPage = {
 		color: ${theme.color.secondary60};
 		display: flex;
 		font: ${theme.font.button};
+		font-size: ${theme.fontSize.lg};
 		gap: ${theme.space.s8};
 
 		:focus {
@@ -263,59 +530,70 @@ export const aiChatPage = {
 		}
 	`,
 	reportTime: css`
-		color: ${theme.color.textSecondary};
+		color: ${theme.color.indigo40};
 		font: ${theme.font.sm};
 	`,
 	scopeBar: css`
 		align-items: center;
-		background: rgb(9 24 65 / 45%);
-		border: ${theme.border.default};
-		border-color: ${theme.color.indigo80};
+		background: color-mix(in srgb, ${theme.color.indigo100} 72%, transparent);
+		border: 1px solid color-mix(in srgb, ${theme.color.indigo60} 45%, transparent);
 		border-radius: ${theme.borderRadius.radiusMedium};
 		color: ${theme.color.textSecondary};
 		display: flex;
 		font: ${theme.font.md};
-		gap: ${theme.space.s8};
-		margin: 0 ${theme.space.s20};
+		gap: ${theme.space.s10};
+		margin: 0 ${theme.space.s24};
+		min-height: 44px;
+		overflow: hidden;
 		padding: ${theme.space.s10} ${theme.space.s12};
+		white-space: nowrap;
 
 		${mobile} {
+			font: ${theme.font.sm};
+			gap: ${theme.space.s8};
 			margin: 0 ${theme.space.s16};
+			overflow-x: auto;
 		}
 	`,
-	analysisOverview: css`
-		align-items: stretch;
+	scopeItem: css`
+		align-items: center;
+		display: inline-flex;
+		gap: ${theme.space.s8};
+	`,
+	scopeDivider: css`
+		color: ${theme.color.indigo60};
+	`,
+	answerLayout: css`
+		align-items: center;
 		display: grid;
-		grid-template-columns: minmax(220px, 0.8fr) minmax(0, 2fr);
-		padding: ${theme.space.s24} ${theme.space.s20};
-
-		${tablet} {
-			grid-template-columns: minmax(190px, 0.75fr) minmax(0, 1.5fr);
-		}
+		grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.7fr);
+		padding: ${theme.space.s24};
 
 		${mobile} {
-			gap: ${theme.space.s20};
+			align-items: stretch;
 			grid-template-columns: minmax(0, 1fr);
 			padding: ${theme.space.s16};
 		}
 	`,
 	featuredMetric: css`
-		border-right: 1px solid ${theme.color.indigo80};
+		border-right: 1px solid color-mix(in srgb, ${theme.color.indigo60} 38%, transparent);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		padding: ${theme.space.s12} ${theme.space.s24} ${theme.space.s12} ${theme.space.s8};
+		min-height: 168px;
+		padding: ${theme.space.s12} ${theme.space.s28} ${theme.space.s12} ${theme.space.s8};
 
 		${mobile} {
-			border-bottom: 1px solid ${theme.color.indigo80};
+			border-bottom: 1px solid color-mix(in srgb, ${theme.color.indigo60} 38%, transparent);
 			border-right: 0;
+			min-height: 0;
 			padding: ${theme.space.s8} 0 ${theme.space.s20};
 		}
 	`,
 	metricValue: css`
 		color: ${theme.color.textPrimary};
 		font: ${theme.font.h2};
-		letter-spacing: -0.03em;
+		letter-spacing: -0.035em;
 
 		${mobile} {
 			font: ${theme.font.h3};
@@ -324,83 +602,79 @@ export const aiChatPage = {
 	metricLabel: css`
 		color: ${theme.color.textSecondary};
 		font: ${theme.font.lg};
-		margin-top: ${theme.space.s4};
+		margin-top: ${theme.space.s2};
 	`,
 	metricTrend: css`
 		align-items: center;
-		color: ${theme.color.textSecondary};
+		color: ${theme.color.secondary60};
 		display: flex;
-		flex-wrap: wrap;
 		font: ${theme.font.md};
-		gap: ${theme.space.s4};
+		gap: ${theme.space.s8};
 		margin-top: ${theme.space.s20};
 
 		strong {
-			color: ${theme.color.secondary60};
-			font: ${theme.font.h6};
-		}
-	`,
-	chartPanel: css`
-		min-width: 0;
-		padding-left: ${theme.space.s24};
-
-		${mobile} {
-			padding-left: 0;
-		}
-	`,
-	chart: css`
-		height: 260px;
-		margin: 0;
-		width: 100%;
-
-		${mobile} {
-			height: 220px;
+			font: ${theme.font.button};
 		}
 	`,
 	insight: css`
-		border-color: ${theme.color.indigo80};
-		border-top: ${theme.border.default};
-		padding: ${theme.space.s20};
+		align-items: flex-start;
+		display: grid;
+		gap: ${theme.space.s16};
+		grid-template-columns: auto minmax(0, 1fr);
+		padding: ${theme.space.s16} ${theme.space.s16} ${theme.space.s16} ${theme.space.s28};
 
 		${mobile} {
-			padding: ${theme.space.s16};
+			padding: ${theme.space.s20} 0 ${theme.space.s8};
+		}
+	`,
+	insightIcon: css`
+		align-items: center;
+		background: linear-gradient(
+			145deg,
+			color-mix(in srgb, ${theme.color.secondary100} 26%, transparent),
+			color-mix(in srgb, ${theme.color.primary100} 30%, transparent)
+		);
+		border: 1px solid color-mix(in srgb, ${theme.color.secondary60} 25%, transparent);
+		border-radius: 50%;
+		color: ${theme.color.secondary60};
+		display: flex;
+		height: 48px;
+		justify-content: center;
+		width: 48px;
+
+		${mobile} {
+			height: 42px;
+			width: 42px;
 		}
 	`,
 	sectionLabel: css`
-		align-items: center;
-		display: flex;
+		color: ${theme.color.textPrimary};
 		font: ${theme.font.button};
-		gap: ${theme.space.s8};
-		margin-bottom: ${theme.space.s10};
+		font-size: ${theme.fontSize.lg};
+		margin-bottom: ${theme.space.s8};
 	`,
 	insightText: css`
 		color: ${theme.color.textSecondary};
-		font: ${theme.font.lg};
-		line-height: 1.65;
-
-		${mobile} {
-			font: ${theme.font.md};
-		}
+		font: ${theme.font.md};
+		line-height: 1.7;
 	`,
 	evidenceFooter: css`
 		align-items: center;
-		border-color: ${theme.color.indigo80};
-		border-top: ${theme.border.default};
+		border-top: 1px solid color-mix(in srgb, ${theme.color.indigo60} 35%, transparent);
 		display: flex;
 		gap: ${theme.space.s12};
 		justify-content: space-between;
-		padding: ${theme.space.s16} ${theme.space.s20};
+		padding: ${theme.space.s12} ${theme.space.s24};
 
 		${mobile} {
-			align-items: center;
-			padding: ${theme.space.s16};
+			padding: ${theme.space.s10} ${theme.space.s16};
 		}
 	`,
 	evidenceActions: css`
 		align-items: center;
 		display: flex;
 		flex-wrap: wrap;
-		gap: ${theme.space.s12};
+		gap: ${theme.space.s8};
 	`,
 	evidenceSummary: css`
 		align-items: center;
@@ -408,123 +682,119 @@ export const aiChatPage = {
 		display: flex;
 		font: ${theme.font.md};
 		gap: ${theme.space.s8};
+
+		${mobile} {
+			font: ${theme.font.sm};
+		}
 	`,
 	textButton: css`
-		${focusRing}
+		${bareButton}
 		background: transparent;
-		border: 0;
 		border-radius: ${theme.borderRadius.radiusMedium};
 		color: ${theme.color.primary40};
-		cursor: pointer;
 		font: ${theme.font.button};
-		min-height: 44px;
+		min-height: 40px;
 		padding: ${theme.space.s8};
 	`,
-	mockBadge: css`
-		background: ${theme.color.indigo80};
-		border-radius: ${theme.borderRadius.radiusMedium};
-		color: ${theme.color.textSecondary};
-		font: ${theme.font.sm};
-		padding: ${theme.space.s4} ${theme.space.s8};
-
-		${mobile} {
-			display: none;
-		}
-	`,
-	evidenceList: css`
-		border-color: ${theme.color.indigo80};
-		border-top: ${theme.border.default};
-		list-style: none;
-		padding: 0 ${theme.space.s20} ${theme.space.s16};
-
-		${mobile} {
-			padding: 0 ${theme.space.s16} ${theme.space.s16};
-		}
-	`,
-	evidenceCaption: css`
-		color: ${theme.color.textSecondary};
-		font: ${theme.font.sm};
-		padding: ${theme.space.s12} 0;
-	`,
-	evidenceRow: css`
+	feedbackButton: css`
+		${bareButton}
 		align-items: center;
-		border-top: 1px solid ${theme.color.indigo80};
-		display: grid;
-		font: ${theme.font.md};
-		gap: ${theme.space.s12};
-		grid-template-columns: minmax(0, 1fr) auto auto auto;
-		padding: ${theme.space.s12} 0;
+		background: transparent;
+		border-radius: ${theme.borderRadius.radiusMedium};
+		color: ${theme.color.indigo40};
+		display: inline-flex;
+		height: 40px;
+		justify-content: center;
+		width: 40px;
 
-		${mobile} {
-			align-items: start;
-			grid-template-columns: minmax(0, 1fr) auto;
-
-			> :nth-of-type(3) {
-				grid-column: 1;
-			}
-
-			> :last-child {
-				grid-column: 2;
-				grid-row: 1;
-			}
+		:hover {
+			background: color-mix(in srgb, ${theme.color.primary100} 20%, transparent);
+			color: ${theme.color.textPrimary};
 		}
-	`,
-	secondaryValue: css`
-		color: ${theme.color.textSecondary};
-	`,
-	amount: css`
-		font-weight: 600;
-		text-align: right;
-	`,
-	suggestions: css`
-		display: block;
 	`,
 	suggestionButtons: css`
 		display: grid;
-		gap: ${theme.space.s8};
+		gap: ${theme.space.s12};
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 
 		${mobile} {
-			align-items: stretch;
-			flex-direction: column;
+			grid-auto-columns: minmax(190px, 72%);
+			grid-auto-flow: column;
+			grid-template-columns: none;
+			overflow-x: auto;
+			padding: 2px;
+			scroll-snap-type: x mandatory;
+			scrollbar-width: none;
+		}
+	`,
+	suggestionButton: css`
+		${bareButton}
+		align-items: center;
+		background: color-mix(in srgb, ${theme.color.indigo100} 72%, transparent);
+		border: 1px solid color-mix(in srgb, ${theme.color.indigo60} 64%, transparent);
+		border-radius: 999px;
+		color: ${theme.color.textSecondary};
+		display: inline-flex;
+		font: ${theme.font.md};
+		gap: ${theme.space.s10};
+		justify-content: center;
+		min-height: 48px;
+		padding: ${theme.space.s10} ${theme.space.s16};
+		scroll-snap-align: start;
+		transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+		width: 100%;
+
+		:hover {
+			background: color-mix(in srgb, ${theme.color.cardBackground80} 72%, transparent);
+			border-color: ${theme.color.primary60};
+			color: ${theme.color.textPrimary};
+		}
+
+		${mobile} {
+			font: ${theme.font.sm};
+			white-space: nowrap;
 		}
 	`,
 	composerWrap: css`
-		background: ${theme.color.cardBackground100};
-		border-color: ${theme.color.indigo80};
-		border-top: ${theme.border.default};
-		padding: ${theme.space.s12} ${theme.space.s24}
+		background: linear-gradient(
+			180deg,
+			transparent,
+			color-mix(in srgb, ${theme.color.darkBlue100} 93%, transparent) 18%
+		);
+		padding: ${theme.space.s12} ${theme.space.s28}
 			calc(${theme.space.s12} + env(safe-area-inset-bottom));
 		z-index: 2;
 
 		${mobile} {
-			padding: ${theme.space.s8} ${theme.space.s16}
+			padding: ${theme.space.s8} ${theme.space.s12}
 				calc(${theme.space.s8} + env(safe-area-inset-bottom));
 		}
 	`,
 	composerInner: css`
 		margin: 0 auto;
-		max-width: 1080px;
+		max-width: 1040px;
 		width: 100%;
 	`,
 	composer: css`
-		background: linear-gradient(
-			135deg,
-			${theme.color.cardBackground90},
-			${theme.color.darkBlue90}
-		);
-		border: ${theme.border.default};
-		border-color: ${theme.color.indigo60};
-		border-radius: ${theme.borderRadius.radiusDefault};
+		background: linear-gradient(135deg, ${theme.color.darkBlue80}, ${theme.color.indigo90});
+		border: 1px solid color-mix(in srgb, ${theme.color.indigo60} 65%, transparent);
+		border-radius: 18px;
+		box-shadow: 0 12px 44px color-mix(in srgb, ${theme.color.black100} 34%, transparent);
 		display: grid;
 		gap: ${theme.space.s8};
 		padding: ${theme.space.s16};
-		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		transition: border-color 160ms ease, box-shadow 160ms ease;
 		width: 100%;
 
 		:focus-within {
 			border-color: ${theme.color.primary60};
-			box-shadow: 0 0 0 2px rgb(154 126 255 / 20%);
+			box-shadow: 0 0 0 2px color-mix(in srgb, ${theme.color.primary60} 18%, transparent),
+				0 12px 44px color-mix(in srgb, ${theme.color.black100} 34%, transparent);
+		}
+
+		${mobile} {
+			border-radius: 16px;
+			padding: ${theme.space.s12};
 		}
 	`,
 	composerInputRow: css`
@@ -537,9 +807,11 @@ export const aiChatPage = {
 		border: 0;
 		color: ${theme.color.textPrimary};
 		font: ${theme.font.lg};
+		line-height: 1.5;
 		max-height: 128px;
-		min-height: 40px;
+		min-height: 32px;
 		outline: none;
+		padding: 0;
 		resize: vertical;
 		width: 100%;
 
@@ -549,6 +821,7 @@ export const aiChatPage = {
 
 		${mobile} {
 			font: ${theme.font.md};
+			min-height: 26px;
 			resize: none;
 		}
 	`,
@@ -558,26 +831,32 @@ export const aiChatPage = {
 		justify-content: space-between;
 
 		button {
+			border-radius: 50%;
 			min-height: 44px;
 			min-width: 44px;
 		}
 	`,
 	accountScope: css`
 		align-items: center;
-		background: ${theme.color.darkBlue90};
-		border: 1px solid ${theme.color.indigo80};
+		background: color-mix(in srgb, ${theme.color.indigo100} 68%, transparent);
+		border: 1px solid color-mix(in srgb, ${theme.color.indigo60} 45%, transparent);
 		border-radius: ${theme.borderRadius.radiusMedium};
 		color: ${theme.color.textSecondary};
 		display: inline-flex;
 		font: ${theme.font.sm};
-		gap: ${theme.space.s4};
-		min-height: 40px;
+		gap: ${theme.space.s8};
+		min-height: 38px;
 		padding: ${theme.space.s8} ${theme.space.s10};
 	`,
 	disclaimer: css`
 		color: ${theme.color.indigo40};
 		font: ${theme.font.sm};
 		padding: ${theme.space.s8} ${theme.space.s8} 0;
+		text-align: center;
+
+		${mobile} {
+			display: none;
+		}
 	`,
 	feedEnd: css`
 		height: 1px;

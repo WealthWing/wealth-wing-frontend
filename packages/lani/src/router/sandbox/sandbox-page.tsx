@@ -1,3 +1,5 @@
+import { Flex } from '@wealth-wing/tayo';
+import { IconLabel } from 'components/icon-label';
 import { Link } from 'react-router-dom';
 import { PageNotFound } from 'router/not-found';
 import { isLocalSandboxHost } from 'router/sandbox/local-only';
@@ -52,6 +54,52 @@ const SandboxContent = ({ activeRoute }: SandboxPageProps) => {
 		<section css={content} aria-labelledby="sandbox-overview-heading">
 			<h2 id="sandbox-overview-heading">Local experiments</h2>
 			<p>Use the controls above to switch between isolated demo routes.</p>
+
+			<section css={panel} aria-labelledby="icon-label-demo-heading">
+				<h2 id="icon-label-demo-heading">IconLabel</h2>
+				<p>
+					Dark tinted tile from the accent family; glyph uses a lighter step so it reads
+					clearly (e.g. primary80 wash → primary40 icon).
+				</p>
+				<Flex direction="column" alignItems="flex-start" gap="s20">
+					<IconLabel iconName="folder" label="Housing" iconSize="s16" />
+					<IconLabel iconName="folder" label="Housing" iconSize="s20" />
+					<IconLabel
+						iconName="folder"
+						label="Housing"
+						iconSize="s24"
+						iconColor="primary100"
+					/>
+					<IconLabel
+						iconName="credit-card"
+						label="Subscriptions"
+						iconSize="s24"
+						iconColor="secondary80"
+						font="lg"
+					/>
+					<IconLabel
+						iconName="money-bill"
+						label="Shopping"
+						iconSize="s32"
+						iconColor="green80"
+						font="lg"
+					/>
+					<IconLabel
+						iconName="calendar"
+						label="Schedule"
+						iconSize="s32"
+						iconColor="yellow90"
+						textColor="textSecondary"
+					/>
+					<IconLabel
+						iconName="warning"
+						label="Alerts"
+						iconSize="s40"
+						iconColor="red80"
+						font="h6"
+					/>
+				</Flex>
+			</section>
 		</section>
 	);
 };

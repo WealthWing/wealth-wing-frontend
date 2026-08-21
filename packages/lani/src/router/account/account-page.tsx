@@ -1,7 +1,6 @@
 import {
 	Button,
 	Flex,
-	Grid,
 	Heading,
 	SkeletonAreaLoader,
 	SkeletonLoaderContainer,
@@ -12,12 +11,10 @@ import { NoFound } from 'components/no-found';
 import { Section } from 'components/section';
 import * as React from 'react';
 import { useGetAcccountsQuery } from 'redux/account';
-import { useSubscriptionCandidatesQuery } from 'redux/transaction-queries';
 import { AccountCard } from 'router/account/components/account-card';
 import { accountCard } from 'router/account/components/account-card.styles';
 import { AccountImports } from 'router/account/components/account-imports';
 import { AccountFormModal } from 'router/account/components/account-modal';
-import { SubscriptionCandidatesTable } from 'router/account/components/subscription-candidates-table';
 import { useCreateAccount } from 'router/account/hooks/use-create-account';
 import { useUpdateAccount } from 'router/account/hooks/use-update-account';
 import { ImportModal } from 'router/import/components/import-modal';
@@ -33,9 +30,6 @@ export const AccountPage = () => {
 		handleClose: onImportClose,
 		handleOpen: onImportOpen
 	} = useDisclosureControl({ onClose: () => setDefaultAccountId(null) });
-	const { data: subscriptionCandidatesData, isLoading: isLoadingCandidates } =
-		useSubscriptionCandidatesQuery();
-
 	const { data, isLoading, isFetching } = useGetAcccountsQuery();
 
 	const isLoadingOrfetchingAccounts = isLoading || isFetching;
@@ -108,18 +102,7 @@ export const AccountPage = () => {
 							</ul>
 						)}
 					</Section>
-					<Grid gridTemplateColumns="1fr 1fr" gap="s16">
-						<AccountImports />
-						<Section
-							title="Subscription Candidates"
-							subTitle="Automatically identified recurring patterns. Click to confirm, create a subscription, or associate with an existing one."
-						>
-							<SubscriptionCandidatesTable
-								data={subscriptionCandidatesData}
-								isLoading={isLoadingCandidates}
-							/>
-						</Section>
-					</Grid>
+					<AccountImports />
 				</Flex>
 			</div>
 			<AccountFormModal {...createModalRest} title="Add Account" buttonLabel="Add Account" />

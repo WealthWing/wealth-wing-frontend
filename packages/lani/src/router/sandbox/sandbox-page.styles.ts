@@ -46,8 +46,9 @@ export const content = css({
 });
 
 export const panel = css({
-	background: theme.color.black05,
-	border: `1px solid ${theme.color.black20}`,
+	background: theme.color.cardBackground90,
+	border: `1px solid ${theme.color.indigo80}`,
+	borderRadius: theme.borderRadius.radiusDefault,
 	maxWidth: '48rem',
 	padding: theme.space.s24
 });

@@ -76,30 +76,9 @@ export const Layout = () => {
 									</li>
 									<li>
 										<SidebarLink
-											iconName="switch-horizontal"
-											label="Transactions"
-											to="/"
-										/>
-									</li>
-									<li>
-										<SidebarLink
 											iconName="credit-card"
 											label="Accounts"
 											to="/accounts"
-										/>
-									</li>
-									<li>
-										<SidebarLink
-											iconName="schedule"
-											label="Subscriptions"
-											to="/subscriptions"
-										/>
-									</li>
-									<li>
-										<SidebarLink
-											iconName="bar-chart"
-											label="Reports"
-											to="/reports"
 										/>
 									</li>
 								</ul>
