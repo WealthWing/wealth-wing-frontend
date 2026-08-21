@@ -1,6 +1,8 @@
+import { components as aiComponents } from 'data/ai-api';
 import { components, paths } from 'data/api';
 
 type Components = components['schemas'];
+type AIComponents = aiComponents['schemas'];
 
 export type CreateJobRequest = Components['ProjectCreate'];
 export type JobResponse = Components['ProjectResponse'];
@@ -24,3 +26,5 @@ export type TransactionSummaryResponse = Components['TransactionSummaryResponse'
 export type TransactionSummaryRequest = NonNullable<
 	paths['/transaction/summary']['get']['parameters']['query']
 >;
+export type WingAgentResponse = AIComponents['WingAgentResponse'];
+export type WingAgentRequest = AIComponents['WingAgentRequest'];
