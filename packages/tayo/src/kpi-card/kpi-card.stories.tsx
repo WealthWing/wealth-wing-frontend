@@ -48,3 +48,24 @@ export const Income: Story = {
 		valueColor: 'green100'
 	}
 };
+
+export const Compact: Story = {
+	args: {
+		backgroundColor: 'transparent',
+		gap: 's8',
+		icon: 'shopping-bag',
+		iconBackgroundColor: 'cardBackground100',
+		iconContainerBorderRadius: 'radiusMedium',
+		iconContainerSize: '2.25rem',
+		iconSize: 's16',
+		label: 'Gross spending',
+		labelFont: 'sm',
+		labelUppercase: false,
+		orientation: 'vertical',
+		padding: 'none',
+		supportingText: '72 transactions',
+		supportingTextFont: 'sm',
+		value: '$11,261.39',
+		valueFont: 'lg'
+	}
+};

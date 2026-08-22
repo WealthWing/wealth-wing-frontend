@@ -129,6 +129,13 @@ type FontSizeCustomProperty = `var(--ww-t-fontSize-${FontSize})`;
 export type FontSizeTheme = Record<FontSize, FontSizeCustomProperty>;
 export type FontSizeDefinitions = Record<FontSize, SizeValue>;
 
+export const fontWeightKeys = ['regular', 'semibold', 'bold'] as const;
+export type FontWeight = (typeof fontWeightKeys)[number];
+
+type FontWeightCustomProperty = `var(--ww-t-fontWeight-${FontWeight})`;
+type FontWeightTheme = Record<FontWeight, FontWeightCustomProperty>;
+type FontWeightDefinitions = Record<FontWeight, string>;
+
 export type ThemeDefinitions = {
 	color: Record<Color, ColorValue>;
 	gradient: GradientDefinition;
@@ -138,6 +145,7 @@ export type ThemeDefinitions = {
 	shadow: ShadowDefinition;
 	font: FontDefinitions;
 	fontSize: FontSizeDefinitions;
+	fontWeight: FontWeightDefinitions;
 };
 
 export type Theme = {
@@ -149,4 +157,5 @@ export type Theme = {
 	shadow: ShadowTheme;
 	font: FontTheme;
 	fontSize: FontSizeTheme;
+	fontWeight: FontWeightTheme;
 };

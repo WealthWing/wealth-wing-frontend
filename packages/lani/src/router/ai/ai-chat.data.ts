@@ -1,4 +1,11 @@
-import { AnalystResponse, ChatTopic, ChatTurn } from 'router/ai/ai-chat.definitions';
+import { TransactionSummaryResponse } from 'data/api-definitions';
+import {
+	AnalystResponse,
+	ChatTopic,
+	ChatTurn,
+	TransactionSummaryAgentResponse,
+	TransactionSummaryChatTurn
+} from 'router/ai/ai-chat.definitions';
 
 export const quickTopics: Array<{ topic: ChatTopic; label: string; prompt: string }> = [
 	{
@@ -168,7 +175,77 @@ export const getTopicForPrompt = (prompt: string): ChatTopic => {
 };
 
 export const createSeededTurn = (): ChatTurn => ({
+	kind: 'analyst',
 	id: 'seeded-dining-analysis',
 	prompt: quickTopics[0].prompt,
 	response: analystResponses.spending
+});
+
+export const transactionSummaryMock: TransactionSummaryResponse = {
+	gross_expense: 1126139,
+	refunds: 0,
+	net_spending: 1126139,
+	income: 1716858,
+	net_activity: 590719,
+	expense_transaction_count: 72,
+	refund_transaction_count: 0,
+	income_transaction_count: 3,
+	average_expense: 15640.82,
+	average_monthly_spending: 375379.67,
+	from_date: '2026-05-01',
+	to_date: '2026-07-31',
+	included_account_types: ['CHECKING', 'CREDIT_CARD']
+};
+
+export const transactionSummaryAnswer = `Here's a summary of your spending for the last three completed months (May – July 2026), based on your checking and credit card accounts.
+
+## Overall (May – July 2026)
+
+| Metric | Amount |
+|---|---|
+| Gross expenses | $11,261.39 |
+| Refunds | $0.00 |
+| **Net spending** | **$11,261.39** |
+| Income | $17,168.58 |
+| **Net activity (income − expenses)** | **+$5,907.19** |
+| Expense transactions | 72 |
+| Average per expense | $156.41 |
+| Average monthly spending | $3,753.80 |
+
+## Month-by-month
+
+| Month | Income | Expenses | Net | Transactions |
+|---|---|---|---|---|
+| May 2026 | $5,722.86 | $3,882.11 | +$1,840.75 | 25 |
+| June 2026 | $5,722.86 | $3,844.47 | +$1,878.39 | 25 |
+| July 2026 | $5,722.86 | $3,534.81 | +$2,188.05 | 25 |
+
+## Quick observations
+- **Income is steady** at $5,722.86 per month across all three months.
+- **Spending is trending down**: expenses fell from $3,882.11 in May to $3,534.81 in July (about a 9% drop).
+- **Net cash flow is positive and improving**, rising from +$1,840.75 in May to +$2,188.05 in July.
+- No refunds were recorded in this period.
+
+Want me to break this down by category or by merchant to see where the spending is concentrated?`;
+
+export const transactionSummaryAgentMock: TransactionSummaryAgentResponse = {
+	thread_id: '2cc4c1b4-d485-4357-9f2a-68fb5dfae56d',
+	turn_id: 'bd043ad9-ce27-4bfd-a99a-4636ad2ce76f',
+	answer: transactionSummaryAnswer,
+	results: [
+		{
+			id: 'call_01a02733239c7eb288e48313',
+			type: 'transaction_summary',
+			data: transactionSummaryMock,
+			ui: 'transactions_summary_ui'
+		}
+	],
+	applied_filters: null,
+	error: null
+};
+
+export const createTransactionSummaryTurn = (): TransactionSummaryChatTurn => ({
+	kind: 'transaction-summary',
+	id: 'may-july-spending-summary',
+	response: transactionSummaryAgentMock
 });

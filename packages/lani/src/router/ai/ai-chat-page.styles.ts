@@ -233,31 +233,30 @@ export const aiChatPage = {
 	previousChats: css`
 		display: flex;
 		flex-direction: column;
+	`,
+	previousConversation: css`
+		${bareButton}
+		align-items: center;
+		background: transparent;
+		border-radius: ${theme.borderRadius.radiusMedium};
+		color: ${theme.color.textSecondary};
+		display: grid;
+		font: ${theme.font.sm};
+		gap: ${theme.space.s8};
+		grid-template-columns: minmax(0, 1fr) auto;
+		min-height: 45px;
+		padding: ${theme.space.s8} ${theme.space.s12};
+		text-align: left;
+		width: 100%;
 
-		button {
-			${bareButton}
-			align-items: center;
-			background: transparent;
-			border-radius: ${theme.borderRadius.radiusMedium};
-			color: ${theme.color.textSecondary};
-			display: grid;
-			font: ${theme.font.sm};
-			gap: ${theme.space.s8};
-			grid-template-columns: minmax(0, 1fr) auto;
-			min-height: 45px;
-			padding: ${theme.space.s8} ${theme.space.s12};
-			text-align: left;
-			width: 100%;
+		:hover {
+			background: color-mix(in srgb, ${theme.color.cardBackground80} 32%, transparent);
+			color: ${theme.color.textPrimary};
+		}
 
-			:hover {
-				background: color-mix(in srgb, ${theme.color.cardBackground80} 32%, transparent);
-				color: ${theme.color.textPrimary};
-			}
-
-			time {
-				color: ${theme.color.indigo40};
-				white-space: nowrap;
-			}
+		time {
+			color: ${theme.color.indigo40};
+			white-space: nowrap;
 		}
 	`,
 	chatShell: css`
@@ -348,35 +347,7 @@ export const aiChatPage = {
 			}
 		}
 	`,
-	newChatButton: css`
-		${bareButton}
-		align-items: center;
-		background: ${theme.gradient.primary};
-		border-radius: ${theme.borderRadius.radiusMedium};
-		box-shadow: 0 10px 28px color-mix(in srgb, ${theme.color.primary100} 22%, transparent);
-		color: ${theme.color.textPrimary};
-		display: inline-flex;
-		font: ${theme.font.button};
-		gap: ${theme.space.s8};
-		min-height: 48px;
-		padding: ${theme.space.s12} ${theme.space.s20};
 
-		:hover {
-			filter: brightness(1.12);
-		}
-
-		${mobile} {
-			height: 44px;
-			justify-content: center;
-			min-height: 44px;
-			padding: 0;
-			width: 44px;
-
-			span {
-				display: none;
-			}
-		}
-	`,
 	feed: css`
 		min-height: 0;
 		overflow-y: auto;
@@ -801,6 +772,17 @@ export const aiChatPage = {
 		align-items: flex-start;
 		display: flex;
 		gap: ${theme.space.s10};
+
+		> div {
+			flex: 1;
+			min-width: 0;
+		}
+
+		> div > div {
+			background: transparent;
+			box-shadow: none;
+			padding: 0;
+		}
 	`,
 	textarea: css`
 		background: transparent;

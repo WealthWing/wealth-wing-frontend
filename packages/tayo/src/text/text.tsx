@@ -1,7 +1,7 @@
 import { css, CSSObject } from '@emotion/react';
 import { forwardRef } from 'react';
 
-import { Color, FontKeys, HeadingKeys, theme } from '../theme';
+import { Color, FontKeys, FontWeight, HeadingKeys, theme } from '../theme';
 
 const mixinTextEllipsis = css`
 	overflow: hidden;
@@ -29,6 +29,7 @@ export type TextTag = 'div' | 'p' | 'span';
 export type TextOptions = Pick<React.AllHTMLAttributes<HTMLElement>, 'id'> & {
 	color?: Color;
 	font?: FontKeys | HeadingKeys;
+	fontWeight?: FontWeight;
 	textAlign?: CSSObject['textAlign'];
 	wordBreak?: CSSObject['wordBreak'];
 	whiteSpace?: CSSObject['whiteSpace'];
@@ -47,6 +48,7 @@ export type TextProps = TextOptions & {
 const text = ({
 	wordBreak,
 	font,
+	fontWeight,
 	indent,
 	color = 'textPrimary',
 	textAlign = 'left',
@@ -57,6 +59,7 @@ const text = ({
 	css({
 		color: theme.color[color],
 		font: font && theme.font[font],
+		fontWeight: fontWeight && theme.fontWeight[fontWeight],
 		textAlign,
 		wordBreak: wordBreak && wordBreak,
 		paddingLeft: indent,

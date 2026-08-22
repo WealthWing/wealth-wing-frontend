@@ -124,6 +124,11 @@ export const kayaDarkTheme: ThemeDefinitions = {
 		md: '0.9rem',
 		sm: '0.75rem'
 	},
+	fontWeight: {
+		regular: '400',
+		semibold: '600',
+		bold: '700'
+	},
 	space: {
 		none: '0',
 		s2: '0.125rem',

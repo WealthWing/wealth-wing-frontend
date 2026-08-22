@@ -21,6 +21,28 @@ export const Default: Story = {
 	}
 };
 
+export const WithLeftIcon: Story = {
+	args: {
+		...Default.args,
+		leftIcon: 'plus'
+	}
+};
+
+export const WithRightIcon: Story = {
+	args: {
+		...Default.args,
+		rightIcon: 'chevron-right'
+	}
+};
+
+export const WithBothIcons: Story = {
+	args: {
+		...Default.args,
+		leftIcon: 'chevron-left',
+		rightIcon: 'chevron-right'
+	}
+};
+
 const container = css`
 	display: flex;
 `;

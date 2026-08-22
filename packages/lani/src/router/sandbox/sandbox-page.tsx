@@ -1,4 +1,4 @@
-import { Flex } from '@wealth-wing/tayo';
+import { Flex, Text } from '@wealth-wing/tayo';
 import { IconLabel } from 'components/icon-label';
 import { Link } from 'react-router-dom';
 import { PageNotFound } from 'router/not-found';
@@ -30,10 +30,10 @@ const SandboxContent = ({ activeRoute }: SandboxPageProps) => {
 		return (
 			<section css={panel} aria-labelledby="architecture-demo-heading">
 				<h2 id="architecture-demo-heading">Architecture demo</h2>
-				<p>
+				<Text tag="p">
 					A small route for testing system diagrams, canvas layouts, and responsive
 					states.
-				</p>
+				</Text>
 			</section>
 		);
 	}
@@ -42,10 +42,10 @@ const SandboxContent = ({ activeRoute }: SandboxPageProps) => {
 		return (
 			<section css={panel} aria-labelledby="motion-demo-heading">
 				<h2 id="motion-demo-heading">Motion demo</h2>
-				<p>
+				<Text tag="p">
 					A separate route for trying entrance, hover, and transition behavior without
 					touching production pages.
-				</p>
+				</Text>
 			</section>
 		);
 	}
@@ -53,14 +53,14 @@ const SandboxContent = ({ activeRoute }: SandboxPageProps) => {
 	return (
 		<section css={content} aria-labelledby="sandbox-overview-heading">
 			<h2 id="sandbox-overview-heading">Local experiments</h2>
-			<p>Use the controls above to switch between isolated demo routes.</p>
+			<Text tag="p">Use the controls above to switch between isolated demo routes.</Text>
 
 			<section css={panel} aria-labelledby="icon-label-demo-heading">
 				<h2 id="icon-label-demo-heading">IconLabel</h2>
-				<p>
+				<Text tag="p">
 					Dark tinted tile from the accent family; glyph uses a lighter step so it reads
 					clearly (e.g. primary80 wash → primary40 icon).
-				</p>
+				</Text>
 				<Flex direction="column" alignItems="flex-start" gap="s20">
 					<IconLabel iconName="folder" label="Housing" iconSize="s16" />
 					<IconLabel iconName="folder" label="Housing" iconSize="s20" />

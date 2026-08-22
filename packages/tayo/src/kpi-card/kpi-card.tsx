@@ -3,7 +3,20 @@ import * as React from 'react';
 
 import { Icon, type IconName } from '../icon';
 import { Text } from '../text';
-import { Border, Color, SizeValue, Space, theme } from '../theme';
+import { Border, BorderKey, Color, FontKeys, HeadingKeys, SizeValue, Space, theme } from '../theme';
+
+type KpiCardFont = FontKeys | HeadingKeys;
+type KpiCardBackground = Color | 'transparent';
+
+const resolveBackgroundColor = (
+	backgroundColor: KpiCardBackground | undefined,
+	fallback?: Color
+) => {
+	if (backgroundColor === 'transparent') return 'transparent';
+	if (backgroundColor) return theme.color[backgroundColor];
+
+	return fallback ? theme.color[fallback] : undefined;
+};
 
 export type KpiCardProps = {
 	/** The primary metric label, such as "Net spending" or "Income". */
@@ -14,10 +27,13 @@ export type KpiCardProps = {
 	supportingText?: React.ReactNode;
 	/** Optional Tayo icon displayed in the leading icon container. */
 	icon?: IconName;
-	backgroundColor?: Color;
+	backgroundColor?: KpiCardBackground;
 	border?: Border;
 	borderColor?: Color;
+	gap?: Space;
+	iconBackgroundColor?: KpiCardBackground;
 	iconBorderColor?: Color;
+	iconContainerBorderRadius?: BorderKey;
 	borderRadius?:
 		| 'radiusDefault'
 		| 'radiusLarge'
@@ -29,9 +45,14 @@ export type KpiCardProps = {
 	iconContainerSize?: SizeValue;
 	iconSize?: Space;
 	labelColor?: Color;
+	labelFont?: KpiCardFont;
+	labelUppercase?: boolean;
+	orientation?: 'horizontal' | 'vertical';
 	padding?: Space;
 	supportingTextColor?: Color;
+	supportingTextFont?: KpiCardFont;
 	valueColor?: Color;
+	valueFont?: KpiCardFont;
 };
 
 const card = ({
@@ -39,27 +60,47 @@ const card = ({
 	border,
 	borderColor,
 	borderRadius,
+	gap,
+	orientation,
 	padding
-}: Pick<KpiCardProps, 'backgroundColor' | 'border' | 'borderColor' | 'borderRadius' | 'padding'>) =>
+}: Pick<
+	KpiCardProps,
+	| 'backgroundColor'
+	| 'border'
+	| 'borderColor'
+	| 'borderRadius'
+	| 'gap'
+	| 'orientation'
+	| 'padding'
+>) =>
 	css({
-		alignItems: 'center',
-		backgroundColor: theme.color[backgroundColor ?? 'cardBackground100'],
+		alignItems: orientation === 'vertical' ? 'flex-start' : 'center',
+		backgroundColor: resolveBackgroundColor(backgroundColor, 'cardBackground100'),
 		border: border ? theme.border[border] : undefined,
 		borderColor: border && borderColor ? theme.color[borderColor] : undefined,
 		borderRadius: theme.borderRadius[borderRadius ?? 'radiusXLarge'],
 		display: 'flex',
-		gap: theme.space.s20,
+		flexDirection: orientation === 'vertical' ? 'column' : 'row',
+		gap: theme.space[gap ?? 's20'],
 		padding: theme.space[padding ?? 's20']
 	});
 
 const iconContainer = ({
+	iconBackgroundColor,
 	iconBorderColor,
+	iconContainerBorderRadius,
 	iconContainerSize
-}: Pick<KpiCardProps, 'iconBorderColor' | 'iconContainerSize'>) =>
+}: Pick<
+	KpiCardProps,
+	'iconBackgroundColor' | 'iconBorderColor' | 'iconContainerBorderRadius' | 'iconContainerSize'
+>) =>
 	css({
 		alignItems: 'center',
+		backgroundColor: resolveBackgroundColor(iconBackgroundColor),
 		border: iconBorderColor ? `1px solid ${theme.color[iconBorderColor]}` : undefined,
-		borderRadius: '50%',
+		borderRadius: iconContainerBorderRadius
+			? theme.borderRadius[iconContainerBorderRadius]
+			: '50%',
 		display: 'flex',
 		flex: '0 0 auto',
 		height: iconContainerSize ?? '4rem',
@@ -86,39 +127,63 @@ export const KpiCard = ({
 	borderColor,
 	borderRadius,
 	className,
+	gap,
 	icon,
+	iconBackgroundColor,
 	iconBorderColor,
 	iconColor = 'primary60',
+	iconContainerBorderRadius,
 	iconContainerSize,
 	iconSize = 's32',
 	label,
 	labelColor = 'textSecondary',
+	labelFont = 'lg',
+	labelUppercase = true,
+	orientation = 'horizontal',
 	padding,
 	supportingText,
 	supportingTextColor = 'textSecondary',
+	supportingTextFont = 'lg',
 	value,
-	valueColor = 'textPrimary'
+	valueColor = 'textPrimary',
+	valueFont = 'h2'
 }: KpiCardProps) => {
 	return (
 		<div
 			className={className}
-			css={card({ backgroundColor, border, borderColor, borderRadius, padding })}
+			css={card({
+				backgroundColor,
+				border,
+				borderColor,
+				borderRadius,
+				gap,
+				orientation,
+				padding
+			})}
 		>
 			{icon && (
-				<div css={iconContainer({ iconBorderColor, iconContainerSize })} aria-hidden="true">
+				<div
+					css={iconContainer({
+						iconBackgroundColor,
+						iconBorderColor,
+						iconContainerBorderRadius,
+						iconContainerSize
+					})}
+					aria-hidden="true"
+				>
 					<Icon color={iconColor} name={icon} size={iconSize} />
 				</div>
 			)}
 			<div css={content}>
 				<div css={textStack}>
-					<Text color={labelColor} font="lg" uppercase>
+					<Text color={labelColor} font={labelFont} uppercase={labelUppercase}>
 						{label}
 					</Text>
-					<Text color={valueColor} font="h2">
+					<Text color={valueColor} font={valueFont}>
 						{value}
 					</Text>
 					{supportingText && (
-						<Text color={supportingTextColor} font="lg">
+						<Text color={supportingTextColor} font={supportingTextFont}>
 							{supportingText}
 						</Text>
 					)}

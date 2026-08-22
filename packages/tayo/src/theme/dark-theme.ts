@@ -124,6 +124,11 @@ export const darkTheme: ThemeDefinitions = {
 		md: '0.85rem',
 		sm: '0.75rem'
 	},
+	fontWeight: {
+		regular: '400',
+		semibold: '600',
+		bold: '700'
+	},
 	space: {
 		none: '0',
 		s2: '0.125rem',
@@ -268,6 +273,11 @@ export const theme: Theme = {
 		h5: 'var(--ww-t-fontSize-h5)',
 		md: 'var(--ww-t-fontSize-md)',
 		sm: 'var(--ww-t-fontSize-sm)'
+	},
+	fontWeight: {
+		regular: 'var(--ww-t-fontWeight-regular)',
+		semibold: 'var(--ww-t-fontWeight-semibold)',
+		bold: 'var(--ww-t-fontWeight-bold)'
 	},
 	border: {
 		default: 'var(--ww-t-border-default)'

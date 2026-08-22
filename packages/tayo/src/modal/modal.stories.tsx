@@ -3,23 +3,24 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { Button } from '../button';
 import { Flex } from '../containers';
+import { Text } from '../text';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from './modal';
 
 const ModalContent = ({ onClose }: { onClose: () => void }) => {
 	return (
 		<>
 			<ModalBody>
-				<p>This is a ModalSection.</p>
-				<p>
+				<Text tag="p">This is a ModalSection.</Text>
+				<Text tag="p">
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo consequuntur totam
 					harum, debitis neque laudantium. Architecto asperiores cumque ipsum et accusamus
 					facere, optio minus quidem explicabo unde inventore sit est!
-				</p>
-				<p>
+				</Text>
+				<Text tag="p">
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo consequuntur totam
 					harum, debitis neque laudantium. Architecto asperiores cumque ipsum et accusamus
 					facere, optio minus quidem explicabo unde inventore sit est!
-				</p>
+				</Text>
 			</ModalBody>
 			<ModalFooter>
 				<Flex direction="row" justifyContent="space-between">

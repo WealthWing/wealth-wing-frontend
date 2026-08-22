@@ -21,4 +21,6 @@ export * from './pie-chart';
 export * from './progress-bar';
 export * from './overlay/overlay';
 export * from './kpi-card';
+export * from './key-value';
 export * from './expand';
+export * from './markdown';

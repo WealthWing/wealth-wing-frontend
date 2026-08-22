@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { IconName } from '../icon';
+
 export const buttonVariants = [
 	'primary',
 	'secondary',
@@ -22,6 +24,8 @@ export type BaseProps = {
 	isLoading?: boolean;
 	size?: ButtonSize;
 	isFullWidth?: boolean;
+	leftIcon?: IconName;
+	rightIcon?: IconName;
 };
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & BaseProps;
