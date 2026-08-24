@@ -7,14 +7,14 @@ import { aiChatPage } from 'router/ai/ai-chat-page.styles';
 const topicIcons = ['money-bill', 'credit-card', 'list'] as const;
 
 export const AiChatSidebar = () => {
-	const {
-		appendPrompt,
-		historyOpen,
-		selectedConversation,
-		selectSummaryConversation,
-		setHistoryOpen,
-		startNewChat
-	} = useAiChat();
+	const { composerRef, historyOpen, isSubmitting, setHistoryOpen, setPrompt, startNewChat } =
+		useAiChat();
+
+	const handleTopicSelect = (topicPrompt: string) => {
+		setPrompt(topicPrompt);
+		setHistoryOpen(false);
+		window.requestAnimationFrame(() => composerRef.current?.focus());
+	};
 
 	return (
 		<>
@@ -42,6 +42,7 @@ export const AiChatSidebar = () => {
 						iconName="plus"
 						label="Start a new chat"
 						css={aiChatPage.railIconButton}
+						disabled={isSubmitting}
 						onClick={startNewChat}
 					/>
 				</div>
@@ -57,51 +58,16 @@ export const AiChatSidebar = () => {
 								isFullWidth
 								leftIcon={topicIcons[index] || 'sparkles'}
 								rightIcon="chevron-right"
-								onClick={() => appendPrompt(topic.prompt)}
+								disabled={isSubmitting}
+								onClick={() => handleTopicSelect(topic.prompt)}
 							>
 								{topic.label}
 							</Button>
 						))}
 					</nav>
-
-					<Text tag="p" font="sm" css={aiChatPage.railEyebrow}>
-						Previous conversations
+					<Text tag="p" font="sm" css={aiChatPage.historyUnavailable}>
+						Saved conversation history is not available yet.
 					</Text>
-					<div css={aiChatPage.previousChats}>
-						<Button
-							type="button"
-							format="text"
-							variant="tertiary"
-							isFullWidth
-							css={
-								selectedConversation === 'spending-summary'
-									? aiChatPage.activeConversation
-									: aiChatPage.previousConversation
-							}
-							onClick={selectSummaryConversation}
-						>
-							<span>May–July spending summary</span>
-							<time>Jul 31</time>
-						</Button>
-						{[
-							['Cash flow this month', 'Mar 28'],
-							['Top spending categories', 'Mar 27'],
-							['Income vs expenses', 'Mar 20']
-						].map(([label, date]) => (
-							<Button
-								key={label}
-								type="button"
-								format="text"
-								variant="tertiary"
-								isFullWidth
-								css={aiChatPage.previousConversation}
-								onClick={() => appendPrompt(label)}
-							>
-								<span>{label}</span>
-								<time>{date}</time>
-							</Button>
-						))}
-					</div>
 				</div>
 				<Link
 					to="/accounts"

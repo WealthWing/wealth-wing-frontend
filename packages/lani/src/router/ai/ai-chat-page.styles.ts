@@ -130,50 +130,6 @@ export const aiChatPage = {
 		padding: 0 ${theme.space.s12} ${theme.space.s24};
 		scrollbar-color: ${theme.color.indigo80} transparent;
 	`,
-	railEyebrow: css`
-		color: ${theme.color.indigo40};
-		font: ${theme.font.sm};
-		font-weight: 600;
-		letter-spacing: 0.04em;
-		padding: ${theme.space.s8} ${theme.space.s12} ${theme.space.s10};
-		text-transform: uppercase;
-	`,
-	activeConversation: css`
-		${bareButton}
-		align-items: flex-start;
-		background: linear-gradient(
-			105deg,
-			${theme.color.cardBackground90},
-			${theme.color.indigo100}
-		);
-		border-radius: ${theme.borderRadius.radiusMedium};
-		color: ${theme.color.textPrimary};
-		display: grid;
-		font: ${theme.font.md};
-		gap: ${theme.space.s8};
-		grid-template-columns: minmax(0, 1fr) auto;
-		line-height: 1.55;
-		margin-bottom: ${theme.space.s12};
-		padding: ${theme.space.s16} ${theme.space.s12};
-		position: relative;
-		text-align: left;
-		width: 100%;
-
-		::before {
-			background: ${theme.color.secondary60};
-			border-radius: 0 999px 999px 0;
-			content: '';
-			inset: ${theme.space.s4} auto ${theme.space.s4} 0;
-			position: absolute;
-			width: 3px;
-		}
-
-		time {
-			color: ${theme.color.secondary60};
-			font: ${theme.font.sm};
-			white-space: nowrap;
-		}
-	`,
 	backToApp: css`
 		${focusRing}
 		align-items: center;
@@ -228,35 +184,6 @@ export const aiChatPage = {
 				color: ${theme.color.indigo40};
 				font-size: 1.4rem;
 			}
-		}
-	`,
-	previousChats: css`
-		display: flex;
-		flex-direction: column;
-	`,
-	previousConversation: css`
-		${bareButton}
-		align-items: center;
-		background: transparent;
-		border-radius: ${theme.borderRadius.radiusMedium};
-		color: ${theme.color.textSecondary};
-		display: grid;
-		font: ${theme.font.sm};
-		gap: ${theme.space.s8};
-		grid-template-columns: minmax(0, 1fr) auto;
-		min-height: 45px;
-		padding: ${theme.space.s8} ${theme.space.s12};
-		text-align: left;
-		width: 100%;
-
-		:hover {
-			background: color-mix(in srgb, ${theme.color.cardBackground80} 32%, transparent);
-			color: ${theme.color.textPrimary};
-		}
-
-		time {
-			color: ${theme.color.indigo40};
-			white-space: nowrap;
 		}
 	`,
 	chatShell: css`
@@ -435,24 +362,6 @@ export const aiChatPage = {
 	userPromptText: css`
 		line-height: 1.55;
 	`,
-	messageMeta: css`
-		color: ${theme.color.indigo40};
-		display: block;
-		font: ${theme.font.sm};
-		margin-top: ${theme.space.s4};
-		text-align: right;
-
-		span {
-			color: ${theme.color.green60};
-			letter-spacing: -0.18em;
-			margin-left: ${theme.space.s4};
-		}
-	`,
-	responseGroup: css`
-		display: flex;
-		flex-direction: column;
-		gap: ${theme.space.s16};
-	`,
 	assistantMark: css`
 		align-items: center;
 		color: ${theme.color.secondary60};
@@ -500,203 +409,21 @@ export const aiChatPage = {
 			outline-offset: 4px;
 		}
 	`,
-	reportTime: css`
-		color: ${theme.color.indigo40};
-		font: ${theme.font.sm};
-	`,
-	scopeBar: css`
-		align-items: center;
-		background: color-mix(in srgb, ${theme.color.indigo100} 72%, transparent);
-		border: 1px solid color-mix(in srgb, ${theme.color.indigo60} 45%, transparent);
-		border-radius: ${theme.borderRadius.radiusMedium};
+	genericAnswer: css`
 		color: ${theme.color.textSecondary};
-		display: flex;
-		font: ${theme.font.md};
-		gap: ${theme.space.s10};
-		margin: 0 ${theme.space.s24};
-		min-height: 44px;
-		overflow: hidden;
-		padding: ${theme.space.s10} ${theme.space.s12};
-		white-space: nowrap;
+		padding: ${theme.space.s12} ${theme.space.s24} ${theme.space.s24};
 
 		${mobile} {
-			font: ${theme.font.sm};
-			gap: ${theme.space.s8};
-			margin: 0 ${theme.space.s16};
-			overflow-x: auto;
+			padding: ${theme.space.s8} ${theme.space.s16} ${theme.space.s20};
 		}
 	`,
-	scopeItem: css`
-		align-items: center;
-		display: inline-flex;
-		gap: ${theme.space.s8};
-	`,
-	scopeDivider: css`
-		color: ${theme.color.indigo60};
-	`,
-	answerLayout: css`
-		align-items: center;
-		display: grid;
-		grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.7fr);
-		padding: ${theme.space.s24};
-
-		${mobile} {
-			align-items: stretch;
-			grid-template-columns: minmax(0, 1fr);
-			padding: ${theme.space.s16};
-		}
-	`,
-	featuredMetric: css`
-		border-right: 1px solid color-mix(in srgb, ${theme.color.indigo60} 38%, transparent);
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		min-height: 168px;
-		padding: ${theme.space.s12} ${theme.space.s28} ${theme.space.s12} ${theme.space.s8};
-
-		${mobile} {
-			border-bottom: 1px solid color-mix(in srgb, ${theme.color.indigo60} 38%, transparent);
-			border-right: 0;
-			min-height: 0;
-			padding: ${theme.space.s8} 0 ${theme.space.s20};
-		}
-	`,
-	metricValue: css`
+	responseError: css`
+		background: color-mix(in srgb, ${theme.color.red100} 18%, transparent);
+		border: 1px solid color-mix(in srgb, ${theme.color.red60} 45%, transparent);
+		border-radius: ${theme.borderRadius.radiusMedium};
 		color: ${theme.color.textPrimary};
-		font: ${theme.font.h2};
-		letter-spacing: -0.035em;
-
-		${mobile} {
-			font: ${theme.font.h3};
-		}
-	`,
-	metricLabel: css`
-		color: ${theme.color.textSecondary};
-		font: ${theme.font.lg};
-		margin-top: ${theme.space.s2};
-	`,
-	metricTrend: css`
-		align-items: center;
-		color: ${theme.color.secondary60};
-		display: flex;
-		font: ${theme.font.md};
-		gap: ${theme.space.s8};
-		margin-top: ${theme.space.s20};
-
-		strong {
-			font: ${theme.font.button};
-		}
-	`,
-	insight: css`
-		align-items: flex-start;
-		display: grid;
-		gap: ${theme.space.s16};
-		grid-template-columns: auto minmax(0, 1fr);
-		padding: ${theme.space.s16} ${theme.space.s16} ${theme.space.s16} ${theme.space.s28};
-
-		${mobile} {
-			padding: ${theme.space.s20} 0 ${theme.space.s8};
-		}
-	`,
-	insightIcon: css`
-		align-items: center;
-		background: linear-gradient(
-			145deg,
-			color-mix(in srgb, ${theme.color.secondary100} 26%, transparent),
-			color-mix(in srgb, ${theme.color.primary100} 30%, transparent)
-		);
-		border: 1px solid color-mix(in srgb, ${theme.color.secondary60} 25%, transparent);
-		border-radius: 50%;
-		color: ${theme.color.secondary60};
-		display: flex;
-		height: 48px;
-		justify-content: center;
-		width: 48px;
-
-		${mobile} {
-			height: 42px;
-			width: 42px;
-		}
-	`,
-	sectionLabel: css`
-		color: ${theme.color.textPrimary};
-		font: ${theme.font.button};
-		font-size: ${theme.fontSize.lg};
-		margin-bottom: ${theme.space.s8};
-	`,
-	insightText: css`
-		color: ${theme.color.textSecondary};
-		font: ${theme.font.md};
-		line-height: 1.7;
-	`,
-	evidenceFooter: css`
-		align-items: center;
-		border-top: 1px solid color-mix(in srgb, ${theme.color.indigo60} 35%, transparent);
-		display: flex;
-		gap: ${theme.space.s12};
-		justify-content: space-between;
-		padding: ${theme.space.s12} ${theme.space.s24};
-
-		${mobile} {
-			padding: ${theme.space.s10} ${theme.space.s16};
-		}
-	`,
-	evidenceActions: css`
-		align-items: center;
-		display: flex;
-		flex-wrap: wrap;
-		gap: ${theme.space.s8};
-	`,
-	evidenceSummary: css`
-		align-items: center;
-		color: ${theme.color.textSecondary};
-		display: flex;
-		font: ${theme.font.md};
-		gap: ${theme.space.s8};
-
-		${mobile} {
-			font: ${theme.font.sm};
-		}
-	`,
-	textButton: css`
-		${bareButton}
-		background: transparent;
-		border-radius: ${theme.borderRadius.radiusMedium};
-		color: ${theme.color.primary40};
-		font: ${theme.font.button};
-		min-height: 40px;
-		padding: ${theme.space.s8};
-	`,
-	feedbackButton: css`
-		${bareButton}
-		align-items: center;
-		background: transparent;
-		border-radius: ${theme.borderRadius.radiusMedium};
-		color: ${theme.color.indigo40};
-		display: inline-flex;
-		height: 40px;
-		justify-content: center;
-		width: 40px;
-
-		:hover {
-			background: color-mix(in srgb, ${theme.color.primary100} 20%, transparent);
-			color: ${theme.color.textPrimary};
-		}
-	`,
-	suggestionButtons: css`
-		display: grid;
-		gap: ${theme.space.s12};
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-
-		${mobile} {
-			grid-auto-columns: minmax(190px, 72%);
-			grid-auto-flow: column;
-			grid-template-columns: none;
-			overflow-x: auto;
-			padding: 2px;
-			scroll-snap-type: x mandatory;
-			scrollbar-width: none;
-		}
+		margin-top: ${theme.space.s16};
+		padding: ${theme.space.s12};
 	`,
 	suggestionButton: css`
 		${bareButton}
@@ -839,6 +566,11 @@ export const aiChatPage = {
 		${mobile} {
 			display: none;
 		}
+	`,
+	historyUnavailable: css`
+		color: ${theme.color.indigo40};
+		line-height: 1.5;
+		padding: ${theme.space.s8} ${theme.space.s12};
 	`,
 	feedEnd: css`
 		height: 1px;

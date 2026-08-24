@@ -3,8 +3,7 @@ import * as React from 'react';
 import { quickTopics } from 'router/ai/ai-chat.data';
 import { useAiChat } from 'router/ai/ai-chat-management';
 import { aiChatPage } from 'router/ai/ai-chat-page.styles';
-import { AnalystReport } from 'router/ai/analyst-report';
-import { SpendingSummary } from 'router/ai/spending-summary';
+import { WingAgentTurn } from 'router/ai/wing-agent-turn';
 
 export const AiChat = () => {
 	const {
@@ -12,7 +11,9 @@ export const AiChat = () => {
 		composerRef,
 		feedEndRef,
 		historyOpen,
+		isSubmitting,
 		prompt,
+		requestError,
 		setHistoryOpen,
 		setPrompt,
 		startNewChat,
@@ -29,6 +30,11 @@ export const AiChat = () => {
 			event.preventDefault();
 			appendPrompt(prompt, true);
 		}
+	};
+
+	const handleTopicSelect = (topicPrompt: string) => {
+		setPrompt(topicPrompt);
+		window.requestAnimationFrame(() => composerRef.current?.focus());
 	};
 
 	return (
@@ -64,6 +70,7 @@ export const AiChat = () => {
 						format="regular"
 						variant="primary"
 						leftIcon="plus"
+						disabled={isSubmitting}
 						onClick={startNewChat}
 					>
 						New chat
@@ -97,7 +104,8 @@ export const AiChat = () => {
 										format="outline"
 										variant="tertiary"
 										css={aiChatPage.suggestionButton}
-										onClick={() => appendPrompt(topic.prompt)}
+										disabled={isSubmitting}
+										onClick={() => handleTopicSelect(topic.prompt)}
 									>
 										{topic.label}
 									</Button>
@@ -105,18 +113,9 @@ export const AiChat = () => {
 							</div>
 						</div>
 					) : (
-						turns.map((turn) =>
-							turn.kind === 'transaction-summary' ? (
-								<SpendingSummary
-									key={turn.id}
-									answer={turn.response.answer}
-									titleId={`lani-response-${turn.id}`}
-									summary={turn.response.results[0].data}
-								/>
-							) : (
-								<AnalystReport key={turn.id} turn={turn} />
-							)
-						)
+						turns.map((turn) => (
+							<WingAgentTurn key={turn.response.turn_id} turn={turn} />
+						))
 					)}
 					<div ref={feedEndRef} css={aiChatPage.feedEnd} />
 				</div>
@@ -136,6 +135,8 @@ export const AiChat = () => {
 								id="lani-prompt"
 								label="Ask Wealth Wing AI about your finances"
 								hideLabel
+								error={requestError || undefined}
+								isDisabled={isSubmitting}
 							>
 								<TextArea
 									ref={composerRef}
@@ -148,18 +149,26 @@ export const AiChat = () => {
 								/>
 							</FormControl>
 						</div>
-						<Button
-							variant="tertiary"
-							format="light"
-							size="medium"
-							leftIcon="credit-card"
-							rightIcon="arrow-down"
-						>
-							All accounts
-						</Button>
+						<div css={aiChatPage.composerActions}>
+							<span css={aiChatPage.accountScope}>
+								<Icon name="credit-card" size="s16" aria-hidden="true" />
+								All accounts
+							</span>
+							<IconButton
+								type="submit"
+								format="regular"
+								variant="primary"
+								iconName="arrow-up"
+								label={isSubmitting ? 'Sending question' : 'Send question'}
+								disabled={!prompt.trim()}
+								isLoading={isSubmitting}
+							/>
+						</div>
 					</div>
 					<Text tag="p" font="sm" css={aiChatPage.disclaimer}>
-						Wealth Wing AI can make mistakes. Please verify important information.
+						{isSubmitting
+							? 'Analyzing your question…'
+							: 'Wealth Wing AI can make mistakes. Please verify important information.'}
 					</Text>
 				</div>
 			</form>
