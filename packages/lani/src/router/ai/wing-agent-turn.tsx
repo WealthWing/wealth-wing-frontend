@@ -1,4 +1,9 @@
 import { Icon, Markdown, Text } from '@wealth-wing/tayo';
+import {
+	SpendingByCategory,
+	type SpendingByCategoryData,
+	type SpendingByCategoryItem
+} from 'components/spending-by-category';
 import type { TransactionSummaryResponse, WingAgentResponse } from 'data/api-definitions';
 import type { ChatTurn } from 'redux/chat';
 import { aiChatPage } from 'router/ai/ai-chat-page.styles';
@@ -47,6 +52,33 @@ const isTransactionSummary = (value: unknown): value is TransactionSummaryRespon
 	);
 };
 
+const isTransactionCount = (value: unknown): value is number =>
+	typeof value === 'number' && Number.isInteger(value) && value >= 0;
+
+const isCategorySpending = (value: unknown): value is SpendingByCategoryItem => {
+	if (!isRecord(value)) return false;
+
+	return (
+		typeof value.category_id === 'string' &&
+		typeof value.category === 'string' &&
+		typeof value.expense === 'number' &&
+		Number.isFinite(value.expense) &&
+		isTransactionCount(value.transaction_count)
+	);
+};
+
+const isSpendingByCategory = (value: unknown): value is SpendingByCategoryData => {
+	if (!isRecord(value)) return false;
+
+	return (
+		Array.isArray(value.spending_by_categories) &&
+		value.spending_by_categories.every(isCategorySpending) &&
+		typeof value.total_spending_by_category === 'number' &&
+		Number.isFinite(value.total_spending_by_category) &&
+		isTransactionCount(value.transaction_count)
+	);
+};
+
 const getResponseError = (response: WingAgentResponse) => {
 	if (response.error?.code === 'data_unavailable') {
 		return 'The financial data needed for this answer is not available.';
@@ -65,10 +97,19 @@ export const WingAgentTurn = ({ turn }: WingAgentTurnProps) => {
 	const transactionSummaryResult = response.results?.find(
 		(result) => result.type === 'transaction_summary'
 	);
+	const spendingByCategoryResult = response.results?.find(
+		(result) => result.type === 'spending_by_category'
+	);
 	const responseError = getResponseError(response);
 	const transactionSummary = isTransactionSummary(transactionSummaryResult?.data)
 		? transactionSummaryResult.data
 		: null;
+	const categorySpending: SpendingByCategoryData | null = isSpendingByCategory(
+		spendingByCategoryResult?.data
+	)
+		? spendingByCategoryResult.data
+		: null;
+	const hasSpendingByCategoryResult = Boolean(spendingByCategoryResult);
 
 	return (
 		<div css={aiChatPage.turn}>
@@ -97,6 +138,21 @@ export const WingAgentTurn = ({ turn }: WingAgentTurnProps) => {
 
 					<div css={aiChatPage.genericAnswer}>
 						{response.answer ? <Markdown>{response.answer}</Markdown> : null}
+						{hasSpendingByCategoryResult && !responseError && categorySpending ? (
+							<SpendingByCategory
+								css={aiChatPage.structuredResult}
+								data={categorySpending}
+								headingTag="h3"
+								status="ready"
+							/>
+						) : null}
+						{hasSpendingByCategoryResult && !responseError && !categorySpending ? (
+							<SpendingByCategory
+								css={aiChatPage.structuredResult}
+								headingTag="h3"
+								status="error"
+							/>
+						) : null}
 						{responseError ? (
 							<Text tag="p" css={aiChatPage.responseError}>
 								{responseError}

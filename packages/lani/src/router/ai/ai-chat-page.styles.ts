@@ -417,6 +417,9 @@ export const aiChatPage = {
 			padding: ${theme.space.s8} ${theme.space.s16} ${theme.space.s20};
 		}
 	`,
+	structuredResult: css`
+		margin-top: ${theme.space.s20};
+	`,
 	responseError: css`
 		background: color-mix(in srgb, ${theme.color.red100} 18%, transparent);
 		border: 1px solid color-mix(in srgb, ${theme.color.red60} 45%, transparent);
